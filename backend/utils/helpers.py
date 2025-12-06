@@ -132,15 +132,27 @@ async def run_command_async(command: list) -> Tuple[int, str, str]:
             startupinfo = subprocess.STARTUPINFO()
             startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
             
-        result = subprocess.run(
-            command,
-            capture_output=True,
-            text=True,
-            encoding='utf-8',
-            errors='ignore',
-            startupinfo=startupinfo
-        )
-        return result.returncode, result.stdout, result.stderr
+        # Run command - avoiding massive memory buffering
+        # We don't need stdout for FFmpeg (it writes to file)
+        # We only capture stderr for error logging
+        try:
+            result = subprocess.run(
+                command,
+                stdout=subprocess.DEVNULL,  # Don't buffer stdout
+                stderr=subprocess.PIPE,     # Buffer stderr for errors
+                text=True,
+                encoding='utf-8',
+                errors='ignore',
+                startupinfo=startupinfo,
+                timeout=300 # 5 minute timeout safety
+            )
+            return result.returncode, "", result.stderr
+        except subprocess.TimeoutExpired:
+            return 1, "", "Process timed out"
+        except Exception as e:
+            return 1, "", str(e)
+            
+    return await loop.run_in_executor(None, _run)
         
     return await loop.run_in_executor(None, _run)
 
