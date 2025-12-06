@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Media Files (User uploads/downloads/conversions)
+uploads/
+downloads/
+converted/
+test_media_files/
+ConvertRocket/
+
+# Binaries
+bin/ffmpeg.exe
+bin/ffprobe.exe
+*.exe
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

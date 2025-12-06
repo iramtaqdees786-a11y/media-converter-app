@@ -1,0 +1,298 @@
+"""
+Service for downloading videos from social media platforms using yt-dlp.
+Supports YouTube, TikTok, Instagram, Twitter, and Facebook.
+"""
+
+import asyncio
+import os
+import re
+from pathlib import Path
+from typing import Dict, Optional, Any
+from dataclasses import dataclass
+import yt_dlp
+
+from backend.config import DOWNLOADS_DIR, SUPPORTED_PLATFORMS
+from backend.utils.helpers import generate_unique_filename
+
+
+@dataclass
+class DownloadResult:
+    """Result of a download operation."""
+    success: bool
+    message: str
+    filename: Optional[str] = None
+    filepath: Optional[str] = None
+    title: Optional[str] = None
+    duration: Optional[int] = None
+    filesize: Optional[int] = None
+    thumbnail: Optional[str] = None
+
+
+class DownloadProgress:
+    """Track download progress."""
+    
+    def __init__(self):
+        self.progress: float = 0
+        self.status: str = "pending"
+        self.speed: str = ""
+        self.eta: str = ""
+    
+    def update(self, d: Dict[str, Any]):
+        """Update progress from yt-dlp callback."""
+        if d['status'] == 'downloading':
+            self.status = 'downloading'
+            # Extract percentage
+            if 'downloaded_bytes' in d and 'total_bytes' in d:
+                self.progress = (d['downloaded_bytes'] / d['total_bytes']) * 100
+            elif '_percent_str' in d:
+                try:
+                    self.progress = float(d['_percent_str'].strip('%'))
+                except:
+                    pass
+            
+            self.speed = d.get('_speed_str', '')
+            self.eta = d.get('_eta_str', '')
+        
+        elif d['status'] == 'finished':
+            self.status = 'finished'
+            self.progress = 100
+
+
+def detect_platform(url: str) -> Optional[str]:
+    """
+    Detect the platform from a URL.
+    
+    Args:
+        url: The URL to analyze
+    
+    Returns:
+        Platform name or None if not supported
+    """
+    patterns = {
+        'youtube': r'(youtube\.com|youtu\.be)',
+        'tiktok': r'(tiktok\.com|vm\.tiktok\.com)',
+        'instagram': r'(instagram\.com|instagr\.am)',
+        'twitter': r'(twitter\.com|x\.com)',
+        'facebook': r'(facebook\.com|fb\.watch)'
+    }
+    
+    for platform, pattern in patterns.items():
+        if re.search(pattern, url, re.IGNORECASE):
+            return platform
+    
+    return None
+
+
+def validate_url(url: str) -> tuple[bool, str]:
+    """
+    Validate if a URL is supported for download.
+    
+    Args:
+        url: The URL to validate
+    
+    Returns:
+        Tuple of (is_valid, error_message_or_platform)
+    """
+    if not url or not url.strip():
+        return False, "URL cannot be empty"
+    
+    # Basic URL validation
+    url_pattern = re.compile(
+        r'^https?://'
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'
+        r'localhost|'
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
+        r'(?::\d+)?'
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE
+    )
+    
+    if not url_pattern.match(url):
+        return False, "Invalid URL format"
+    
+    platform = detect_platform(url)
+    if not platform:
+        return False, f"Unsupported platform. Supported: {', '.join(SUPPORTED_PLATFORMS)}"
+    
+    return True, platform
+
+
+async def get_video_info(url: str) -> Dict[str, Any]:
+    """
+    Get video information without downloading.
+    
+    Args:
+        url: Video URL
+    
+    Returns:
+        Dictionary with video information
+    """
+    ydl_opts = {
+        'quiet': True,
+        'no_warnings': True,
+        'extract_flat': False,
+    }
+    
+    loop = asyncio.get_event_loop()
+    
+    def extract_info():
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            return ydl.extract_info(url, download=False)
+    
+    try:
+        info = await loop.run_in_executor(None, extract_info)
+        return {
+            'title': info.get('title', 'Unknown'),
+            'duration': info.get('duration', 0),
+            'thumbnail': info.get('thumbnail', ''),
+            'uploader': info.get('uploader', 'Unknown'),
+            'view_count': info.get('view_count', 0),
+            'description': info.get('description', '')[:200] if info.get('description') else '',
+            'formats': len(info.get('formats', [])),
+        }
+    except Exception as e:
+        return {'error': str(e)}
+
+
+async def download_video(
+    url: str,
+    format_type: str = "video",
+    quality: str = "best",
+    progress_callback: Optional[callable] = None
+) -> DownloadResult:
+    """
+    Download a video from a supported platform.
+    
+    Args:
+        url: Video URL to download
+        format_type: Type of download - 'video' or 'audio'
+        quality: Quality setting - 'best', 'worst', or specific format
+        progress_callback: Optional callback for progress updates
+    
+    Returns:
+        DownloadResult with download status and file info
+    """
+    # Validate URL
+    is_valid, result = validate_url(url)
+    if not is_valid:
+        return DownloadResult(success=False, message=result)
+    
+    platform = result
+    progress = DownloadProgress()
+    
+    # Configure yt-dlp options
+    output_template = str(DOWNLOADS_DIR / '%(title)s_%(id)s.%(ext)s')
+    
+    ydl_opts = {
+        'outtmpl': output_template,
+        'quiet': True,
+        'no_warnings': True,
+        'progress_hooks': [progress.update],
+        'restrictfilenames': True,  # Avoid special characters in filename
+    }
+    
+    # Set format based on type
+    if format_type == "audio":
+        ydl_opts.update({
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+        })
+    else:
+        if quality == "best":
+            ydl_opts['format'] = 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
+        elif quality == "worst":
+            ydl_opts['format'] = 'worstvideo+worstaudio/worst'
+        else:
+            ydl_opts['format'] = quality
+    
+    loop = asyncio.get_event_loop()
+    
+    def do_download():
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            return ydl.extract_info(url, download=True)
+    
+    try:
+        info = await loop.run_in_executor(None, do_download)
+        
+        # Find the downloaded file
+        if format_type == "audio":
+            expected_ext = "mp3"
+        else:
+            expected_ext = info.get('ext', 'mp4')
+        
+        # Build the expected filename
+        title = info.get('title', 'video')
+        video_id = info.get('id', 'unknown')
+        
+        # yt-dlp restricts filenames, so we need to find the actual file
+        for file in DOWNLOADS_DIR.iterdir():
+            if video_id in file.name:
+                filepath = file
+                break
+        else:
+            # Fallback: find most recent file
+            files = list(DOWNLOADS_DIR.iterdir())
+            if files:
+                filepath = max(files, key=lambda x: x.stat().st_mtime)
+            else:
+                return DownloadResult(
+                    success=False,
+                    message="Download completed but file not found"
+                )
+        
+        return DownloadResult(
+            success=True,
+            message=f"Successfully downloaded from {platform}",
+            filename=filepath.name,
+            filepath=str(filepath),
+            title=info.get('title'),
+            duration=info.get('duration'),
+            filesize=filepath.stat().st_size if filepath.exists() else None,
+            thumbnail=info.get('thumbnail')
+        )
+        
+    except yt_dlp.DownloadError as e:
+        error_msg = str(e)
+        # Provide user-friendly error messages
+        if "Private video" in error_msg:
+            return DownloadResult(success=False, message="This video is private. The owner has restricted access.")
+        elif "Video unavailable" in error_msg:
+            return DownloadResult(success=False, message="This video is currently unavailable. It may have been removed.")
+        elif "Sign in" in error_msg or "login" in error_msg.lower():
+            return DownloadResult(success=False, message="This video requires login. Please try a public video.")
+        elif "copyright" in error_msg.lower():
+            return DownloadResult(success=False, message="This video has copyright restrictions in your region.")
+        elif "age" in error_msg.lower():
+            return DownloadResult(success=False, message="This video is age-restricted. Please try another video.")
+        elif "geo" in error_msg.lower() or "country" in error_msg.lower():
+            return DownloadResult(success=False, message="This video is not available in your region.")
+        elif "429" in error_msg or "rate" in error_msg.lower():
+            return DownloadResult(success=False, message="Too many requests. Please wait a moment and try again!")
+        elif "network" in error_msg.lower() or "connection" in error_msg.lower():
+            return DownloadResult(success=False, message="Network issue detected. Please check your connection and try again.")
+        else:
+            return DownloadResult(success=False, message="We couldn't download this video. Please try a different URL or try again later!")
+    
+    except asyncio.TimeoutError:
+        return DownloadResult(success=False, message="Download is taking too long. Please try again with a shorter video.")
+    
+    except Exception as e:
+        # Log actual error for debugging
+        print(f"Download error: {str(e)}")
+        return DownloadResult(success=False, message="Something went wrong! Our servers are working hard. Please try again in a moment.")
+
+
+async def download_audio_only(url: str) -> DownloadResult:
+    """
+    Download only the audio track from a video.
+    
+    Args:
+        url: Video URL
+    
+    Returns:
+        DownloadResult with download status
+    """
+    return await download_video(url, format_type="audio")

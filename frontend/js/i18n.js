@@ -1,0 +1,722 @@
+/**
+ * ConvertRocket - Internationalization (i18n) Module
+ * Supports 17+ languages including RTL languages
+ */
+
+// Language configurations
+const LANGUAGES = {
+    en: { name: 'English', native: 'English', dir: 'ltr', flag: '🇺🇸' },
+    hi: { name: 'Hindi', native: 'हिन्दी', dir: 'ltr', flag: '🇮🇳' },
+    ur: { name: 'Urdu', native: 'اردو', dir: 'rtl', flag: '🇵🇰' },
+    ta: { name: 'Tamil', native: 'தமிழ்', dir: 'ltr', flag: '🇮🇳' },
+    ml: { name: 'Malayalam', native: 'മലയാളം', dir: 'ltr', flag: '🇮🇳' },
+    te: { name: 'Telugu', native: 'తెలుగు', dir: 'ltr', flag: '🇮🇳' },
+    bn: { name: 'Bengali', native: 'বাংলা', dir: 'ltr', flag: '🇧🇩' },
+    es: { name: 'Spanish', native: 'Español', dir: 'ltr', flag: '🇪🇸' },
+    fr: { name: 'French', native: 'Français', dir: 'ltr', flag: '🇫🇷' },
+    ar: { name: 'Arabic', native: 'العربية', dir: 'rtl', flag: '🇸🇦' },
+    pt: { name: 'Portuguese', native: 'Português', dir: 'ltr', flag: '🇧🇷' },
+    de: { name: 'German', native: 'Deutsch', dir: 'ltr', flag: '🇩🇪' },
+    ru: { name: 'Russian', native: 'Русский', dir: 'ltr', flag: '🇷🇺' },
+    zh: { name: 'Chinese', native: '中文', dir: 'ltr', flag: '🇨🇳' },
+    ja: { name: 'Japanese', native: '日本語', dir: 'ltr', flag: '🇯🇵' },
+    ko: { name: 'Korean', native: '한국어', dir: 'ltr', flag: '🇰🇷' },
+    id: { name: 'Indonesian', native: 'Bahasa Indonesia', dir: 'ltr', flag: '🇮🇩' },
+    tr: { name: 'Turkish', native: 'Türkçe', dir: 'ltr', flag: '🇹🇷' },
+    vi: { name: 'Vietnamese', native: 'Tiếng Việt', dir: 'ltr', flag: '🇻🇳' },
+    th: { name: 'Thai', native: 'ไทย', dir: 'ltr', flag: '🇹🇭' },
+    it: { name: 'Italian', native: 'Italiano', dir: 'ltr', flag: '🇮🇹' },
+    nl: { name: 'Dutch', native: 'Nederlands', dir: 'ltr', flag: '🇳🇱' },
+    pl: { name: 'Polish', native: 'Polski', dir: 'ltr', flag: '🇵🇱' }
+};
+
+// Translations
+const TRANSLATIONS = {
+    en: {
+        // Header
+        tagline: "The fastest way to download videos & convert files online. 100% Free!",
+        badge_fast: "Lightning Fast",
+        badge_secure: "100% Secure",
+        badge_free: "Forever Free",
+        badge_quality: "HD Quality",
+
+        // Tabs
+        tab_download: "Download",
+        tab_convert: "Convert",
+        tab_formats: "Formats",
+
+        // Download Section
+        download_title: "Download from URL",
+        download_subtitle: "Paste a video URL from YouTube, TikTok, Instagram, or Twitter",
+        label_video_url: "Video URL",
+        url_help: "Paste any YouTube, TikTok, Instagram, Twitter or Facebook video URL",
+        label_download_type: "Download Type",
+        label_quality: "Quality",
+        option_video: "🎬 Video (MP4)",
+        option_audio: "🎵 Audio Only (MP3)",
+        quality_best: "Best Quality",
+        quality_low: "Lowest (Faster)",
+        btn_get_info: "Get Info",
+        btn_download: "Download Now",
+        processing: "Processing...",
+        supported_platforms: "Supported Platforms:",
+
+        // Convert Section
+        convert_title: "Convert Files",
+        convert_subtitle: "Upload a file and convert it to your desired format",
+        upload_text: "Drag & drop a file here or click to browse",
+        upload_hint: "Supports video, audio, images, documents, and spreadsheets",
+        label_convert_to: "Convert To",
+        select_file_first: "Select a file first...",
+        btn_convert: "Convert File",
+        converting: "Converting...",
+
+        // Formats Section
+        formats_title: "Supported Formats",
+        formats_subtitle: "All file formats you can convert between",
+        format_video: "VIDEO",
+        format_audio: "AUDIO",
+        format_images: "IMAGES",
+        format_documents: "DOCUMENTS",
+        format_spreadsheets: "SPREADSHEETS",
+
+        // Features
+        feature_fast: "Fast Processing",
+        feature_fast_desc: "High-speed conversion using optimized algorithms",
+        feature_secure: "Secure",
+        feature_secure_desc: "Your files are processed locally and never stored",
+        feature_quality: "High Quality",
+        feature_quality_desc: "Preserve quality during format conversion",
+        feature_global: "Global Access",
+        feature_global_desc: "Available worldwide in 17+ languages",
+
+        // SEO Content
+        seo_title: "Free Online Video Downloader - Download YouTube, TikTok, Instagram Videos",
+        seo_desc: "ConvertRocket is the ultimate free online video downloader that lets you save videos from YouTube, TikTok, Instagram, Twitter, and Facebook. No software installation needed - just paste the URL and download in seconds. Convert YouTube to MP3, download TikTok videos without watermark, save Instagram reels, and more!",
+        seo_convert_title: "Free Online File Converter - Convert Videos, Audio, Images, Documents",
+        seo_convert_desc: "ConvertRocket's free file converter supports all popular formats. Convert MP4 to MP3, AVI to MP4, PNG to JPG, PDF to Word, Excel to CSV, and much more. Our online converter is fast, secure, and works directly in your browser - no software installation required!",
+
+        // FAQ
+        faq_title: "Frequently Asked Questions",
+        faq_q1: "Is ConvertRocket free to use?",
+        faq_a1: "Yes! ConvertRocket is 100% free. No signup required, no hidden fees. Download and convert unlimited files without any restrictions.",
+        faq_q2: "How do I download YouTube videos?",
+        faq_a2: "Simply paste the YouTube video URL into ConvertRocket, select your preferred format (MP4 for video or MP3 for audio), choose quality, and click Download. It's that easy!",
+        faq_q3: "Is it safe to use ConvertRocket?",
+        faq_a3: "Absolutely! ConvertRocket processes files securely. We don't store your files - they're automatically deleted after processing. Your privacy is our priority.",
+        faq_q4: "What file formats are supported?",
+        faq_a4: "We support all major formats: Videos (MP4, MKV, WebM, AVI), Audio (MP3, WAV, AAC), Images (JPG, PNG, WebP, GIF), Documents (PDF, DOCX, TXT), and Spreadsheets (XLSX, XLS, CSV).",
+
+        // Footer
+        footer_tagline: "The fastest way to download & convert files online",
+        footer_api: "API",
+        footer_privacy: "Privacy Policy",
+        footer_terms: "Terms of Service",
+        footer_contact: "Contact",
+        footer_rights: "All Rights Reserved",
+
+        // Messages
+        msg_enter_url: "Please enter a valid URL",
+        msg_fetching: "Fetching video information...",
+        msg_downloading: "Starting download...",
+        msg_download_complete: "Download complete!",
+        msg_select_file: "Please select a file to convert",
+        msg_select_format: "Please select a target format",
+        msg_uploading: "Uploading and converting file...",
+        msg_conversion_complete: "Conversion complete!",
+        msg_download_file: "Download File",
+        msg_download_converted: "Download Converted File"
+    },
+
+    hi: {
+        tagline: "वीडियो डाउनलोड और फाइल कन्वर्ट करने का सबसे तेज़ तरीका। 100% मुफ्त!",
+        badge_fast: "बिजली की तरह तेज़",
+        badge_secure: "100% सुरक्षित",
+        badge_free: "हमेशा मुफ्त",
+        badge_quality: "HD क्वालिटी",
+        tab_download: "डाउनलोड",
+        tab_convert: "कन्वर्ट",
+        tab_formats: "फॉर्मेट",
+        download_title: "URL से डाउनलोड करें",
+        download_subtitle: "YouTube, TikTok, Instagram, या Twitter से वीडियो URL पेस्ट करें",
+        label_video_url: "वीडियो URL",
+        url_help: "YouTube, TikTok, Instagram, Twitter या Facebook का कोई भी वीडियो URL पेस्ट करें",
+        label_download_type: "डाउनलोड प्रकार",
+        label_quality: "क्वालिटी",
+        option_video: "🎬 वीडियो (MP4)",
+        option_audio: "🎵 केवल ऑडियो (MP3)",
+        quality_best: "सर्वश्रेष्ठ क्वालिटी",
+        quality_low: "सबसे कम (तेज़)",
+        btn_get_info: "जानकारी लें",
+        btn_download: "अभी डाउनलोड करें",
+        processing: "प्रोसेसिंग...",
+        supported_platforms: "समर्थित प्लेटफॉर्म:",
+        convert_title: "फाइल कन्वर्ट करें",
+        convert_subtitle: "फाइल अपलोड करें और अपने मनचाहे फॉर्मेट में बदलें",
+        upload_text: "यहां फाइल ड्रैग करें या ब्राउज़ करने के लिए क्लिक करें",
+        upload_hint: "वीडियो, ऑडियो, इमेज, डॉक्यूमेंट और स्प्रेडशीट सपोर्टेड हैं",
+        label_convert_to: "में कन्वर्ट करें",
+        select_file_first: "पहले फाइल चुनें...",
+        btn_convert: "फाइल कन्वर्ट करें",
+        converting: "कन्वर्ट हो रहा है...",
+        formats_title: "समर्थित फॉर्मेट",
+        formats_subtitle: "सभी फाइल फॉर्मेट जिनमें आप कन्वर्ट कर सकते हैं",
+        format_video: "वीडियो",
+        format_audio: "ऑडियो",
+        format_images: "इमेज",
+        format_documents: "डॉक्यूमेंट",
+        format_spreadsheets: "स्प्रेडशीट",
+        feature_fast: "तेज़ प्रोसेसिंग",
+        feature_fast_desc: "ऑप्टिमाइज्ड एल्गोरिदम से हाई-स्पीड कन्वर्जन",
+        feature_secure: "सुरक्षित",
+        feature_secure_desc: "आपकी फाइलें लोकली प्रोसेस होती हैं और स्टोर नहीं होतीं",
+        feature_quality: "हाई क्वालिटी",
+        feature_quality_desc: "कन्वर्जन के दौरान क्वालिटी बरकरार",
+        feature_global: "वैश्विक पहुंच",
+        feature_global_desc: "17+ भाषाओं में दुनिया भर में उपलब्ध",
+        faq_title: "अक्सर पूछे जाने वाले प्रश्न",
+        faq_q1: "क्या ConvertRocket मुफ्त है?",
+        faq_a1: "हाँ! ConvertRocket 100% मुफ्त है। साइनअप की जरूरत नहीं, कोई छिपी फीस नहीं।",
+        faq_q2: "YouTube वीडियो कैसे डाउनलोड करें?",
+        faq_a2: "बस YouTube वीडियो URL पेस्ट करें, फॉर्मेट चुनें, और डाउनलोड पर क्लिक करें!",
+        faq_q3: "क्या ConvertRocket सुरक्षित है?",
+        faq_a3: "बिल्कुल! आपकी फाइलें सुरक्षित रूप से प्रोसेस होती हैं और स्टोर नहीं होतीं।",
+        faq_q4: "कौन से फॉर्मेट सपोर्टेड हैं?",
+        faq_a4: "हम सभी प्रमुख फॉर्मेट सपोर्ट करते हैं: वीडियो, ऑडियो, इमेज, डॉक्यूमेंट, और स्प्रेडशीट।",
+        footer_tagline: "ऑनलाइन फाइल डाउनलोड और कन्वर्ट करने का सबसे तेज़ तरीका",
+        footer_api: "API",
+        footer_privacy: "गोपनीयता नीति",
+        footer_terms: "सेवा की शर्तें",
+        footer_contact: "संपर्क करें",
+        footer_rights: "सर्वाधिकार सुरक्षित"
+    },
+
+    ur: {
+        tagline: "ویڈیوز ڈاؤن لوڈ اور فائلز کنورٹ کرنے کا تیز ترین طریقہ۔ 100% مفت!",
+        badge_fast: "بجلی کی طرح تیز",
+        badge_secure: "100% محفوظ",
+        badge_free: "ہمیشہ مفت",
+        badge_quality: "HD کوالٹی",
+        tab_download: "ڈاؤن لوڈ",
+        tab_convert: "کنورٹ",
+        tab_formats: "فارمیٹس",
+        download_title: "URL سے ڈاؤن لوڈ کریں",
+        download_subtitle: "YouTube، TikTok، Instagram، یا Twitter سے ویڈیو URL پیسٹ کریں",
+        label_video_url: "ویڈیو URL",
+        url_help: "YouTube، TikTok، Instagram، Twitter یا Facebook کا کوئی بھی ویڈیو URL پیسٹ کریں",
+        label_download_type: "ڈاؤن لوڈ کی قسم",
+        label_quality: "کوالٹی",
+        option_video: "🎬 ویڈیو (MP4)",
+        option_audio: "🎵 صرف آڈیو (MP3)",
+        quality_best: "بہترین کوالٹی",
+        quality_low: "کم ترین (تیز)",
+        btn_get_info: "معلومات حاصل کریں",
+        btn_download: "ابھی ڈاؤن لوڈ کریں",
+        processing: "پروسیسنگ...",
+        supported_platforms: "تائید شدہ پلیٹ فارمز:",
+        convert_title: "فائلز کنورٹ کریں",
+        convert_subtitle: "فائل اپ لوڈ کریں اور اپنی مطلوبہ شکل میں تبدیل کریں",
+        upload_text: "یہاں فائل ڈریگ کریں یا براؤز کرنے کے لیے کلک کریں",
+        upload_hint: "ویڈیو، آڈیو، تصاویر، دستاویزات اور اسپریڈشیٹس سپورٹڈ ہیں",
+        label_convert_to: "میں کنورٹ کریں",
+        select_file_first: "پہلے فائل منتخب کریں...",
+        btn_convert: "فائل کنورٹ کریں",
+        converting: "کنورٹ ہو رہا ہے...",
+        formats_title: "تائید شدہ فارمیٹس",
+        formats_subtitle: "تمام فائل فارمیٹس جن میں آپ کنورٹ کر سکتے ہیں",
+        format_video: "ویڈیو",
+        format_audio: "آڈیو",
+        format_images: "تصاویر",
+        format_documents: "دستاویزات",
+        format_spreadsheets: "اسپریڈشیٹس",
+        faq_title: "اکثر پوچھے گئے سوالات",
+        footer_tagline: "آن لائن فائلز ڈاؤن لوڈ اور کنورٹ کرنے کا تیز ترین طریقہ",
+        footer_api: "API",
+        footer_privacy: "رازداری کی پالیسی",
+        footer_terms: "سروس کی شرائط",
+        footer_contact: "رابطہ کریں",
+        footer_rights: "جملہ حقوق محفوظ ہیں"
+    },
+
+    ta: {
+        tagline: "வீடியோக்களை பதிவிறக்கம் செய்து கோப்புகளை மாற்ற விரைவான வழி. 100% இலவசம்!",
+        badge_fast: "மின்னல் வேகம்",
+        badge_secure: "100% பாதுகாப்பு",
+        badge_free: "எப்போதும் இலவசம்",
+        badge_quality: "HD தரம்",
+        tab_download: "பதிவிறக்கம்",
+        tab_convert: "மாற்று",
+        tab_formats: "வடிவங்கள்",
+        download_title: "URL இலிருந்து பதிவிறக்கம்",
+        download_subtitle: "YouTube, TikTok, Instagram, அல்லது Twitter வீடியோ URL ஐ ஒட்டவும்",
+        label_video_url: "வீடியோ URL",
+        btn_get_info: "தகவல் பெறு",
+        btn_download: "இப்போது பதிவிறக்கம்",
+        processing: "செயலாக்கம்...",
+        convert_title: "கோப்புகளை மாற்று",
+        convert_subtitle: "கோப்பை பதிவேற்றி உங்கள் விரும்பிய வடிவத்திற்கு மாற்றவும்",
+        upload_text: "இங்கே கோப்பை இழுக்கவும் அல்லது உலாவ கிளிக் செய்யவும்",
+        btn_convert: "கோப்பை மாற்று",
+        formats_title: "ஆதரிக்கப்படும் வடிவங்கள்",
+        faq_title: "அடிக்கடி கேட்கப்படும் கேள்விகள்",
+        footer_rights: "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டுள்ளன"
+    },
+
+    ml: {
+        tagline: "വീഡിയോകൾ ഡൗൺലോഡ് ചെയ്യാനും ഫയലുകൾ പരിവർത്തനം ചെയ്യാനുമുള്ള ഏറ്റവും വേഗത്തിലുള്ള മാർഗം. 100% സൗജന്യം!",
+        badge_fast: "മിന്നൽ വേഗത",
+        badge_secure: "100% സുരക്ഷിതം",
+        badge_free: "എന്നും സൗജന്യം",
+        badge_quality: "HD ഗുണനിലവാരം",
+        tab_download: "ഡൗൺലോഡ്",
+        tab_convert: "പരിവർത്തനം",
+        tab_formats: "ഫോർമാറ്റുകൾ",
+        download_title: "URL-ൽ നിന്ന് ഡൗൺലോഡ് ചെയ്യുക",
+        download_subtitle: "YouTube, TikTok, Instagram, അല്ലെങ്കിൽ Twitter വീഡിയോ URL ഒട്ടിക്കുക",
+        btn_get_info: "വിവരങ്ങൾ നേടുക",
+        btn_download: "ഇപ്പോൾ ഡൗൺലോഡ് ചെയ്യുക",
+        convert_title: "ഫയലുകൾ പരിവർത്തനം ചെയ്യുക",
+        upload_text: "ഇവിടെ ഫയൽ വലിച്ചിടുക അല്ലെങ്കിൽ ബ്രൗസ് ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക",
+        btn_convert: "ഫയൽ പരിവർത്തനം ചെയ്യുക",
+        formats_title: "പിന്തുണയ്ക്കുന്ന ഫോർമാറ്റുകൾ",
+        faq_title: "പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ",
+        footer_rights: "എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം"
+    },
+
+    es: {
+        tagline: "La forma más rápida de descargar videos y convertir archivos en línea. ¡100% Gratis!",
+        badge_fast: "Súper Rápido",
+        badge_secure: "100% Seguro",
+        badge_free: "Siempre Gratis",
+        badge_quality: "Calidad HD",
+        tab_download: "Descargar",
+        tab_convert: "Convertir",
+        tab_formats: "Formatos",
+        download_title: "Descargar desde URL",
+        download_subtitle: "Pega una URL de video de YouTube, TikTok, Instagram o Twitter",
+        label_video_url: "URL del Video",
+        url_help: "Pega cualquier URL de video de YouTube, TikTok, Instagram, Twitter o Facebook",
+        label_download_type: "Tipo de Descarga",
+        label_quality: "Calidad",
+        option_video: "🎬 Video (MP4)",
+        option_audio: "🎵 Solo Audio (MP3)",
+        quality_best: "Mejor Calidad",
+        quality_low: "Más Baja (Más Rápido)",
+        btn_get_info: "Obtener Info",
+        btn_download: "Descargar Ahora",
+        processing: "Procesando...",
+        supported_platforms: "Plataformas Soportadas:",
+        convert_title: "Convertir Archivos",
+        convert_subtitle: "Sube un archivo y conviértelo al formato deseado",
+        upload_text: "Arrastra y suelta un archivo aquí o haz clic para explorar",
+        upload_hint: "Soporta video, audio, imágenes, documentos y hojas de cálculo",
+        label_convert_to: "Convertir A",
+        select_file_first: "Selecciona un archivo primero...",
+        btn_convert: "Convertir Archivo",
+        converting: "Convirtiendo...",
+        formats_title: "Formatos Soportados",
+        formats_subtitle: "Todos los formatos de archivo entre los que puedes convertir",
+        format_video: "VIDEO",
+        format_audio: "AUDIO",
+        format_images: "IMÁGENES",
+        format_documents: "DOCUMENTOS",
+        format_spreadsheets: "HOJAS DE CÁLCULO",
+        feature_fast: "Procesamiento Rápido",
+        feature_fast_desc: "Conversión de alta velocidad usando algoritmos optimizados",
+        feature_secure: "Seguro",
+        feature_secure_desc: "Tus archivos se procesan localmente y nunca se almacenan",
+        feature_quality: "Alta Calidad",
+        feature_quality_desc: "Preserva la calidad durante la conversión",
+        feature_global: "Acceso Global",
+        feature_global_desc: "Disponible en todo el mundo en más de 17 idiomas",
+        faq_title: "Preguntas Frecuentes",
+        faq_q1: "¿Es ConvertRocket gratis?",
+        faq_a1: "¡Sí! ConvertRocket es 100% gratis. Sin registro, sin costos ocultos.",
+        faq_q2: "¿Cómo descargo videos de YouTube?",
+        faq_a2: "Simplemente pega la URL del video, selecciona el formato y haz clic en Descargar.",
+        faq_q3: "¿Es seguro usar ConvertRocket?",
+        faq_a3: "¡Absolutamente! Tus archivos se procesan de forma segura y no se almacenan.",
+        faq_q4: "¿Qué formatos son compatibles?",
+        faq_a4: "Soportamos todos los formatos principales: Videos, Audio, Imágenes, Documentos y Hojas de cálculo.",
+        footer_tagline: "La forma más rápida de descargar y convertir archivos en línea",
+        footer_api: "API",
+        footer_privacy: "Política de Privacidad",
+        footer_terms: "Términos de Servicio",
+        footer_contact: "Contacto",
+        footer_rights: "Todos los Derechos Reservados"
+    },
+
+    fr: {
+        tagline: "Le moyen le plus rapide de télécharger des vidéos et convertir des fichiers en ligne. 100% Gratuit!",
+        badge_fast: "Ultra Rapide",
+        badge_secure: "100% Sécurisé",
+        badge_free: "Toujours Gratuit",
+        badge_quality: "Qualité HD",
+        tab_download: "Télécharger",
+        tab_convert: "Convertir",
+        tab_formats: "Formats",
+        download_title: "Télécharger depuis URL",
+        download_subtitle: "Collez une URL de vidéo YouTube, TikTok, Instagram ou Twitter",
+        label_video_url: "URL de la Vidéo",
+        url_help: "Collez n'importe quelle URL de vidéo YouTube, TikTok, Instagram, Twitter ou Facebook",
+        label_download_type: "Type de Téléchargement",
+        label_quality: "Qualité",
+        option_video: "🎬 Vidéo (MP4)",
+        option_audio: "🎵 Audio Seulement (MP3)",
+        quality_best: "Meilleure Qualité",
+        quality_low: "Plus Basse (Plus Rapide)",
+        btn_get_info: "Obtenir Info",
+        btn_download: "Télécharger Maintenant",
+        processing: "Traitement...",
+        supported_platforms: "Plateformes Supportées:",
+        convert_title: "Convertir des Fichiers",
+        convert_subtitle: "Téléchargez un fichier et convertissez-le au format souhaité",
+        upload_text: "Glissez-déposez un fichier ici ou cliquez pour parcourir",
+        upload_hint: "Supporte vidéo, audio, images, documents et feuilles de calcul",
+        label_convert_to: "Convertir En",
+        select_file_first: "Sélectionnez d'abord un fichier...",
+        btn_convert: "Convertir le Fichier",
+        converting: "Conversion...",
+        formats_title: "Formats Supportés",
+        formats_subtitle: "Tous les formats de fichiers que vous pouvez convertir",
+        format_video: "VIDÉO",
+        format_audio: "AUDIO",
+        format_images: "IMAGES",
+        format_documents: "DOCUMENTS",
+        format_spreadsheets: "TABLEURS",
+        feature_fast: "Traitement Rapide",
+        feature_fast_desc: "Conversion haute vitesse avec des algorithmes optimisés",
+        feature_secure: "Sécurisé",
+        feature_secure_desc: "Vos fichiers sont traités localement et jamais stockés",
+        feature_quality: "Haute Qualité",
+        feature_quality_desc: "Préserve la qualité lors de la conversion",
+        feature_global: "Accès Mondial",
+        feature_global_desc: "Disponible dans le monde entier en plus de 17 langues",
+        faq_title: "Questions Fréquentes",
+        footer_tagline: "Le moyen le plus rapide de télécharger et convertir des fichiers en ligne",
+        footer_api: "API",
+        footer_privacy: "Politique de Confidentialité",
+        footer_terms: "Conditions d'Utilisation",
+        footer_contact: "Contact",
+        footer_rights: "Tous Droits Réservés"
+    },
+
+    ar: {
+        tagline: "أسرع طريقة لتنزيل الفيديوهات وتحويل الملفات عبر الإنترنت. مجاني 100%!",
+        badge_fast: "سريع كالبرق",
+        badge_secure: "آمن 100%",
+        badge_free: "مجاني للأبد",
+        badge_quality: "جودة HD",
+        tab_download: "تنزيل",
+        tab_convert: "تحويل",
+        tab_formats: "الصيغ",
+        download_title: "التنزيل من الرابط",
+        download_subtitle: "الصق رابط فيديو من YouTube أو TikTok أو Instagram أو Twitter",
+        label_video_url: "رابط الفيديو",
+        btn_get_info: "معلومات",
+        btn_download: "تنزيل الآن",
+        processing: "جاري المعالجة...",
+        convert_title: "تحويل الملفات",
+        upload_text: "اسحب وأفلت ملفًا هنا أو انقر للتصفح",
+        btn_convert: "تحويل الملف",
+        converting: "جاري التحويل...",
+        formats_title: "الصيغ المدعومة",
+        faq_title: "الأسئلة الشائعة",
+        footer_rights: "جميع الحقوق محفوظة"
+    },
+
+    pt: {
+        tagline: "A maneira mais rápida de baixar vídeos e converter arquivos online. 100% Grátis!",
+        badge_fast: "Super Rápido",
+        badge_secure: "100% Seguro",
+        badge_free: "Sempre Grátis",
+        badge_quality: "Qualidade HD",
+        tab_download: "Baixar",
+        tab_convert: "Converter",
+        tab_formats: "Formatos",
+        download_title: "Baixar de URL",
+        download_subtitle: "Cole uma URL de vídeo do YouTube, TikTok, Instagram ou Twitter",
+        btn_get_info: "Obter Info",
+        btn_download: "Baixar Agora",
+        convert_title: "Converter Arquivos",
+        upload_text: "Arraste e solte um arquivo aqui ou clique para navegar",
+        btn_convert: "Converter Arquivo",
+        formats_title: "Formatos Suportados",
+        faq_title: "Perguntas Frequentes",
+        footer_rights: "Todos os Direitos Reservados"
+    },
+
+    de: {
+        tagline: "Der schnellste Weg, Videos herunterzuladen und Dateien online zu konvertieren. 100% Kostenlos!",
+        badge_fast: "Blitzschnell",
+        badge_secure: "100% Sicher",
+        badge_free: "Immer Kostenlos",
+        badge_quality: "HD Qualität",
+        tab_download: "Herunterladen",
+        tab_convert: "Konvertieren",
+        tab_formats: "Formate",
+        download_title: "Von URL herunterladen",
+        download_subtitle: "Fügen Sie eine Video-URL von YouTube, TikTok, Instagram oder Twitter ein",
+        btn_get_info: "Info holen",
+        btn_download: "Jetzt Herunterladen",
+        convert_title: "Dateien Konvertieren",
+        upload_text: "Datei hierher ziehen oder klicken zum Durchsuchen",
+        btn_convert: "Datei Konvertieren",
+        formats_title: "Unterstützte Formate",
+        faq_title: "Häufig gestellte Fragen",
+        footer_rights: "Alle Rechte vorbehalten"
+    },
+
+    ru: {
+        tagline: "Самый быстрый способ скачать видео и конвертировать файлы онлайн. 100% Бесплатно!",
+        badge_fast: "Молниеносно",
+        badge_secure: "100% Безопасно",
+        badge_free: "Всегда Бесплатно",
+        badge_quality: "HD Качество",
+        tab_download: "Скачать",
+        tab_convert: "Конвертировать",
+        tab_formats: "Форматы",
+        download_title: "Скачать по ссылке",
+        download_subtitle: "Вставьте ссылку на видео с YouTube, TikTok, Instagram или Twitter",
+        btn_get_info: "Получить инфо",
+        btn_download: "Скачать Сейчас",
+        convert_title: "Конвертировать Файлы",
+        upload_text: "Перетащите файл сюда или нажмите для выбора",
+        btn_convert: "Конвертировать Файл",
+        formats_title: "Поддерживаемые Форматы",
+        faq_title: "Часто Задаваемые Вопросы",
+        footer_rights: "Все права защищены"
+    },
+
+    zh: {
+        tagline: "在线下载视频和转换文件的最快方式。100% 免费！",
+        badge_fast: "闪电般快速",
+        badge_secure: "100% 安全",
+        badge_free: "永久免费",
+        badge_quality: "高清画质",
+        tab_download: "下载",
+        tab_convert: "转换",
+        tab_formats: "格式",
+        download_title: "从URL下载",
+        download_subtitle: "粘贴YouTube、TikTok、Instagram或Twitter的视频链接",
+        btn_get_info: "获取信息",
+        btn_download: "立即下载",
+        convert_title: "转换文件",
+        upload_text: "拖放文件到这里或点击浏览",
+        btn_convert: "转换文件",
+        formats_title: "支持的格式",
+        faq_title: "常见问题",
+        footer_rights: "版权所有"
+    },
+
+    ja: {
+        tagline: "動画をダウンロードしてファイルを変換する最速の方法。100% 無料！",
+        badge_fast: "超高速",
+        badge_secure: "100% 安全",
+        badge_free: "永久無料",
+        badge_quality: "HD品質",
+        tab_download: "ダウンロード",
+        tab_convert: "変換",
+        tab_formats: "フォーマット",
+        download_title: "URLからダウンロード",
+        download_subtitle: "YouTube、TikTok、Instagram、Twitterの動画URLを貼り付け",
+        btn_get_info: "情報を取得",
+        btn_download: "今すぐダウンロード",
+        convert_title: "ファイルを変換",
+        upload_text: "ファイルをここにドラッグ＆ドロップするか、クリックして参照",
+        btn_convert: "ファイルを変換",
+        formats_title: "対応フォーマット",
+        faq_title: "よくある質問",
+        footer_rights: "全著作権所有"
+    },
+
+    ko: {
+        tagline: "동영상 다운로드 및 파일 변환의 가장 빠른 방법. 100% 무료!",
+        badge_fast: "초고속",
+        badge_secure: "100% 안전",
+        badge_free: "영원히 무료",
+        badge_quality: "HD 화질",
+        tab_download: "다운로드",
+        tab_convert: "변환",
+        tab_formats: "형식",
+        download_title: "URL에서 다운로드",
+        download_subtitle: "YouTube, TikTok, Instagram 또는 Twitter 동영상 URL을 붙여넣기",
+        btn_get_info: "정보 가져오기",
+        btn_download: "지금 다운로드",
+        convert_title: "파일 변환",
+        upload_text: "파일을 여기에 끌어다 놓거나 클릭하여 찾아보기",
+        btn_convert: "파일 변환",
+        formats_title: "지원 형식",
+        faq_title: "자주 묻는 질문",
+        footer_rights: "모든 권리 보유"
+    },
+
+    id: {
+        tagline: "Cara tercepat untuk mengunduh video & mengonversi file secara online. 100% Gratis!",
+        badge_fast: "Sangat Cepat",
+        badge_secure: "100% Aman",
+        badge_free: "Selalu Gratis",
+        badge_quality: "Kualitas HD",
+        tab_download: "Unduh",
+        tab_convert: "Konversi",
+        tab_formats: "Format",
+        download_title: "Unduh dari URL",
+        download_subtitle: "Tempel URL video dari YouTube, TikTok, Instagram, atau Twitter",
+        btn_get_info: "Dapatkan Info",
+        btn_download: "Unduh Sekarang",
+        convert_title: "Konversi File",
+        upload_text: "Seret & lepas file di sini atau klik untuk menelusuri",
+        btn_convert: "Konversi File",
+        formats_title: "Format yang Didukung",
+        faq_title: "Pertanyaan yang Sering Diajukan",
+        footer_rights: "Hak Cipta Dilindungi"
+    }
+};
+
+// Current language state
+let currentLanguage = localStorage.getItem('convertrocket_lang') || 'en';
+
+// Initialize i18n
+function initI18n() {
+    // Populate language dropdown
+    populateLanguageList();
+
+    // Set up language toggle
+    const langToggle = document.getElementById('lang-toggle');
+    const langDropdown = document.getElementById('lang-dropdown');
+    const langSearch = document.getElementById('lang-search');
+
+    if (langToggle) {
+        langToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('active');
+            if (langDropdown.classList.contains('active')) {
+                langSearch.focus();
+            }
+        });
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        if (langDropdown) {
+            langDropdown.classList.remove('active');
+        }
+    });
+
+    // Language search
+    if (langSearch) {
+        langSearch.addEventListener('input', (e) => {
+            filterLanguages(e.target.value);
+        });
+        langSearch.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Apply saved language
+    setLanguage(currentLanguage);
+}
+
+// Populate language list
+function populateLanguageList() {
+    const langList = document.getElementById('lang-list');
+    if (!langList) return;
+
+    langList.innerHTML = Object.entries(LANGUAGES).map(([code, lang]) => `
+        <button class="lang-option ${code === currentLanguage ? 'active' : ''}" 
+                data-lang="${code}" 
+                onclick="setLanguage('${code}')">
+            <span class="lang-flag">${lang.flag}</span>
+            <span class="lang-name">${lang.native}</span>
+            <span class="lang-english">${lang.name}</span>
+        </button>
+    `).join('');
+}
+
+// Filter languages by search
+function filterLanguages(query) {
+    const langOptions = document.querySelectorAll('.lang-option');
+    const q = query.toLowerCase();
+
+    langOptions.forEach(option => {
+        const code = option.dataset.lang;
+        const lang = LANGUAGES[code];
+        const searchText = `${lang.name} ${lang.native}`.toLowerCase();
+        option.style.display = searchText.includes(q) ? 'flex' : 'none';
+    });
+}
+
+// Set language
+function setLanguage(langCode) {
+    if (!LANGUAGES[langCode]) langCode = 'en';
+
+    currentLanguage = langCode;
+    localStorage.setItem('convertrocket_lang', langCode);
+
+    const lang = LANGUAGES[langCode];
+
+    // Update document direction for RTL languages
+    document.documentElement.dir = lang.dir;
+    document.documentElement.lang = langCode;
+
+    // Update current language display
+    const currentLangElement = document.getElementById('current-lang');
+    if (currentLangElement) {
+        currentLangElement.textContent = lang.native;
+    }
+
+    // Update all translatable elements
+    const translations = TRANSLATIONS[langCode] || TRANSLATIONS.en;
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[key]) {
+            element.textContent = translations[key];
+        } else if (TRANSLATIONS.en[key]) {
+            // Fallback to English if translation not available
+            element.textContent = TRANSLATIONS.en[key];
+        }
+    });
+
+    // Update dropdown active state
+    document.querySelectorAll('.lang-option').forEach(option => {
+        option.classList.toggle('active', option.dataset.lang === langCode);
+    });
+
+    // Close dropdown
+    const langDropdown = document.getElementById('lang-dropdown');
+    if (langDropdown) {
+        langDropdown.classList.remove('active');
+    }
+
+    // Update placeholder texts
+    updatePlaceholders(translations);
+}
+
+// Update placeholder texts
+function updatePlaceholders(translations) {
+    const urlInput = document.getElementById('url-input');
+    if (urlInput) {
+        urlInput.placeholder = 'https://www.youtube.com/watch?v=...';
+    }
+
+    const langSearch = document.getElementById('lang-search');
+    if (langSearch) {
+        langSearch.placeholder = translations.search_language || 'Search language...';
+    }
+}
+
+// Get translation
+function t(key) {
+    const translations = TRANSLATIONS[currentLanguage] || TRANSLATIONS.en;
+    return translations[key] || TRANSLATIONS.en[key] || key;
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initI18n);
+
+// Export for use in other scripts
+window.ConvertRocketI18n = {
+    setLanguage,
+    getLanguage: () => currentLanguage,
+    t,
+    LANGUAGES,
+    TRANSLATIONS
+};
