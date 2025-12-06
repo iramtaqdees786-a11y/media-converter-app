@@ -5,7 +5,7 @@
  */
 
 // API Base URL
-const API_BASE = 'https://convertrocket.onrender.com';
+const API_BASE = '';
 
 // State management
 const state = {
