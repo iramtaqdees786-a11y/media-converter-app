@@ -416,7 +416,7 @@ class DocumentConverter:
     """Handle document format conversions."""
     
     @staticmethod
-    def convert(
+    async def convert(
         input_path: Path,
         output_format: str
     ) -> ConversionResult:
