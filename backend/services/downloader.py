@@ -69,7 +69,7 @@ def detect_platform(url: str) -> Optional[str]:
         Platform name or None if not supported
     """
     patterns = {
-        'youtube': r'(youtube\.com|youtu\.be)',
+        'youtube': r'(youtube\.com|youtu\.be|youtube\.com/shorts)',
         'tiktok': r'(tiktok\.com|vm\.tiktok\.com)',
         'instagram': r'(instagram\.com|instagr\.am)',
         'twitter': r'(twitter\.com|x\.com)',
