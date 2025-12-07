@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Free Video Converter & Downloader - ConvertRocket</title>
+    <meta name="title" content="Free Video Converter - Download & Convert MP4, AVI, MOV">
+    <meta name="description"
+        content="Convert video files online for free. Download videos from YouTube, TikTok, Instagram. Support for MP4, AVI, MKV, MOV and more. Fast and private.">
+    <meta name="keywords"
+        content="video converter, mp4 converter, youtube downloader, tiktok downloader, instagram video download, avi to mp4, mov to mp4, online video tool">
+    <meta name="author" content="ConvertRocket">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://convertrocket.online/video-converter">
+    <meta property="og:title" content="Free Video Converter & Downloader">
+    <meta property="og:description" content="Download and convert videos instantly. 10x faster speed.">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <style>
+        .tabs {
+            display: none;
+        }
+
+        .tab-content {
+            display: block !important;
+        }
+
+        #convert-tab,
+        #mp4-to-mp3-tab,
+        #youtube-mp3-tab,
+        #image-converter-tab,
+        #pdf-converter-tab {
+            display: none !important;
+        }
+
+        /* Show download tab content */
+        #download-tab {
+            display: block !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="brand-small">🚀 <span>ConvertRocket</span></div>
+            </a>
+            <div class="top-bar-actions">
+                <button class="share-btn">📤 <span>Share</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="free-label">🎉 FREE VIDEO TOOLS</div>
+            <h1 class="hero-title">
+                <span class="hero-icon">🎬</span>
+                <span class="title-line1">VIDEO CONVERTER</span>
+                <span class="title-line2">& DOWNLOADER</span>
+            </h1>
+            <p class="hero-subtitle">Download from social media or convert local files instantly</p>
+        </header>
+
+        <!-- DOWNLOAD TAB is the main hero here -->
+        <div class="tab-content active" id="download-tab">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📥</div>
+                    <div>
+                        <h2 class="card-title">Download from Any Platform</h2>
+                        <p class="card-subtitle">YouTube, TikTok, Instagram, Twitter, Facebook & more</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="url" id="url-input" class="form-input" placeholder="Paste video URL here...">
+                </div>
+                <div class="form-row">
+                    <select id="format-type" class="form-input form-select">
+                        <option value="video">🎬 Video (MP4)</option>
+                        <option value="audio">🎵 Audio (MP3)</option>
+                    </select>
+                    <select id="quality-select" class="form-input form-select">
+                        <option value="best">Best Quality</option>
+                        <option value="worst">Fastest</option>
+                    </select>
+                </div>
+                <div class="button-row">
+                    <button id="get-info-btn" class="btn btn-secondary">ℹ️ Get Info</button>
+                    <button id="download-btn" class="btn btn-primary btn-lg btn-glow">🚀 Download Now</button>
+                </div>
+                <div id="video-preview" class="video-preview"></div>
+                <div id="download-progress" class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text"><span>Processing...</span><span class="progress-percent">0%</span></div>
+                </div>
+                <div id="download-status" class="status-message"></div>
+                <div id="download-result" class="result-card"></div>
+            </div>
+        </div>
+
+        <!-- SEO SECTION -->
+        <section class="seo-content-section">
+            <h2 class="seo-section-title">Why ConvertRocket for Videos?</h2>
+            <article class="seo-article-full">
+                <h3>Universal Video Support</h3>
+                <p>We support all major video platforms including YouTube, TikTok, Instagram, Facebook, and Twitter (X).
+                    Whether you need to save a funny clip, a tutorial, or a music video, ConvertRocket handles it all
+                    with our high-speed engine.</p>
+            </article>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
+        </footer>
+    </div>
+
+    <script src="/static/js/i18n.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>

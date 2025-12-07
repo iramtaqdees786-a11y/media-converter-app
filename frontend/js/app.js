@@ -389,8 +389,8 @@ function getFormatsForCategory(category) {
         video: ['mp4', 'mkv', 'webm', 'avi', 'mov'],
         audio: ['mp3', 'wav', 'aac', 'ogg', 'flac'],
         image: ['jpg', 'png', 'webp', 'gif', 'bmp'],
-        document: ['pdf', 'docx', 'txt'],
-        spreadsheet: ['xlsx', 'xls', 'csv']
+        document: ['pdf', 'docx', 'txt', 'xlsx', 'csv'],
+        spreadsheet: ['xlsx', 'xls', 'csv', 'pdf']
     };
     return formats[category] || [];
 }

@@ -133,6 +133,27 @@ async def serve_frontend():
     })
 
 
+@app.get("/pdf-to-excel")
+@app.get("/pdf-to-excel.html")
+async def serve_pdf_to_excel():
+    return FileResponse(FRONTEND_DIR / "pdf-to-excel.html")
+
+@app.get("/video-converter")
+@app.get("/video-converter.html")
+async def serve_video_converter():
+    return FileResponse(FRONTEND_DIR / "video-converter.html")
+
+@app.get("/mp3-converter")
+@app.get("/mp3-converter.html")
+async def serve_mp3_converter():
+    return FileResponse(FRONTEND_DIR / "mp3-converter.html")
+
+@app.get("/image-converter")
+@app.get("/image-converter.html")
+async def serve_image_converter():
+    return FileResponse(FRONTEND_DIR / "image-converter.html")
+
+
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint."""

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Free Image Converter - JPG, PNG, WebP, GIF</title>
+    <meta name="description"
+        content="Convert images online. JPG to PNG, PNG to JPG, WebP converter. Compress and resize images.">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <style>
+        .tabs {
+            display: none;
+        }
+
+        .tab-content {
+            display: block !important;
+        }
+
+        #download-tab,
+        #convert-tab,
+        #mp4-to-mp3-tab,
+        #youtube-mp3-tab,
+        #pdf-converter-tab {
+            display: none !important;
+        }
+
+        #image-converter-tab {
+            display: block !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="brand-small">🚀 <span>ConvertRocket</span></div>
+            </a>
+            <button class="share-btn">📤 <span>Share</span></button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="free-label">🎉 IMAGE TOOLS</div>
+            <h1 class="hero-title">
+                <span class="hero-icon">🖼️</span>
+                <span class="title-line1">IMAGE</span>
+                <span class="title-line2">CONVERTER</span>
+            </h1>
+        </header>
+
+        <div class="tab-content active" id="image-converter-tab">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🖼️</div>
+                    <div>
+                        <h2 class="card-title">Convert Images</h2>
+                        <p class="card-subtitle">JPG, PNG, WebP, GIF, BMP supported</p>
+                    </div>
+                </div>
+                <div class="quick-convert-grid">
+                    <button class="quick-convert-btn" data-from="png" data-to="jpg">PNG → JPG</button>
+                    <button class="quick-convert-btn" data-from="jpg" data-to="png">JPG → PNG</button>
+                    <button class="quick-convert-btn" data-from="webp" data-to="jpg">WebP → JPG</button>
+                    <button class="quick-convert-btn" data-from="jpg" data-to="webp">JPG → WebP</button>
+                </div>
+                <div class="upload-zone image-upload-zone">
+                    <div class="upload-icon">🖼️</div>
+                    <p class="upload-text">Drop your image here</p>
+                    <input type="file" class="file-input" accept="image/*">
+                </div>
+            </div>
+            <!-- Result Container (Managed by app.js logic which usually switches to convert tab, so we might need to handle that) -->
+            <!-- The app.js logic for valid image drops does: state.currentFile = file; switchTab('convert'); handleFileSelect(file); -->
+            <!-- Since 'convert' tab is hidden here, we might need a visible convert tab OR modify app.js. 
+                  However, keeping 'convert-tab' hidden but functional might work if we override the CSS locally to make it show UPON interaction? 
+                  Better: Let's create a stub 'convert-tab' that IS visible but styled to look like part of this page when active. -->
+        </div>
+
+        <!-- The Convert Tab (Required for the actual conversion UI after file drop) -->
+        <div class="tab-content" id="convert-tab" style="display:none">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🔄</div>
+                    <div>
+                        <h2 class="card-title">Processing Image</h2>
+                    </div>
+                </div>
+                <div id="selected-file-info" class="result-card file-info-card"></div>
+                <div class="form-group mt-2">
+                    <select id="target-format" class="form-input form-select"></select>
+                </div>
+                <button id="convert-btn" class="btn btn-primary btn-lg btn-block btn-glow mt-2">🚀 Convert</button>
+                <div id="convert-progress" class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text"><span>Converting...</span><span class="progress-percent">0%</span></div>
+                </div>
+                <div id="convert-status" class="status-message"></div>
+                <div id="convert-result" class="result-card"></div>
+
+                <!-- Hidden upload zone to satisfy app.js init -->
+                <div id="upload-zone" style="display:none"><input type="file" id="file-input"></div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
+        </footer>
+    </div>
+
+    <script src="/static/js/i18n.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Specific patch for this page: when app.js switches to 'convert' tab, make sure it's visible
+        const originalSwitchTab = switchTab; // Assuming switchTab is global (it is in app.js I saw earlier, wait, it's inside `window.ConvertRocket` probably or global? It was defined at top level)
+        // If it's not global, we rely on the DOM changes.
+
+        // We can observer class changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.id === 'convert-tab' && mutation.target.classList.contains('active')) {
+                    mutation.target.style.display = 'block';
+                    document.getElementById('image-converter-tab').style.display = 'none';
+                }
+            });
+        });
+
+        const convertTab = document.getElementById('convert-tab');
+        if (convertTab) observer.observe(convertTab, { attributes: true, attributeFilter: ['class'] });
+    </script>
+</body>
+
+</html>

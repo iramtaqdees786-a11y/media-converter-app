@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Free PDF to Excel Converter - ConvertRocket</title>
+    <meta name="title" content="Free PDF to Excel Converter - Convert Tables to Spreadsheet Instantly">
+    <meta name="description"
+        content="Convert PDF to Excel (XLSX, CSV) online for free. Extract tables from PDF documents accurately. No signup required, 100% private, and fast.">
+    <meta name="keywords"
+        content="pdf to excel, pdf to xlsx, pdf to csv, extract tables from pdf, convert pdf table to excel, free pdf converter, online pdf tools, convertrocket">
+    <meta name="author" content="ConvertRocket">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://convertrocket.online/pdf-to-excel">
+    <meta property="og:title" content="Free PDF to Excel Converter - Extract Tables Instantly">
+    <meta property="og:description"
+        content="Convert PDF tables to editable Excel spreadsheets. Free, fast, and secure.">
+    <meta property="og:site_name" content="ConvertRocket">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ConvertRocket PDF to Excel",
+        "url": "https://convertrocket.online/pdf-to-excel",
+        "description": "Convert PDF documents to Excel spreadsheets effortlessly.",
+        "applicationCategory": "Productivity",
+        "operatingSystem": "Web Browser",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23667eea'/%3E%3Cstop offset='100%25' stop-color='%23f093fb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Cpath d='M50 20 L70 50 L50 45 L50 80 L30 50 L50 55 Z' fill='white'/%3E%3C/svg%3E">
+
+    <style>
+        /* Specific override to hide tabs on this landing page if shared css expects them */
+        .tabs {
+            display: none;
+        }
+
+        /* Ensure the content is visible */
+        .tab-content {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Hide other tab contents just in case */
+        #download-tab,
+        #convert-tab,
+        #mp4-to-mp3-tab,
+        #youtube-mp3-tab,
+        #image-converter-tab {
+            display: none !important;
+        }
+
+        .hero-subtitle {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="brand-small">🚀 <span>ConvertRocket</span></div>
+            </a>
+            <div class="top-bar-actions">
+                <button class="share-btn" id="share-btn">📤 <span>Share</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="free-label">🎉 100% FREE PDF TOOL</div>
+            <h1 class="hero-title">
+                <span class="hero-icon">📄</span>
+                <span class="title-line1">PDF TO EXCEL</span>
+                <span class="title-line2">CONVERTER</span>
+            </h1>
+            <p class="hero-subtitle">Extract tables from PDF to editable Excel (XLSX) instantly</p>
+        </header>
+
+        <!-- PDF CONVERTER SECTION (Active) -->
+        <div class="tab-content active" id="pdf-converter-tab">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div>
+                        <h2 class="card-title">Convert PDF to Spreadsheet</h2>
+                        <p class="card-subtitle">Accurate table extraction to XLSX and CSV</p>
+                    </div>
+                </div>
+
+                <div class="quick-convert-grid">
+                    <!-- Specific presets for this page -->
+                    <button class="quick-convert-btn" data-from="pdf" data-to="xlsx">PDF → Excel</button>
+                    <button class="quick-convert-btn" data-from="pdf" data-to="csv">PDF → CSV</button>
+                    <button class="quick-convert-btn" data-from="xlsx" data-to="pdf">Excel → PDF</button>
+                </div>
+
+                <div class="upload-zone pdf-upload-zone">
+                    <div class="upload-icon">📄</div>
+                    <p class="upload-text">Drop your PDF here</p>
+                    <p class="upload-hint">We'll detect tables automatically</p>
+                    <input type="file" class="file-input" accept=".pdf,.docx,.doc,.xlsx,.xls,.txt">
+                </div>
+
+                <!-- Result Container (Managed by app.js) -->
+                <div class="converter-result"></div>
+
+                <!-- Hidden elements for app.js compatibility if needed -->
+                <div id="selected-file-info" class="result-card file-info-card" style="display:none"></div>
+                <button id="convert-btn" style="display:none"></button>
+                <div id="convert-progress" class="progress-container" style="display:none"></div>
+                <div id="convert-result" class="result-card" style="display:none"></div>
+                <div id="convert-status" class="status-message" style="display:none"></div>
+                <select id="target-format" style="display:none"></select>
+            </div>
+        </div>
+
+        <!-- SEO CONTENT -->
+        <section class="seo-content-section">
+            <h2 class="seo-section-title">🚀 Why use our PDF to Excel Tool?</h2>
+
+            <article class="seo-article-full">
+                <h3>Accurate Table Extraction</h3>
+                <p>ConvertRocket uses advanced algorithms to identify table structures within your PDF documents. Unlike
+                    simple text extractors, we reconstruct rows and columns precisely, ensuring your financial reports,
+                    invoices, and data tables are ready for analysis in Microsoft Excel or Google Sheets.</p>
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li><strong>Preserves Formatting:</strong> Maintains cell structure and data integrity.</li>
+                    <li><strong>Supports Large Files:</strong> Process complex documents with multiple pages.</li>
+                    <li><strong>Privacy Guaranteed:</strong> Your sensitive financial documents are processed locally
+                        and deleted instantly.</li>
+                </ul>
+            </article>
+
+            <article class="seo-article-full">
+                <h3>How to Convert PDF to Excel</h3>
+                <div class="steps-grid">
+                    <div class="step"><span class="step-number">1</span>
+                        <h4>Upload PDF</h4>
+                        <p>Drag and drop your PDF file into the box above.</p>
+                    </div>
+                    <div class="step"><span class="step-number">2</span>
+                        <h4>Select Format</h4>
+                        <p>Choose "Excel (XLSX)" or "CSV" as your target format.</p>
+                    </div>
+                    <div class="step"><span class="step-number">3</span>
+                        <h4>Download</h4>
+                        <p>Get your editable spreadsheet instantly.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <h2 class="faq-title">❓ PDF Conversion FAQ</h2>
+            <div class="faq-grid">
+                <details class="faq-item" open>
+                    <summary>Can I convert scanned PDFs to Excel?</summary>
+                    <p>Currently, we support native PDFs with selectable text best. Scanned PDFs (images) might require
+                        OCR which is coming soon!</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is my data secure?</summary>
+                    <p>Yes. We use secure processing and delete all files immediately after conversion. We do not peek
+                        at your data.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is it compatible with Google Sheets?</summary>
+                    <p>Yes! The XLSX or CSV files you download can be opened directly in Google Sheets, Apple Numbers,
+                        and LibreOffice.</p>
+                </details>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
+            <p class="copyright">© 2024 ConvertRocket.online</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/i18n.js"></script>
+    <script src="/static/js/app.js"></script>
+    <!-- Page Specific Script to initialize specific state -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Force correct state if app.js didn't catch it
+            // The CSS handles visibility, but we ensure app.js knows where we are
+            if (window.ConvertRocket) {
+                // Initialize stuff if needed
+            }
+        });
+    </script>
+</body>
+
+</html>

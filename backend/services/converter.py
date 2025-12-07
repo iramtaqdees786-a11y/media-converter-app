@@ -26,6 +26,7 @@ from PIL import Image
 from docx import Document
 from docx.shared import Inches
 from pypdf import PdfReader, PdfWriter
+import pdfplumber
 
 # Spreadsheet processing
 import pandas as pd
@@ -415,16 +416,16 @@ class DocumentConverter:
     """Handle document format conversions."""
     
     @staticmethod
-    async def convert(
+    def convert(
         input_path: Path,
         output_format: str
     ) -> ConversionResult:
         """
-        Convert documents between PDF, DOCX, and TXT formats.
+        Convert documents between PDF, DOCX, TXT, and XLSX formats.
         
         Args:
             input_path: Path to input document
-            output_format: Target format (pdf, docx, txt)
+            output_format: Target format (pdf, docx, txt, xlsx, csv)
         
         Returns:
             ConversionResult with conversion status
@@ -496,6 +497,15 @@ class DocumentConverter:
                         input_path,
                         output_path
                     )
+                elif output_format in ['xlsx', 'xls', 'csv']:
+                    # PDF to Excel/CSV (Table extraction)
+                    await loop.run_in_executor(
+                        None,
+                        DocumentConverter._pdf_to_xlsx,
+                        input_path,
+                        output_path,
+                        output_format
+                    )
             
             if output_path.exists():
                 return ConversionResult(
@@ -558,6 +568,40 @@ class DocumentConverter:
             doc.add_page_break()
         
         doc.save(output_path)
+    
+    @staticmethod
+    def _pdf_to_xlsx(input_path: Path, output_path: Path, output_format: str):
+        """Convert PDF to Excel/CSV by extracting tables."""
+        tables = []
+        with pdfplumber.open(input_path) as pdf:
+            for page in pdf.pages:
+                extracted = page.extract_tables()
+                for table in extracted:
+                    # Clean up table data: remove None values
+                    cleaned_table = [[cell if cell is not None else "" for cell in row] for row in table]
+                    if cleaned_table:
+                        df = pd.DataFrame(cleaned_table)
+                        # Assume first row is header if it looks like one, otherwise just data
+                        # For simplicity, we just dump the data
+                        tables.append(df)
+        
+        if not tables:
+            # Fallback: if no tables found, try to extract text and put in one cell per page?
+            # Or just raise error/empty file
+            # Let's create an empty dataframe with a message
+            df = pd.DataFrame(["No tables found in PDF"], columns=["Message"])
+            tables.append(df)
+
+        # Concatenate all tables or put them in separate sheets?
+        # For CSV, we must concatenate. For Excel, we could do sheets.
+        # Let's simple concatenate for version 1
+        final_df = pd.concat(tables, ignore_index=True) if tables else pd.DataFrame()
+        
+        if output_format == 'csv':
+            final_df.to_csv(output_path, index=False, header=False)
+        else:
+            final_df.to_excel(output_path, index=False, header=False)
+
 
 
 class SpreadsheetConverter:
