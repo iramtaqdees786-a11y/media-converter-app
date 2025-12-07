@@ -572,35 +572,37 @@ class DocumentConverter:
     @staticmethod
     def _pdf_to_xlsx(input_path: Path, output_path: Path, output_format: str):
         """Convert PDF to Excel/CSV by extracting tables."""
-        tables = []
-        with pdfplumber.open(input_path) as pdf:
-            for page in pdf.pages:
-                extracted = page.extract_tables()
-                for table in extracted:
-                    # Clean up table data: remove None values
-                    cleaned_table = [[cell if cell is not None else "" for cell in row] for row in table]
-                    if cleaned_table:
-                        df = pd.DataFrame(cleaned_table)
-                        # Assume first row is header if it looks like one, otherwise just data
-                        # For simplicity, we just dump the data
-                        tables.append(df)
-        
-        if not tables:
-            # Fallback: if no tables found, try to extract text and put in one cell per page?
-            # Or just raise error/empty file
-            # Let's create an empty dataframe with a message
-            df = pd.DataFrame(["No tables found in PDF"], columns=["Message"])
-            tables.append(df)
+        import logging
+        try:
+            tables = []
+            # pdfplumber prefers string paths or file-like objects
+            with pdfplumber.open(str(input_path)) as pdf:
+                for i, page in enumerate(pdf.pages):
+                    extracted = page.extract_tables()
+                    for table in extracted:
+                        # Clean up table data: remove None values
+                        cleaned_table = [[cell if cell is not None else "" for cell in row] for row in table]
+                        if cleaned_table:
+                            df = pd.DataFrame(cleaned_table)
+                            tables.append(df)
+            
+            if not tables:
+                # Create a meaningful empty state
+                df = pd.DataFrame([["No tables detected in this PDF document."]], columns=["Status"])
+                tables.append(df)
 
-        # Concatenate all tables or put them in separate sheets?
-        # For CSV, we must concatenate. For Excel, we could do sheets.
-        # Let's simple concatenate for version 1
-        final_df = pd.concat(tables, ignore_index=True) if tables else pd.DataFrame()
-        
-        if output_format == 'csv':
-            final_df.to_csv(output_path, index=False, header=False)
-        else:
-            final_df.to_excel(output_path, index=False, header=False)
+            # Concatenate all tables
+            final_df = pd.concat(tables, ignore_index=True)
+            
+            if output_format == 'csv':
+                final_df.to_csv(output_path, index=False, header=False, encoding='utf-8-sig') # BOM for Excel compatibility
+            else:
+                final_df.to_excel(output_path, index=False, header=False, engine='openpyxl')
+                
+        except Exception as e:
+            logging.error(f"PDF to XLSX conversion failed: {str(e)}")
+            raise e
+
 
 
 

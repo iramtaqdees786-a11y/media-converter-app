@@ -5,6 +5,79 @@
    ============================================ */
 
 /* CSS Custom Properties (Design Tokens) */
+/* Popular Conversions Grid */
+.conversion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.conversion-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    backdrop-filter: blur(10px);
+}
+
+.conversion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+.conversion-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.conversion-card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.conversion-card-arrow {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #a0aec0;
+    transition: transform 0.3s;
+}
+
+.conversion-card:hover .conversion-card-arrow {
+    transform: translateX(4px);
+    color: var(--primary-color);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .conversion-card {
+        background: rgba(30, 41, 59, 0.6);
+        color: white;
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .conversion-card:hover {
+        background: rgba(30, 41, 59, 0.9);
+    }
+
+    .conversion-card-title {
+        color: #e2e8f0;
+    }
+}
+
 :root {
     /* Brand Colors */
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);

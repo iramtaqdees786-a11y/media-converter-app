@@ -86,6 +86,8 @@ def validate_conversion(source_ext: str, target_ext: str) -> Tuple[bool, str]:
         ("image", "image"): True,
         ("document", "document"): True,
         ("spreadsheet", "spreadsheet"): True,
+        ("document", "spreadsheet"): True,  # PDF to Excel
+        ("spreadsheet", "document"): True,  # Excel to PDF
     }
     
     if (source_category, target_category) not in compatible_conversions:
