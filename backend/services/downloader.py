@@ -61,12 +61,20 @@ class DownloadProgress:
 def _get_cookiefile() -> Optional[str]:
     """Return path to cookie file if configured via environment and exists."""
     cookie_path = os.getenv("YTDLP_COOKIES_FILE") or os.getenv("COOKIES_FILE")
-    if not cookie_path:
-        return None
 
-    path = Path(cookie_path).expanduser()
-    if path.is_file():
-        return str(path)
+    # 1) Env var takes priority if set
+    if cookie_path:
+        path = Path(cookie_path).expanduser()
+        if path.is_file():
+            return str(path)
+
+    # 2) Fallback: look for cookies.txt in the project root directory
+    # downloader.py is in backend/services, so project root is two levels up
+    project_root = Path(__file__).resolve().parents[2]
+    default_cookie = project_root / "cookies.txt"
+    if default_cookie.is_file():
+        return str(default_cookie)
+
     return None
 
 
