@@ -58,6 +58,58 @@ class DownloadProgress:
             self.progress = 100
 
 
+def _get_cookiefile() -> Optional[str]:
+    """Return path to cookie file if configured via environment and exists."""
+    cookie_path = os.getenv("YTDLP_COOKIES_FILE") or os.getenv("COOKIES_FILE")
+    if not cookie_path:
+        return None
+
+    path = Path(cookie_path).expanduser()
+    if path.is_file():
+        return str(path)
+    return None
+
+
+def _build_http_headers(url: str) -> Dict[str, str]:
+    """Build browser-like HTTP headers to reduce 403/anti-bot issues."""
+    # Use a modern desktop browser user agent; sites frequently block generic clients
+    user_agent = (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    )
+
+    return {
+        "User-Agent": user_agent,
+        "Accept": (
+            "text/html,application/xhtml+xml,application/xml;q=0.9," 
+            "image/avif,image/webp,image/apng,*/*;q=0.8"
+        ),
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": url,
+        "Connection": "keep-alive",
+    }
+
+
+def _base_ydl_options(url: str) -> Dict[str, Any]:
+    """Common yt-dlp options for both info extraction and download."""
+    opts: Dict[str, Any] = {
+        "quiet": True,
+        "no_warnings": True,
+        "nocheckcertificate": True,
+        "http_headers": _build_http_headers(url),
+        # Retry a few times on transient HTTP errors
+        "retries": 3,
+        "fragment_retries": 3,
+    }
+
+    cookiefile = _get_cookiefile()
+    if cookiefile:
+        opts["cookiefile"] = cookiefile
+
+    return opts
+
+
 def detect_platform(url: str) -> Optional[str]:
     """
     Detect the platform from a URL.
@@ -126,11 +178,10 @@ async def get_video_info(url: str) -> Dict[str, Any]:
     Returns:
         Dictionary with video information
     """
-    ydl_opts = {
-        'quiet': True,
-        'no_warnings': True,
+    ydl_opts = _base_ydl_options(url)
+    ydl_opts.update({
         'extract_flat': False,
-    }
+    })
     
     loop = asyncio.get_event_loop()
     
@@ -182,13 +233,12 @@ async def download_video(
     # Configure yt-dlp options
     output_template = str(DOWNLOADS_DIR / '%(title)s_%(id)s.%(ext)s')
     
-    ydl_opts = {
+    ydl_opts = _base_ydl_options(url)
+    ydl_opts.update({
         'outtmpl': output_template,
-        'quiet': True,
-        'no_warnings': True,
         'progress_hooks': [progress.update],
         'restrictfilenames': True,  # Avoid special characters in filename
-    }
+    })
     
     # Set format based on type
     if format_type == "audio":
