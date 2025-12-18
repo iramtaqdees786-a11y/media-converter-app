@@ -1,6 +1,6 @@
 # Dockerfile for ConvertRocket Backend
-# Python 3.9 Slim Image
-FROM python:3.9-slim
+# Python 3.11 Slim Image
+FROM python:3.11-slim
 
 # Install system dependencies including FFmpeg
 # This is crucial for video/audio conversions
