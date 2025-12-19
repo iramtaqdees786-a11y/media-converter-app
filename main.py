@@ -154,6 +154,28 @@ async def serve_image_converter():
     return FileResponse(FRONTEND_DIR / "image-converter.html")
 
 
+@app.get("/blogs")
+@app.get("/blogs.html")
+async def serve_blogs():
+    if (FRONTEND_DIR / "blogs.html").exists():
+        return FileResponse(FRONTEND_DIR / "blogs.html")
+    return JSONResponse(status_code=404, content={"message": "Blogs page not found"})
+
+
+@app.get("/blog/{slug}")
+async def serve_blog_post(slug: str):
+    """Serve individual blog posts."""
+    # Ensure secure filename access
+    slug = Path(slug).name
+    if not slug.endswith(".html"):
+        slug += ".html"
+    
+    post_path = FRONTEND_DIR / "blog" / slug
+    if post_path.exists():
+        return FileResponse(post_path)
+    return JSONResponse(status_code=404, content={"message": "Blog post not found"})
+
+
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint."""
