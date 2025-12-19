@@ -176,6 +176,18 @@ async def serve_blog_post(slug: str):
     return JSONResponse(status_code=404, content={"message": "Blog post not found"})
 
 
+@app.get("/sitemap.xml")
+async def serve_sitemap():
+    if (FRONTEND_DIR / "sitemap.xml").exists():
+        return FileResponse(FRONTEND_DIR / "sitemap.xml", media_type="application/xml")
+    return JSONResponse(status_code=404, content={"message": "Sitemap not found"})
+
+@app.get("/robots.txt")
+async def serve_robots():
+    if (FRONTEND_DIR / "robots.txt").exists():
+        return FileResponse(FRONTEND_DIR / "robots.txt", media_type="text/plain")
+    return JSONResponse(status_code=404, content={"message": "Robots.txt not found"})
+
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint."""
