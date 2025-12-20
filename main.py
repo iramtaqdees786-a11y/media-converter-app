@@ -94,6 +94,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Custom Middleware to add Cache-Control headers for static assets
+@app.middleware("http")
+async def add_cache_control_header(request: Request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith("/static/") or request.url.path.startswith("/css/") or request.url.path.startswith("/js/") or request.url.path.startswith("/img/"):
+        # Cache for 1 day: 86400 seconds
+        response.headers["Cache-Control"] = "public, max-age=86400"
+    return response
+
 # Include routers
 app.include_router(download.router)
 app.include_router(convert.router)
