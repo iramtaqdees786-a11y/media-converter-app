@@ -55,7 +55,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Track page view for analytics (if implemented)
     console.log('🚀 ConvertRocket - All-In-One Universal Converter');
     console.log('🌐 Domain: convertrocket.online');
+
+    // Keep service alive (prevent cold starts while user is active)
+    initKeepAlive();
 });
+
+// Keep Alive Mechanism (Pings server every 14 minutes to prevent Render free tier shutdown while tab is open)
+function initKeepAlive() {
+    const PING_INTERVAL = 14 * 60 * 1000; // 14 minutes
+    
+    const ping = () => {
+        fetch(`${API_BASE}/api/health`, { method: 'GET', cache: 'no-store' })
+            .then(res => console.log('💓 Keep-alive ping:', res.ok ? 'OK' : 'Failed'))
+            .catch(err => console.log('💓 Keep-alive ping failed (offline?)'));
+    };
+
+    // Initial ping after 30s
+    setTimeout(ping, 30000);
+    // Recurring ping
+    setInterval(ping, PING_INTERVAL);
+}
 
 // Initialize DOM elements
 function initElements() {
