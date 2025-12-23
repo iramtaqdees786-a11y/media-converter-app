@@ -1,0 +1,133 @@
+function selectTool(toolName) {
+    // Hide all workspaces
+    document.querySelectorAll('.tool-workspace').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tool-card').forEach(el => el.classList.remove('active'));
+
+    // Show selected
+    document.getElementById(`workspace-${toolName}`).classList.add('active');
+    document.getElementById(`card-${toolName}`).classList.add('active');
+}
+
+// Helper to handle file selection display
+document.querySelectorAll('input[type="file"]').forEach(input => {
+    input.addEventListener('change', (e) => {
+        const zone = input.parentElement;
+        if (input.files.length > 0) {
+            zone.querySelector('p').textContent = `Selected: ${input.files.length} file(s)`;
+            zone.style.borderColor = '#4CAF50';
+        }
+    });
+});
+
+async function executeMerge() {
+    const input = document.getElementById('merge-input');
+    if (input.files.length < 2) {
+        alert("Please select at least 2 PDF files to merge.");
+        return;
+    }
+
+    const formData = new FormData();
+    for (let i = 0; i < input.files.length; i++) {
+        formData.append('files', input.files[i]);
+    }
+
+    showLoading('merge-result');
+    try {
+        const res = await fetch('/api/pdf/merge', {
+            method: 'POST',
+            body: formData
+        });
+        handleResponse(res, 'merge-result');
+    } catch (e) {
+        showError('merge-result', e);
+    }
+}
+
+async function executeRemovePages() {
+    const input = document.getElementById('remove-input');
+    const pages = document.getElementById('remove-pages-input').value;
+
+    if (!input.files[0] || !pages) {
+        alert("Please select a file and enter page numbers.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', input.files[0]);
+    formData.append('pages', pages);
+
+    showLoading('remove-result');
+    try {
+        const res = await fetch('/api/pdf/remove-pages', {
+            method: 'POST',
+            body: formData
+        });
+        handleResponse(res, 'remove-result');
+    } catch (e) {
+        showError('remove-result', e);
+    }
+}
+
+async function executeCompress() {
+    const input = document.getElementById('compress-input');
+    if (!input.files[0]) return alert("Select a file");
+
+    const formData = new FormData();
+    formData.append('file', input.files[0]);
+
+    showLoading('compress-result');
+    const res = await fetch('/api/pdf/compress', { method: 'POST', body: formData });
+    handleResponse(res, 'compress-result');
+}
+
+async function executeGrayscale() {
+    const input = document.getElementById('grayscale-input');
+    if (!input.files[0]) return alert("Select a file");
+
+    const formData = new FormData();
+    formData.append('file', input.files[0]);
+
+    showLoading('grayscale-result');
+    const res = await fetch('/api/pdf/grayscale', { method: 'POST', body: formData });
+    handleResponse(res, 'grayscale-result');
+}
+
+async function executePdfa() {
+    const input = document.getElementById('pdfa-input');
+    if (!input.files[0]) return alert("Select a file");
+
+    const formData = new FormData();
+    formData.append('file', input.files[0]);
+
+    showLoading('pdfa-result');
+    const res = await fetch('/api/pdf/pdfa', { method: 'POST', body: formData });
+    handleResponse(res, 'pdfa-result');
+}
+
+function showLoading(elementId) {
+    document.getElementById(elementId).innerHTML = '<div style="color:white; margin-top:20px;">Processing... ⏳</div>';
+}
+
+async function handleResponse(res, elementId) {
+    const el = document.getElementById(elementId);
+    if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+            el.innerHTML = `
+                <div style="margin-top:20px;">
+                    <p style="color:#4CAF50;">Success! 🎉</p>
+                    <a href="${data.download_url}" class="action-btn" style="text-decoration:none; display:inline-block; width:auto; margin-top:10px;">Download File</a>
+                </div>
+            `;
+        } else {
+            el.innerHTML = `<p style="color:red;">Error: ${data.message}</p>`;
+        }
+    } else {
+        const err = await res.json();
+        el.innerHTML = `<p style="color:red;">Error: ${err.detail || 'Something went wrong'}</p>`;
+    }
+}
+
+function showError(elementId, e) {
+    document.getElementById(elementId).innerHTML = `<p style="color:red;">Error: ${e.message}</p>`;
+}

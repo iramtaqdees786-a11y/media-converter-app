@@ -21,7 +21,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 import uvicorn
 
-from backend.routers import download, convert
+from backend.routers import download, convert, pdf_tools, media_tools
 from backend.config import DOWNLOADS_DIR, UPLOADS_DIR, CONVERTED_DIR
 
 # Create FastAPI application
@@ -106,6 +106,8 @@ async def add_cache_control_header(request: Request, call_next):
 # Include routers
 app.include_router(download.router)
 app.include_router(convert.router)
+app.include_router(pdf_tools.router)
+app.include_router(media_tools.router)
 
 # Mount static files for frontend (only if they exist)
 FRONTEND_DIR = PROJECT_ROOT / "frontend"
@@ -161,6 +163,18 @@ async def serve_mp3_converter():
 @app.get("/image-converter.html")
 async def serve_image_converter():
     return FileResponse(FRONTEND_DIR / "image-converter.html")
+
+
+@app.get("/pdf-tools")
+@app.get("/pdf-tools.html")
+async def serve_pdf_tools():
+    return FileResponse(FRONTEND_DIR / "pdf-tools.html")
+
+
+@app.get("/media-tools")
+@app.get("/media-tools.html")
+async def serve_media_tools():
+    return FileResponse(FRONTEND_DIR / "media-tools.html")
 
 
 @app.get("/blogs")
@@ -243,16 +257,16 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 if __name__ == "__main__":
     print("""
-    ╔══════════════════════════════════════════════════════════════╗
-    ║             🚀 ConvertRocket - convertrocket.online          ║
-    ║                                                              ║
-    ║  Starting server at http://localhost:8000                    ║
-    ║  API Documentation: http://localhost:8000/docs               ║
-    ║                                                              ║
-    ║  Downloads: YouTube, TikTok, Instagram, Twitter, Facebook    ║
-    ║  Converts: Video, Audio, Images, Documents, Spreadsheets     ║
-    ║  Languages: 17+ supported languages                          ║
-    ╚══════════════════════════════════════════════════════════════╝
+    ================================================================
+                  ConvertRocket - convertrocket.online          
+                                                                 
+       Starting server at http://localhost:8000                    
+       API Documentation: http://localhost:8000/docs               
+                                                                 
+       Downloads: YouTube, TikTok, Instagram, Twitter, Facebook    
+       Converts: Video, Audio, Images, Documents, Spreadsheets     
+       Languages: 17+ supported languages                          
+    ================================================================
     """)
     
     uvicorn.run(

@@ -1,0 +1,108 @@
+function selectTool(toolName) {
+    document.querySelectorAll('.tool-workspace').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tool-card').forEach(el => el.classList.remove('active'));
+
+    document.getElementById(`workspace-${toolName}`).classList.add('active');
+    document.getElementById(`card-${toolName}`).classList.add('active');
+}
+
+document.querySelectorAll('input[type="file"]').forEach(input => {
+    input.addEventListener('change', (e) => {
+        const zone = input.parentElement;
+        if (input.files.length > 0) {
+            zone.querySelector('p').textContent = `Selected: ${input.files[0].name}`;
+            zone.style.borderColor = '#4CAF50';
+        }
+    });
+});
+
+async function downloadThumbnail() {
+    const url = document.getElementById('thumb-url').value;
+    if (!url) return alert("Enter a URL");
+
+    const formData = new FormData();
+    formData.append('url', url);
+
+    showLoading('thumbnail-result');
+    try {
+        const res = await fetch('/api/media-tools/thumbnail', { method: 'POST', body: formData });
+        const data = await res.json();
+        const el = document.getElementById('thumbnail-result');
+        if (data.success) {
+            if (data.download_url) {
+                el.innerHTML = `
+                    <img src="${data.download_url}" style="max-width:100%; border-radius:12px; margin-bottom:15px;">
+                    <br>
+                    <a href="${data.download_url}" download class="action-btn" style="text-decoration:none; display:inline-block; width:auto;">Download High-Res</a>
+                 `;
+            } else if (data.image_url) {
+                el.innerHTML = `
+                    <img src="${data.image_url}" style="max-width:100%; border-radius:12px; margin-bottom:15px;">
+                    <br>
+                    <a href="${data.image_url}" target="_blank" class="action-btn" style="text-decoration:none; display:inline-block; width:auto;">Open Image</a>
+                 `;
+            }
+        } else {
+            el.innerHTML = `<p style="color:red;">Error: ${data.detail}</p>`;
+        }
+    } catch (e) {
+        showError('thumbnail-result', e);
+    }
+}
+
+async function executeTrim() {
+    const input = document.getElementById('trim-input');
+    const start = document.getElementById('trim-start').value;
+    const end = document.getElementById('trim-end').value;
+
+    if (!input.files[0]) return alert("Select a video");
+
+    const formData = new FormData();
+    formData.append('file', input.files[0]);
+    if (start) formData.append('start_time', start);
+    if (end) formData.append('end_time', end);
+
+    showLoading('trim-result');
+    const res = await fetch('/api/media-tools/trim-video', { method: 'POST', body: formData });
+    handleResponse(res, 'trim-result');
+}
+
+async function executeExif() {
+    const input = document.getElementById('exif-input');
+    if (!input.files[0]) return alert("Select an image");
+
+    const formData = new FormData();
+    formData.append('file', input.files[0]);
+
+    showLoading('exif-result');
+    const res = await fetch('/api/media-tools/strip-exif', { method: 'POST', body: formData });
+    handleResponse(res, 'exif-result');
+}
+
+function showLoading(elementId) {
+    document.getElementById(elementId).innerHTML = '<div style="color:white; margin-top:20px;">Processing... ⏳</div>';
+}
+
+async function handleResponse(res, elementId) {
+    const el = document.getElementById(elementId);
+    if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+            el.innerHTML = `
+                <div style="margin-top:20px;">
+                    <p style="color:#4CAF50;">Success! 🎉</p>
+                    <a href="${data.download_url}" class="action-btn" style="text-decoration:none; display:inline-block; width:auto; margin-top:10px;">Download Result</a>
+                </div>
+            `;
+        } else {
+            el.innerHTML = `<p style="color:red;">Error: ${data.message}</p>`;
+        }
+    } else {
+        const err = await res.json();
+        el.innerHTML = `<p style="color:red;">Error: ${err.detail || 'Something went wrong'}</p>`;
+    }
+}
+
+function showError(elementId, e) {
+    document.getElementById(elementId).innerHTML = `<p style="color:red;">Error: ${e.message}</p>`;
+}
