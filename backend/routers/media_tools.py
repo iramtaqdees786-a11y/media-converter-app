@@ -19,32 +19,28 @@ media_service = MediaToolsService(UPLOADS_DIR, CONVERTED_DIR, DOWNLOADS_DIR)
 async def download_thumbnail(url: str = Form(...)):
     try:
         result = await media_service.download_thumbnail(url)
+        
+        # Determine the final file location and name
         if "path" in result:
-             # If we downloaded it locally
+             # It's a local file in downloads
+             source_path = result["path"]
              filename = result["filename"]
+             target_path = CONVERTED_DIR / filename
+             
+             # Move to converted directory for consistent serving
+             if source_path.exists():
+                 shutil.move(str(source_path), str(target_path))
+             
              return {
                  "success": True,
-                 "download_url": f"/api/convert/download/{filename}?source=downloads", # Helper to download from downloads dir?
-                 # Wait, existing download endpoint might only serve from converted.
-                 # We should check `backend/routers/download.py` or `convert.py` to see where it serves files.
-                 # Typically we might need to move it to 'converted' or serve from 'downloads'.
-                 # Let's move it to converted to safely use existing download endpoint if it's restricted.
+                 "filename": filename,
+                 "download_url": f"/converted/{filename}"
              }
         elif "url" in result:
+             # It's a direct URL
              return {"success": True, "image_url": result["url"]}
         else:
              raise HTTPException(status_code=404, detail="Could not find thumbnail")
-             
-        # Move to converted for serving
-        source_path = result["path"]
-        target_path = CONVERTED_DIR / result["filename"]
-        shutil.move(source_path, target_path)
-        
-        return {
-            "success": True, 
-            "filename": result["filename"],
-            "download_url": f"/api/convert/download/{result['filename']}"
-        }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -70,7 +66,7 @@ async def trim_video(
         return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/api/convert/download/{output_filename}"
+            "download_url": f"/converted/{output_filename}"
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -92,7 +88,7 @@ async def strip_exif(file: UploadFile = File(...)):
         return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/api/convert/download/{output_filename}"
+            "download_url": f"/converted/{output_filename}"
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

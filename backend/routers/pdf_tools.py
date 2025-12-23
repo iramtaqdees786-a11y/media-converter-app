@@ -138,7 +138,7 @@ async def grayscale_pdf(file: UploadFile = File(...)):
         return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/api/convert/download/{output_filename}"
+            "download_url": f"/converted/{output_filename}"
         }
     except Exception as e:
         if isinstance(e, HTTPException): raise e

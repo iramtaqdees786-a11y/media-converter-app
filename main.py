@@ -129,6 +129,15 @@ if FRONTEND_DIR.exists():
     # Serve root static files (e.g., index.html)
     app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
+    # Mount Generated Content Directories
+    if not CONVERTED_DIR.exists():
+        CONVERTED_DIR.mkdir(parents=True, exist_ok=True)
+    app.mount("/converted", StaticFiles(directory=str(CONVERTED_DIR)), name="converted")
+    
+    if not DOWNLOADS_DIR.exists():
+        DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    app.mount("/downloads", StaticFiles(directory=str(DOWNLOADS_DIR)), name="downloads")
+
 
 
 @app.get("/")
