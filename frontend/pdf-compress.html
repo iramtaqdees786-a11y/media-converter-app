@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-ZBZSYT7DRY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress PDF Online - Reduce PDF Size Free | ConvertRocket</title>
+    <meta name="description"
+        content="Compress PDF files online to reduce file size while maintaining quality. Optimize PDFs for email and web sharing.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=2.2">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at center, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+        }
+
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .upload-container {
+            max-width: 800px;
+            auto;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-container:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .file-info {
+            margin-top: 15px;
+            font-weight: 500;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="brand-small">🚀 <span>ConvertRocket</span></div>
+            </a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/pdf-tools.html" class="nav-link active">PDF Tools</a>
+                <a href="/media-tools.html" class="nav-link">Media Tools</a>
+                <a href="/blogs" class="nav-link">Blogs</a>
+                <a href="/#faq-section" class="nav-link">FAQ</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 80px;">
+        <header class="page-header">
+            <span class="tool-icon-large">🗜️</span>
+            <h1 class="hero-title">Compress PDF</h1>
+            <p class="hero-subtitle">Optimize your PDF files for web and email.</p>
+        </header>
+
+        <div class="upload-container" onclick="document.getElementById('compress-input').click()">
+            <div style="font-size: 48px; margin-bottom: 10px;">📄</div>
+            <h3>Drop PDF Here</h3>
+            <p style="color: #aaa;">to compress instantly</p>
+            <div id="file-name" class="file-info"></div>
+            <input type="file" id="compress-input" accept=".pdf" class="file-input" style="display:none;">
+        </div>
+
+        <div style="text-align: center;">
+            <button class="action-btn" onclick="executeCompress()">Compress PDF</button>
+        </div>
+
+        <div id="result-area" style="text-align: center; margin-top: 30px;"></div>
+
+        <article class="seo-content-section" style="margin-top: 80px;">
+            <h2>Why Compress PDF Files?</h2>
+            <p>Large PDF files can be difficult to email or upload to websites. Our free PDF compressor reduces the file
+                size by optimizing internal assets like images and fonts without significantly compromising visual
+                quality.</p>
+        </article>
+    </div>
+
+    <script>
+        const input = document.getElementById('compress-input');
+        input.addEventListener('change', () => {
+            if (input.files[0]) {
+                document.getElementById('file-name').textContent = `Selected: ${input.files[0].name}`;
+                document.querySelector('.action-btn').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        async function executeCompress() {
+            if (!input.files[0]) return alert("Please select a file first.");
+
+            const formData = new FormData();
+            formData.append('file', input.files[0]);
+            const resDiv = document.getElementById('result-area');
+            resDiv.innerHTML = 'Processing... ⏳';
+
+            try {
+                const res = await fetch('/api/pdf/compress', { method: 'POST', body: formData });
+                const data = await res.json();
+
+                if (data.success) {
+                    resDiv.innerHTML = `
+                         <div style="background: rgba(76, 175, 80, 0.2); border: 1px solid #4CAF50; padding: 20px; border-radius: 12px; display: inline-block;">
+                            <h3 style="color:#4CAF50;">Success!</h3>
+                            <a href="${data.download_url}" class="action-btn" style="display:inline-block;">Download Compressed PDF</a>
+                        </div>
+                    `;
+                } else {
+                    resDiv.innerHTML = `<p style="color:red;">Error: ${data.detail}</p>`;
+                }
+            } catch (e) {
+                resDiv.innerHTML = "Error: " + e.message;
+            }
+        }
+    </script>
+</body>
+
+</html>

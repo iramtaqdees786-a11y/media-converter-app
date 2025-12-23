@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Convert to PDF/A - Archive Standard | ConvertRocket</title>
+    <meta name="description"
+        content="Convert PDF documents to PDF/A standard for long-term archiving. Free online tool.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=2.2">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="brand-small">🚀 <span>ConvertRocket</span></div>
+            </a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/pdf-tools.html" class="nav-link active">PDF Tools</a>
+                <a href="/media-tools.html" class="nav-link">Media Tools</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 80px;">
+        <header class="page-header">
+            <span style="font-size: 64px;">🏛️</span>
+            <h1>Convert to PDF/A</h1>
+            <p style="color:#aaa;">Make your documents compliant for long-term archiving.</p>
+        </header>
+
+        <div class="upload-container" onclick="document.getElementById('file-input').click()">
+            <div style="font-size: 40px;">📂</div>
+            <p id="file-label">Click to Upload PDF</p>
+            <input type="file" id="file-input" accept=".pdf" style="display:none">
+        </div>
+
+        <div style="max-width:300px; margin: 0 auto;">
+            <button class="action-btn" onclick="executePdfa()">Convert to PDF/A</button>
+        </div>
+
+        <div id="result" style="text-align: center; margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        const input = document.getElementById('file-input');
+        input.addEventListener('change', () => {
+            if (input.files[0]) document.getElementById('file-label').textContent = `Selected: ${input.files[0].name}`;
+        });
+
+        async function executePdfa() {
+            if (!input.files[0]) return alert("Select a PDF");
+
+            const formData = new FormData();
+            formData.append('file', input.files[0]);
+
+            const resDiv = document.getElementById('result');
+            resDiv.innerHTML = 'Processing...';
+
+            try {
+                const res = await fetch('/api/pdf/pdfa', { method: 'POST', body: formData });
+                const data = await res.json();
+
+                if (data.success) {
+                    resDiv.innerHTML = `<a href="${data.download_url}" class="action-btn" style="text-decoration:none;">Download PDF/A</a>`;
+                } else {
+                    resDiv.innerHTML = "Error: " + data.detail;
+                }
+            } catch (e) {
+                resDiv.innerHTML = "Error: " + e.message;
+            }
+        }
+    </script>
+</body>
+
+</html>

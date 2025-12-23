@@ -177,6 +177,31 @@ async def serve_media_tools():
     return FileResponse(FRONTEND_DIR / "media-tools.html")
 
 
+@app.get("/pdf-merge")
+async def serve_pdf_merge(): return FileResponse(FRONTEND_DIR / "pdf-merge.html")
+
+@app.get("/pdf-compress")
+async def serve_pdf_compress(): return FileResponse(FRONTEND_DIR / "pdf-compress.html")
+
+@app.get("/pdf-remove-pages")
+async def serve_pdf_remove(): return FileResponse(FRONTEND_DIR / "pdf-remove-pages.html")
+
+@app.get("/pdf-grayscale")
+async def serve_pdf_grayscale(): return FileResponse(FRONTEND_DIR / "pdf-grayscale.html")
+
+@app.get("/pdf-pdfa")
+async def serve_pdf_pdfa(): return FileResponse(FRONTEND_DIR / "pdf-pdfa.html")
+
+@app.get("/yt-thumbnail")
+async def serve_yt_thumbnail(): return FileResponse(FRONTEND_DIR / "yt-thumbnail.html")
+
+@app.get("/video-trimmer")
+async def serve_video_trimmer(): return FileResponse(FRONTEND_DIR / "video-trimmer.html")
+
+@app.get("/exif-remover")
+async def serve_exif_remover(): return FileResponse(FRONTEND_DIR / "exif-remover.html")
+
+
 @app.get("/blogs")
 @app.get("/blogs.html")
 async def serve_blogs():

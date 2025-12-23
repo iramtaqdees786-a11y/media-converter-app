@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-ZBZSYT7DRY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge PDF Files Online - Free PDF Combiner | ConvertRocket</title>
+    <meta name="description"
+        content="Merge multiple PDF files into one document online for free. Combine PDFs easily, securely, and fast. No signup required.">
+    <meta name="keywords"
+        content="merge pdf, combine pdf, join pdf files, pdf merger, free pdf merge, online pdf tools">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=2.2">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at center, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+        }
+
+        .tool-icon-large {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-container:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+            transition: transform 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .file-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .file-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <div class="brand-small">🚀 <span>ConvertRocket</span></div>
+            </a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/pdf-tools.html" class="nav-link active">PDF Tools</a>
+                <a href="/media-tools.html" class="nav-link">Media Tools</a>
+                <a href="/blogs" class="nav-link">Blogs</a>
+                <a href="/#faq-section" class="nav-link">FAQ</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 80px;">
+        <header class="page-header">
+            <span class="tool-icon-large">📚</span>
+            <h1 class="hero-title">Merge PDF Files</h1>
+            <p class="hero-subtitle">Combine multiple PDFs into one unified document instantly.</p>
+        </header>
+
+        <div class="upload-container" onclick="document.getElementById('merge-input').click()">
+            <div style="font-size: 48px; margin-bottom: 10px;">📂</div>
+            <h3>Select PDF Files</h3>
+            <p style="color: #aaa;">or drag and drop them here</p>
+            <input type="file" id="merge-input" multiple accept=".pdf" class="file-input" style="display:none;">
+        </div>
+
+        <div id="file-list-display" class="file-list" style="max-width: 800px; margin: 20px auto;"></div>
+
+        <div style="text-align: center;">
+            <button class="action-btn" onclick="executeMerge()">Merge PDFs Now</button>
+        </div>
+
+        <div id="merge-result" style="text-align: center; margin-top: 30px;"></div>
+
+        <!-- SEO Content -->
+        <article class="seo-content-section" style="margin-top: 80px;">
+            <h2>How to Merge PDFs Online for Free</h2>
+            <p>ConvertRocket provides the simplest way to combine PDF files. Whether you are merging invoices, reports,
+                or ebook chapters, our tool ensures your files are joined safely and correctly.</p>
+            <ol>
+                <li>Click <strong>Select PDF Files</strong> and upload the documents you want to merge.</li>
+                <li>Verify your files in the list.</li>
+                <li>Click <strong>Merge PDFs Now</strong>.</li>
+                <li>Download your single merged PDF file instantly.</li>
+            </ol>
+        </article>
+    </div>
+
+    <script>
+        // Inline script for specific page logic
+        const input = document.getElementById('merge-input');
+        const listDisplay = document.getElementById('file-list-display');
+
+        input.addEventListener('change', () => {
+            listDisplay.innerHTML = '';
+            if (input.files.length > 0) {
+                Array.from(input.files).forEach(file => {
+                    const div = document.createElement('div');
+                    div.className = 'file-item';
+                    div.innerHTML = `<span>📄 ${file.name}</span> <span style="font-size:0.8em; color:#ddd;">${(file.size / 1024).toFixed(1)} KB</span>`;
+                    listDisplay.appendChild(div);
+                });
+                // Scroll to button
+                document.querySelector('.action-btn').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        async function executeMerge() {
+            if (input.files.length < 2) {
+                alert("Please select at least 2 PDF files to merge.");
+                return;
+            }
+            const formData = new FormData();
+            for (let i = 0; i < input.files.length; i++) {
+                formData.append('files', input.files[i]);
+            }
+
+            const resDiv = document.getElementById('merge-result');
+            resDiv.innerHTML = '<div style="color:white;">Merging... ⏳</div>';
+
+            try {
+                const res = await fetch('/api/pdf/merge', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    resDiv.innerHTML = `
+                        <div style="background: rgba(76, 175, 80, 0.2); border: 1px solid #4CAF50; padding: 20px; border-radius: 12px; display: inline-block;">
+                            <h3 style="color:#4CAF50; margin:0 0 10px 0;">Success! 🎉</h3>
+                            <p>Your files have been merged.</p>
+                            <a href="${data.download_url}" class="action-btn" style="text-decoration:none; display:inline-block; margin-top:10px;">Download Merged PDF</a>
+                        </div>
+                    `;
+                } else {
+                    resDiv.innerHTML = `<p style="color:red;">Error: ${data.detail}</p>`;
+                }
+            } catch (e) {
+                resDiv.innerHTML = `<p style="color:red;">Error: ${e.message}</p>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
