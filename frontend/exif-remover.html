@@ -61,14 +61,7 @@
             <p style="color:#aaa;">Remove hidden metadata (Location, Camera details) from your photos.</p>
         </header>
 
-        <!-- POWER SILO (SEO Hack: Internal Linking) -->
-        <div class="power-silo">
-            <span class="power-silo-title">🔥 Trending:</span>
-            <a href="/mp3-converter.html" class="power-silo-link">MP3 Converter</a>
-            <a href="/pdf-tools.html" class="power-silo-link">PDF Tools</a>
-            <a href="/video-converter.html" class="power-silo-link">Video Downloader</a>
-            <a href="/blogs" class="power-silo-link">SEO Guides</a>
-        </div>
+
 
 
         <div class="upload-container" onclick="document.getElementById('file-input').click()">
@@ -104,9 +97,21 @@
                 const data = await res.json();
 
                 if (data.success) {
-                    resDiv.innerHTML = `<a href="${data.download_url}" class="action-btn" style="text-decoration:none;">Download Clean Image</a>`;
+                    resDiv.innerHTML = `
+                        <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4CAF50; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                            <p style="color:#4CAF50; margin-bottom: 15px; font-weight: 600;">Success! Metadata stripped. 🎉</p>
+                            <a href="${data.download_url}" download class="action-btn" style="text-decoration:none; display: inline-block; width: auto; padding: 12px 25px;">⬇️ Download Clean Image</a>
+                        </div>
+                    `;
+                    // Trigger auto download
+                    const link = document.createElement('a');
+                    link.href = data.download_url;
+                    link.download = data.filename || 'clean_image.jpg';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                 } else {
-                    resDiv.innerHTML = "Error: " + data.detail;
+                    resDiv.innerHTML = `<p style="color:#ff4444;">Error: ${data.detail || 'Could not strip metadata'}</p>`;
                 }
             } catch (e) {
                 resDiv.innerHTML = "Error: " + e.message;

@@ -50,7 +50,7 @@ async def merge_pdfs(
         return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/api/convert/download/{output_filename}"
+            "download_url": f"/api/convert/file/{output_filename}"
         }
 
     except Exception as e:
@@ -84,7 +84,7 @@ async def remove_pages(
         return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/api/convert/download/{output_filename}"
+            "download_url": f"/api/convert/file/{output_filename}"
         }
 
     except Exception as e:
@@ -110,7 +110,7 @@ async def compress_pdf(file: UploadFile = File(...)):
         return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/api/convert/download/{output_filename}"
+            "download_url": f"/api/convert/file/{output_filename}"
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -138,7 +138,7 @@ async def grayscale_pdf(file: UploadFile = File(...)):
         return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/converted/{output_filename}"
+            "download_url": f"/api/convert/file/{output_filename}"
         }
     except Exception as e:
         if isinstance(e, HTTPException): raise e
@@ -167,7 +167,7 @@ async def pdf_to_pdfa(file: UploadFile = File(...)):
          return {
             "success": True,
             "filename": output_filename,
-            "download_url": f"/api/convert/download/{output_filename}"
+            "download_url": f"/api/convert/file/{output_filename}"
         }
     except Exception as e:
         if isinstance(e, HTTPException): raise e

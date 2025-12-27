@@ -14,30 +14,38 @@ class MediaToolsService:
 
     async def download_thumbnail(self, url: str) -> dict:
         """Download high-res thumbnail for a video."""
-        ydl_opts = {
+        from backend.services.downloader import _base_ydl_options
+        
+        ydl_opts = _base_ydl_options(url)
+        ydl_opts.update({
             'skip_download': True,
             'writethumbnail': True,
             'outtmpl': str(self.downloads_dir / '%(id)s.%(ext)s'),
             'quiet': True,
-        }
+        })
         
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=True)
-            # yt-dlp saves thumbnail as filename.jpg or webp
-            # We need to find where it saved it.
-            video_id = info['id']
-            # Possible extensions
-            for ext in ['jpg', 'webp', 'png']:
-                thumb_path = self.downloads_dir / f"{video_id}.{ext}"
-                if thumb_path.exists():
-                     return {
-                         "path": thumb_path,
-                         "filename": thumb_path.name,
-                         "title": info.get('title', 'thumbnail')
-                     }
-            
-            # Fallback if not found locally, return url
-            return {"url": info.get('thumbnail'), "title": info.get('title')}
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=True)
+                video_id = info['id']
+                # Possible extensions yt-dlp might use
+                for ext in ['jpg', 'webp', 'png', 'jpeg']:
+                    thumb_path = self.downloads_dir / f"{video_id}.{ext}"
+                    if thumb_path.exists():
+                         return {
+                             "path": thumb_path,
+                             "filename": thumb_path.name,
+                             "title": info.get('title', 'thumbnail')
+                         }
+                
+                # Fallback if not found locally, return url
+                if info.get('thumbnail'):
+                    return {"url": info.get('thumbnail'), "title": info.get('title')}
+                
+                raise Exception("Thumbnail not found in info")
+        except Exception as e:
+            print(f"Thumbnail download error: {e}")
+            raise Exception(f"Failed to fetch thumbnail: {str(e)}")
 
     async def trim_video(self, file_path: Path, start_time: str, end_time: str, output_filename: str) -> Path:
         """
@@ -76,16 +84,16 @@ class MediaToolsService:
             return output_path
 
     async def strip_exif(self, file_path: Path, output_filename: str) -> Path:
-        """Remove EXIF data from image."""
+        """Remove EXIF data from image by recreating it."""
         output_path = self.converted_dir / output_filename
         
         with Image.open(file_path) as img:
-            # We need to save it. If we just save, PIL strip exif by default unless 'exif' param passed?
-            # actually usually it keeps it unless we just create a new image.
+            # Re-creating the image object without any metadata
             data = list(img.getdata())
             image_without_exif = Image.new(img.mode, img.size)
             image_without_exif.putdata(data)
-            image_without_exif.save(output_path)
+            # Ensure no exif or other info is saved
+            image_without_exif.save(output_path, "PNG" if img.format == "PNG" else "JPEG", quality=95)
             
         return output_path
 

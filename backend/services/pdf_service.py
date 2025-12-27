@@ -43,9 +43,39 @@ class PDFService:
 
     async def compress_pdf(self, file_path: Path, output_filename: str) -> Path:
         """
-        Compress PDF by reducing quality of images and compressing streams.
-        Note result varies based on content.
+        Compress PDF using Ghostscript if available, otherwise fallback to pypdf.
         """
+        output_path = self.converted_dir / output_filename
+        
+        # Try finding gs
+        gs_names = ["gswin64c", "gswin32c", "gs"]
+        gs_exe = None
+        from shutil import which
+        for name in gs_names:
+            if which(name):
+                gs_exe = name
+                break
+        
+        if gs_exe:
+            try:
+                import subprocess
+                # Using -dPDFSETTINGS=/ebook for a good balance of quality and size
+                subprocess.run([
+                    gs_exe,
+                    "-sDEVICE=pdfwrite",
+                    "-dCompatibilityLevel=1.4",
+                    "-dPDFSETTINGS=/ebook",
+                    "-dNOPAUSE",
+                    "-dQUIET",
+                    "-dBATCH",
+                    "-sOutputFile=" + str(output_path),
+                    str(file_path)
+                ], check=True)
+                return output_path
+            except Exception as e:
+                print(f"Ghostscript compression failed: {e}")
+
+        # Fallback to pypdf
         reader = PdfReader(file_path)
         writer = PdfWriter()
 
@@ -53,16 +83,10 @@ class PDFService:
             writer.add_page(page)
 
         for page in writer.pages:
-            # Compress content streams
             page.compress_content_streams() 
-            # Downsampling images could be done here but is complex with just pypdf
-            # usually requires iterating through xObjects and re-encoding.
-            # pypdf's compress_content_streams handles the text/vector parts mostly.
 
-        # Enable metadata compression
         writer.compress_identical_objects(remove_identicals=True, remove_identical_objects=True) 
 
-        output_path = self.converted_dir / output_filename
         with open(output_path, "wb") as f_out:
             writer.write(f_out)
             

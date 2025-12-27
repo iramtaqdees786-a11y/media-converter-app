@@ -2,10 +2,10 @@
 # Python 3.11 Slim Image
 FROM python:3.11-slim
 
-# Install system dependencies including FFmpeg
-# This is crucial for video/audio conversions
+# Install system dependencies including FFmpeg and Ghostscript
+# This is crucial for video/audio conversions and advanced PDF tools
 RUN apt-get update && \
-    apt-get install -y ffmpeg && \
+    apt-get install -y ffmpeg ghostscript && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

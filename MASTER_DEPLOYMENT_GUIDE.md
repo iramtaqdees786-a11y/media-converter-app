@@ -12,34 +12,31 @@ Standard web hosts (like Vercel) **cannot** run FFmpeg reliably because of time 
 ## 📂 Step 1: Prepare Your Files (ALREADY DONE)
 
 I have already created the necessary config files for you:
-1.  **`Dockerfile`**: Tells Render how to install Python & FFmpeg.
+1.  **`Dockerfile`**: Tells Render how to install Python, FFmpeg, and **Ghostscript** (for PDF tools).
 2.  **`vercel.json`**: Tells Vercel how to serve your HTML/CSS/JS.
 3.  **`main.py`**: Updated to allow requests from `convertrocket.online` (CORS).
 
 ---
 
 ## 🛠️ Step 2: Deploy Backend (Render.com)
-*This runs the "Heavy Lifting" code (Python + FFmpeg).*
+*This runs the "Heavy Lifting" code (Python + FFmpeg + Ghostscript).*
 
 1.  **Push to GitHub**:
-    *   Upload your entire project code to a GitHub repository (private or public).
+    *   Upload your entire project code to a GitHub repository.
 2.  **Create Render Account**:
-    *   Go to [dashboard.render.com](https://dashboard.render.com) and log in.
+    *   Go to [dashboard.render.com](https://dashboard.render.com).
 3.  **New Web Service**:
     *   Click **"New +"** -> **"Web Service"**.
     *   Select "Build and deploy from a Git repository".
     *   Connect your GitHub repository.
 4.  **Configure Service**:
     *   **Name**: `convertrocket-api`
-    *   **Region**: Closest to you (e.g., Frankfurt, Singapore, Oregon).
-    *   **Runtime**: Select **Docker** (Crucial! Do not select Python).
-    *   **Instance Type**: Free (or Starter if you want faster speeds later).
-5.  **Environment Variables** (Optional but recommended):
-    *   Key: `App_Env`, Value: `production`
-6.  **Deploy**:
+    *   **Runtime**: Select **Docker** (CRITICAL: This uses our `Dockerfile` to install FFmpeg & Ghostscript automatically).
+    *   **Instance Type**: Free (or higher).
+5.  **Deploy**:
     *   Click **"Create Web Service"**.
-    *   Wait for it to build (it installs FFmpeg + Python).
-    *   **COPY THE URL** it gives you (e.g., `https://convertrocket-api.onrender.com`). You need this for Step 3.
+    *   Wait for it to build (it installs system dependencies automatically).
+    *   **COPY THE URL** (e.g., `https://convertrocket-api.onrender.com`). You need this for Step 3.
 
 ---
 

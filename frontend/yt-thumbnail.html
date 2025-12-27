@@ -97,14 +97,7 @@
             </div>
         </header>
 
-        <!-- POWER SILO (SEO Hack: Internal Linking) -->
-        <div class="power-silo">
-            <span class="power-silo-title">🔥 Trending:</span>
-            <a href="/mp3-converter.html" class="power-silo-link">MP3 Converter</a>
-            <a href="/pdf-tools.html" class="power-silo-link">PDF Tools</a>
-            <a href="/video-converter.html" class="power-silo-link">Video Downloader</a>
-            <a href="/blogs" class="power-silo-link">SEO Guides</a>
-        </div>
+
 
 
         <div id="result" class="thumb-preview"></div>
@@ -135,12 +128,24 @@
                 if (data.success) {
                     const imgUrl = data.download_url || data.image_url;
                     resDiv.innerHTML = `
-                        <img src="${imgUrl}" class="thumb-img">
-                        <br><br>
-                        <a href="${imgUrl}" download target="_blank" class="go-btn" style="text-decoration:none; padding: 15px 30px; display:inline-block;">Download Image</a>
+                        <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4CAF50; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                            <p style="color:#4CAF50; margin-bottom: 15px; font-weight: 600;">Success! Thumbnail fetched. 🎉</p>
+                            <img src="${imgUrl}" class="thumb-img" style="margin-bottom: 15px;">
+                            <br>
+                            <a href="${imgUrl}" download target="_blank" class="go-btn" style="text-decoration:none; padding: 15px 30px; display:inline-block;">⬇️ Download Image</a>
+                        </div>
                     `;
+                    // Trigger auto download if it's a local path
+                    if (data.download_url) {
+                        const link = document.createElement('a');
+                        link.href = data.download_url;
+                        link.download = data.filename || 'thumbnail.jpg';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
                 } else {
-                    resDiv.innerHTML = `<p style="color:red;">Error: ${data.detail}</p>`;
+                    resDiv.innerHTML = `<p style="color:#ff4444;">Error: ${data.detail}</p>`;
                 }
             } catch (e) {
                 resDiv.innerHTML = "Error: " + e.message;
