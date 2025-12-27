@@ -50,6 +50,27 @@ def update_html_file(file_path):
         r'src="/static/js/pdf-tools.min.js\1',
         content
     )
+    content = re.sub(
+        r'src="/static/js/seo-hacks\.js(\?v=[^"]*)?',
+        r'src="/static/js/seo-hacks.min.js\1',
+        content
+    )
+    content = re.sub(
+        r'href="/static/css/seo-hacks\.css(\?v=[^"]*)?',
+        r'href="/static/css/seo-hacks.min.css\1',
+        content
+    )
+
+    # Make internal links friendly (remove .html extension)
+    # Only for local routes, not external links
+    content = re.sub(
+        r'href="/([^"]+)\.html"',
+        r'href="/\1"',
+        content
+    )
+    
+    # Special case for index.html as /
+    content = content.replace('href="/index"', 'href="/"')
     
     # Only write if changes were made
     if content != original_content:

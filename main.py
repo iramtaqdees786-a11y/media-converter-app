@@ -18,7 +18,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 import uvicorn
 
 from backend.routers import download, convert, pdf_tools, media_tools
@@ -94,14 +94,34 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Custom Middleware to add Cache-Control headers for static assets
+# Custom Middleware to add Cache-Control & Expires headers for static assets
 @app.middleware("http")
 async def add_cache_control_header(request: Request, call_next):
+    from datetime import datetime, timedelta
     response = await call_next(request)
-    if request.url.path.startswith("/static/") or request.url.path.startswith("/css/") or request.url.path.startswith("/js/") or request.url.path.startswith("/img/"):
-        # Cache for 1 day: 86400 seconds
-        response.headers["Cache-Control"] = "public, max-age=86400"
+    path = request.url.path
+    if any(path.startswith(pre) for pre in ["/static/", "/css/", "/js/", "/img/", "/assets/"]):
+        # Cache for 1 month: 2592000 seconds
+        response.headers["Cache-Control"] = "public, max-age=2592000"
+        expires_date = (datetime.utcnow() + timedelta(days=30)).strftime("%a, %d %b %Y %H:%M:%S GMT")
+        response.headers["Expires"] = expires_date
     return response
+
+# Extensionless URL Support (Friendly Links)
+@app.middleware("http")
+async def friendly_urls_middleware(request: Request, call_next):
+    path = request.url.path
+    
+    # Redirect .html to clean URL
+    if path.endswith(".html") and not path.startswith("/api/"):
+        new_path = path[:-5]
+        return RedirectResponse(url=new_path, status_code=301)
+
+    if not path.endswith(".html") and not path.split("/")[-1].count(".") and path != "/" and not path.startswith("/api/"):
+        potential_file = FRONTEND_DIR / f"{path.strip('/')}.html"
+        if potential_file.exists():
+             return FileResponse(potential_file)
+    return await call_next(request)
 
 # Include routers
 app.include_router(download.router)

@@ -31,7 +31,8 @@ def minify_js(js_content):
 css_files = [
     'frontend/css/styles.css',
     'frontend/css/mobile-optimizations.css',
-    'frontend/css/styles-append.css'
+    'frontend/css/styles-append.css',
+    'frontend/css/seo-hacks.css'
 ]
 
 for css_file in css_files:
@@ -59,7 +60,8 @@ js_files = [
     'frontend/js/app.js',
     'frontend/js/i18n.js',
     'frontend/js/media-tools.js',
-    'frontend/js/pdf-tools.js'
+    'frontend/js/pdf-tools.js',
+    'frontend/js/seo-hacks.js'
 ]
 
 for js_file in js_files:
