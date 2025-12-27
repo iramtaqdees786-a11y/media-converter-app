@@ -251,7 +251,7 @@ async def download_video(
     # Set format based on type
     if format_type == "audio":
         ydl_opts.update({
-            'format': 'bestaudio/best',
+            'format': 'bestaudio/bestvideo+bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',

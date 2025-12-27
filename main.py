@@ -168,6 +168,13 @@ async def serve_video_converter():
 async def serve_mp3_converter():
     return FileResponse(FRONTEND_DIR / "mp3-converter.html")
 
+# Redirect old mp4-converter URL to mp3-converter for backward compatibility
+@app.get("/mp4-converter")
+@app.get("/mp4-converter.html")
+async def redirect_mp4_converter():
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/mp3-converter.html", status_code=301)
+
 @app.get("/image-converter")
 @app.get("/image-converter.html")
 async def serve_image_converter():
