@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>PDF Tools - Merge, Compress, Edit | ConvertRocket</title>
+    <title>PDF Tools - Merge, Compress, Edit | ConvertRocket ([MONTH_YEAR])</title>
     <link rel="stylesheet" href="/static/css/styles.min.css?v=2.2">
     <style>
         .tools-grid {
@@ -34,6 +34,8 @@
             display: block;
         }
     </style>
+    <link rel="stylesheet" href="/static/css/seo-hacks.css">
+    <script src="/static/js/seo-hacks.js" defer></script>
 </head>
 
 <body>
@@ -54,9 +56,24 @@
 
     <div class="container" style="margin-top: 100px;">
         <header class="header">
-            <h1>All PDF Tools</h1>
+
+            <div class="last-updated-badge">
+                <span>Last Updated: <span class="last-updated-date">[TODAY]</span></span>
+            </div>
+
+            <h1>All PDF Tools ([MONTH_YEAR])</h1>
             <p style="color:#aaa">Select a tool to get started</p>
         </header>
+
+        <!-- POWER SILO (SEO Hack: Internal Linking) -->
+        <div class="power-silo">
+            <span class="power-silo-title">🔥 Trending:</span>
+            <a href="/mp3-converter.html" class="power-silo-link">MP3 Converter</a>
+            <a href="/pdf-tools.html" class="power-silo-link">PDF Tools</a>
+            <a href="/video-converter.html" class="power-silo-link">Video Downloader</a>
+            <a href="/blogs" class="power-silo-link">SEO Guides</a>
+        </div>
+
 
         <div class="tools-grid">
             <a href="/pdf-merge" class="tool-card">

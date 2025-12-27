@@ -1,0 +1,132 @@
+/**
+ * ConvertRocket - SEO Hacks & Layout Improvements Engine
+ * Handles dynamic dates, freshness signals, and schema injection.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateDynamicDates();
+    updateFreshnessSignals();
+    enhancePageTitles();
+    injectBreadcrumbSchema();
+});
+
+/**
+ * Update placeholders like [MONTH] and [YEAR] in text
+ */
+function updateDynamicDates() {
+    const now = new Date();
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const currentMonth = monthNames[now.getMonth()];
+    const currentYear = now.getFullYear();
+    const currentMonthYear = `${currentMonth} ${currentYear}`;
+    const todayDate = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+    // Find and replace in all text nodes
+    const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while (node = walk.nextNode()) {
+        if (node.textContent.includes('[MONTH]')) {
+            node.textContent = node.textContent.replace(/\[MONTH\]/g, currentMonth);
+        }
+        if (node.textContent.includes('[YEAR]')) {
+            node.textContent = node.textContent.replace(/\[YEAR\]/g, currentYear);
+        }
+        if (node.textContent.includes('[MONTH_YEAR]')) {
+            node.textContent = node.textContent.replace(/\[MONTH_YEAR\]/g, currentMonthYear);
+        }
+        if (node.textContent.includes('[TODAY]')) {
+            node.textContent = node.textContent.replace(/\[TODAY\]/g, todayDate);
+        }
+    }
+}
+
+/**
+ * Handle "Freshness Signal" fake-out
+ * Updates "Last Updated" tags to show current date
+ */
+function updateFreshnessSignals() {
+    const freshnessTags = document.querySelectorAll('.last-updated-date');
+    const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+    freshnessTags.forEach(tag => {
+        tag.textContent = today;
+        tag.parentElement.style.opacity = '1';
+    });
+}
+
+/**
+ * Update Page Titles dynamically for CTR boost
+ * e.g., "Best YouTube Downloader (March 2025)"
+ */
+function enhancePageTitles() {
+    const now = new Date();
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    const currentMonthYear = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+
+    // Update document title if it contains placeholders
+    if (document.title.includes('[MONTH_YEAR]')) {
+        document.title = document.title.replace(/\[MONTH_YEAR\]/g, currentMonthYear);
+    } else if (!document.title.includes(currentMonthYear)) {
+        // Optional: Append date to blog titles for CTR
+        if (window.location.pathname.includes('/blog/')) {
+            // Only append if not already there
+            // document.title = `${document.title} - Updated ${currentMonthYear}`;
+        }
+    }
+
+    // Update H1 as well for consistency
+    const h1 = document.querySelector('h1');
+    if (h1 && h1.textContent.includes('[MONTH_YEAR]')) {
+        h1.textContent = h1.textContent.replace(/\[MONTH_YEAR\]/g, currentMonthYear);
+    }
+}
+
+/**
+ * Injects BreadcrumbList Schema for better search appearance
+ */
+function injectBreadcrumbSchema() {
+    const path = window.location.pathname;
+    if (path === '/' || path === '/index.html') return;
+
+    const segments = path.split('/').filter(s => s && !s.endsWith('.html'));
+    const breadcrumbs = [
+        { name: 'Home', item: 'https://convertrocket.online/' }
+    ];
+
+    let currentPath = 'https://convertrocket.online/';
+    segments.forEach((seg, index) => {
+        currentPath += seg + '/';
+        breadcrumbs.push({
+            name: seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' '),
+            item: currentPath
+        });
+    });
+
+    // Add current page
+    const pageTitle = document.title.split(' - ')[0];
+    breadcrumbs.push({
+        name: pageTitle,
+        item: window.location.href
+    });
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs.map((b, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": b.name,
+            "item": b.item
+        }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schema);
+    document.head.appendChild(script);
+}
