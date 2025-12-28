@@ -43,6 +43,7 @@ const elements = {
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
+    initDynamicDates();
     initElements();
     initTabs();
     initDownloadSection();
@@ -52,18 +53,49 @@ document.addEventListener('DOMContentLoaded', () => {
     initSpecialTabs();
     loadSupportedFormats();
 
-    // Track page view for analytics (if implemented)
+    // Track page view for analytics
     console.log('🚀 ConvertRocket - All-In-One Universal Converter');
     console.log('🌐 Domain: convertrocket.online');
 
-    // Keep service alive (prevent cold starts while user is active)
+    // Keep service alive
     initKeepAlive();
 });
+
+// Replace placeholders [MONTH_YEAR] and [TODAY] with actual dates
+function initDynamicDates() {
+    const now = new Date();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthYear = `${months[now.getMonth()]} ${now.getFullYear()}`;
+    const today = now.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+
+    // Update title (crucial for SEO display)
+    if (document.title.includes('[MONTH_YEAR]')) {
+        document.title = document.title.replace('[MONTH_YEAR]', monthYear);
+    }
+
+    // Update the entire body for any other placeholders
+    const processNode = (node) => {
+        if (node.nodeType === 3) { // Text node
+            if (node.nodeValue.includes('[MONTH_YEAR]')) {
+                node.nodeValue = node.nodeValue.replace(/\[MONTH_YEAR\]/g, monthYear);
+            }
+            if (node.nodeValue.includes('[TODAY]')) {
+                node.nodeValue = node.nodeValue.replace(/\[TODAY\]/g, today);
+            }
+        } else if (node.nodeType === 1) { // Element node
+            for (let child of node.childNodes) {
+                processNode(child);
+            }
+        }
+    };
+
+    processNode(document.body);
+}
 
 // Keep Alive Mechanism (Pings server every 14 minutes to prevent Render free tier shutdown while tab is open)
 function initKeepAlive() {
     const PING_INTERVAL = 14 * 60 * 1000; // 14 minutes
-    
+
     const ping = () => {
         fetch(`${API_BASE}/api/health`, { method: 'GET', cache: 'no-store' })
             .then(res => console.log('💓 Keep-alive ping:', res.ok ? 'OK' : 'Failed'))

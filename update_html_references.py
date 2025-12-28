@@ -94,9 +94,9 @@ if blog_dir.exists():
 updated_count = 0
 for html_file in html_files:
     if update_html_file(html_file):
-        print(f"✓ Updated: {html_file}")
+        print(f"Updated: {html_file}")
         updated_count += 1
     else:
         print(f"  Skipped: {html_file} (no changes needed)")
 
-print(f"\n✅ Updated {updated_count} HTML files to use minified assets!")
+print(f"\nDONE: Updated {updated_count} HTML files to use minified assets!")

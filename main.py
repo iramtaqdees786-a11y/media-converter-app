@@ -15,11 +15,12 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 import uvicorn
+from datetime import datetime, timedelta
 
 from backend.routers import download, convert, pdf_tools, media_tools
 from backend.config import DOWNLOADS_DIR, UPLOADS_DIR, CONVERTED_DIR
@@ -94,17 +95,43 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Custom Middleware to add Cache-Control & Expires headers for static assets
+# Custom Middleware for SEO & Performance
 @app.middleware("http")
-async def add_cache_control_header(request: Request, call_next):
-    from datetime import datetime, timedelta
+async def seo_and_performance_middleware(request: Request, call_next):
+    # Process request
     response = await call_next(request)
+    
     path = request.url.path
-    if any(path.startswith(pre) for pre in ["/static/", "/css/", "/js/", "/img/", "/assets/"]):
-        # Cache for 1 month: 2592000 seconds
+    
+    # 1. Add Cache-Control & Expires for Assets
+    if any(path.startswith(pre) for pre in ["/static/", "/css/", "/js/", "/img/", "/assets/"]) or \
+       any(path.endswith(ext) for ext in [".js", ".css", ".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico"]):
+        # Cache for 1 month
         response.headers["Cache-Control"] = "public, max-age=2592000"
         expires_date = (datetime.utcnow() + timedelta(days=30)).strftime("%a, %d %b %Y %H:%M:%S GMT")
         response.headers["Expires"] = expires_date
+        return response
+
+    # 2. Dynamic SEO Placeholder Replacement [MONTH_YEAR]
+    # We only want to do this for HTML responses
+    content_type = response.headers.get("content-type", "")
+    if "text/html" in content_type and (isinstance(response, FileResponse) or isinstance(response, Response)):
+        try:
+            # For FileResponse, we need to read the content
+            if isinstance(response, FileResponse):
+                with open(response.path, "r", encoding="utf-8") as f:
+                    content = f.read()
+            else:
+                # This part is tricky for streaming responses, but usually we return Responses for small components
+                return response
+                
+            current_date = datetime.now().strftime("%B %Y") # e.g., "December 2025"
+            if "[MONTH_YEAR]" in content:
+                content = content.replace("[MONTH_YEAR]", current_date)
+                return Response(content=content, media_type="text/html", headers=dict(response.headers))
+        except Exception as e:
+            print(f"SEO Middleware Error: {e}")
+            
     return response
 
 # Extensionless URL Support (Friendly Links)
