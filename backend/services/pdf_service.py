@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import List, Optional
 import pypdf
 from pypdf import PdfReader, PdfWriter
+import subprocess
 
 class PDFService:
     def __init__(self, upload_dir: Path, converted_dir: Path):
@@ -44,8 +45,10 @@ class PDFService:
     async def compress_pdf(self, file_path: Path, output_filename: str) -> Path:
         """
         Compress PDF using Ghostscript if available, otherwise fallback to pypdf.
+        Ensures the output is not larger than the input.
         """
         output_path = self.converted_dir / output_filename
+        original_size = os.path.getsize(file_path)
         
         # Try finding gs
         gs_names = ["gswin64c", "gswin32c", "gs"]
@@ -58,8 +61,7 @@ class PDFService:
         
         if gs_exe:
             try:
-                import subprocess
-                # Using -dPDFSETTINGS=/ebook for a good balance of quality and size
+                # First try with /ebook (medium quality, 150 dpi)
                 subprocess.run([
                     gs_exe,
                     "-sDEVICE=pdfwrite",
@@ -71,7 +73,31 @@ class PDFService:
                     "-sOutputFile=" + str(output_path),
                     str(file_path)
                 ], check=True)
+                
+                # Check if size decreased
+                if os.path.exists(output_path) and os.path.getsize(output_path) >= original_size:
+                    # Retry with /screen (low quality, 72 dpi)
+                    print(f"Ebook compression didn't help ({os.path.getsize(output_path)} >= {original_size}). Retrying with /screen...")
+                    subprocess.run([
+                        gs_exe,
+                        "-sDEVICE=pdfwrite",
+                        "-dCompatibilityLevel=1.4",
+                        "-dPDFSETTINGS=/screen",
+                        "-dNOPAUSE",
+                        "-dQUIET",
+                        "-dBATCH",
+                        "-sOutputFile=" + str(output_path),
+                        str(file_path)
+                    ], check=True)
+
+                # Final check
+                if os.path.exists(output_path) and os.path.getsize(output_path) >= original_size:
+                    print("Compression failed to reduce size. Returning original.")
+                    import shutil
+                    shutil.copy2(file_path, output_path)
+
                 return output_path
+
             except Exception as e:
                 print(f"Ghostscript compression failed: {e}")
 
@@ -89,6 +115,11 @@ class PDFService:
 
         with open(output_path, "wb") as f_out:
             writer.write(f_out)
+            
+        # Check size for pypdf result as well
+        if os.path.exists(output_path) and os.path.getsize(output_path) >= original_size:
+             import shutil
+             shutil.copy2(file_path, output_path)
             
         return output_path
 
@@ -113,7 +144,6 @@ class PDFService:
         Let's implement a placeholder that warns or attempts to use 'ghostscript' via subprocess if found.
         """
         # Placeholder for now, or check for ghostscript
-        import subprocess
         output_path = self.converted_dir / output_filename
         
         # Try finding gs
@@ -151,7 +181,6 @@ class PDFService:
         raise NotImplementedError("Grayscale conversion requires Ghostscript installed on the server.")
 
     async def convert_to_pdfa(self, file_path: Path, output_filename: str) -> Path:
-        import subprocess
         output_path = self.converted_dir / output_filename
         
         # Try finding gs
