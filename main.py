@@ -305,6 +305,12 @@ async def serve_ads_txt():
         return FileResponse(FRONTEND_DIR / "ads.txt", media_type="text/plain")
     return JSONResponse(status_code=404, content={"message": "ads.txt not found"})
 
+@app.get("/llms.txt")
+async def serve_llms_txt():
+    if (FRONTEND_DIR / "llms.txt").exists():
+        return FileResponse(FRONTEND_DIR / "llms.txt", media_type="text/plain")
+    return JSONResponse(status_code=404, content={"message": "llms.txt not found"})
+
 @app.get("/privacy-policy")
 @app.get("/privacy-policy.html")
 async def serve_privacy():
