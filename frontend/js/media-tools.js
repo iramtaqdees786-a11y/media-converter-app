@@ -90,10 +90,19 @@ async function handleResponse(res, elementId) {
         if (data.success) {
             el.innerHTML = `
                 <div style="margin-top:20px;">
-                    <p style="color:#4CAF50;">Success! 🎉</p>
+                    <p style="color:#4CAF50;">Success! 🎉 Starting download...</p>
                     <a href="${data.download_url}" class="action-btn" style="text-decoration:none; display:inline-block; width:auto; margin-top:10px;">Download Result</a>
                 </div>
             `;
+            // Auto-download logic
+            setTimeout(() => {
+                const link = document.createElement('a');
+                link.href = data.download_url;
+                link.download = data.filename || 'media_file';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 500);
         } else {
             el.innerHTML = `<p style="color:red;">Error: ${data.message}</p>`;
         }

@@ -1,0 +1,30 @@
+# ConvertRocket
+
+ConvertRocket is a high-speed, 100% free, privacy-first all-in-one file converter and video downloader. It allows users to download media from social platforms like YouTube, TikTok, and Facebook, and convert files between various formats (Video, Audio, Image, PDF, Documents) directly in the browser.
+
+## Key Features
+
+- **Video Professional:** Download and convert videos from YouTube, TikTok, Facebook.
+- **MP3 Extractor:** High-quality 320kbps audio extraction from any video.
+- **PDF Suite:** Merge, Compress, Remove Pages, PDF to Excel (OCR), Grayscale, and PDF/A conversion.
+- **Image Intelligence:** Convert between JPG, PNG, WebP, GIF, and BMP.
+- **Privacy First:** No storage of user files; processing is ephemeral.
+- **Zero Friction:** No signup, no credit cards, no watermarks.
+
+## Key Links
+
+- [Home](https://convertrocket.online/)
+- [Video Converter](https://convertrocket.online/video-converter)
+- [MP3 Converter](https://convertrocket.online/mp3-converter)
+- [PDF Tools](https://convertrocket.online/pdf-tools)
+- [Media Tools](https://convertrocket.online/media-tools)
+- [Blog & Guides](https://convertrocket.online/blogs)
+- [Sitemap](https://convertrocket.online/sitemap)
+- [Contact Support](https://convertrocket.online/contact)
+- [Privacy Policy](https://convertrocket.online/privacy-policy)
+
+## Technical Info
+
+- Domain: convertrocket.online
+- License: Free utility for personal and professional use.
+- Technology: High-speed server-side conversion with ephemeral storage.

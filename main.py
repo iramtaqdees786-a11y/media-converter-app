@@ -299,6 +299,37 @@ async def serve_robots():
         return FileResponse(FRONTEND_DIR / "robots.txt", media_type="text/plain")
     return JSONResponse(status_code=404, content={"message": "Robots.txt not found"})
 
+@app.get("/ads.txt")
+async def serve_ads_txt():
+    if (FRONTEND_DIR / "ads.txt").exists():
+        return FileResponse(FRONTEND_DIR / "ads.txt", media_type="text/plain")
+    return JSONResponse(status_code=404, content={"message": "ads.txt not found"})
+
+@app.get("/privacy-policy")
+@app.get("/privacy-policy.html")
+async def serve_privacy():
+    return FileResponse(FRONTEND_DIR / "privacy-policy.html")
+
+@app.get("/terms-of-service")
+@app.get("/terms-of-service.html")
+async def serve_terms():
+    return FileResponse(FRONTEND_DIR / "terms-of-service.html")
+
+@app.get("/about")
+@app.get("/about.html")
+async def serve_about():
+    return FileResponse(FRONTEND_DIR / "about.html")
+
+@app.get("/contact")
+@app.get("/contact.html")
+async def serve_contact():
+    return FileResponse(FRONTEND_DIR / "contact.html")
+
+@app.get("/sitemap")
+@app.get("/sitemap.html")
+async def serve_sitemap():
+    return FileResponse(FRONTEND_DIR / "sitemap.html")
+
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint."""

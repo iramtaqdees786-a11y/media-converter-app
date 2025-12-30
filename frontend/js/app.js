@@ -347,6 +347,16 @@ function displayDownloadResult(data) {
     `;
 
     result.classList.add('active');
+
+    // Automatic download trigger
+    setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = data.download_url;
+        link.download = data.filename || 'download';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }, 1000);
 }
 
 // Convert Section
@@ -569,6 +579,16 @@ function displayConvertResult(data) {
     `;
 
     result.classList.add('active');
+
+    // Automatic download trigger
+    setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = data.download_url;
+        link.download = data.converted_file || 'converted_file';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }, 1000);
 }
 
 // Load supported formats from API
@@ -833,6 +853,15 @@ async function handleSpecialConversion(file, targetFormat, zone) {
                         </a>
                     </div>
                 `;
+                // Auto-download logic
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = data.download_url;
+                    link.download = data.converted_file || 'converted_file';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }, 500);
             }
         } else {
             throw new Error(data.detail || 'Conversion failed');

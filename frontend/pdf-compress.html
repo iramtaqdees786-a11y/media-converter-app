@@ -152,9 +152,28 @@
                     resDiv.innerHTML = `
                          <div style="background: rgba(76, 175, 80, 0.2); border: 1px solid #4CAF50; padding: 20px; border-radius: 12px; display: inline-block;">
                             <h3 style="color:#4CAF50;">Success!</h3>
+                            <p style="color:#fff; font-size: 0.9em; margin-bottom:10px;">Starting your download...</p>
                             <a href="${data.download_url}" class="action-btn" style="display:inline-block;">Download Compressed PDF</a>
                         </div>
                     `;
+                    
+                    // Automatic download trigger
+                    setTimeout(() => {
+                        const link = document.createElement('a');
+                        link.href = data.download_url;
+                        link.download = data.filename || 'converted_file';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }, 500);// Auto-download logic
+                    setTimeout(() => {
+                        const link = document.createElement('a');
+                        link.href = data.download_url;
+                        link.download = data.filename || 'compressed.pdf';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }, 500);
                 } else {
                     resDiv.innerHTML = `<p style="color:red;">Error: ${data.detail}</p>`;
                 }
@@ -163,6 +182,38 @@
             }
         }
     </script>
+            <footer class="footer">
+            <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
+            <p class="footer-tagline">The World's Fastest All-In-One Converter • 100% Free • No Signup</p>
+            <div class="footer-links">
+                <a href="/video-converter">Video Downloader</a> •
+                <a href="/mp3-converter">MP3 Converter</a> •
+                <a href="/pdf-tools">PDF Tools</a> •
+                <a href="/media-tools">Media Tools</a> •
+                <a href="/sitemap">Sitemap</a>
+            </div>
+
+            <div class="footer-divider" style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1);"></div>
+
+            <div class="footer-seo-links"
+                style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; max-width: 900px; margin: 0 auto 20px;">
+                <a href="/blogs" style="color: var(--text-muted); text-decoration: none;">Blog</a>
+                <span style="color: var(--text-muted);">|</span>
+                <a href="/about" style="color: var(--text-muted); text-decoration: none;">About Us</a>
+                <span style="color: var(--text-muted);">|</span>
+                <a href="/contact" style="color: var(--text-muted); text-decoration: none;">Contact Us</a>
+                <span style="color: var(--text-muted);">|</span>
+                <a href="/privacy-policy" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+                <span style="color: var(--text-muted);">|</span>
+                <a href="/terms-of-service" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
+            </div>
+
+            <div style="margin: 30px auto; text-align: center;">
+                <a href="https://www.producthunt.com/products/convertrocket?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-convertrocket" target="_blank" rel="noopener noreferrer"><img alt="ConvertRocket - All In One Converter And Downloader | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1055288&amp;theme=dark&amp;t=1767076017143"></a>
+            </div>
+
+            <p class="copyright">© 2025 ConvertRocket.online - Fast & Private File Conversion</p>
+        </footer>
 </body>
 
 </html>
