@@ -15,7 +15,7 @@
         crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Free Image Converter - JPG, PNG, WebP, GIF | ConvertRocket ([MONTH_YEAR])</title>
+    <title>Free Image Converter - JPG, PNG, WebP | ConvertRocket</title>
     <meta name="title" content="Free Image Converter - Change Formats Instantly">
     <meta name="description"
         content="Convert images online for free. JPG to PNG, PNG to JPG, WebP converter, HEIC to JPG. Bulk conversion, resize, and compress images securely.">
@@ -33,25 +33,28 @@
 
     <!-- Schema.org -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "ConvertRocket Image Converter",
-      "applicationCategory": "PhotoEditor",
       "operatingSystem": "Web Browser",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "5200"
-      },
-      "featureList": "JPG conversion, PNG conversion, WebP conversion, HEIC support"
+      "applicationCategory": "MultimediaApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Convert Images Online",
+      "step": [
+        { "@type": "HowToStep", "name": "Select", "text": "Upload the photos you want to convert." },
+        { "@type": "HowToStep", "name": "Target", "text": "Select your desired output format." },
+        { "@type": "HowToStep", "name": "Convert", "text": "Download your converted images instantly." }
+      ]
     }
-    </script>
+  ]
+}
+</script>
 
     <link rel="stylesheet" href="/static/css/styles.min.css?v=2.2">
 
