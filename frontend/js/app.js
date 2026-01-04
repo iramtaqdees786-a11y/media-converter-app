@@ -344,11 +344,14 @@ function displayDownloadResult(data) {
         <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" download>
             ⬇️ ${downloadText}
         </a>
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
+            ⭐ Bookmark this tool – you'll need it again
+        </div>
     `;
 
     result.classList.add('active');
 
-    // Automatic download trigger
+    // Automatic download trigger - downloads automatically at 100%
     setTimeout(() => {
         const link = document.createElement('a');
         link.href = data.download_url;
@@ -576,11 +579,14 @@ function displayConvertResult(data) {
         <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" download>
             ⬇️ ${downloadText}
         </a>
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
+            ⭐ Bookmark this tool – you'll need it again
+        </div>
     `;
 
     result.classList.add('active');
 
-    // Automatic download trigger
+    // Automatic download trigger - downloads automatically at 100%
     setTimeout(() => {
         const link = document.createElement('a');
         link.href = data.download_url;

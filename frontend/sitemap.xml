@@ -66,6 +66,41 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  
+  <!-- Individual Converter Pages for Maximum SEO -->
+  <url><loc>https://convertrocket.online/jpg-to-png</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/png-to-jpg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/webp-to-jpg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/webp-to-png</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/jpg-to-webp</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/png-to-webp</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/heic-to-jpg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/heic-to-png</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/gif-to-mp4</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/bmp-to-jpg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/bmp-to-png</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/tiff-to-jpg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/tiff-to-png</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/pdf-to-word</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/word-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/excel-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/ppt-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/jpg-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/png-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/mp4-to-mp3</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/mp4-to-avi</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/mp4-to-mov</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/avi-to-mp4</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/mov-to-mp4</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/mkv-to-mp4</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/webm-to-mp4</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/flv-to-mp4</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/wav-to-mp3</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/mp3-to-wav</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/flac-to-mp3</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/aac-to-mp3</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convertrocket.online/m4a-to-mp3</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  
   <url>
     <loc>https://convertrocket.online/blogs</loc>
     <lastmod>2025-12-30</lastmod>

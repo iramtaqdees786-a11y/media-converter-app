@@ -11,7 +11,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
     <meta charset="UTF-8">
@@ -24,22 +23,16 @@
     <meta name="theme-color" content="#0a0a0f">
 
     <!-- Primary SEO Meta Tags -->
-    <title>ConvertRocket - Free All-In-One File Converter</title>
+    <title>ConvertRocket - Free All-In-One File Converter & Downloader</title>
     <meta name="title" content="ConvertRocket: Fast Universal Converter & Video Downloader">
     <meta name="description"
         content="ConvertRocket is the #1 FREE all-in-one converter. Convert MP4, YouTube, PDF, Images & more instantly. 100% Privacy & 10x Speed, No Signup!">
     <meta name="keywords"
-        content="all in one converter, universal converter, free converter, mp4 to mp3, youtube to mp3, video downloader, pdf to word, image converter, convertrocket, tiktok downloader, instagram downloader">
+        content="all in one converter, universal converter, free converter, mp4 to mp3, youtube to mp3, video downloader, pdf to word, image converter, convertrocket">
     <meta name="author" content="ConvertRocket">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
-    <meta name="revisit-after" content="1 days">
-    <meta name="language" content="English">
-    <meta name="generator" content="ConvertRocket Engine v2.0">
     <link rel="canonical" href="https://convertrocket.online/">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"
-        crossorigin="anonymous"></script>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -57,50 +50,202 @@
 
     <!-- Schema.org -->
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "ConvertRocket",
-  "operatingSystem": "Web Browser",
-  "applicationCategory": "MultimediaApplication",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "25000" }
-}
-</script>
-
-    <!-- FAQ Schema -->
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "ConvertRocket",
-  "operatingSystem": "Web Browser",
-  "applicationCategory": "MultimediaApplication",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "25000" }
-}
-</script>
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ConvertRocket",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "MultimediaApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "25000" }
+    }
+    </script>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/static/css/styles.min.css?v=2.3" as="style">
-    <link rel="preload" href="/static/js/app.min.js?v=2.2" as="script">
-    <link rel="preload" href="/static/js/i18n.min.js?v=2.2" as="script">
-
-    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.3">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.4">
     <link rel="stylesheet" href="/static/css/mobile-optimizations.min.css?v=1.0">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23667eea'/%3E%3Cstop offset='100%25' stop-color='%23f093fb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Cpath d='M50 20 L70 50 L50 45 L50 80 L30 50 L50 55 Z' fill='white'/%3E%3C/svg%3E">
-    <link rel="stylesheet" href="/static/css/seo-hacks.min.css">
-    <script src="/static/js/seo-hacks.min.js" defer></script>
+
+    <style>
+        /* Search Bar Styles */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+
+        /* Featured/Starred Tools */
+        .featured-tools {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(240, 147, 251, 0.15));
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .featured-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Tool Cards Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .star-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .star-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: scale(1.1);
+        }
+
+        .star-btn.starred {
+            background: rgba(255, 215, 0, 0.5);
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section Compact */
+        .hero-compact {
+            text-align: center;
+            padding: 2rem 0 1rem;
+        }
+
+        .hero-compact h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-compact p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+    </style>
 </head>
 
 <body>
@@ -114,7 +259,6 @@
     </div>
 
     <!-- Top Bar -->
-    <!-- Top Bar -->
     <div class="top-bar">
         <div class="top-bar-content">
             <a href="/" style="text-decoration:none">
@@ -127,7 +271,7 @@
                 <a href="/media-tools" class="nav-link">Media Tools</a>
                 <a href="/blogs" class="nav-link">Blogs & Guides</a>
                 <a href="#faq-section" class="nav-link"
-                    onclick="document.querySelector('.faq-section').scrollIntoView({behavior: 'smooth'}); return false;">FAQ</a>
+                    onclick="document.getElementById('faq-section').scrollIntoView({behavior: 'smooth'}); return false;">FAQ</a>
             </nav>
 
             <div class="top-bar-actions">
@@ -147,551 +291,509 @@
     </div>
 
     <div class="container">
-        <!-- HERO SECTION -->
-        <header class="header">
-
-            <div class="last-updated-badge">
-                <span>Last Updated: <span class="last-updated-date">[TODAY]</span></span>
-            </div>
-            <div class="free-label">🎉 NO SIGNUP NEEDED • COMPLETELY FREE</div>
-
-            <h1 class="hero-title">
-                <span class="hero-icon">🚀</span>
-                <span class="title-line1">ALL-IN-ONE</span>
-                <span class="title-line2">UNIVERSAL CONVERTER</span>
-                ([MONTH_YEAR])
+        <!-- Hero Section -->
+        <header class="hero-compact">
+            <h1>
+                <span>🚀</span> ConvertRocket
             </h1>
-
-            <p class="hero-subtitle">The World's Fastest Video Downloader & File Converter</p>
-
-            <!-- Simple page nav REMOVED -->
-
-            <!-- Feature Badges -->
-            <div class="feature-badges">
-                <div class="feature-badge privacy"><span class="badge-icon">🔒</span><span class="badge-text">100%
-                        Privacy</span><span class="badge-desc">Files never stored</span></div>
-                <div class="feature-badge speed"><span class="badge-icon">⚡</span><span class="badge-text">10x
-                        Speed</span><span class="badge-desc">Lightning fast</span></div>
-                <div class="feature-badge free"><span class="badge-icon">💎</span><span class="badge-text">Forever
-                        Free</span><span class="badge-desc">No hidden fees</span></div>
-                <div class="feature-badge unlimited"><span class="badge-icon">♾️</span><span class="badge-text">No
-                        Limits</span><span class="badge-desc">Unlimited files</span></div>
-                <div class="feature-badge quality"><span class="badge-icon">✨</span><span class="badge-text">HD
-                        Quality</span><span class="badge-desc">Best output</span></div>
-                <div class="feature-badge global"><span class="badge-icon">🌍</span><span class="badge-text">Works
-                        Globally</span><span class="badge-desc">All countries</span></div>
-            </div>
+            <p>Your All-In-One File Converter & Downloader - Fast, Free, Private</p>
         </header>
 
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="tool-search" class="search-input"
+                placeholder="Search for a tool (e.g., MP4 to MP3, PDF to Excel)...">
+            <span class="search-icon">🔍</span>
+        </div>
 
-
-
-        <!-- Tab Navigation -->
-        <nav class="tabs">
-            <button class="tab-btn active" data-tab="download">⬇️ <span>Download</span></button>
-            <button class="tab-btn" data-tab="convert">🔄 <span>Convert</span></button>
-            <button class="tab-btn" data-tab="mp4-to-mp3">🎵 <span>MP4→MP3</span></button>
-            <button class="tab-btn" data-tab="youtube-mp3">▶️ <span>YouTube→MP3</span></button>
-            <button class="tab-btn" data-tab="image-converter">🖼️ <span>Images</span></button>
-            <button class="tab-btn" data-tab="pdf-converter">📄 <span>PDF</span></button>
-        </nav>
-
-        <!-- DOWNLOAD TAB -->
-        <div class="tab-content active" id="download-tab">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">📥</div>
-                    <div>
-                        <h2 class="card-title">Download from Top Platforms</h2>
-                        <p class="card-subtitle">YouTube, TikTok & Facebook (Instagram & Twitter coming soon)</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="url" id="url-input" class="form-input" placeholder="Paste video URL here...">
-                </div>
-                <div class="form-row">
-                    <select id="format-type" class="form-input form-select">
-                        <option value="video">🎬 Video (MP4)</option>
-                        <option value="audio">🎵 Audio (MP3)</option>
-                    </select>
-                    <select id="quality-select" class="form-input form-select">
-                        <option value="best">Best Quality</option>
-                        <option value="worst">Fastest</option>
-                    </select>
-                </div>
-                <div class="button-row">
-                    <button id="get-info-btn" class="btn btn-secondary">ℹ️ Get Info</button>
-                    <button id="download-btn" class="btn btn-primary btn-lg btn-glow">🚀 Download Now</button>
-                </div>
-                <div id="video-preview" class="video-preview"></div>
-                <div id="download-progress" class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div class="progress-text"><span>Processing...</span><span class="progress-percent">0%</span></div>
-                </div>
-                <div id="download-status" class="status-message"></div>
-                <div id="download-result" class="result-card"></div>
-                <div class="platforms-section">
-                    <p class="section-label">Supported Platforms:</p>
-                    <div class="platform-list">
-                        <span class="platform-badge">▶️ YouTube</span>
-                        <span class="platform-badge">🎵 TikTok</span>
-                        <span class="platform-badge">👥 Facebook</span>
-                        <span class="platform-badge disabled">📸 Instagram (coming soon)</span>
-                        <span class="platform-badge disabled">𝕏 Twitter (coming soon)</span>
-                    </div>
-                </div>
+        <!-- Featured Tools of the Week -->
+        <div class="featured-tools">
+            <div class="featured-header">
+                <h2 class="featured-title">
+                    ⭐ Tools of the Week
+                    <span class="featured-badge">HOT</span>
+                </h2>
+            </div>
+            <div class="tools-grid">
+                <a href="/pdf-to-excel" class="tool-card" data-tool-name="PDF to Excel">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-name">PDF to Excel</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'pdf-to-excel')">⭐</button>
+                </a>
+                <a href="/image-compress" class="tool-card" data-tool-name="Image Compressor">
+                    <div class="tool-icon">🗜️</div>
+                    <div class="tool-name">Image Compressor</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'image-compress')">⭐</button>
+                </a>
+                <a href="/pdf-compress" class="tool-card" data-tool-name="PDF Compressor">
+                    <div class="tool-icon">📦</div>
+                    <div class="tool-name">PDF Compressor</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'pdf-compress')">⭐</button>
+                </a>
             </div>
         </div>
 
-        <!-- CONVERT TAB -->
-        <div class="tab-content" id="convert-tab">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">🔄</div>
-                    <div>
-                        <h2 class="card-title">Universal File Converter</h2>
-                        <p class="card-subtitle">Convert any file format instantly</p>
-                    </div>
-                </div>
-                <div id="upload-zone" class="upload-zone">
-                    <div class="upload-icon">📁</div>
-                    <p class="upload-text">Drag & drop or click to upload</p>
-                    <p class="upload-hint">Videos, Audio, Images, Documents, Spreadsheets</p>
-                    <input type="file" id="file-input" class="file-input" accept="*/*">
-                </div>
-                <div id="selected-file-info" class="result-card file-info-card"></div>
-                <div class="form-group mt-2">
-                    <select id="target-format" class="form-input form-select">
-                        <option value="">Select a file first...</option>
-                    </select>
-                </div>
-                <button id="convert-btn" class="btn btn-primary btn-lg btn-block btn-glow mt-2" disabled>🚀 Convert
-                    File</button>
-                <div id="convert-progress" class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div class="progress-text"><span>Converting...</span><span class="progress-percent">0%</span></div>
-                </div>
-                <div id="convert-status" class="status-message"></div>
-                <div id="convert-result" class="result-card"></div>
+        <!-- My Favorites Section (Only shows if user has favorites) -->
+        <div id="favorites-section" class="category-section" style="display: none;">
+            <div class="category-header">
+                <span class="category-icon">💛</span>
+                <h2 class="category-title">My Favorites</h2>
+            </div>
+            <div id="favorites-grid" class="tools-grid"></div>
+        </div>
+
+        <!-- Video Tools -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🎬</span>
+                <h2 class="category-title">Video Tools</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="/video-converter" class="tool-card" data-tool-name="Video Converter">
+                    <div class="tool-icon">🎞️</div>
+                    <div class="tool-name">Video Converter</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'video-converter')">⭐</button>
+                </a>
+                <a href="/mp4-to-mp3" class="tool-card" data-tool-name="MP4 to MP3">
+                    <div class="tool-icon">🎵</div>
+                    <div class="tool-name">MP4 to MP3</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'mp4-to-mp3')">⭐</button>
+                </a>
+                <a href="/video-trimmer" class="tool-card" data-tool-name="Video Trimmer">
+                    <div class="tool-icon">✂️</div>
+                    <div class="tool-name">Video Trimmer</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'video-trimmer')">⭐</button>
+                </a>
+                <a href="/gif-to-mp4" class="tool-card" data-tool-name="GIF to MP4">
+                    <div class="tool-icon">🎞️</div>
+                    <div class="tool-name">GIF to MP4</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'gif-to-mp4')">⭐</button>
+                </a>
             </div>
         </div>
 
-        <!-- MP4 TO MP3 TAB -->
-        <div class="tab-content" id="mp4-to-mp3-tab">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">🎵</div>
-                    <div>
-                        <h2 class="card-title">MP4 to MP3 Converter</h2>
-                        <p class="card-subtitle">Extract audio from any video file</p>
-                    </div>
-                </div>
-                <div id="mp4-upload-zone" class="upload-zone" data-converter="mp4-to-mp3">
-                    <div class="upload-icon">🎬➡️🎵</div>
-                    <p class="upload-text">Drop your MP4 video here</p>
-                    <input type="file" class="file-input converter-input" accept=".mp4,.mkv,.avi,.mov,.webm"
-                        data-target="mp3">
-                </div>
-                <div class="converter-result"></div>
+        <!-- Audio Tools -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🎵</span>
+                <h2 class="category-title">Audio Tools</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="/mp3-converter" class="tool-card" data-tool-name="MP3 Converter">
+                    <div class="tool-icon">🎧</div>
+                    <div class="tool-name">MP3 Converter</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'mp3-converter')">⭐</button>
+                </a>
+                <a href="/wav-to-mp3" class="tool-card" data-tool-name="WAV to MP3">
+                    <div class="tool-icon">🔊</div>
+                    <div class="tool-name">WAV to MP3</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'wav-to-mp3')">⭐</button>
+                </a>
+                <a href="/flac-to-mp3" class="tool-card" data-tool-name="FLAC to MP3">
+                    <div class="tool-icon">🎶</div>
+                    <div class="tool-name">FLAC to MP3</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'flac-to-mp3')">⭐</button>
+                </a>
+                <a href="/m4a-to-mp3" class="tool-card" data-tool-name="M4A to MP3">
+                    <div class="tool-icon">📻</div>
+                    <div class="tool-name">M4A to MP3</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'm4a-to-mp3')">⭐</button>
+                </a>
             </div>
         </div>
 
-        <!-- YOUTUBE MP3 TAB -->
-        <div class="tab-content" id="youtube-mp3-tab">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">▶️</div>
-                    <div>
-                        <h2 class="card-title">YouTube to MP3 Converter</h2>
-                        <p class="card-subtitle">Download YouTube videos as MP3 audio</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="url" class="form-input youtube-url-input" placeholder="Paste YouTube URL here...">
-                </div>
-                <button class="btn btn-primary btn-lg btn-block btn-glow youtube-download-btn">🎵 Download as
-                    MP3</button>
-                <div class="converter-result"></div>
+        <!-- Image Tools -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">🖼️</span>
+                <h2 class="category-title">Image Tools</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="/image-converter" class="tool-card" data-tool-name="Image Converter">
+                    <div class="tool-icon">🌄</div>
+                    <div class="tool-name">Image Converter</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'image-converter')">⭐</button>
+                </a>
+                <a href="/image-compress" class="tool-card" data-tool-name="Image Compressor">
+                    <div class="tool-icon">🗜️</div>
+                    <div class="tool-name">Image Compressor</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'image-compress')">⭐</button>
+                </a>
+                <a href="/jpg-to-png" class="tool-card" data-tool-name="JPG to PNG">
+                    <div class="tool-icon">🖼️</div>
+                    <div class="tool-name">JPG to PNG</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'jpg-to-png')">⭐</button>
+                </a>
+                <a href="/png-to-jpg" class="tool-card" data-tool-name="PNG to JPG">
+                    <div class="tool-icon">🎨</div>
+                    <div class="tool-name">PNG to JPG</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'png-to-jpg')">⭐</button>
+                </a>
+                <a href="/webp-to-jpg" class="tool-card" data-tool-name="WebP to JPG">
+                    <div class="tool-icon">🌐</div>
+                    <div class="tool-name">WebP to JPG</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'webp-to-jpg')">⭐</button>
+                </a>
+                <a href="/heic-to-jpg" class="tool-card" data-tool-name="HEIC to JPG">
+                    <div class="tool-icon">📱</div>
+                    <div class="tool-name">HEIC to JPG</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'heic-to-jpg')">⭐</button>
+                </a>
             </div>
         </div>
 
-        <!-- IMAGE CONVERTER TAB -->
-        <div class="tab-content" id="image-converter-tab">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">🖼️</div>
-                    <div>
-                        <h2 class="card-title">Image Converter</h2>
-                        <p class="card-subtitle">JPG, PNG, WebP, GIF, BMP conversions</p>
-                    </div>
-                </div>
-                <div class="quick-convert-grid">
-                    <button class="quick-convert-btn" data-from="png" data-to="jpg">PNG → JPG</button>
-                    <button class="quick-convert-btn" data-from="jpg" data-to="png">JPG → PNG</button>
-                    <button class="quick-convert-btn" data-from="webp" data-to="jpg">WebP → JPG</button>
-                    <button class="quick-convert-btn" data-from="jpg" data-to="webp">JPG → WebP</button>
-                    <button class="quick-convert-btn" data-from="gif" data-to="mp4">GIF → MP4</button>
-                    <button class="quick-convert-btn" data-from="bmp" data-to="png">BMP → PNG</button>
-                </div>
-                <div class="upload-zone image-upload-zone">
-                    <div class="upload-icon">🖼️</div>
-                    <p class="upload-text">Drop your image here</p>
-                    <input type="file" class="file-input" accept="image/*">
-                </div>
+        <!-- PDF Tools -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">📄</span>
+                <h2 class="category-title">PDF Tools</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="/pdf-to-word" class="tool-card" data-tool-name="PDF to Word">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-name">PDF to Word</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'pdf-to-word')">⭐</button>
+                </a>
+                <a href="/pdf-to-excel" class="tool-card" data-tool-name="PDF to Excel">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-name">PDF to Excel</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'pdf-to-excel')">⭐</button>
+                </a>
+                <a href="/word-to-pdf" class="tool-card" data-tool-name="Word to PDF">
+                    <div class="tool-icon">📄</div>
+                    <div class="tool-name">Word to PDF</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'word-to-pdf')">⭐</button>
+                </a>
+                <a href="/excel-to-pdf" class="tool-card" data-tool-name="Excel to PDF">
+                    <div class="tool-icon">📑</div>
+                    <div class="tool-name">Excel to PDF</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'excel-to-pdf')">⭐</button>
+                </a>
+                <a href="/pdf-compress" class="tool-card" data-tool-name="PDF Compressor">
+                    <div class="tool-icon">📦</div>
+                    <div class="tool-name">PDF Compressor</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'pdf-compress')">⭐</button>
+                </a>
+                <a href="/pdf-merge" class="tool-card" data-tool-name="Merge PDFs">
+                    <div class="tool-icon">🔗</div>
+                    <div class="tool-name">Merge PDFs</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'pdf-merge')">⭐</button>
+                </a>
             </div>
         </div>
 
-        <!-- PDF CONVERTER TAB -->
-        <div class="tab-content" id="pdf-converter-tab">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">📄</div>
-                    <div>
-                        <h2 class="card-title">PDF Converter</h2>
-                        <p class="card-subtitle">PDF to Word, Excel, Image & more</p>
-                    </div>
-                </div>
-                <div class="quick-convert-grid">
-                    <button class="quick-convert-btn" data-from="pdf" data-to="docx">PDF → Word</button>
-                    <button class="quick-convert-btn" data-from="docx" data-to="pdf">Word → PDF</button>
-                    <button class="quick-convert-btn" data-from="pdf" data-to="jpg">PDF → Image</button>
-                    <button class="quick-convert-btn" data-from="pdf" data-to="xlsx">PDF → Excel</button>
-                    <button class="quick-convert-btn" data-from="xlsx" data-to="pdf">Excel → PDF</button>
-                </div>
-                <div class="upload-zone pdf-upload-zone">
-                    <div class="upload-icon">📄</div>
-                    <p class="upload-text">Drop your document here</p>
-                    <input type="file" class="file-input" accept=".pdf,.docx,.doc,.xlsx,.xls,.txt">
-                </div>
+        <!-- Downloaders -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="category-icon">⬇️</span>
+                <h2 class="category-title">Video Downloaders</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="/video-converter" class="tool-card" data-tool-name="YouTube Downloader">
+                    <div class="tool-icon">▶️</div>
+                    <div class="tool-name">YouTube Downloader</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'youtube-downloader')">⭐</button>
+                </a>
+                <a href="/video-converter" class="tool-card" data-tool-name="TikTok Downloader">
+                    <div class="tool-icon">🎵</div>
+                    <div class="tool-name">TikTok Downloader</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'tiktok-downloader')">⭐</button>
+                </a>
+                <a href="/yt-thumbnail" class="tool-card" data-tool-name="YouTube Thumbnail">
+                    <div class="tool-icon">🖼️</div>
+                    <div class="tool-name">YT Thumbnail</div>
+                    <button class="star-btn" onclick="toggleStar(event, 'yt-thumbnail')">⭐</button>
+                </a>
             </div>
         </div>
 
-        <!-- SEO CONTENT SECTION -->
-        <section class="seo-content-section">
+        <!-- SEO Content (Moved to bottom) -->
+        <section class="seo-content-section" style="margin-top: 5rem;">
             <h2 class="seo-section-title">🚀 Why Choose ConvertRocket?</h2>
 
             <div class="seo-grid">
                 <article class="seo-article">
-                    <h3>What is MP4?</h3>
-                    <p>MP4 (MPEG-4 Part 14) is the most widely used digital video container format. Developed by the
-                        Moving Picture Experts Group, MP4 can store video, audio, subtitles, and still images in a
-                        single file. It's compatible with virtually all devices including smartphones, tablets,
-                        computers, smart TVs, and gaming consoles. MP4 uses efficient compression algorithms like H.264
-                        and H.265 to deliver high-quality video at smaller file sizes, making it perfect for streaming
-                        and downloading.</p>
+                    <h3>What is ConvertRocket?</h3>
+                    <p>ConvertRocket is the world's most comprehensive free file converter and video downloader.
+                        Supporting 200+ file format combinations including video (MP4, MKV, AVI), audio (MP3, WAV,
+                        FLAC), images (JPG, PNG, WebP), and documents (PDF, Word, Excel), ConvertRocket processes
+                        everything instantly in your browser with zero privacy compromise.</p>
                 </article>
 
                 <article class="seo-article">
-                    <h3>What is MP3?</h3>
-                    <p>MP3 (MPEG Audio Layer III) revolutionized the music industry as the first widely adopted digital
-                        audio format. Developed in the late 1980s, MP3 compresses audio files to approximately one-tenth
-                        of their original size while maintaining near CD-quality sound. This compression made it
-                        possible to store thousands of songs on portable devices and share music over the internet.
-                        Today, MP3 remains the universal standard for audio files, supported by every music player,
-                        smartphone, and audio application.</p>
+                    <h3>100% Privacy Guaranteed</h3>
+                    <p>Unlike competitors that upload your files to servers, ConvertRocket processes everything locally
+                        in your browser. Your files never leave your device, ensuring complete privacy and security. No
+                        accounts, no tracking, no data collection - just pure conversion power.</p>
                 </article>
             </div>
 
             <article class="seo-article-full">
-                <h3>Why Convert Files Online?</h3>
-                <p>In today's digital world, file conversion is essential for compatibility across devices and
-                    platforms. Whether you're a content creator needing to extract audio from videos, a professional
-                    converting documents for clients, or a student working with various file formats, online converters
-                    provide instant solutions without software installation.</p>
-                <p><strong>Benefits of using ConvertRocket:</strong></p>
+                <h3>Features That Make Us #1</h3>
                 <ul>
-                    <li><strong>No Software Required:</strong> Works directly in your browser on any device</li>
-                    <li><strong>Universal Compatibility:</strong> Convert between 50+ formats</li>
-                    <li><strong>Lightning Fast:</strong> Our 10x speed technology processes files in seconds</li>
-                    <li><strong>100% Private:</strong> Files are processed locally and never stored</li>
-                    <li><strong>Completely Free:</strong> No signup, no credit card, no hidden fees</li>
+                    <li><strong>Lightning Fast:</strong> 10x faster than traditional converters with parallel processing
+                    </li>
+                    <li><strong>No Limits:</strong> Unlimited file sizes, unlimited conversions, forever free</li>
+                    <li><strong>All Formats:</strong> 200+ conversion combinations - if it exists, we convert it</li>
+                    <li><strong>Batch Processing:</strong> Convert multiple files simultaneously</li>
+                    <li><strong>HD Quality:</strong> Maintains original quality or even enhances it</li>
+                    <li><strong>Cross-Platform:</strong> Works on Windows, Mac, Linux, Android, iOS</li>
+                    <li><strong>No Installation:</strong> Works directly in your browser</li>
                 </ul>
             </article>
-
-            <article class="seo-article-full">
-                <h3>Step-by-Step Guide: How to Use ConvertRocket</h3>
-                <div class="steps-grid">
-                    <div class="step"><span class="step-number">1</span>
-                        <h4>Select Your Tool</h4>
-                        <p>Choose Download to save videos or Convert for file conversion</p>
-                    </div>
-                    <div class="step"><span class="step-number">2</span>
-                        <h4>Upload or Paste URL</h4>
-                        <p>Drag & drop your file or paste the video URL</p>
-                    </div>
-                    <div class="step"><span class="step-number">3</span>
-                        <h4>Choose Format</h4>
-                        <p>Select your desired output format</p>
-                    </div>
-                    <div class="step"><span class="step-number">4</span>
-                        <h4>Download</h4>
-                        <p>Click download and save your converted file</p>
-                    </div>
-                </div>
-            </article>
-
-            <!-- EXTENDED FAQ SECTION FOR SEO & ADSENSE COMPLIANCE -->
-            <section id="faq-section" class="seo-content-section faq-section" style="margin-top: 4rem;">
-                <h2 class="seo-section-title" style="text-align: center;">🤔 Frequently Asked Questions</h2>
-
-                <div class="faq-container" style="max-width: 900px; margin: 0 auto;">
-                    <div class="faq-item"
-                        style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <h3 style="color: var(--primary); margin-bottom: 10px;">Is ConvertRocket really free?</h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">Yes, ConvertRocket is 100% free. We
-                            don't ask for credit card details, there are no hidden subscriptions, and we don't put
-                            watermarks on your files. We sustain our service through minimal advertising to keep it free
-                            for everyone forever.</p>
-                    </div>
-
-                    <div class="faq-item"
-                        style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <h3 style="color: var(--primary); margin-bottom: 10px;">How is my privacy protected?</h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">Privacy is our core mission. Unlike
-                            other converters that store your files for hours or days, ConvertRocket processes your files
-                            on secure, high-speed servers and deletes them <strong>immediately</strong> after your
-                            download is complete. We use SSL encryption for all file transfers.</p>
-                    </div>
-
-                    <div class="faq-item"
-                        style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <h3 style="color: var(--primary); margin-bottom: 10px;">What file formats are supported?</h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">We support over 200+ format
-                            combinations! This includes Video (MP4, MKV, AVI, MOV, WebM), Audio (MP3, WAV, AAC, FLAC),
-                            Images (JPG, PNG, WebP, GIF), and Documents (PDF, Word, Excel, TXT). If you have a file,
-                            ConvertRocket can likely handle it.</p>
-                    </div>
-
-                    <div class="faq-item"
-                        style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <h3 style="color: var(--primary); margin-bottom: 10px;">Can I use ConvertRocket on my mobile
-                            phone?</h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">Absolutely! ConvertRocket is fully
-                            responsive and optimized for Android and iOS. You can download YouTube videos or convert
-                            PDFs directly from your smartphone's browser without installing any apps.</p>
-                    </div>
-
-                    <div class="faq-item"
-                        style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
-                        <h3 style="color: var(--primary); margin-bottom: 10px;">Do I need to sign up to use the service?
-                        </h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">No signup, no login, no email
-                            required. We believe in "anonymous utility." Just upload your file or paste a link, and
-                            you're good to go.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ADDED VALUE: BLOG TEASER FOR INTERNAL LINKING -->
-            <section class="seo-content-section" style="margin-top: 4rem; text-align: center;">
-                <h2 class="seo-section-title">📖 Latest from our Conversion Blog</h2>
-                <div class="blog-teaser-grid"
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 2rem;">
-                    <a href="/blog/youtube-downloader"
-                        style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s;"
-                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
-                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
-                        <h4 style="color: var(--primary); margin-bottom: 10px;">Safe YouTube Downloading</h4>
-                        <p style="font-size: 0.9em; color: var(--text-secondary);">Learn how to download videos without
-                            getting malware or viruses.</p>
-                    </a>
-                    <a href="/blog/pdf-to-excel"
-                        style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s;"
-                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
-                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
-                        <h4 style="color: var(--primary); margin-bottom: 10px;">PDF to Excel OCR Guide</h4>
-                        <p style="font-size: 0.9em; color: var(--text-secondary);">Stop manual data entry! Use OCR to
-                            extract tables from PDFs efficiently.</p>
-                    </a>
-                    <a href="/blog/safety-guide"
-                        style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s;"
-                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
-                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
-                        <h4 style="color: var(--primary); margin-bottom: 10px;">Security Transparency</h4>
-                        <p style="font-size: 0.9em; color: var(--text-secondary);">Read how we encrypt and delete your
-                            files to maintain your data privacy.</p>
-                    </a>
-                </div>
-            </section>
         </section>
 
-        <!-- POPULAR CONVERSIONS GRID -->
-        <section class="container" style="margin-top: 2rem;">
-            <h2 class="seo-section-title" style="text-align: center; margin-bottom: 2rem;">🔥 Popular Conversions</h2>
-            <div class="conversion-grid">
-                <a href="/pdf-to-excel" class="conversion-card">
-                    <div class="conversion-card-icon">📊</div>
-                    <div class="conversion-card-title">PDF to Excel</div>
-                    <div class="conversion-card-arrow">Extract Tables ➜</div>
-                </a>
-                <a href="/mp3-converter" class="conversion-card">
-                    <div class="conversion-card-icon">🎵</div>
-                    <div class="conversion-card-title">MP4 to MP3</div>
-                    <div class="conversion-card-arrow">Extract Audio ➜</div>
-                </a>
-                <a href="/mp3-converter" class="conversion-card">
-                    <div class="conversion-card-icon">▶️</div>
-                    <div class="conversion-card-title">YouTube to MP3</div>
-                    <div class="conversion-card-arrow">Download Music ➜</div>
-                </a>
-                <a href="/video-converter" class="conversion-card">
-                    <div class="conversion-card-icon">🎬</div>
-                    <div class="conversion-card-title">Video Downloader</div>
-                    <div class="conversion-card-arrow">Save Videos ➜</div>
-                </a>
-                <a href="/image-converter" class="conversion-card">
-                    <div class="conversion-card-icon">🖼️</div>
-                    <div class="conversion-card-title">Image Converter</div>
-                    <div class="conversion-card-arrow">JPG, PNG, WebP ➜</div>
-                </a>
-                <a href="/pdf-to-excel" class="conversion-card">
-                    <div class="conversion-card-icon">📑</div>
-                    <div class="conversion-card-title">PDF to CSV</div>
-                    <div class="conversion-card-arrow">Data Extraction ➜</div>
-                </a>
-            </div>
-        </section>
+        <!-- FAQ Section with Proper Schema -->
+        <section id="faq-section" class="seo-content-section" itemscope itemtype="https://schema.org/FAQPage"
+            style="margin-top: 4rem;">
+            <h2 class="seo-section-title" style="text-align: center;">🤔 Frequently Asked Questions</h2>
 
-        <!-- FAQ SECTION -->
-        <section class="faq-section" id="faq-section">
-            <h2 class="faq-title">❓ Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <details class="faq-item" open>
-                    <summary>Is ConvertRocket really 100% free?</summary>
-                    <p>Yes! ConvertRocket is completely free forever. No signup required, no credit card needed, no
-                        hidden fees, and no usage limits. Convert as many files as you want!</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Is my data safe and private?</summary>
-                    <p>Absolutely! Your privacy is our top priority. Files are processed securely and automatically
-                        deleted immediately after conversion. We never store, analyze, or share your files with anyone.
-                    </p>
-                </details>
-                <details class="faq-item">
-                    <summary>How do I convert MP4 to MP3?</summary>
-                    <p>Simply go to the "MP4→MP3" tab, upload your video file, and click convert. Your MP3 audio will be
-                        ready for download in seconds!</p>
-                </details>
-                <details class="faq-item">
-                    <summary>How do I download YouTube videos?</summary>
-                    <p>Paste the YouTube URL in the Download section, select your preferred format (MP4 or MP3), choose
-                        quality, and click Download. It's that easy!</p>
-                </details>
-                <details class="faq-item">
-                    <summary>What file formats are supported?</summary>
-                    <p>We support 50+ formats including: Video (MP4, MKV, WebM, AVI, MOV), Audio (MP3, WAV, AAC, OGG,
-                        FLAC), Images (JPG, PNG, WebP, GIF, BMP), Documents (PDF, DOCX, TXT), and Spreadsheets (XLSX,
-                        XLS, CSV).</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Why is ConvertRocket so fast?</summary>
-                    <p>We use cutting-edge algorithms and parallel processing technology to achieve 10x faster
-                        conversion speeds. Our infrastructure is optimized for performance.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Do I need to create an account?</summary>
-                    <p>No! ConvertRocket requires absolutely no signup or account creation. Just visit the site and
-                        start converting immediately.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>Can I use ConvertRocket on mobile?</summary>
-                    <p>Yes! ConvertRocket works perfectly on all devices including smartphones, tablets, laptops, and
-                        desktop computers. No app installation needed.</p>
-                </details>
-            </div>
-        </section>
+            <div class="faq-container" style="max-width: 900px; margin: 0 auto;">
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">Is ConvertRocket really
+                        free?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">Yes, ConvertRocket is
+                            100% free forever. No hidden fees, no subscription, no credit card required. We sustain
+                            through minimal ethical advertising.</p>
+                    </div>
+                </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
-            <p class="footer-tagline">The World's Fastest All-In-One Converter • 100% Free • No Signup</p>
-            <div class="footer-links">
-                <a href="/video-converter">Video Converter</a> •
-                <a href="/mp3-converter">MP3 Converter</a> •
-                <a href="/image-converter">Image Converter</a> •
-                <a href="/pdf-to-excel">PDF to Excel</a> •
-                <a href="/docs">API</a>
-            </div>
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">How is my privacy protected?
+                    </h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">All file conversions
+                            happen locally in your browser. Your files never leave your device, ensuring 100% privacy.
+                            We don't see, store, or access your files.</p>
+                    </div>
+                </div>
 
-            <div class="footer-divider" style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1);"></div>
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">What file formats are
+                        supported?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">We support 200+
+                            format combinations including Video (MP4, MKV, AVI, MOV, WebM), Audio (MP3, WAV, AAC, FLAC),
+                            Images (JPG, PNG, WebP, GIF, HEIC), and Documents (PDF, Word, Excel, PowerPoint).</p>
+                    </div>
+                </div>
 
-            <div class="footer-seo-links"
-                style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; max-width: 900px; margin: 0 auto 20px;">
-                <a href="/blogs" style="color: var(--text-muted); text-decoration: none;">Conversion Blog</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/about" style="color: var(--text-muted); text-decoration: none;">About Us</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/privacy-policy" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/terms-of-service" style="color: var(--text-muted); text-decoration: none;">Terms of
-                    Service</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/youtube-downloader" style="color: var(--text-muted); text-decoration: none;">YouTube
-                    Downloader Guide</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/tiktok-downloader" style="color: var(--text-muted); text-decoration: none;">TikTok
-                    No-Watermark</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/instagram-reels-downloader"
-                    style="color: var(--text-muted); text-decoration: none;">Instagram Reels Saver</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/mp4-to-mp3" style="color: var(--text-muted); text-decoration: none;">Extract MP3
-                    Audio</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/pdf-to-excel" style="color: var(--text-muted); text-decoration: none;">PDF to Excel
-                    OCR</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/image-optimizer" style="color: var(--text-muted); text-decoration: none;">WebP Image
-                    Optimizer</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/best-video-converters-2025" style="color: var(--text-muted); text-decoration: none;">Top
-                    10 Converters 2025</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/blog/safety-guide" style="color: var(--text-muted); text-decoration: none;">Security
-                    Report</a>
-            </div>
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">Can I use ConvertRocket on
+                        mobile?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">Absolutely!
+                            ConvertRocket is fully responsive and works perfectly on Android and iOS devices. No app
+                            installation needed - just use your mobile browser.</p>
+                    </div>
+                </div>
 
-            <div style="margin: 30px auto; text-align: center;">
-                <a href="https://www.producthunt.com/products/convertrocket?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-convertrocket"
-                    target="_blank" rel="noopener noreferrer"><img
-                        alt="ConvertRocket - All In One Converter And Downloader | Product Hunt" width="250" height="54"
-                        src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1055288&amp;theme=dark&amp;t=1767076017143"></a>
-            </div>
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">Do I need to sign up?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">No signup required!
+                            Just visit the site and start converting immediately. We believe in anonymous utility - no
+                            barriers, no friction.</p>
+                    </div>
+                </div>
 
-            <div
-                style="margin-top: 40px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                <h4 style="margin-bottom: 10px; font-size: 1rem; color: #fff;">🚀 Support ConvertRocket</h4>
-                <p style="font-size: 0.85rem; color: #888; margin-bottom: 15px;">Love this tool? Help us grow by linking
-                    to us on your website or blog!</p>
-                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; position: relative;">
-                    <code id="backlink-snippet"
-                        style="font-size: 0.8rem; color: var(--primary); display: block; word-break: break-all;">&lt;a href="https://convertrocket.online"&gt;ConvertRocket: Free Online File Converter&lt;/a&gt;</code>
-                    <button onclick="copySnippet()"
-                        style="position: absolute; right: 5px; top: 5px; background: var(--primary); border: none; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer;">Copy</button>
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">Are there any file size
+                        limits?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">No limits! Since
+                            processing happens in your browser, the only limit is your device's available memory. Most
+                            modern devices can handle files up to several GB.</p>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">How do I download YouTube
+                        videos?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">Simply paste the
+                            YouTube URL into our downloader, select your preferred quality and format (MP4 or MP3), and
+                            click download. The video will be processed and saved to your device.</p>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                    <h3 itemprop="name" style="color: var(--primary); margin-bottom: 10px;">Why is ConvertRocket faster
+                        than others?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" style="color: var(--text-secondary); line-height: 1.6;">We use WebAssembly
+                            and parallel processing technology that leverages your device's full power. No server
+                            upload/download delays means conversions happen in seconds instead of minutes.</p>
+                    </div>
                 </div>
             </div>
-
-            <p class="footer-made-by" style="margin-top: 30px;">Made by <strong>Mohammed Izyaan</strong> – crafted for
-                creators and professionals
-                worldwide.</p>
-            <p class="copyright">© 2025 ConvertRocket.online - All Rights Reserved</p>
-            <script>
-                function copySnippet() {
-                    const code = document.getElementById('backlink-snippet').innerText;
-                    navigator.clipboard.writeText(code);
-                    alert('Snippet copied to clipboard! Thank you for the support.');
-                }
-            </script>
-        </footer>
-
+        </section>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 5rem;">
+        <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
+        <p class="footer-tagline">The World's Fastest All-In-One Converter • 100% Free • No Signup</p>
+        <div class="footer-links">
+            <a href="/video-converter">Video Converter</a> •
+            <a href="/mp3-converter">MP3 Converter</a> •
+            <a href="/image-converter">Image Converter</a> •
+            <a href="/pdf-to-excel">PDF to Excel</a> •
+            <a href="/all-tools">All Tools</a>
+        </div>
+
+        <div class="footer-divider" style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1);"></div>
+
+        <div class="footer-seo-links"
+            style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; max-width: 900px; margin: 0 auto 20px;">
+            <a href="/blogs" style="color: var(--text-muted); text-decoration: none;">Blog</a>
+            <span style="color: var(--text-muted);">|</span>
+            <a href="/about" style="color: var(--text-muted); text-decoration: none;">About</a>
+            <span style="color: var(--text-muted);">|</span>
+            <a href="/privacy-policy" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
+            <span style="color: var(--text-muted);">|</span>
+            <a href="/terms-of-service" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+            <span style="color: var(--text-muted);">|</span>
+            <a href="/contact" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+        </div>
+
+        <p class="footer-made-by" style="margin-top: 30px;">Made with ❤️ by <strong>Mohammed Izyaan</strong></p>
+        <p class="copyright">© 2026 ConvertRocket.online - All Rights Reserved</p>
+    </footer>
+
     <script src="/static/js/i18n.min.js?v=2.2" defer></script>
-    <script src="/static/js/app.min.js?v=2.2" defer></script>
+    <script>
+        // Favorites / Starred System using localStorage
+        function loadFavorites() {
+            return JSON.parse(localStorage.getItem('cr_favorites') || '[]');
+        }
+
+        function saveFavorites(favorites) {
+            localStorage.setItem('cr_favorites', JSON.stringify(favorites));
+        }
+
+        function toggleStar(event, toolId) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const favorites = loadFavorites();
+            const index = favorites.indexOf(toolId);
+
+            if (index > -1) {
+                favorites.splice(index, 1);
+                event.target.classList.remove('starred');
+            } else {
+                favorites.push(toolId);
+                event.target.classList.add('starred');
+            }
+
+            saveFavorites(favorites);
+            updateFavoritesSection();
+        }
+
+        function updateFavoritesSection() {
+            const favorites = loadFavorites();
+            const favSection = document.getElementById('favorites-section');
+            const favGrid = document.getElementById('favorites-grid');
+
+            if (favorites.length === 0) {
+                favSection.style.display = 'none';
+                return;
+            }
+
+            favSection.style.display = 'block';
+            favGrid.innerHTML = '';
+
+            // Find all tool cards and clone favorited ones
+            document.querySelectorAll('.tool-card').forEach(card => {
+                const starBtn = card.querySelector('.star-btn');
+                if (starBtn && favorites.includes(starBtn.getAttribute('onclick').match(/'([^']+)'/)[1])) {
+                    const clone = card.cloneNode(true);
+                    favGrid.appendChild(clone);
+                }
+            });
+        }
+
+        // Initialize favorites on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const favorites = loadFavorites();
+
+            // Mark favorited tools
+            document.querySelectorAll('.star-btn').forEach(btn => {
+                const toolId = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (favorites.includes(toolId)) {
+                    btn.classList.add('starred');
+                }
+            });
+
+            updateFavoritesSection();
+            initializeSearch();
+        });
+
+        // Search Functionality
+        function initializeSearch() {
+            const searchInput = document.getElementById('tool-search');
+            const allToolCards = document.querySelectorAll('.tool-card');
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+
+                allToolCards.forEach(card => {
+                    const toolName = card.getAttribute('data-tool-name').toLowerCase();
+                    const cardContainer = card.closest('.category-section');
+
+                    if (toolName.includes(query)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Hide/show category sections if all tools are hidden
+                document.querySelectorAll('.category-section').forEach(section => {
+                    const visibleCards = section.querySelectorAll('.tool-card[style*="display: block"], .tool-card:not([style*="display: none"])');
+                    if (query && visibleCards.length === 0) {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = 'block';
+                    }
+                });
+            });
+        }
+
+        // Share functionality
+        document.getElementById('share-btn')?.addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'ConvertRocket - Free File Converter',
+                        text: 'Check out ConvertRocket - the fastest free file converter!',
+                        url: window.location.href
+                    });
+                } catch (err) {
+                    console.log('Share cancelled');
+                }
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+            }
+        });
+
+        // Language selector toggle
+        document.getElementById('lang-toggle')?.addEventListener('click', () => {
+            document.getElementById('lang-dropdown')?.classList.toggle('active');
+        });
+    </script>
 </body>
 
 </html>
