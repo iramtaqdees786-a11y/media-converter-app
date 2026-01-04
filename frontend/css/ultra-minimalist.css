@@ -1,0 +1,267 @@
+/* ============================================================
+   ConvertRocket - Ultra-Minimalist Design System
+   High-end, clean, data-lite UX
+   ============================================================ */
+
+:root {
+    --bg-pure: #050508;
+    --accent-glow: rgba(102, 126, 234, 0.4);
+    --text-ultra-muted: rgba(255, 255, 255, 0.3);
+}
+
+body {
+    background-color: var(--bg-pure);
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Hide Top Clutter */
+.top-bar {
+    display: none !important;
+}
+
+/* Minimalist Header */
+.minimalhead {
+    text-align: center;
+    padding: 100px 20px 40px;
+}
+
+.minimalhead h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, #fff 0%, #a0a0b0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.minimalhead p {
+    color: var(--text-ultra-muted);
+    font-size: 1.1rem;
+}
+
+/* Ultra Clean Container */
+.container {
+    max-width: 1000px !important;
+    margin: 0 auto;
+    padding: 15px;
+    width: 100%;
+}
+
+/* Mobile-First Adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .minimalhead h1 {
+        font-size: 2.2rem !important;
+    }
+
+    .tool-card {
+        padding: 15px !important;
+        border-radius: 20px !important;
+    }
+}
+
+
+/* Search Bar Redesign */
+.search-container {
+    margin: 40px auto 80px !important;
+    max-width: 600px !important;
+    position: relative;
+}
+
+.search-input {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 20px 30px !important;
+    border-radius: 100px !important;
+    font-size: 1.2rem !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--accent-purple) !important;
+    box-shadow: 0 0 40px var(--accent-glow) !important;
+}
+
+/* Clean Tool Cards Grid */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 15px !important;
+    margin-bottom: 2rem !important;
+}
+
+@media (max-width: 480px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+}
+
+.tool-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 24px !important;
+    padding: 20px !important;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 110px !important;
+}
+
+
+.tool-card:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    transform: scale(1.05) translateZ(0) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.tool-icon {
+    font-size: 2rem !important;
+}
+
+/* Resource Hub Footer */
+.resource-hub {
+    margin-top: 150px;
+    padding: 100px 40px;
+    background: rgba(255, 255, 255, 0.01);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hub-section h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-ultra-muted);
+    margin-bottom: 25px;
+}
+
+.hub-links {
+    list-style: none;
+}
+
+.hub-links li {
+    margin-bottom: 15px;
+}
+
+.hub-links a {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.hub-links a:hover {
+    opacity: 1;
+    color: var(--accent-purple);
+}
+
+/* Dropdown/Details for SEO and Data */
+details {
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+details:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+details summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 25px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+details summary::after {
+    content: '↓';
+    opacity: 0.5;
+    transition: transform 0.3s;
+}
+
+details[open] summary::after {
+    transform: rotate(180deg);
+}
+
+details[open] {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.seo-expanded,
+.faq-expanded {
+    padding: 0 25px 30px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Tool Card Glassmorphism */
+.tool-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.tool-card:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2) !important;
+    border-color: rgba(102, 126, 234, 0.3) !important;
+}
+
+
+/* Scroll to Bottom Indicator */
+.scroll-hint {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-ultra-muted);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Hide clutter containers */
+.featured-tools,
+.seo-content-section,
+#faq-section,
+.power-silo {
+    display: none;
+    /* We will move these to the resource hub */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .minimalhead h1 {
+        font-size: 2.5rem;
+    }
+}
