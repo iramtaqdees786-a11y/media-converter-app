@@ -67,14 +67,15 @@
         rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=1.2">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=1.3">
 
     
 
 
         <!-- Search Bar -->
         <div class="search-container">
-            <input type="text" id="tool-search" class="search-input" placeholder="Search tools (MP4, PDF, Image)...">
+            <input type="text" id="global-search" class="search-input" placeholder="Search tools (MP4, PDF, Image)...">
+        <div id="search-results" class="search-results"></div>
         </div>
 
         <!-- Featured (Minimalist) -->
@@ -164,6 +165,30 @@
     <!-- Resource Hub Footer (Minimalist) -->
     
     <!-- Resource Hub Footer (Minimalist Redesign) -->
+    
+    
+    <!-- Ultimate Menu (Access Every Tool) -->
+    <div class="ultimate-menu">
+        <div class="container">
+            <h2 class="menu-title">Ultimate Tool Kit</h2>
+            <div class="tools-grid">
+                <a href="/video-converter" class="tool-card"><div class="tool-icon">📽️</div><div class="tool-name">Video Conv.</div></a>
+                <a href="/mp3-converter" class="tool-card"><div class="tool-icon">🎵</div><div class="tool-name">MP3 Conv.</div></a>
+                <a href="/pdf-compress" class="tool-card"><div class="tool-icon">📦</div><div class="tool-name">PDF Shrink</div></a>
+                <a href="/pdf-to-word" class="tool-card"><div class="tool-icon">📄</div><div class="tool-name">PDF to Word</div></a>
+                <a href="/pdf-to-excel" class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">PDF to Excel</div></a>
+                <a href="/pdf-merge" class="tool-card"><div class="tool-icon">🔗</div><div class="tool-name">Merge PDF</div></a>
+                <a href="/image-converter" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Image Conv.</div></a>
+                <a href="/ai-image-editor" class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">AI Editor</div></a>
+                <a href="/image-compress" class="tool-card"><div class="tool-icon">🗜️</div><div class="tool-name">Image Shrink</div></a>
+                <a href="/video-trimmer" class="tool-card"><div class="tool-icon">✂️</div><div class="tool-name">Trimmer</div></a>
+                <a href="/yt-thumbnail" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Thumbnails</div></a>
+                <a href="/all-tools" class="tool-card"><div class="tool-icon">🚀</div><div class="tool-name">All Tools</div></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resource Hub Footer (Minimalist Redesign) -->
     <footer class="resource-hub">
         <div class="hub-grid">
             <div class="hub-section">
@@ -199,13 +224,6 @@
                 <summary>Why Use ConvertRocket? (The Ultimate SEO Guide)</summary>
                 <div class="seo-expanded">
                     <p>ConvertRocket is the world's most advanced <strong>free all-in-one file converter</strong>. We utilize <strong>WebAssembly (WASM)</strong> and <strong>parallel processing</strong> to convert MP4, PDF, Image, and 200+ other formats with 10x speed. Unlike other tools, your files are processed <strong>100% locally</strong>, ensuring absolute privacy.</p>
-                    <p>Optimized for <strong>Core Web Vitals</strong> and <strong>Semantic SEO</strong>. Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <details>
-                <summary>Security Documentation</summary>
-                <div class="seo-expanded">
-                    <p>Our zero-server architecture means your data never touches a hard drive. All conversion logic runs in your browser's sandbox. This is the gold standard for <strong>enterprise-grade privacy</strong> in the browser.</p>
                 </div>
             </details>
         </div>
@@ -214,6 +232,7 @@
             PLATFORM STATUS: OPTIMAL • © 2026 CONVERTROCKET
         </div>
     </footer>
+
 
 
 
