@@ -227,6 +227,14 @@ async def redirect_mp4_converter():
 async def serve_image_converter():
     return FileResponse(FRONTEND_DIR / "image-converter.html")
 
+@app.get("/image-compress")
+async def serve_image_compress():
+    return FileResponse(FRONTEND_DIR / "image-compress.html")
+
+@app.get("/ai-image-editor")
+async def serve_ai_image_editor():
+    return FileResponse(FRONTEND_DIR / "ai-image-editor.html")
+
 
 @app.get("/pdf-tools")
 @app.get("/pdf-tools.html")
@@ -262,7 +270,12 @@ async def serve_yt_thumbnail(): return FileResponse(FRONTEND_DIR / "yt-thumbnail
 async def serve_video_trimmer(): return FileResponse(FRONTEND_DIR / "video-trimmer.html")
 
 @app.get("/exif-remover")
+@app.get("/exif-remover.html")
 async def serve_exif_remover(): return FileResponse(FRONTEND_DIR / "exif-remover.html")
+
+@app.get("/all-tools")
+async def serve_all_tools():
+    return FileResponse(FRONTEND_DIR / "all-tools.html")
 
 
 @app.get("/blogs")

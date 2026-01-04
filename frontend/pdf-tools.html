@@ -3,51 +3,109 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Free PDF Tools - Merge, Compress, Edit | ConvertRocket</title>
-    <meta name="description" content="Access all professional PDF tools for free. Merge multiple PDFs, compress file size, remove pages, and convert to PDF/A or Grayscale instantly.">
-    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional PDF Tools - Merge, Compress, Edit | ConvertRocket</title>
+    <meta name="description"
+        content="Access all professional PDF tools for free. Merge multiple PDFs, compress file size, remove pages, and convert to PDF/A or Grayscale instantly.">
+    <meta name="keywords"
+        content="pdf merge, pdf compress, remove pdf pages, pdf to grayscale, pdf/a, pdf tools, free online pdf tools">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-ZBZSYT7DRY');
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.4">
+    <link rel="stylesheet" href="/static/css/mobile-optimizations.min.css?v=1.0">
+
     <style>
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 40px;
         }
 
         .tool-card {
             background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 16px;
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
             text-decoration: none;
             color: white;
-            transition: transform 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .tool-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
         }
 
         .tool-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            display: block;
+            font-size: 56px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .tool-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 40px auto 0;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
         }
     </style>
-    <link rel="stylesheet" href="/static/css/seo-hacks.min.css">
-    <script src="/static/js/seo-hacks.min.js" defer></script>
+
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "ConvertRocket PDF Tools",
-  "operatingSystem": "Web Browser",
-  "applicationCategory": "ProductivityApplication",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1200" }
-}
-</script>
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ConvertRocket PDF Tools",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "ProductivityApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
 </head>
 
 <body>
@@ -66,109 +124,107 @@
         </div>
     </div>
 
-    <div class="container" style="margin-top: 100px;">
-        <header class="header" style="text-align: center; margin-bottom: 50px;">
+    <div class="container" style="margin-top: 60px; padding-top: 40px;">
+        <header class="header" style="text-align: center; margin-bottom: 40px;">
             <div class="last-updated-badge">
                 <span>Last Updated: <span class="last-updated-date">[TODAY]</span></span>
             </div>
-            <h1>All PDF Tools</h1>
-            <p style="color:#aaa">Professional PDF manipulation without limits ([MONTH_YEAR])</p>
+            <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 10px;">All PDF Tools</h1>
+            <p style="color:#aaa; font-size: 1.2rem;">Professional PDF manipulation without limits. Fast, secure, and
+                private.</p>
         </header>
 
-        <div class="tools-grid">
-            <a href="/pdf-merge" class="tool-card">
-                <span class="tool-icon">📚</span>
+        <div class="search-container">
+            <input type="text" id="tool-search" class="search-input" placeholder="Search PDF tools...">
+        </div>
+
+        <div class="tools-grid" id="tools-grid">
+            <a href="/pdf-merge" class="tool-card" data-name="merge pdf combine join">
+                <span class="tool-icon">🔗</span>
                 <h3>Merge PDF</h3>
                 <p>Combine multiple PDF files into one single document in seconds.</p>
             </a>
-            <a href="/pdf-compress" class="tool-card">
-                <span class="tool-icon">🗜️</span>
+            <a href="/pdf-compress" class="tool-card" data-name="compress pdf reduce size optimize">
+                <span class="tool-icon">📦</span>
                 <h3>Compress PDF</h3>
                 <p>Reduce the file size of your PDFs while maintaining visual quality.</p>
             </a>
-            <a href="/pdf-remove-pages" class="tool-card">
-                <span class="tool-icon">✂️</span>
+            <a href="/pdf-remove-pages" class="tool-card" data-name="remove pages delete pdf extract">
+                <span class="tool-icon">🗑️</span>
                 <h3>Remove Pages</h3>
                 <p>Easily select and delete unwanted pages from your PDF documents.</p>
             </a>
-            <a href="/pdf-grayscale" class="tool-card">
+            <a href="/pdf-grayscale" class="tool-card" data-name="grayscale black white pdf save ink">
                 <span class="tool-icon">⚫</span>
                 <h3>Grayscale</h3>
                 <p>Convert colored PDFs to black and white to save ink and storage.</p>
             </a>
-            <a href="/pdf-pdfa" class="tool-card">
+            <a href="/pdf-pdfa" class="tool-card" data-name="pdf/a archive long term storage">
                 <span class="tool-icon">🏛️</span>
                 <h3>PDF/A</h3>
-                <p>Transform standard PDFs into the archival PDF/A standard for long-term storage.</p>
+                <p>Transform standard PDFs into the archival PDF/A standard.</p>
+            </a>
+            <a href="/pdf-to-word" class="tool-card" data-name="pdf to word docx document">
+                <span class="tool-icon">📝</span>
+                <h3>PDF to Word</h3>
+                <p>Convert PDF documents to editable Microsoft Word files.</p>
+            </a>
+            <a href="/pdf-to-excel" class="tool-card" data-name="pdf to excel xlsx spreadsheet">
+                <span class="tool-icon">📊</span>
+                <h3>PDF to Excel</h3>
+                <p>Extract tables and data from PDFs into Excel spreadsheets.</p>
             </a>
         </div>
 
-        <article class="seo-content-section" style="margin-top: 5rem;">
-            <h2 class="seo-section-title">Why use ConvertRocket's PDF Tools?</h2>
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 2rem;">
-                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px;">
-                    <h4>No Quality Loss</h4>
-                    <p>Our PDF engine is optimized to maintain the layout, fonts, and images of your original document.
-                        Whether you are merging or compressing, the output remains professional.</p>
-                </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px;">
-                    <h4>Security & Privacy</h4>
-                    <p>Handling legal or personal documents? We process everything securely and delete all files
-                        immediately after processing. Your data never leaves our temporary workspace.</p>
-                </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px;">
-                    <h4>Cloud-Speed Processing</h4>
-                    <p>Avoid heavy software. Our server-side processing handles large PDFs in seconds, allowing you to
-                        work faster from any browser or device.</p>
-                </div>
-            </div>
+        <!-- SEO Content moved to bottom -->
+        <section class="seo-content-section" style="margin-top: 80px;">
+            <h2 class="seo-section-title">🚀 Professional-Grade PDF Tools</h2>
+            <article class="seo-article-full">
+                <h3>Why choose ConvertRocket PDF Tools?</h3>
+                <p>Managing PDF documents shouldn't require expensive software. ConvertRocket provides all the tools you
+                    need to merge, compress, and edit your PDFs for free. Our tools are built with security in mind,
+                    ensuring your sensitive documents remain private.</p>
 
-            <article
-                style="margin-top: 4rem; background: rgba(56, 239, 125, 0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(56, 239, 125, 0.2);">
-                <h3 style="color: #38ef7d;">Did You Know?</h3>
-                <p>PDF (Portable Document Format) was created by Adobe in 1993 to present documents independently of
-                    application software, hardware, and operating systems. Today, it is the most used format for
-                    professional documents. ConvertRocket helps you manage these files without needing expensive
-                    subscriptions or complex software.</p>
+                <h4>Key Benefits:</h4>
+                <ul>
+                    <li><strong>No Quality Loss:</strong> Our engines ensure maximum quality for your documents.</li>
+                    <li><strong>Secure Processing:</strong> Your files are deleted immediately after conversion.</li>
+                    <li><strong>Cross-Platform:</strong> Works on any device with a modern web browser.</li>
+                    <li><strong>No Limits:</strong> Use our tools as much as you want without restrictions.</li>
+                </ul>
             </article>
-        </article>
+        </section>
     </div>
+
     <footer class="footer">
         <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
         <p class="footer-tagline">The World's Fastest All-In-One Converter • 100% Free • No Signup</p>
         <div class="footer-links">
-            <a href="/video-converter">Video Downloader</a> •
-            <a href="/mp3-converter">MP3 Converter</a> •
-            <a href="/pdf-tools">PDF Tools</a> •
-            <a href="/media-tools">Media Tools</a> •
-            <a href="/sitemap">Sitemap</a>
+            <a href="/">Home</a> •
+            <a href="/all-tools">All Tools</a> •
+            <a href="/privacy-policy">Privacy</a> •
+            <a href="/blogs">Blog</a>
         </div>
-
-        <div class="footer-divider" style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1);"></div>
-
-        <div class="footer-seo-links"
-            style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; max-width: 900px; margin: 0 auto 20px;">
-            <a href="/blogs" style="color: var(--text-muted); text-decoration: none;">Blog</a>
-            <span style="color: var(--text-muted);">|</span>
-            <a href="/about" style="color: var(--text-muted); text-decoration: none;">About Us</a>
-            <span style="color: var(--text-muted);">|</span>
-            <a href="/contact" style="color: var(--text-muted); text-decoration: none;">Contact Us</a>
-            <span style="color: var(--text-muted);">|</span>
-            <a href="/privacy-policy" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
-            <span style="color: var(--text-muted);">|</span>
-            <a href="/terms-of-service" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
-        </div>
-
-        <div style="margin: 30px auto; text-align: center;">
-            <a href="https://www.producthunt.com/products/convertrocket?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-convertrocket"
-                target="_blank" rel="noopener noreferrer"><img
-                    alt="ConvertRocket - All In One Converter And Downloader | Product Hunt" width="250" height="54"
-                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1055288&amp;theme=dark&amp;t=1767076017143"></a>
-        </div>
-
-        <p class="copyright">© 2025 ConvertRocket.online - Fast & Private File Conversion</p>
+        <p class="copyright">© 2026 ConvertRocket.online - All Rights Reserved</p>
     </footer>
+
+    <script>
+        // Simple search functionality
+        const searchInput = document.getElementById('tool-search');
+        const toolCards = document.querySelectorAll('.tool-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            toolCards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

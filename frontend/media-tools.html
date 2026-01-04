@@ -3,51 +3,119 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Media Tools - Thumbnail, Trim, EXIF | ConvertRocket</title>
-    <meta name="description" content="High-quality media tools for content creators. Download YouTube thumbnails, trim videos, and strip EXIF metadata online for free.">
-    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Media Tools - AI Editor, Thumbnail, Trim | ConvertRocket</title>
+    <meta name="description"
+        content="High-quality media tools for content creators. AI Image Editor, YouTube thumbnail downloader, video trimmer, and EXIF stripper. 100% free and secure.">
+    <meta name="keywords"
+        content="ai image editor, remove background, blur background, youtube thumbnail downloader, video trimmer, exif remover, media tools">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-ZBZSYT7DRY');
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.4">
+    <link rel="stylesheet" href="/static/css/mobile-optimizations.min.css?v=1.0">
+
     <style>
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 40px;
         }
 
         .tool-card {
             background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 16px;
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
             text-decoration: none;
             color: white;
-            transition: transform 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .tool-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
         }
 
         .tool-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            display: block;
+            font-size: 56px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .tool-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .badge-hot {
+            background: linear-gradient(135deg, #ff6b6b, #f06595);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 40px auto 0;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
         }
     </style>
-    <link rel="stylesheet" href="/static/css/seo-hacks.min.css">
-    <script src="/static/js/seo-hacks.min.js" defer></script>
+
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@reference": "SoftwareApplication",
-  "@type": "SoftwareApplication",
-  "name": "ConvertRocket Media Tools",
-  "operatingSystem": "Web Browser",
-  "applicationCategory": "MultimediaApplication",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-}
-</script>
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ConvertRocket Media Tools",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "MultimediaApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
 </head>
 
 <body>
@@ -66,65 +134,102 @@
         </div>
     </div>
 
-    <div class="container" style="margin-top: 100px;">
-        <header class="header" style="text-align: center; margin-bottom: 50px;">
+    <div class="container" style="margin-top: 60px; padding-top: 40px;">
+        <header class="header" style="text-align: center; margin-bottom: 40px;">
             <div class="last-updated-badge">
                 <span>Last Updated: <span class="last-updated-date">[TODAY]</span></span>
             </div>
-            <h1>Specialized Media Tools</h1>
-            <p style="color:#aaa">Advanced tools for content creators and professionals ([MONTH_YEAR])</p>
+            <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 10px;">Specialized Media Tools</h1>
+            <p style="color:#aaa; font-size: 1.2rem;">Advanced AI-powered tools for content creators and professionals
+            </p>
         </header>
 
-        <div class="tools-grid">
-            <a href="/yt-thumbnail" class="tool-card">
+        <div class="search-container">
+            <input type="text" id="tool-search" class="search-input" placeholder="Search media tools...">
+        </div>
+
+        <div class="tools-grid" id="tools-grid">
+            <a href="/ai-image-editor" class="tool-card" data-name="ai image editor background removal blur face mask">
+                <span class="badge-hot">NEW & AI</span>
+                <span class="tool-icon">🎨</span>
+                <h3>AI Image Editor</h3>
+                <p>Background removal, face blur, object detection, and smart filters. All in your browser.</p>
+            </a>
+            <a href="/yt-thumbnail" class="tool-card" data-name="youtube thumbnail downloader hq">
                 <span class="tool-icon">🖼️</span>
                 <h3>Thumbnail Downloader</h3>
-                <p>Download High-Res YouTube thumbnails</p>
+                <p>Download High-Res YouTube thumbnails for any video instantly.</p>
             </a>
-            <a href="/video-trimmer" class="tool-card">
+            <a href="/video-trimmer" class="tool-card" data-name="video trimmer cutter crop precise">
                 <span class="tool-icon">✂️</span>
                 <h3>Video Trimmer</h3>
-                <p>Cut and trim videos with precise preview</p>
+                <p>Cut and trim videos with precise preview and lightning-fast speed.</p>
             </a>
-            <a href="/exif-remover" class="tool-card">
+            <a href="/exif-remover" class="tool-card" data-name="exif stripper metadata private privacy">
                 <span class="tool-icon">🧼</span>
                 <h3>EXIF Stripper</h3>
-                <p>Complete metadata removal for privacy</p>
+                <p>Complete metadata removal from your photos to ensure maximum privacy.</p>
+            </a>
+            <a href="/image-compress" class="tool-card" data-name="image compressor reduce size optimize">
+                <span class="tool-icon">🗜️</span>
+                <h3>Image Compressor</h3>
+                <p>Reduce image file sizes by up to 90% without losing visual quality.</p>
             </a>
         </div>
+
+        <!-- SEO Content moved to bottom -->
+        <section class="seo-content-section" style="margin-top: 80px;">
+            <h2 class="seo-section-title">🚀 Advanced Media Tools for Everyone</h2>
+            <article class="seo-article-full">
+                <h3>Why use ConvertRocket Media Tools?</h3>
+                <p>In the age of digital content, having the right tools to edit, optimize, and protect your media is
+                    crucial. ConvertRocket provides a suite of professional-grade tools that run entirely in your
+                    browser, ensuring maximum speed and complete privacy.</p>
+                <p>Our new <strong>AI Image Editor</strong> leverages state-of-the-art machine learning models like
+                    MediaPipe and TensorFlow.js to perform complex tasks like background removal and face detection
+                    without ever sending your data to a server.</p>
+
+                <h4>Key Features:</h4>
+                <ul>
+                    <li><strong>Privacy First:</strong> No files are uploaded to our servers for processing.</li>
+                    <li><strong>AI Powered:</strong> Smart detection of people, faces, and objects.</li>
+                    <li><strong>Zero Cost:</strong> Professional tools shouldn't cost a fortune. Everything here is 100%
+                        free.</li>
+                    <li><strong>No Signup:</strong> We value your time. No accounts or logins required.</li>
+                </ul>
+            </article>
+        </section>
     </div>
-                    <footer class="footer">
-            <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
-            <p class="footer-tagline">The World's Fastest All-In-One Converter • 100% Free • No Signup</p>
-            <div class="footer-links">
-                <a href="/video-converter">Video Downloader</a> •
-                <a href="/mp3-converter">MP3 Converter</a> •
-                <a href="/pdf-tools">PDF Tools</a> •
-                <a href="/media-tools">Media Tools</a> •
-                <a href="/sitemap">Sitemap</a>
-            </div>
 
-            <div class="footer-divider" style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1);"></div>
+    <footer class="footer">
+        <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
+        <p class="footer-tagline">The World's Fastest All-In-One Converter • 100% Free • No Signup</p>
+        <div class="footer-links">
+            <a href="/">Home</a> •
+            <a href="/all-tools">All Tools</a> •
+            <a href="/privacy-policy">Privacy</a> •
+            <a href="/blogs">Blog</a>
+        </div>
+        <p class="copyright">© 2026 ConvertRocket.online - All Rights Reserved</p>
+    </footer>
 
-            <div class="footer-seo-links"
-                style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; max-width: 900px; margin: 0 auto 20px;">
-                <a href="/blogs" style="color: var(--text-muted); text-decoration: none;">Blog</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/about" style="color: var(--text-muted); text-decoration: none;">About Us</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/contact" style="color: var(--text-muted); text-decoration: none;">Contact Us</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/privacy-policy" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
-                <span style="color: var(--text-muted);">|</span>
-                <a href="/terms-of-service" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
-            </div>
+    <script>
+        // Simple search functionality
+        const searchInput = document.getElementById('tool-search');
+        const toolCards = document.querySelectorAll('.tool-card');
 
-            <div style="margin: 30px auto; text-align: center;">
-                <a href="https://www.producthunt.com/products/convertrocket?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-convertrocket" target="_blank" rel="noopener noreferrer"><img alt="ConvertRocket - All In One Converter And Downloader | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1055288&amp;theme=dark&amp;t=1767076017143"></a>
-            </div>
-
-            <p class="copyright">© 2025 ConvertRocket.online - Fast & Private File Conversion</p>
-        </footer>
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            toolCards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                if (name.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

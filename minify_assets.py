@@ -50,7 +50,7 @@ for css_file in css_files:
         minified_size = len(minified)
         savings = ((original_size - minified_size) / original_size) * 100
         
-        print(f"✓ {css_file}")
+        print(f"[OK] {css_file}")
         print(f"  Original: {original_size:,} bytes")
         print(f"  Minified: {minified_size:,} bytes")
         print(f"  Savings: {savings:.1f}%\n")
@@ -61,7 +61,8 @@ js_files = [
     'frontend/js/i18n.js',
     'frontend/js/media-tools.js',
     'frontend/js/pdf-tools.js',
-    'frontend/js/seo-hacks.js'
+    'frontend/js/seo-hacks.js',
+    'frontend/js/ai-image-editor.js'
 ]
 
 for js_file in js_files:
@@ -79,7 +80,7 @@ for js_file in js_files:
         minified_size = len(minified)
         savings = ((original_size - minified_size) / original_size) * 100
         
-        print(f"✓ {js_file}")
+        print(f"[OK] {js_file}")
         print(f"  Original: {original_size:,} bytes")
         print(f"  Minified: {minified_size:,} bytes")
         print(f"  Savings: {savings:.1f}%\n")
