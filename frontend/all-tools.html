@@ -1,373 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover, user-scalable=yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Primary SEO Meta Tags -->
-    <title>All Tools - Complete List of Free Converters | ConvertRocket</title>
-    <meta name="title" content="All Tools - 100+ Free File Converters & Downloaders">
-    <meta name="description"
-        content="Browse all 100+ free conversion tools on ConvertRocket. Video, audio, image, PDF converters and downloaders. All free, fast, and privacy-focused.">
-    <meta name="keywords"
-        content="file converter, video converter, audio converter, image converter, pdf converter, all tools, free converters">
-    <meta name="author" content="ConvertRocket">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://convertrocket.online/all-tools">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
+    <script src="/static/js/minimalist-search.js" defer></script>
+</head>
+<body>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-    <script>
+    <div class="bg-animated"></div>
+    <section class="hero-minimal">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
+                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Ecosystem</h4>
+                    <ul>
+                        <li><a href="/">Universal Converter</a></li>
+                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
+                        <li><a href="/media-tools">Media Laboratory</a></li>
+                        <li><a href="/blogs">Expert Guides</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/contact">Support Center</a></li>
+                        <li><a href="/sitemap">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <details class="seo-collapsible">
+                <summary>Platform Architecture & SEO Data</summary>
+                <div class="seo-content-inner">
+                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
+                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
+                </div>
+            </details>
+            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
+                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
+            </div>
+        </div>
+    </footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+<script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.3">
-    <link rel="stylesheet" href="/static/css/mobile-optimizations.min.css?v=1.0">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23667eea'/%3E%3Cstop offset='100%25' stop-color='%23f093fb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Cpath d='M50 20 L70 50 L50 45 L50 80 L30 50 L50 55 Z' fill='white'/%3E%3C/svg%3E">
-
-    <style>
-        .tools-directory {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .directory-section {
-            margin-bottom: 3rem;
-        }
-
-        .directory-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .directory-icon {
-            font-size: 2.5rem;
-        }
-
-        .directory-title {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #f093fb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .tools-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .tool-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.2s;
-        }
-
-        .tool-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-            border-color: var(--accent-purple);
-        }
-
-        .tool-link-icon {
-            font-size: 1.5rem;
-        }
-
-        .tool-link-text {
-            font-weight: 500;
-        }
-
-        .search-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .search-input {
-            width: 100%;
-            max-width: 600px;
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            color: white;
-            font-size: 1rem;
-            margin: 1rem auto;
-            display: block;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-        }
-    </style>
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=1.3">
-    
-    
-    
-
-    <div class="tools-directory">
-        <div class="search-header">
-            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">🛠️ All Tools</h1>
-            <p style="color: var(--text-secondary); font-size: 1.1rem;">Browse our complete collection of 100+ free
-                conversion tools</p>
-            <input type="text" id="tools-search" class="search-input" placeholder="Search for a tool...">
-        </div>
-
-        <!-- Video Tools -->
-        <div class="directory-section">
-            <div class="directory-header">
-                <span class="directory-icon">🎬</span>
-                <h2 class="directory-title">Video Converters</h2>
-            </div>
-            <div class="tools-list">
-                <a href="/video-converter" class="tool-link" data-name="video converter all formats"><span
-                        class="tool-link-icon">🎞️</span><span class="tool-link-text">All Video Formats</span></a>
-                <a href="/mp4-to-mp3" class="tool-link" data-name="mp4 to mp3"><span
-                        class="tool-link-icon">🎵</span><span class="tool-link-text">MP4 to MP3</span></a>
-                <a href="/mkv-to-mp4" class="tool-link" data-name="mkv to mp4"><span
-                        class="tool-link-icon">📹</span><span class="tool-link-text">MKV to MP4</span></a>
-                <a href="/avi-to-mp4" class="tool-link" data-name="avi to mp4"><span
-                        class="tool-link-icon">🎬</span><span class="tool-link-text">AVI to MP4</span></a>
-                <a href="/mov-to-mp4" class="tool-link" data-name="mov to mp4"><span
-                        class="tool-link-icon">🎥</span><span class="tool-link-text">MOV to MP4</span></a>
-                <a href="/webm-to-mp4" class="tool-link" data-name="webm to mp4"><span
-                        class="tool-link-icon">🌐</span><span class="tool-link-text">WebM to MP4</span></a>
-                <a href="/flv-to-mp4" class="tool-link" data-name="flv to mp4"><span
-                        class="tool-link-icon">📺</span><span class="tool-link-text">FLV to MP4</span></a>
-                <a href="/gif-to-mp4" class="tool-link" data-name="gif to mp4"><span
-                        class="tool-link-icon">🎞️</span><span class="tool-link-text">GIF to MP4</span></a>
-                <a href="/mp4-to-avi" class="tool-link" data-name="mp4 to avi"><span
-                        class="tool-link-icon">🎬</span><span class="tool-link-text">MP4 to AVI</span></a>
-                <a href="/mp4-to-mov" class="tool-link" data-name="mp4 to mov"><span
-                        class="tool-link-icon">🎥</span><span class="tool-link-text">MP4 to MOV</span></a>
-                <a href="/video-trimmer" class="tool-link" data-name="video trimmer cutter"><span
-                        class="tool-link-icon">✂️</span><span class="tool-link-text">Video Trimmer</span></a>
-            </div>
-        </div>
-
-        <!-- Audio Tools -->
-        <div class="directory-section">
-            <div class="directory-header">
-                <span class="directory-icon">🎵</span>
-                <h2 class="directory-title">Audio Converters</h2>
-            </div>
-            <div class="tools-list">
-                <a href="/mp3-converter" class="tool-link" data-name="mp3 converter all formats"><span
-                        class="tool-link-icon">🎧</span><span class="tool-link-text">All Audio Formats</span></a>
-                <a href="/wav-to-mp3" class="tool-link" data-name="wav to mp3"><span
-                        class="tool-link-icon">🔊</span><span class="tool-link-text">WAV to MP3</span></a>
-                <a href="/flac-to-mp3" class="tool-link" data-name="flac to mp3"><span
-                        class="tool-link-icon">🎶</span><span class="tool-link-text">FLAC to MP3</span></a>
-                <a href="/m4a-to-mp3" class="tool-link" data-name="m4a to mp3"><span
-                        class="tool-link-icon">📻</span><span class="tool-link-text">M4A to MP3</span></a>
-                <a href="/aac-to-mp3" class="tool-link" data-name="aac to mp3"><span
-                        class="tool-link-icon">🎼</span><span class="tool-link-text">AAC to MP3</span></a>
-                <a href="/mp3-to-wav" class="tool-link" data-name="mp3 to wav"><span
-                        class="tool-link-icon">🔉</span><span class="tool-link-text">MP3 to WAV</span></a>
-            </div>
-        </div>
-
-        <!-- Image Tools -->
-        <div class="directory-section">
-            <div class="directory-header">
-                <span class="directory-icon">🖼️</span>
-                <h2 class="directory-title">Image Converters & Tools</h2>
-            </div>
-            <div class="tools-list">
-                <a href="/image-converter" class="tool-link" data-name="image converter all formats"><span
-                        class="tool-link-icon">🌄</span><span class="tool-link-text">All Image Formats</span></a>
-                <a href="/image-compress" class="tool-link" data-name="image compressor optimizer"><span
-                        class="tool-link-icon">🗜️</span><span class="tool-link-text">Image Compressor</span></a>
-                <a href="/jpg-to-png" class="tool-link" data-name="jpg to png"><span
-                        class="tool-link-icon">🖼️</span><span class="tool-link-text">JPG to PNG</span></a>
-                <a href="/png-to-jpg" class="tool-link" data-name="png to jpg"><span
-                        class="tool-link-icon">🎨</span><span class="tool-link-text">PNG to JPG</span></a>
-                <a href="/webp-to-jpg" class="tool-link" data-name="webp to jpg"><span
-                        class="tool-link-icon">🌐</span><span class="tool-link-text">WebP to JPG</span></a>
-                <a href="/jpg-to-webp" class="tool-link" data-name="jpg to webp"><span
-                        class="tool-link-icon">✨</span><span class="tool-link-text">JPG to WebP</span></a>
-                <a href="/png-to-webp" class="tool-link" data-name="png to webp"><span
-                        class="tool-link-icon">💫</span><span class="tool-link-text">PNG to WebP</span></a>
-                <a href="/heic-to-jpg" class="tool-link" data-name="heic to jpg"><span
-                        class="tool-link-icon">📱</span><span class="tool-link-text">HEIC to JPG</span></a>
-                <a href="/heic-to-png" class="tool-link" data-name="heic to png"><span
-                        class="tool-link-icon">📲</span><span class="tool-link-text">HEIC to PNG</span></a>
-                <a href="/bmp-to-jpg" class="tool-link" data-name="bmp to jpg"><span
-                        class="tool-link-icon">🖼️</span><span class="tool-link-text">BMP to JPG</span></a>
-                <a href="/bmp-to-png" class="tool-link" data-name="bmp to png"><span
-                        class="tool-link-icon">🎨</span><span class="tool-link-text">BMP to PNG</span></a>
-                <a href="/tiff-to-jpg" class="tool-link" data-name="tiff to jpg"><span
-                        class="tool-link-icon">📄</span><span class="tool-link-text">TIFF to JPG</span></a>
-                <a href="/tiff-to-png" class="tool-link" data-name="tiff to png"><span
-                        class="tool-link-icon">📃</span><span class="tool-link-text">TIFF to PNG</span></a>
-                <a href="/jpg-to-pdf" class="tool-link" data-name="jpg to pdf"><span
-                        class="tool-link-icon">📑</span><span class="tool-link-text">JPG to PDF</span></a>
-                <a href="/png-to-pdf" class="tool-link" data-name="png to pdf"><span
-                        class="tool-link-icon">📋</span><span class="tool-link-text">PNG to PDF</span></a>
-                <a href="/exif-remover" class="tool-link" data-name="exif remover metadata"><span
-                        class="tool-link-icon">🔒</span><span class="tool-link-text">EXIF Remover</span></a>
-            </div>
-        </div>
-
-        <!-- PDF Tools -->
-        <div class="directory-section">
-            <div class="directory-header">
-                <span class="directory-icon">📄</span>
-                <h2 class="directory-title">PDF Tools</h2>
-            </div>
-            <div class="tools-list">
-                <a href="/pdf-to-word" class="tool-link" data-name="pdf to word docx"><span
-                        class="tool-link-icon">📝</span><span class="tool-link-text">PDF to Word</span></a>
-                <a href="/word-to-pdf" class="tool-link" data-name="word to pdf docx"><span
-                        class="tool-link-icon">📄</span><span class="tool-link-text">Word to PDF</span></a>
-                <a href="/pdf-to-excel" class="tool-link" data-name="pdf to excel xlsx"><span
-                        class="tool-link-icon">📊</span><span class="tool-link-text">PDF to Excel</span></a>
-                <a href="/excel-to-pdf" class="tool-link" data-name="excel to pdf xlsx"><span
-                        class="tool-link-icon">📑</span><span class="tool-link-text">Excel to PDF</span></a>
-                <a href="/ppt-to-pdf" class="tool-link" data-name="powerpoint to pdf pptx"><span
-                        class="tool-link-icon">📽️</span><span class="tool-link-text">PowerPoint to PDF</span></a>
-                <a href="/pdf-compress" class="tool-link" data-name="pdf compressor reduce size"><span
-                        class="tool-link-icon">📦</span><span class="tool-link-text">PDF Compressor</span></a>
-                <a href="/pdf-merge" class="tool-link" data-name="pdf merger combine"><span
-                        class="tool-link-icon">🔗</span><span class="tool-link-text">Merge PDFs</span></a>
-                <a href="/pdf-remove-pages" class="tool-link" data-name="pdf remove delete pages"><span
-                        class="tool-link-icon">🗑️</span><span class="tool-link-text">Remove PDF Pages</span></a>
-                <a href="/pdf-grayscale" class="tool-link" data-name="pdf to grayscale black white"><span
-                        class="tool-link-icon">⚫</span><span class="tool-link-text">PDF to Grayscale</span></a>
-                <a href="/pdf-pdfa" class="tool-link" data-name="pdf to pdf/a archive"><span
-                        class="tool-link-icon">📚</span><span class="tool-link-text">PDF to PDF/A</span></a>
-            </div>
-        </div>
-
-        <!-- Downloaders -->
-        <div class="directory-section">
-            <div class="directory-header">
-                <span class="directory-icon">⬇️</span>
-                <h2 class="directory-title">Video Downloaders</h2>
-            </div>
-            <div class="tools-list">
-                <a href="/video-converter" class="tool-link" data-name="youtube downloader video"><span
-                        class="tool-link-icon">▶️</span><span class="tool-link-text">YouTube Downloader</span></a>
-                <a href="/video-converter" class="tool-link" data-name="tiktok downloader no watermark"><span
-                        class="tool-link-icon">🎵</span><span class="tool-link-text">TikTok Downloader</span></a>
-                <a href="/video-converter" class="tool-link" data-name="facebook downloader video"><span
-                        class="tool-link-icon">👥</span><span class="tool-link-text">Facebook Downloader</span></a>
-                <a href="/yt-thumbnail" class="tool-link" data-name="youtube thumbnail downloader"><span
-                        class="tool-link-icon">🖼️</span><span class="tool-link-text">YT Thumbnail Downloader</span></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    
-    <!-- Resource Hub Footer (Minimalist) -->
-    
-    <!-- Resource Hub Footer (Minimalist) -->
-    
-    <!-- Resource Hub Footer (Minimalist Redesign) -->
-    
-    
-    <!-- Ultimate Menu (Access Every Tool) -->
-    <div class="ultimate-menu">
-        <div class="container">
-            <h2 class="menu-title">Ultimate Tool Kit</h2>
-            <div class="tools-grid">
-                <a href="/video-converter" class="tool-card"><div class="tool-icon">📽️</div><div class="tool-name">Video Conv.</div></a>
-                <a href="/mp3-converter" class="tool-card"><div class="tool-icon">🎵</div><div class="tool-name">MP3 Conv.</div></a>
-                <a href="/pdf-compress" class="tool-card"><div class="tool-icon">📦</div><div class="tool-name">PDF Shrink</div></a>
-                <a href="/pdf-to-word" class="tool-card"><div class="tool-icon">📄</div><div class="tool-name">PDF to Word</div></a>
-                <a href="/pdf-to-excel" class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">PDF to Excel</div></a>
-                <a href="/pdf-merge" class="tool-card"><div class="tool-icon">🔗</div><div class="tool-name">Merge PDF</div></a>
-                <a href="/image-converter" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Image Conv.</div></a>
-                <a href="/ai-image-editor" class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">AI Editor</div></a>
-                <a href="/image-compress" class="tool-card"><div class="tool-icon">🗜️</div><div class="tool-name">Image Shrink</div></a>
-                <a href="/video-trimmer" class="tool-card"><div class="tool-icon">✂️</div><div class="tool-name">Trimmer</div></a>
-                <a href="/yt-thumbnail" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Thumbnails</div></a>
-                <a href="/all-tools" class="tool-card"><div class="tool-icon">🚀</div><div class="tool-name">All Tools</div></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Resource Hub Footer (Minimalist Redesign) -->
-    <footer class="resource-hub">
-        <div class="hub-grid">
-            <div class="hub-section">
-                <h3>Explore</h3>
-                <ul class="hub-links">
-                    <li><a href="/">Universal Converter</a></li>
-                    <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                    <li><a href="/media-tools">Media Laboratory</a></li>
-                    <li><a href="/blogs">Expert Guides</a></li>
-                </ul>
-            </div>
-            <div class="hub-section">
-                <h3>Trust & Tech</h3>
-                <ul class="hub-links">
-                    <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                    <li><a href="/terms-of-service">Terms of Service</a></li>
-                    <li><a href="/about">Our Mission</a></li>
-                    <li><a href="/contact">Support Center</a></li>
-                </ul>
-            </div>
-            <div class="hub-section">
-                <h3>Integrations</h3>
-                <ul class="hub-links">
-                    <li><a href="/all-tools">API Access</a></li>
-                    <li><a href="/sitemap">Sitemap Index</a></li>
-                    <li><a href="/ads.txt">Publishers</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="container" style="margin-top: 80px;">
-            <details>
-                <summary>Why Use ConvertRocket? (The Ultimate SEO Guide)</summary>
-                <div class="seo-expanded">
-                    <p>ConvertRocket is the world's most advanced <strong>free all-in-one file converter</strong>. We utilize <strong>WebAssembly (WASM)</strong> and <strong>parallel processing</strong> to convert MP4, PDF, Image, and 200+ other formats with 10x speed. Unlike other tools, your files are processed <strong>100% locally</strong>, ensuring absolute privacy.</p>
-                </div>
-            </details>
-        </div>
-        
-        <div style="text-align: center; margin: 60px 0 20px; opacity: 0.2; font-size: 0.8rem; letter-spacing: 2px;">
-            PLATFORM STATUS: OPTIMAL • © 2026 CONVERTROCKET
-        </div>
-    </footer>
-
-
-
-
-
-    <script>
+<script>
         // Search functionality
         const searchInput = document.getElementById('tools-search');
         const toolLinks = document.querySelectorAll('.tool-link');
@@ -397,5 +96,4 @@
         });
     </script>
 </body>
-
 </html>

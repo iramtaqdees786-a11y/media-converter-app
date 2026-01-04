@@ -1,50 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Remove PDF Pages - Online PDF Splitter | ConvertRocket</title>
-    <meta name="description" content="Delete specific pages from your PDF file online for free. Select and remove unwanted pages instantly and securely.">
-    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.2">
-    <style>
-        .page-header {
-            text-align: center;
-            padding: 60px 20px;
-        }
 
-        .upload-container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 2px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-        }
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
+    <script src="/static/js/minimalist-search.js" defer></script>
+</head>
+<body>
 
-        .action-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 12px;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+    <div class="bg-animated"></div>
+    <section class="hero-minimal">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
 
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-    </style>
-    <link rel="stylesheet" href="/static/css/seo-hacks.min.css">
-    <script src="/static/js/seo-hacks.min.js" defer></script>
-    <script type="application/ld+json">
+
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
+                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Ecosystem</h4>
+                    <ul>
+                        <li><a href="/">Universal Converter</a></li>
+                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
+                        <li><a href="/media-tools">Media Laboratory</a></li>
+                        <li><a href="/blogs">Expert Guides</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/contact">Support Center</a></li>
+                        <li><a href="/sitemap">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <details class="seo-collapsible">
+                <summary>Platform Architecture & SEO Data</summary>
+                <div class="seo-content-inner">
+                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
+                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
+                </div>
+            </details>
+            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
+                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
+            </div>
+        </div>
+    </footer>
+
+<script src="/static/js/seo-hacks.min.js" defer></script>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -67,28 +83,7 @@
   ]
 }
 </script>
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=1.3">
-    
-    
-        
-
-
-        <div class="upload-container" onclick="document.getElementById('file-input').click()">
-            <div style="font-size: 40px;">📂</div>
-            <p id="file-label">Click to Upload PDF</p>
-            <input type="file" id="file-input" accept=".pdf" style="display:none">
-        </div>
-
-        <div style="max-width: 400px; margin: 30px auto;">
-            <label>Pages to Remove (1-indexed, comma separated)</label>
-            <input type="text" id="pages-input" class="form-input" placeholder="e.g. 1, 2, 5">
-            <button class="action-btn" onclick="removePages()">Remove Pages</button>
-        </div>
-
-        <div id="result" style="text-align: center;"></div>
-    </div>
-
-    <script>
+<script>
         const input = document.getElementById('file-input');
         input.addEventListener('change', () => {
             if (input.files[0]) document.getElementById('file-label').textContent = `Selected: ${input.files[0].name}`;
@@ -116,83 +111,5 @@
             }
         }
     </script>
-                
-    <!-- Resource Hub Footer (Minimalist) -->
-    
-    <!-- Resource Hub Footer (Minimalist) -->
-    
-    <!-- Resource Hub Footer (Minimalist Redesign) -->
-    
-    
-    <!-- Ultimate Menu (Access Every Tool) -->
-    <div class="ultimate-menu">
-        <div class="container">
-            <h2 class="menu-title">Ultimate Tool Kit</h2>
-            <div class="tools-grid">
-                <a href="/video-converter" class="tool-card"><div class="tool-icon">📽️</div><div class="tool-name">Video Conv.</div></a>
-                <a href="/mp3-converter" class="tool-card"><div class="tool-icon">🎵</div><div class="tool-name">MP3 Conv.</div></a>
-                <a href="/pdf-compress" class="tool-card"><div class="tool-icon">📦</div><div class="tool-name">PDF Shrink</div></a>
-                <a href="/pdf-to-word" class="tool-card"><div class="tool-icon">📄</div><div class="tool-name">PDF to Word</div></a>
-                <a href="/pdf-to-excel" class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">PDF to Excel</div></a>
-                <a href="/pdf-merge" class="tool-card"><div class="tool-icon">🔗</div><div class="tool-name">Merge PDF</div></a>
-                <a href="/image-converter" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Image Conv.</div></a>
-                <a href="/ai-image-editor" class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">AI Editor</div></a>
-                <a href="/image-compress" class="tool-card"><div class="tool-icon">🗜️</div><div class="tool-name">Image Shrink</div></a>
-                <a href="/video-trimmer" class="tool-card"><div class="tool-icon">✂️</div><div class="tool-name">Trimmer</div></a>
-                <a href="/yt-thumbnail" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-name">Thumbnails</div></a>
-                <a href="/all-tools" class="tool-card"><div class="tool-icon">🚀</div><div class="tool-name">All Tools</div></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Resource Hub Footer (Minimalist Redesign) -->
-    <footer class="resource-hub">
-        <div class="hub-grid">
-            <div class="hub-section">
-                <h3>Explore</h3>
-                <ul class="hub-links">
-                    <li><a href="/">Universal Converter</a></li>
-                    <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                    <li><a href="/media-tools">Media Laboratory</a></li>
-                    <li><a href="/blogs">Expert Guides</a></li>
-                </ul>
-            </div>
-            <div class="hub-section">
-                <h3>Trust & Tech</h3>
-                <ul class="hub-links">
-                    <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                    <li><a href="/terms-of-service">Terms of Service</a></li>
-                    <li><a href="/about">Our Mission</a></li>
-                    <li><a href="/contact">Support Center</a></li>
-                </ul>
-            </div>
-            <div class="hub-section">
-                <h3>Integrations</h3>
-                <ul class="hub-links">
-                    <li><a href="/all-tools">API Access</a></li>
-                    <li><a href="/sitemap">Sitemap Index</a></li>
-                    <li><a href="/ads.txt">Publishers</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="container" style="margin-top: 80px;">
-            <details>
-                <summary>Why Use ConvertRocket? (The Ultimate SEO Guide)</summary>
-                <div class="seo-expanded">
-                    <p>ConvertRocket is the world's most advanced <strong>free all-in-one file converter</strong>. We utilize <strong>WebAssembly (WASM)</strong> and <strong>parallel processing</strong> to convert MP4, PDF, Image, and 200+ other formats with 10x speed. Unlike other tools, your files are processed <strong>100% locally</strong>, ensuring absolute privacy.</p>
-                </div>
-            </details>
-        </div>
-        
-        <div style="text-align: center; margin: 60px 0 20px; opacity: 0.2; font-size: 0.8rem; letter-spacing: 2px;">
-            PLATFORM STATUS: OPTIMAL • © 2026 CONVERTROCKET
-        </div>
-    </footer>
-
-
-
-
 </body>
-
 </html>

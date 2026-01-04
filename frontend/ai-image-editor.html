@@ -1,439 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Free AI-powered image editing tools. Background removal, face blur, object detection, smart filters - all running locally in your browser.">
-    <title>AI Image Editor - Free Smart Photo Editing Tools | ConvertRocket</title>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-    <script>
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
+    <script src="/static/js/minimalist-search.js" defer></script>
+</head>
+<body>
+
+    <div class="bg-animated"></div>
+    <section class="hero-minimal">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
+                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Ecosystem</h4>
+                    <ul>
+                        <li><a href="/">Universal Converter</a></li>
+                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
+                        <li><a href="/media-tools">Media Laboratory</a></li>
+                        <li><a href="/blogs">Expert Guides</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/contact">Support Center</a></li>
+                        <li><a href="/sitemap">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <details class="seo-collapsible">
+                <summary>Platform Architecture & SEO Data</summary>
+                <div class="seo-content-inner">
+                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
+                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
+                </div>
+            </details>
+            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
+                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
+            </div>
+        </div>
+    </footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+<script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.4">
-    <link rel="stylesheet" href="/static/css/mobile-optimizations.min.css?v=1.0">
-
-    <!-- TensorFlow.js + COCO-SSD for object detection -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
-
-    <!-- MediaPipe for face/selfie segmentation -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747/selfie_segmentation.js"
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747/selfie_segmentation.js"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.4.1646425229/face_detection.js"
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.4.1646425229/face_detection.js"
         crossorigin="anonymous"></script>
-
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23667eea'/%3E%3Cstop offset='100%25' stop-color='%23f093fb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Cpath d='M50 20 L70 50 L50 45 L50 80 L30 50 L50 55 Z' fill='white'/%3E%3C/svg%3E">
-
-    <style>
-        :root {
-            --primary: #667eea;
-            --secondary: #f093fb;
-            --dark: #0a0a0f;
-            --card-bg: rgba(20, 20, 30, 0.8);
-            --border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark);
-            color: white;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .header p {
-            color: #888;
-            font-size: 1.1rem;
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .sidebar {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            height: fit-content;
-            position: sticky;
-            top: 2rem;
-        }
-
-        .tools-section {
-            margin-bottom: 2rem;
-        }
-
-        .tools-section h3 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .tool-btn {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: white;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .tool-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-        }
-
-        .tool-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-color: transparent;
-        }
-
-        .tool-icon {
-            font-size: 1.3rem;
-        }
-
-        .canvas-area {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            min-height: 600px;
-        }
-
-        .upload-zone {
-            border: 2px dashed var(--border);
-            border-radius: 12px;
-            padding: 3rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 2rem;
-        }
-
-        .upload-zone:hover {
-            border-color: var(--primary);
-            background: rgba(102, 126, 234, 0.05);
-        }
-
-        .upload-zone.active {
-            display: none;
-        }
-
-        .canvas-container {
-            display: none;
-            position: relative;
-        }
-
-        .canvas-container.active {
-            display: block;
-        }
-
-        #mainCanvas,
-        #maskCanvas {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        #maskCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .controls {
-            margin-top: 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .control-group {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .control-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 0.5rem;
-        }
-
-        .slider {
-            width: 100%;
-            -webkit-appearance: none;
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            cursor: pointer;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .status {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 8px;
-            border: 1px solid var(--primary);
-            display: none;
-        }
-
-        .status.active {
-            display: block;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top: 3px solid var(--primary);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .detections-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-
-        .detection-box {
-            position: absolute;
-            border: 2px solid var(--primary);
-            background: rgba(102, 126, 234, 0.1);
-            backdrop-filter: blur(2px);
-        }
-
-        .detection-label {
-            position: absolute;
-            top: -25px;
-            left: 0;
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        @media (max-width: 968px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: static;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=1.3">
-    
-    
-    
-
-    <div class="container">
-        <div class="header">
-            <h1>🎨 AI Image Editor</h1>
-            <p>Professional image editing powered by AI - 100% free & runs in your browser</p>
-        </div>
-
-        <div class="main-grid">
-            <!-- Sidebar Tools -->
-            <div class="sidebar">
-                <div class="tools-section">
-                    <h3>Background Tools</h3>
-                    <button class="tool-btn" data-tool="remove-bg">
-                        <span class="tool-icon">🎭</span>
-                        <span>Remove Background</span>
-                    </button>
-                    <button class="tool-btn" data-tool="blur-bg">
-                        <span class="tool-icon">🌫️</span>
-                        <span>Blur Background</span>
-                    </button>
-                    <button class="tool-btn" data-tool="replace-bg">
-                        <span class="tool-icon">🖼️</span>
-                        <span>Replace Background</span>
-                    </button>
-                </div>
-
-                <div class="tools-section">
-                    <h3>Face Tools</h3>
-                    <button class="tool-btn" data-tool="blur-faces">
-                        <span class="tool-icon">😶‍🌫️</span>
-                        <span>Blur Faces</span>
-                    </button>
-                    <button class="tool-btn" data-tool="detect-faces">
-                        <span class="tool-icon">👤</span>
-                        <span>Detect Faces</span>
-                    </button>
-                </div>
-
-                <div class="tools-section">
-                    <h3>Object Detection</h3>
-                    <button class="tool-btn" data-tool="detect-objects">
-                        <span class="tool-icon">🔍</span>
-                        <span>Detect Objects</span>
-                    </button>
-                    <button class="tool-btn" data-tool="blur-objects">
-                        <span class="tool-icon">🚗</span>
-                        <span>Blur Objects</span>
-                    </button>
-                </div>
-
-                <div class="tools-section">
-                    <h3>Image Adjustments</h3>
-                    <button class="tool-btn" data-tool="brightness">
-                        <span class="tool-icon">☀️</span>
-                        <span>Brightness</span>
-                    </button>
-                    <button class="tool-btn" data-tool="contrast">
-                        <span class="tool-icon">🌓</span>
-                        <span>Contrast</span>
-                    </button>
-                    <button class="tool-btn" data-tool="sharpen">
-                        <span class="tool-icon">✨</span>
-                        <span>Sharpen</span>
-                    </button>
-                    <button class="tool-btn" data-tool="blur">
-                        <span class="tool-icon">💫</span>
-                        <span>Blur</span>
-                    </button>
-                </div>
-
-                <button class="btn btn-primary" id="downloadBtn" style="width: 100%; margin-top: 1rem; display: none;">
-                    ⬇️ Download Result
-                </button>
-            </div>
-
-            <!-- Main Canvas Area -->
-            <div class="canvas-area">
-                <div class="upload-zone" id="uploadZone">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">📸</div>
-                    <h3>Drop your image here</h3>
-                    <p style="color: #666; margin-top: 0.5rem;">or click to browse</p>
-                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
-                </div>
-
-                <div class="canvas-container" id="canvasContainer">
-                    <div style="position: relative;">
-                        <canvas id="mainCanvas"></canvas>
-                        <canvas id="maskCanvas" style="display: none;"></canvas>
-                        <div id="detectionsOverlay" class="detections-overlay"></div>
-                    </div>
-                </div>
-
-                <div class="controls" id="controls" style="display: none;"></div>
-
-                <div class="status" id="status"></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="/static/js/ai-image-editor.js" type="module"></script>
+<script src="/static/js/ai-image-editor.js" type="module"></script>
 </body>
-
 </html>
