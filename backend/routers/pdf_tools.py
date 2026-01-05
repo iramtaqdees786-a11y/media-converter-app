@@ -172,3 +172,26 @@ async def pdf_to_pdfa(file: UploadFile = File(...)):
     except Exception as e:
         if isinstance(e, HTTPException): raise e
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/protect")
+async def protect_pdf(
+    file: UploadFile = File(...),
+    password: str = Form(...)
+):
+    try:
+        if not file.filename.lower().endswith('.pdf'):
+            raise HTTPException(status_code=400, detail="File must be a PDF")
+        job_id = str(uuid.uuid4())
+        file_path = UPLOADS_DIR / f"{job_id}_{file.filename}"
+        with open(file_path, "wb") as f:
+            shutil.copyfileobj(file.file, f)
+        output_filename = f"protected_{job_id}.pdf"
+        output_path = await pdf_service.protect_pdf(file_path, password, output_filename)
+        os.remove(file_path)
+        return {
+            "success": True,
+            "filename": output_filename,
+            "download_url": f"/api/convert/file/{output_filename}"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

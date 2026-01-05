@@ -22,9 +22,10 @@ CONVERTERS = {
     ],
     'pdf': [
         {'from': 'pdf', 'to': 'word', 'desc': 'Editable Word stream from PDF', 'accepts': '.pdf'},
-        {'from': 'pdf', 'to': 'excel', 'desc': 'Data extraction to spreadsheets', 'accepts': '.pdf'},
+        {'from': 'pdf', 'to': 'xlsx', 'desc': 'Data extraction to spreadsheets', 'accepts': '.pdf'},
         {'from': 'word', 'to': 'pdf', 'desc': 'Document to PDF/A archive quality', 'accepts': '.doc,.docx'},
-        {'from': 'excel', 'to': 'pdf', 'desc': 'Spreadsheet to shareable PDF', 'accepts': '.xls,.xlsx'},
+        {'from': 'xlsx', 'to': 'pdf', 'desc': 'Spreadsheet to shareable PDF', 'accepts': '.xls,.xlsx'},
+        {'from': 'pdf', 'to': 'txt', 'desc': 'High-fidelity text extraction', 'accepts': '.pdf'},
         {'from': 'ppt', 'to': 'pdf', 'desc': 'Presentation to high-res PDF', 'accepts': '.ppt,.pptx'},
         {'from': 'jpg', 'to': 'pdf', 'desc': 'Scan images into one PDF', 'accepts': '.jpg,.jpeg', 'category': 'image'},
         {'from': 'png', 'to': 'pdf', 'desc': 'PNG archive in PDF container', 'accepts': '.png', 'category': 'image'},
@@ -96,7 +97,10 @@ def generate_page(from_format, to_format, description, accepts, category=''):
                 <input type="file" id="file-input" accept="{accepts}">
             </div>
 
-            <div id="file-info" style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);"></div>
+            <div id="file-info" style="display:none; margin-top:30px; text-align:center; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
+                <div id="file-details"></div>
+                <button id="proceed-btn" class="action-btn" style="margin-top:20px; width:100%;">Execute Lab Operation</button>
+            </div>
             
             <div id="progress-container" class="progress-container">
                 <div class="progress-fill" id="progress-fill"></div>
@@ -168,11 +172,19 @@ def generate_page(from_format, to_format, description, accepts, category=''):
             const down = document.getElementById('download-link');
             const info = document.getElementById('file-info');
             
-            input.addEventListener('change', async (e) => {{
+            input.addEventListener('change', (e) => {{
                 if (e.target.files.length === 0) return;
                 const file = e.target.files[0];
-                info.innerHTML = `<strong>File Identified:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
+                document.getElementById('file-details').innerHTML = `<strong>File Identified:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
                 info.style.display = 'block';
+                zone.style.display = 'none';
+            }});
+
+            document.getElementById('proceed-btn').addEventListener('click', async () => {{
+                const file = input.files[0];
+                if(!file) return;
+
+                info.style.display = 'none';
                 progress.classList.add('active');
                 
                 const formData = new FormData();
@@ -202,11 +214,15 @@ def generate_page(from_format, to_format, description, accepts, category=''):
                             down.href = d.download_url;
                             down.click(); // Auto save
                         }}, 600);
+                    }} else {{
+                        alert('Laboratory error: ' + (d.message || 'Unknown error'));
+                        location.reload();
                     }}
                 }} catch (err) {{ 
                     alert('Error in Lab: ' + err.message); 
                     clearInterval(interval);
                     progress.classList.remove('active');
+                    location.reload();
                 }}
             }});
         
@@ -249,7 +265,7 @@ def main():
             fname, html = generate_page(conv['from'], conv['to'], conv['desc'], conv['accepts'], conv.get('category', cat))
             with open(os.path.join(output_dir, fname), 'w', encoding='utf-8') as f:
                 f.write(html)
-            print(f"ION V4 Generated: {{fname}}")
+            print(f"ION V4 Generated: {fname}")
 
 if __name__ == '__main__':
     main()

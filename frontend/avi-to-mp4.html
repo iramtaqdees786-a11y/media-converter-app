@@ -36,7 +36,10 @@
                 <input type="file" id="file-input" accept=".avi">
             </div>
 
-            <div id="file-info" style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);"></div>
+            <div id="file-info" style="display:none; margin-top:30px; text-align:center; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
+                <div id="file-details"></div>
+                <button id="proceed-btn" class="action-btn" style="margin-top:20px; width:100%;">Execute Lab Operation</button>
+            </div>
             
             <div id="progress-container" class="progress-container">
                 <div class="progress-fill" id="progress-fill"></div>
@@ -108,11 +111,19 @@
             const down = document.getElementById('download-link');
             const info = document.getElementById('file-info');
             
-            input.addEventListener('change', async (e) => {
+            input.addEventListener('change', (e) => {
                 if (e.target.files.length === 0) return;
                 const file = e.target.files[0];
-                info.innerHTML = `<strong>File Identified:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
+                document.getElementById('file-details').innerHTML = `<strong>File Identified:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
                 info.style.display = 'block';
+                zone.style.display = 'none';
+            });
+
+            document.getElementById('proceed-btn').addEventListener('click', async () => {
+                const file = input.files[0];
+                if(!file) return;
+
+                info.style.display = 'none';
                 progress.classList.add('active');
                 
                 const formData = new FormData();
@@ -142,11 +153,15 @@
                             down.href = d.download_url;
                             down.click(); // Auto save
                         }, 600);
+                    } else {
+                        alert('Laboratory error: ' + (d.message || 'Unknown error'));
+                        location.reload();
                     }
                 } catch (err) { 
                     alert('Error in Lab: ' + err.message); 
                     clearInterval(interval);
                     progress.classList.remove('active');
+                    location.reload();
                 }
             });
         

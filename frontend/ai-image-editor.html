@@ -102,19 +102,19 @@
                 </div>
 
                 <div class="ai-toolbar" id="ai-tools">
-                    <button class="ai-op-btn" id="op-remove-bg">
+                    <button class="ai-op-btn" data-tool="remove-bg" id="op-remove-bg">
                         <span class="icon">🪄</span>
                         Remove BG
                     </button>
-                    <button class="ai-op-btn" id="op-blur-face">
+                    <button class="ai-op-btn" data-tool="blur-faces" id="op-blur-face">
                         <span class="icon">👤</span>
                         Blur Faces
                     </button>
-                    <button class="ai-op-btn" id="op-grayscale">
+                    <button class="ai-op-btn" data-tool="grayscale" id="op-grayscale">
                         <span class="icon">🌑</span>
                         Grayscale
                     </button>
-                    <button class="ai-op-btn" id="op-enhance">
+                    <button class="ai-op-btn" data-tool="enhance" id="op-enhance">
                         <span class="icon">✨</span>
                         Auto-Enhance
                     </button>
@@ -137,7 +137,8 @@
                 used for training data. <strong>ConvertRocket AI Laboratory</strong> is different. We utilize
                 <strong>TensorFlow.js</strong> and <strong>MediaPipe</strong> architectures to run complex neural
                 networks directly on your device's GPU/CPU. When you use our <strong>AI Image Editor</strong>, your data
-                literally never leaves your browser.</p>
+                literally never leaves your browser.
+            </p>
 
             <h3>Magic Background Removal</h3>
             <p>Our background removal tool uses <em>Selfie Segmentation</em> models to accurately isolate subjects from

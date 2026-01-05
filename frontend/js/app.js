@@ -448,7 +448,8 @@ function handleFileSelect(file) {
         updateTargetFormats(category, ext);
         if (elements.convertBtn) elements.convertBtn.disabled = false;
 
-        // Show controls
+        // Show controls and hide upload zone for clear 4-step UX
+        if (elements.uploadZone) elements.uploadZone.style.display = 'none';
         const controls = document.getElementById('convert-controls');
         if (controls) controls.style.display = 'block';
 
@@ -522,6 +523,12 @@ async function startConversion() {
     state.isProcessing = true;
 
     elements.convertBtn.disabled = true;
+
+    // UI Flip: Hide info/controls, show progress
+    if (elements.selectedFileInfo) elements.selectedFileInfo.style.display = 'none';
+    const controls = document.getElementById('convert-controls');
+    if (controls) controls.style.display = 'none';
+
     showStatus('convert-status', getTranslation('msg_uploading', 'Initializing secure laboratory conversion...'), 'loading');
     showProgress('convert-progress', 0);
     elements.convertResult.classList.remove('active');

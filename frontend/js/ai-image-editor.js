@@ -202,7 +202,7 @@ class AIImageEditor {
         btn.classList.add('active');
 
         const tool = btn.dataset.tool;
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.classList.add('active');
 
         try {
@@ -213,8 +213,11 @@ class AIImageEditor {
                 case 'blur-bg':
                     await this.blurBackground();
                     break;
-                case 'replace-bg':
-                    await this.replaceBackground();
+                case 'grayscale':
+                    this.applyGrayscale();
+                    break;
+                case 'enhance':
+                    this.applyEnhance();
                     break;
                 case 'blur-faces':
                     await this.blurFaces();
@@ -252,7 +255,7 @@ class AIImageEditor {
      * Remove background using MediaPipe Selfie Segmentation
      */
     async removeBackground() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Removing background...</p></div>';
 
         const mask = await this.getSegmentationMask();
@@ -275,7 +278,7 @@ class AIImageEditor {
      * Blur background
      */
     async blurBackground() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Blurring background...</p></div>';
 
         const mask = await this.getSegmentationMask();
@@ -308,7 +311,7 @@ class AIImageEditor {
      * Replace background with color/gradient
      */
     async replaceBackground() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Replacing background...</p></div>';
 
         const mask = await this.getSegmentationMask();
@@ -344,7 +347,7 @@ class AIImageEditor {
      * Blur detected faces
      */
     async blurFaces() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Detecting and blurring faces...</p></div>';
 
         const faces = await this.detectFacesInternal();
@@ -369,7 +372,7 @@ class AIImageEditor {
      * Detect and visualize faces
      */
     async detectFaces() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Detecting faces...</p></div>';
 
         const faces = await this.detectFacesInternal();
@@ -382,7 +385,7 @@ class AIImageEditor {
      * Detect objects using COCO-SSD
      */
     async detectObjects() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Detecting objects...</p></div>';
 
         const objects = await this.detectObjectsInternal();
@@ -395,7 +398,7 @@ class AIImageEditor {
      * Blur detected objects
      */
     async blurObjects() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
         statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Detecting and blurring objects...</p></div>';
 
         const objects = await this.detectObjectsInternal();
@@ -479,6 +482,29 @@ class AIImageEditor {
         const predictions = await this.cocoSsd.detect(this.canvas);
         this.cachedDetections.objects = predictions;
         return predictions;
+    }
+
+    /**
+     * Apply high-fidelity grayscale
+     */
+    applyGrayscale() {
+        const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
+            const avg = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+            data[i] = avg; data[i + 1] = avg; data[i + 2] = avg;
+        }
+        this.ctx.putImageData(imageData, 0, 0);
+    }
+
+    /**
+     * Auto-enhance (Contrast + Sharpen boost)
+     */
+    applyEnhance() {
+        // Boost contrast slightly
+        this.applyContrast(15);
+        // Sharpen once
+        this.applySharpen();
     }
 
     /**

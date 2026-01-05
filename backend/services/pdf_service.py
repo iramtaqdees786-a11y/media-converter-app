@@ -213,3 +213,15 @@ class PDFService:
                 pass
         
         raise NotImplementedError("PDF/A conversion requires Ghostscript.")
+
+    async def protect_pdf(self, file_path: Path, password: str, output_filename: str) -> Path:
+        """Protect PDF with a password."""
+        reader = PdfReader(file_path)
+        writer = PdfWriter()
+        for page in reader.pages:
+            writer.add_page(page)
+        writer.encrypt(password)
+        output_path = self.converted_dir / output_filename
+        with open(output_path, "wb") as f_out:
+            writer.write(f_out)
+        return output_path
