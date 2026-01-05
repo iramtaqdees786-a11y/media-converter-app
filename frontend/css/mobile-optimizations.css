@@ -1,571 +1,126 @@
-/* ============================================
-   ConvertRocket - Mobile & iOS Optimizations
-   Improved accessibility, performance, and UX
-   ============================================ */
+/* 
+   ============================================================
+   ConvertRocket - Ultimate Mobile Optimizations
+   Fixes orientation, touch targets, and viewport issues
+   ============================================================ */
 
-/* iOS Safe Area Support */
 :root {
-    --safe-area-inset-top: env(safe-area-inset-top);
-    --safe-area-inset-right: env(safe-area-inset-right);
-    --safe-area-inset-bottom: env(safe-area-inset-bottom);
-    --safe-area-inset-left: env(safe-area-inset-left);
+    --safe-bottom: env(safe-area-inset-bottom);
 }
 
-/* Prevent text size adjustment on iOS */
-html {
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-}
-
-/* Smooth scrolling with momentum on iOS */
-body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-}
-
-/* Optimize font rendering on mobile */
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-}
-
-/* Improve tap targets - minimum 44x44px for accessibility */
-.btn,
-.tab-btn,
-.nav-link,
-.lang-btn,
-.platform-badge,
-button,
-a {
-    min-height: 44px;
-    min-width: 44px;
-}
-
-/* Remove tap highlight on mobile */
-* {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-}
-
-/* Keep tap highlight for interactive elements with custom color */
-.btn,
-.tab-btn,
-.nav-link,
-button,
-a {
-    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
-}
-
-/* Tablet Optimizations (768px - 1024px) */
-@media (max-width: 1024px) {
-    :root {
-        --spacing-xs: 0.25rem;
-        --spacing-sm: 0.5rem;
-        --spacing-md: 0.875rem;
-        --spacing-lg: 1.25rem;
-        --spacing-xl: 1.75rem;
-        --spacing-2xl: 2.5rem;
-    }
-
+@media (max-width: 480px) {
     .container {
-        padding: var(--spacing-lg);
+        padding: 0 15px;
     }
 
-    .brand-name {
+    .hero-minimal {
+        padding: 60px 0 30px;
+    }
+
+    .hero-minimal h1 {
         font-size: 2.5rem;
+        letter-spacing: -1.5px;
     }
 
-    .hero-title .title-line2 {
-        font-size: 2.5rem;
+    .search-input {
+        padding: 18px 25px !important;
+        font-size: 1.05rem !important;
+        border-radius: 18px !important;
     }
 
-    .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-}
-
-/* Mobile Optimizations (max-width: 768px) */
-@media (max-width: 768px) {
-
-    /* Reduce spacing for mobile */
-    :root {
-        --spacing-xs: 0.2rem;
-        --spacing-sm: 0.4rem;
-        --spacing-md: 0.75rem;
-        --spacing-lg: 1rem;
-        --spacing-xl: 1.5rem;
-        --spacing-2xl: 2rem;
+    .tool-card {
+        padding: 20px;
+        border-radius: 20px;
     }
 
-    /* Container adjustments */
-    .container {
-        padding: var(--spacing-md);
-        padding-top: calc(var(--spacing-md) + var(--safe-area-inset-top));
-        padding-bottom: calc(var(--spacing-md) + var(--safe-area-inset-bottom));
-    }
-
-    /* Top bar mobile optimization */
-    .top-bar {
-        padding: var(--spacing-sm) var(--spacing-md);
-        padding-top: calc(var(--spacing-sm) + var(--safe-area-inset-top));
-    }
-
-    .top-bar-content {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-
-    .brand-small {
-        font-size: 1rem;
-    }
-
-    /* Navigation - Stack vertically on mobile */
-    .main-nav {
-        width: 100%;
-        justify-content: space-around;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .main-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .nav-link {
-        padding: var(--spacing-sm) var(--spacing-md);
-        font-size: 0.85rem;
-        white-space: nowrap;
-    }
-
-    /* Header mobile optimization */
-    .header {
-        padding: var(--spacing-lg) 0;
-        margin-bottom: var(--spacing-md);
-    }
-
-    .logo-icon {
+    .tool-card .icon {
         width: 50px;
         height: 50px;
-    }
-
-    .brand-name {
-        font-size: 2rem;
-        letter-spacing: -1px;
-    }
-
-    .tagline {
-        font-size: 1rem;
-        padding: 0 var(--spacing-md);
-    }
-
-    /* Trust badges - wrap better on mobile */
-    .trust-badges {
-        gap: var(--spacing-sm);
-    }
-
-    .badge {
-        font-size: 0.75rem;
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
-
-    /* Tabs - horizontal scroll on mobile */
-    .tabs {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        justify-content: flex-start;
-        padding-bottom: var(--spacing-sm);
-        margin-bottom: var(--spacing-md);
-    }
-
-    .tabs::-webkit-scrollbar {
-        display: none;
-    }
-
-    .tab-btn {
-        padding: var(--spacing-sm) var(--spacing-lg);
-        font-size: 0.9rem;
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-
-    .tab-btn .icon {
-        font-size: 1rem;
-    }
-
-    /* Cards - reduce padding */
-    .card {
-        padding: var(--spacing-lg);
-        margin-bottom: var(--spacing-md);
-    }
-
-    .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-    }
-
-    .card-icon {
-        width: 48px;
-        height: 48px;
         font-size: 1.5rem;
     }
 
-    .card-title {
-        font-size: 1.25rem;
+    .tool-card .info h3 {
+        font-size: 1.05rem;
     }
 
-    /* Form elements - larger for touch */
-    .form-input,
-    .form-select {
-        padding: var(--spacing-md);
-        font-size: 16px;
-        /* Prevents zoom on iOS */
-        border-width: 2px;
+    .converter-box {
+        padding: 30px 15px;
+        border-radius: 25px;
+        margin-bottom: 40px;
     }
 
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-
-    /* Buttons - larger and full width on mobile */
-    .btn {
-        padding: var(--spacing-md) var(--spacing-lg);
-        font-size: 1rem;
-        min-height: 48px;
-    }
-
-    .btn-lg {
-        padding: var(--spacing-lg) var(--spacing-xl);
-        font-size: 1.1rem;
-        min-height: 52px;
-    }
-
-    .button-row {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-
-    .button-row .btn-lg {
-        width: 100%;
-    }
-
-    /* Upload zone - smaller on mobile */
     .upload-zone {
-        padding: var(--spacing-xl);
+        padding: 40px 20px;
     }
 
-    .upload-icon {
-        font-size: 3rem;
-    }
-
-    .upload-text {
+    .action-btn {
+        padding: 18px 30px;
         font-size: 1rem;
     }
 
-    .upload-hint {
-        font-size: 0.85rem;
-    }
-
-    /* Video preview - stack vertically */
-    .video-preview.active {
-        flex-direction: column;
-    }
-
-    .video-thumbnail {
-        width: 100%;
-        height: 180px;
-    }
-
-    /* Format grid - wrap better */
-    .format-grid {
-        gap: var(--spacing-xs);
-    }
-
-    .format-badge {
-        font-size: 0.75rem;
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
-
-    /* Features grid - single column on mobile */
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-
-    /* Conversion grid - 2 columns on mobile */
-    .conversion-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-md);
-    }
-
-    .conversion-card {
-        padding: var(--spacing-md);
-        min-height: 120px;
-    }
-
-    .conversion-card-icon {
-        font-size: 2rem;
-        margin-bottom: var(--spacing-sm);
-    }
-
-    .conversion-card-title {
-        font-size: 0.85rem;
-    }
-
-    /* FAQ - single column */
-    .faq-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .faq-title {
-        font-size: 1.5rem;
-    }
-
-    /* Hero title mobile */
-    .hero-title .title-line1 {
-        font-size: 1.5rem;
-        letter-spacing: 4px;
-    }
-
-    .hero-title .title-line2 {
-        font-size: 2rem;
-    }
-
-    .hero-icon {
-        font-size: 3.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.1rem;
-    }
-
-    /* Feature badges - 2 columns on mobile */
-    .feature-badges {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-sm);
-    }
-
-    .feature-badge {
-        padding: var(--spacing-md);
-    }
-
-    .feature-badge .badge-icon {
-        font-size: 1.5rem;
-    }
-
-    .feature-badge .badge-text {
-        font-size: 0.75rem;
-    }
-
-    /* Language dropdown - full width on mobile */
-    .lang-dropdown {
-        width: 90vw;
-        max-width: 320px;
-        right: 50%;
-        transform: translateX(50%) translateY(-10px);
-    }
-
-    .lang-dropdown.active {
-        transform: translateX(50%) translateY(0);
-    }
-
-    /* Platform list - wrap better */
-    .platform-list {
-        gap: var(--spacing-xs);
-    }
-
-    .platform-badge {
-        font-size: 0.8rem;
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
-
-    /* Footer */
-    .footer {
-        padding: var(--spacing-xl) 0;
-        padding-bottom: calc(var(--spacing-xl) + var(--safe-area-inset-bottom));
-    }
-
-    .footer-links {
-        flex-direction: column;
-        gap: var(--spacing-xs);
-    }
-
-    .footer-divider {
-        display: none;
-    }
-
-    /* SEO content - reduce padding */
-    .seo-content {
-        padding: var(--spacing-lg);
-    }
-
-    .seo-content h2 {
-        font-size: 1.1rem;
-    }
-
-    .seo-content p {
-        font-size: 0.9rem;
-    }
-
-    /* Result card mobile */
-    .result-info {
-        grid-template-columns: 1fr;
-    }
-
-    /* Reduce animations on mobile for performance */
-    .particle {
-        display: none;
-    }
-
-    .bg-animated::before {
-        animation-duration: 40s;
-    }
-}
-
-/* Small Mobile Optimizations (max-width: 480px) */
-@media (max-width: 480px) {
-    .brand-name {
-        font-size: 1.75rem;
-    }
-
-    .hero-title .title-line1 {
-        font-size: 1.25rem;
-        letter-spacing: 2px;
-    }
-
-    .hero-title .title-line2 {
-        font-size: 1.75rem;
-    }
-
-    .conversion-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .feature-badges {
-        grid-template-columns: 1fr;
-    }
-
-    .tabs {
-        gap: var(--spacing-xs);
-    }
-
-    .tab-btn {
-        padding: var(--spacing-sm) var(--spacing-md);
-        font-size: 0.85rem;
-    }
-}
-
-/* Landscape mobile optimization */
-@media (max-height: 500px) and (orientation: landscape) {
-    .header {
-        padding: var(--spacing-md) 0;
-    }
-
-    .logo-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .brand-name {
-        font-size: 1.5rem;
-    }
-
-    .hero-icon {
-        font-size: 2.5rem;
-    }
-
-    .card {
-        padding: var(--spacing-md);
-    }
-}
-
-/* High DPI / Retina displays */
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
+    /* Fix orientation issues */
+    html,
     body {
-        -webkit-font-smoothing: subpixel-antialiased;
+        height: -webkit-fill-available;
+    }
+
+    body {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    /* Footer Mobile Fix */
+    .footer-grid {
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-col h4 {
+        margin-bottom: 20px;
+    }
+
+    /* Ensure modals/results don't overflow */
+    .search-results {
+        max-height: 70vh;
+        border-radius: 20px;
     }
 }
 
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+/* Landscape Mode Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-minimal {
+        padding: 40px 0 20px;
     }
 
-    .particle,
-    .bg-animated::before {
-        animation: none !important;
+    .hero-minimal h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .converter-box {
+        padding: 30px;
     }
 }
 
-/* Dark mode preference */
-@media (prefers-color-scheme: dark) {
-    /* Already handled in main styles.css */
+/* Large Phone Optimizations */
+@media (min-width: 481px) and (max-width: 768px) {
+    .grid-tools {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-/* Focus visible for keyboard navigation */
-:focus-visible {
-    outline: 3px solid var(--accent-purple);
-    outline-offset: 2px;
+/* Tap Target Improvements */
+a,
+button,
+.tool-card,
+.search-item {
+    cursor: pointer;
+    touch-action: manipulation;
 }
 
-/* Improve input focus on mobile */
-.form-input:focus,
-.form-select:focus {
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-}
-
-/* Loading state optimization for mobile */
-.btn:disabled {
-    opacity: 0.6;
-}
-
-/* Sticky elements on mobile */
-.top-bar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-/* Performance: GPU acceleration for animations */
-.btn,
-.tab-btn,
-.card,
-.conversion-card,
-.feature-badge {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-/* Optimize images for mobile */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Better text selection on mobile */
-::selection {
-    background: rgba(102, 126, 234, 0.3);
-    color: var(--text-primary);
-}
-
-::-moz-selection {
-    background: rgba(102, 126, 234, 0.3);
-    color: var(--text-primary);
+/* Prevent text zoom on input focus in iOS */
+input[type="text"],
+input[type="url"],
+select {
+    font-size: 16px !important;
 }

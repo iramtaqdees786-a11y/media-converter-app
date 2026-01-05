@@ -1,86 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
-    <script src="/static/js/minimalist-search.js" defer></script>
-</head>
-<body>
-
-    <div class="bg-animated"></div>
-    <section class="hero-minimal">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
-            </div>
-        </div>
-    </footer>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-<script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "WAV to MP3 Converter",
-      "applicationCategory": "MultimediaApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "15000" }
-    }
-    </script>
-<script>
-        // Specific conversion handler
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAV to MP3 Converter - Free & Fast | ConvertRocket</title>
+    <meta name="description" content="Convert WAV to MP3 for free. No signup, fast and secure file conversion laboratory.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <script src="/static/js/minimalist-search.js" defer></script>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    
+    <section class="hero-minimal" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="converter-box">
+            <h2 style="margin-bottom: 30px; font-weight: 800; font-size: 2rem;">WAV <span style="color:var(--neon-cyan)">→</span> MP3</h2>
+            
+            <div class="upload-zone" id="upload-zone">
+                <div class="icon">🎵</div>
+                <p style="font-size: 1.2rem; font-weight: 700;">Drop your WAV file here</p>
+                <p style="opacity: 0.5;">or click to select from your device</p>
+                <input type="file" id="file-input" accept=".wav" style="display: none;">
+            </div>
+
+            <div id="file-info" style="display: none; margin-top: 30px; text-align: left; padding: 20px; border: 1px solid var(--glass-border); border-radius: 20px; background: rgba(255,255,255,0.02);"></div>
+            
+            <div id="progress-container" class="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
+                <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.8rem; font-weight:700;">
+                    <span id="progress-message">Preparing...</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+            </div>
+
+            <div id="result-container" style="display: none; margin-top: 30px;">
+                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:800;">✅ CONVERSION SUCCESSFUL</div>
+                <div id="result-filename" style="margin-bottom:20px; opacity:0.7;"></div>
+                <a href="#" id="download-link" class="action-btn" style="display: inline-block; text-decoration:none;" download>Download MP3</a>
+            </div>
+
+            <div id="status-message" class="status-message"></div>
+        </div>
+
+        <div class="tool-section">
+            <div class="section-head"><h2>Related Lab Tools</h2></div>
+            <div class="grid-tools">
+                <a href="/video-converter" class="tool-card" style="padding:15px; border-radius:15px;">
+                    <div class="info"><h3>Video Downloader</h3><p>Fast processing</p></div>
+                </a>
+<a href="/mp3-converter" class="tool-card" style="padding:15px; border-radius:15px;">
+                    <div class="info"><h3>MP3 Converter</h3><p>Fast processing</p></div>
+                </a>
+<a href="/ai-image-editor" class="tool-card" style="padding:15px; border-radius:15px;">
+                    <div class="info"><h3>AI Image Editor</h3><p>Fast processing</p></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tool-section" style="opacity:0.6; font-size: 0.9rem;">
+            <h2>About WAV to MP3 Conversion</h2>
+            <p>ConvertRocket provides high-fidelity conversion from WAV to MP3. 
+               Our cloud-based laboratory uses enterprise-grade engines to ensure every bit of your data is preserved. 
+               100% Privacy - nothing is stored on our servers longer than 60 minutes.</p>
+        </div>
+    </div>
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • ALL-IN-ONE LABORATORY
+            </div>
+        </div>
+    </footer>
+
+    <script>
         const API_BASE = '';
         const TARGET_FORMAT = 'mp3';
-        const SOURCE_FORMAT = 'wav';
         
         document.addEventListener('DOMContentLoaded', () => {
             const uploadZone = document.getElementById('upload-zone');
@@ -95,89 +107,34 @@
             const resultFilename = document.getElementById('result-filename');
             const statusMessage = document.getElementById('status-message');
             
-            // Upload zone click
             uploadZone.addEventListener('click', () => fileInput.click());
             
-            // Drag and drop
-            uploadZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadZone.classList.add('dragover');
-            });
-            
-            uploadZone.addEventListener('dragleave', () => {
-                uploadZone.classList.remove('dragover');
-            });
-            
-            uploadZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadZone.classList.remove('dragover');
-                if (e.dataTransfer.files.length > 0) {
-                    handleFile(e.dataTransfer.files[0]);
-                }
-            });
-            
-            // File input change
             fileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    handleFile(e.target.files[0]);
-                }
+                if (e.target.files.length > 0) handleFile(e.target.files[0]);
             });
-            
-            // Share button
-            const shareBtn = document.getElementById('share-btn');
-            if (shareBtn) {
-                shareBtn.addEventListener('click', async () => {
-                    try {
-                        await navigator.clipboard.writeText(window.location.href);
-                        shareBtn.innerHTML = '✅ <span>Copied!</span>';
-                        setTimeout(() => {
-                            shareBtn.innerHTML = '📤 <span>Share</span>';
-                        }, 2000);
-                    } catch (err) {
-                        console.error('Share failed:', err);
-                    }
-                });
-            }
-            
+
             async function handleFile(file) {
-                // Show file info
-                const ext = file.name.split('.').pop().toLowerCase();
-                fileInfo.innerHTML = `
-                    <div class="result-header">
-                        <div class="result-icon">🎵</div>
-                        <div>
-                            <strong>${escapeHtml(file.name)}</strong>
-                            <div class="text-muted">${formatFileSize(file.size)} • ${ext.toUpperCase()}</div>
-                        </div>
-                    </div>
-                `;
+                fileInfo.innerHTML = `<strong>Selected:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
                 fileInfo.style.display = 'block';
-                
-                // Reset UI
                 resultContainer.style.display = 'none';
-                statusMessage.className = 'status-message';
                 
-                // Start conversion
-                await convertFile(file);
-            }
-            
-            async function convertFile(file) {
-                progressContainer.style.display = 'block';
+                progressContainer.classList.add('active');
                 progressMessage.textContent = 'Uploading...';
                 
                 const formData = new FormData();
                 formData.append('file', file);
                 formData.append('target_format', TARGET_FORMAT);
                 
-                // Simulate progress
                 let progress = 0;
                 const progressInterval = setInterval(() => {
-                    progress = Math.min(progress + Math.random() * 10, 90);
-                    updateProgress(progress);
-                }, 300);
+                    progress = Math.min(progress + Math.random() * 10, 95);
+                    progressFill.style.width = progress + '%';
+                    progressPercent.textContent = Math.round(progress) + '%';
+                    if(progress > 40) progressMessage.textContent = 'Processing in Lab...';
+                }, 400);
                 
                 try {
-                    const response = await fetch(`${API_BASE}/api/convert/upload`, {
+                    const response = await fetch(API_BASE + '/api/convert/upload', {
                         method: 'POST',
                         body: formData
                     });
@@ -186,63 +143,25 @@
                     const data = await response.json();
                     
                     if (data.success) {
-                        // Show 100% completion
-                        updateProgress(100);
-                        progressMessage.textContent = 'Complete!';
+                        progressFill.style.width = '100%';
+                        progressPercent.textContent = '100%';
+                        progressMessage.textContent = 'Ready!';
                         
-                        // Show result
                         setTimeout(() => {
-                            progressContainer.style.display = 'none';
+                            progressContainer.classList.remove('active');
                             resultContainer.style.display = 'block';
                             resultFilename.textContent = data.converted_file;
                             downloadLink.href = data.download_url;
-                            downloadLink.download = data.converted_file;
-                            downloadLink.style.display = 'block';
-                            
-                            // AUTO-DOWNLOAD - Downloads automatically without user clicking
-                            setTimeout(() => {
-                                downloadLink.click();
-                            }, 500);
-                        }, 800);
+                            downloadLink.click(); // Auto download
+                        }, 500);
                     } else {
-                        throw new Error(data.message || 'Conversion failed');
+                        throw new Error(data.message || 'Error occurred');
                     }
                 } catch (error) {
                     clearInterval(progressInterval);
-                    progressContainer.style.display = 'none';
-                    showStatus(error.message || 'Something went wrong. Please try again!', 'error');
+                    statusMessage.textContent = 'Error: ' + error.message;
+                    statusMessage.classList.add('active', 'error');
                 }
-            }
-            
-            function updateProgress(value) {
-                progressFill.style.width = `${value}%`;
-                progressPercent.textContent = `${Math.round(value)}%`;
-                if (value > 30) progressMessage.textContent = 'Converting...';
-            }
-            
-            function showStatus(message, type) {
-                statusMessage.className = `status-message active ${type}`;
-                statusMessage.innerHTML = `<span>${message}</span>`;
-                setTimeout(() => {
-                    statusMessage.classList.remove('active');
-                }, 5000);
-            }
-            
-            function formatFileSize(bytes) {
-                const units = ['B', 'KB', 'MB', 'GB'];
-                let size = bytes;
-                let unitIndex = 0;
-                while (size >= 1024 && unitIndex < units.length - 1) {
-                    size /= 1024;
-                    unitIndex++;
-                }
-                return `${size.toFixed(2)} ${units[unitIndex]}`;
-            }
-            
-            function escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
             }
         });
     </script>

@@ -1,97 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
-    <script src="/static/js/minimalist-search.js" defer></script>
-</head>
-<body>
-
-    <div class="bg-animated"></div>
-    <section class="hero-minimal">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
-            </div>
-        </div>
-    </footer>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-<script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ConvertRocket PDF Tools",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "ProductivityApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    }
-    </script>
-<script>
-        // Simple search functionality
-        const searchInput = document.getElementById('global-search');
-        const toolCards = document.querySelectorAll('.tool-card');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Power Tools - Complete Online Laboratory | ConvertRocket</title>
+    <meta name="description"
+        content="All-in-one PDF laboratory. Merge, compress, convert to Word, Excel, Grayscale and more. Free and Private.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <script src="/static/js/minimalist-search.js" defer></script>
+</head>
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            toolCards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                if (name.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    </script>
+<body>
+    <div class="bg-animated"></div>
+
+    <section class="hero-minimal" style="padding: 100px 0 60px;">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <p style="margin-top:-20px; color:var(--neon-cyan); font-weight:700; letter-spacing:2px;">PDF LABORATORY</p>
+            <div class="search-wrapper" style="margin-top:30px;">
+                <input type="text" id="global-search" class="search-input" placeholder="Search PDF tools...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="tool-section">
+            <div class="grid-tools">
+                <a href="/pdf-compress" class="tool-card">
+                    <div class="icon">📦</div>
+                    <div class="info">
+                        <h3>Compress PDF</h3>
+                        <p>Shrink file size instantly</p>
+                    </div>
+                </a>
+                <a href="/pdf-merge" class="tool-card">
+                    <div class="icon">🔗</div>
+                    <div class="info">
+                        <h3>Merge PDFs</h3>
+                        <p>Combine multiple into one</p>
+                    </div>
+                </a>
+                <a href="/pdf-to-word" class="tool-card">
+                    <div class="icon">📄</div>
+                    <div class="info">
+                        <h3>PDF to Word</h3>
+                        <p>Editable document export</p>
+                    </div>
+                </a>
+                <a href="/pdf-to-excel" class="tool-card">
+                    <div class="icon">📊</div>
+                    <div class="info">
+                        <h3>PDF to Excel</h3>
+                        <p>Extract data to tables</p>
+                    </div>
+                </a>
+                <a href="/pdf-remove-pages" class="tool-card">
+                    <div class="icon">🗑️</div>
+                    <div class="info">
+                        <h3>Remove Pages</h3>
+                        <p>Delete unwanted parts</p>
+                    </div>
+                </a>
+                <a href="/pdf-grayscale" class="tool-card">
+                    <div class="icon">🌑</div>
+                    <div class="info">
+                        <h3>PDF Grayscale</h3>
+                        <p>Save ink, convert to B&W</p>
+                    </div>
+                </a>
+                <a href="/pdf-pdfa" class="tool-card">
+                    <div class="icon">🏛️</div>
+                    <div class="info">
+                        <h3>PDF to PDF/A</h3>
+                        <p>Archive grade format</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tool-section">
+            <div class="section-head">
+                <h2>Why ConvertRocket PDF?</h2>
+            </div>
+            <div class="grid-tools">
+                <div class="tool-card">
+                    <div class="icon">🚀</div>
+                    <div class="info">
+                        <h3>WASM Powered</h3>
+                        <p>Most tools run directly in your browser for 0-latency.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="icon">🛡️</div>
+                    <div class="info">
+                        <h3>Secure</h3>
+                        <p>No account needed. No tracking. SSL Encrypted.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • PDF ENGINE V4
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>

@@ -1,161 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
-    <script src="/static/js/minimalist-search.js" defer></script>
-</head>
-<body>
-
-    <div class="bg-animated"></div>
-    <section class="hero-minimal">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
-<div class="container"><div class="converter-box"><div class="upload-container" onclick="document.getElementById('compress-input').click()">
-            <div style="font-size: 48px; margin-bottom: 10px;">📄</div>
-            <h3>Drop PDF Here</h3>
-            <p style="color: #aaa;">to compress instantly</p>
-            <div id="file-name" class="file-info"></div>
-            <input type="file" id="compress-input" accept=".pdf" class="file-input" style="display:none;">
-        </div>
-
-        <div style="text-align: center;">
-            <button class="action-btn" onclick="executeCompress()">Compress PDF</button>
-        </div>
-
-        <div id="result-area" style="text-align: center; margin-top: 30px;"></div></div></div>
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
-            </div>
-        </div>
-    </footer>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-<script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
-<script src="/static/js/seo-hacks.min.js" defer></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "ConvertRocket PDF Compressor",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "ProductivityApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Compress PDF Online",
-      "step": [
-        { "@type": "HowToStep", "name": "Upload PDF", "text": "Select the PDF file you wish to compress." },
-        { "@type": "HowToStep", "name": "Optimize", "text": "Click 'Compress PDF' to reduce its size." },
-        { "@type": "HowToStep", "name": "Save", "text": "The smaller PDF will download automatically." }
-      ]
-    }
-  ]
-}
-</script>
-<script>
-        const input = document.getElementById('compress-input');
-        input.addEventListener('change', () => {
-            if (input.files[0]) {
-                document.getElementById('file-name').textContent = `Selected: ${input.files[0].name}`;
-                document.querySelector('.action-btn').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress PDF Online - Fast & Secure Reduction | ConvertRocket</title>
+    <meta name="description"
+        content="Reduce PDF file size without losing quality. Optimized compression for web and email. 100% Free and Private.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <script src="/static/js/minimalist-search.js" defer></script>
+</head>
 
-        async function executeCompress() {
-            if (!input.files[0]) return alert("Please select a file first.");
+<body>
+    <div class="bg-animated"></div>
 
-            const formData = new FormData();
-            formData.append('file', input.files[0]);
-            const resDiv = document.getElementById('result-area');
-            resDiv.innerHTML = 'Processing... ⏳';
+    <section class="hero-minimal" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
 
-            try {
-                const res = await fetch('/api/pdf/compress', { method: 'POST', body: formData });
-                const data = await res.json();
+    <div class="container">
+        <div class="converter-box">
+            <h2 style="margin-bottom: 40px; font-weight: 800; font-size: 2.5rem;">PDF <span
+                    style="color:var(--neon-cyan)">Compressor</span></h2>
 
-                if (data.success) {
-                    resDiv.innerHTML = `
-                         <div style="background: rgba(76, 175, 80, 0.2); border: 1px solid #4CAF50; padding: 20px; border-radius: 12px; display: inline-block;">
-                            <h3 style="color:#4CAF50;">Success!</h3>
-                            <p style="color:#fff; font-size: 0.9em; margin-bottom:10px;">Starting your download...</p>
-                            <a href="${data.download_url}" class="action-btn" style="display:inline-block;">Download Compressed PDF</a>
-                        </div>
-                    `;
-                    
-                    // Automatic download trigger
-                    setTimeout(() => {
-                        const link = document.createElement('a');
-                        link.href = data.download_url;
-                        link.download = data.filename || 'converted_file';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    }, 500);// Auto-download logic
-                    setTimeout(() => {
-                        const link = document.createElement('a');
-                        link.href = data.download_url;
-                        link.download = data.filename || 'compressed.pdf';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    }, 500);
-                } else {
-                    resDiv.innerHTML = `<p style="color:red;">Error: ${data.detail}</p>`;
-                }
-            } catch (e) {
-                resDiv.innerHTML = "Error: " + e.message;
-            }
-        }
-    </script>
+            <div class="upload-zone" id="upload-zone">
+                <div class="icon">📦</div>
+                <p style="font-size: 1.2rem; font-weight: 700;">Drop PDF File</p>
+                <p style="opacity: 0.5;">Shrink your document for easy sharing</p>
+                <input type="file" id="file-input" accept=".pdf" style="display: none;">
+            </div>
+
+            <div id="pdf-file-info"
+                style="display: none; margin-top: 30px; text-align: left; padding: 20px; border: 1px solid var(--glass-border); border-radius: 20px; background: rgba(255,255,255,0.02);">
+            </div>
+
+            <div id="pdf-tools-actions" style="display: none; margin-top: 30px;">
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; margin-bottom:10px; opacity:0.6; font-size:0.9rem;">Compression
+                        Level:</label>
+                    <select id="compression-level" class="search-input"
+                        style="padding: 12px 25px !important; border-radius: 12px !important;">
+                        <option value="screen">Web Optimized (Smallest)</option>
+                        <option value="ebook" selected>eBook Quality (Balanced)</option>
+                        <option value="printer">High Quality Print</option>
+                        <option value="prepress">Prepress (Original quality)</option>
+                    </select>
+                </div>
+                <button id="start-compress" class="action-btn" style="width: 100%;">Shrink PDF Now</button>
+            </div>
+
+            <div id="pdf-progress" class="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
+                <div
+                    style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.8rem; font-weight:700;">
+                    <span id="progress-message">Optimizing...</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+            </div>
+
+            <div id="pdf-result" style="display: none; margin-top: 30px;">
+                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:800;">✨ DOCUMENT SHRINKED</div>
+                <div id="result-stats" style="margin-bottom:20px; opacity:0.8; font-size:0.9rem;"></div>
+                <a href="#" id="pdf-download-link" class="action-btn"
+                    style="display: inline-block; text-decoration:none;" download>Download Compressed PDF</a>
+            </div>
+
+            <div id="status-message" class="status-message"></div>
+        </div>
+    </div>
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • PDF ENGINE V4
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/pdf-tools.js?v=3.0" defer></script>
 </body>
+
 </html>

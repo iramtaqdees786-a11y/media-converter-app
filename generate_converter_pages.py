@@ -1,5 +1,6 @@
 """
 Generate individual converter pages for maximum SEO keyword coverage
+WITH THE NEW PREMIUM ION THEME
 """
 import os
 
@@ -74,33 +75,27 @@ def generate_page(from_format, to_format, description, accepts, category=''):
         icon = '🔄'
         cat_name = 'CONVERTER'
     
-    # Related converters (simple logic)
+    # Related tools logic
     related = []
     if from_format == 'jpg':
         related = [('png-to-jpg', 'PNG to JPG'), ('webp-to-jpg', 'WebP to JPG'), ('heic-to-jpg', 'HEIC to JPG')]
     elif from_format == 'png':
         related = [('jpg-to-png', 'JPG to PNG'), ('webp-to-png', 'WebP to PNG'), ('heic-to-png', 'HEIC to PNG')]
-    elif from_format == 'webp':
-        related = [('jpg-to-webp', 'JPG to WebP'), ('png-to-webp', 'PNG to WebP'), ('webp-to-jpg', 'WebP to JPG')]
     elif from_format == 'pdf':
-        related = [('pdf-merge', 'Merge PDF'), ('pdf-compress', 'Compress PDF'), ('pdf-to-excel', 'PDF to Excel')]
-    elif from_format == 'mp4':
-        related = [('mp4-to-mp3', 'MP4 to MP3'), ('mp4-to-avi', 'MP4 to AVI'), ('mp4-to-mov', 'MP4 to MOV')]
+        related = [('pdf-to-word', 'PDF to Word'), ('pdf-to-excel', 'PDF to Excel'), ('pdf-compress', 'Compress PDF')]
     else:
-        related = [('jpg-to-png', 'JPG to PNG'), ('png-to-jpg', 'PNG to JPG'), ('pdf-to-word', 'PDF to Word')]
-    
+        related = [('video-converter', 'Video Downloader'), ('mp3-converter', 'MP3 Converter'), ('ai-image-editor', 'AI Image Editor')]
+
     related_html = '\n'.join([
-        f'''<a href="/{url}" style="padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 8px; text-decoration: none; color: inherit;">
-                    <strong>{name}</strong>
-                    <p style="margin: 5px 0 0; font-size: 0.85rem; opacity: 0.8;">Quick convert</p>
+        f'''<a href="/{url}" class="tool-card" style="padding:15px; border-radius:15px;">
+                    <div class="info"><h3>{name}</h3><p>Fast processing</p></div>
                 </a>'''
         for url, name in related
     ])
-    
+
     html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -109,196 +104,82 @@ def generate_page(from_format, to_format, description, accepts, category=''):
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>{title} Converter - Free Online | ConvertRocket</title>
-    <meta name="description" content="Convert {from_upper} to {to_upper} free online. {description}. Fast, secure, and no signup required.">
-    <meta name="keywords" content="{from_format} to {to_format}, {from_format} {to_format} converter, free {from_format} to {to_format}, online converter, convertrocket">
-    <link rel="canonical" href="https://convertrocket.online/{from_format}-to-{to_format}">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="{title} Converter - Free & Fast">
-    <meta property="og:description" content="Convert {from_upper} to {to_upper} instantly. 100% free, secure, and no signup needed.">
-    
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {{
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "{title} Converter",
-      "applicationCategory": "MultimediaApplication",
-      "offers": {{ "@type": "Offer", "price": "0", "priceCurrency": "USD" }},
-      "aggregateRating": {{ "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "15000" }}
-    }}
-    </script>
-    
-    <link rel="stylesheet" href="/static/css/styles.min.css?v=2.3">
-    <link rel="stylesheet" href="/static/css/mobile-optimizations.css?v=2.3">
-    <style>
-        .bookmark-badge {{
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 12px;
-            padding: 10px 16px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--text-primary, #fff);
-            transition: all 0.3s ease;
-        }}
-        .bookmark-badge:hover {{
-            transform: translateY(-2px);
-            border-color: rgba(102, 126, 234, 0.6);
-        }}
-        .seo-content {{
-            margin-top: 60px;
-            padding: 40px 20px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }}
-        @media (max-width: 768px) {{
-            .seo-content {{ padding: 30px 15px; }}
-            .hero-title {{ font-size: 2rem; }}
-        }}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} Converter - Free & Fast | ConvertRocket</title>
+    <meta name="description" content="Convert {from_upper} to {to_upper} for free. No signup, fast and secure file conversion laboratory.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <script src="/static/js/minimalist-search.js" defer></script>
 </head>
 <body>
     <div class="bg-animated"></div>
     
-    <div class="top-bar">
-        <div class="top-bar-content">
-            <a href="/" style="text-decoration: none;">
-                <div class="brand-small">🚀 <span>ConvertRocket</span></div>
-            </a>
-            <nav class="main-nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/pdf-tools" class="nav-link">PDF Tools</a>
-                <a href="/media-tools" class="nav-link">Media Tools</a>
-                <a href="/blogs" class="nav-link">Blogs</a>
-            </nav>
-            <div class="top-bar-actions">
-                <button class="share-btn" id="share-btn">📤 <span>Share</span></button>
+    <section class="hero-minimal" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
+                <div id="search-results" class="search-results"></div>
             </div>
         </div>
-    </div>
-    
+    </section>
+
     <div class="container">
-        <header class="header">
-            <div class="free-label">🎉 100% FREE • NO SIGNUP</div>
-            <h1 class="hero-title">
-                <span class="hero-icon">{icon}</span>
-                <span class="title-line1">{from_upper} TO {to_upper}</span>
-                <span class="title-line2">{cat_name} CONVERTER</span>
-            </h1>
-            <p class="hero-subtitle">{description}</p>
-        </header>
-        
-        <!-- Conversion Tool -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-icon">🔄</div>
-                <div>
-                    <h2 class="card-title">Convert {from_upper} to {to_upper}</h2>
-                    <p class="card-subtitle">Fast, secure, and completely free</p>
-                </div>
-            </div>
+        <div class="converter-box">
+            <h2 style="margin-bottom: 30px; font-weight: 800; font-size: 2rem;">{from_upper} <span style="color:var(--neon-cyan)">→</span> {to_upper}</h2>
             
             <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">{icon}</div>
-                <p class="upload-text">Drop your {from_upper} file here or click to browse</p>
-                <p class="upload-subtext">Supported: {from_upper}</p>
+                <div class="icon">{icon}</div>
+                <p style="font-size: 1.2rem; font-weight: 700;">Drop your {from_upper} file here</p>
+                <p style="opacity: 0.5;">or click to select from your device</p>
                 <input type="file" id="file-input" accept="{accepts}" style="display: none;">
             </div>
+
+            <div id="file-info" style="display: none; margin-top: 30px; text-align: left; padding: 20px; border: 1px solid var(--glass-border); border-radius: 20px; background: rgba(255,255,255,0.02);"></div>
             
-            <div id="file-info" class="result-card" style="display: none;"></div>
-            
-            <div id="progress-container" class="progress-container" style="display: none;">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-                <div class="progress-text">
-                    <span id="progress-message">Converting...</span>
-                    <span class="progress-percent" id="progress-percent">0%</span>
+            <div id="progress-container" class="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
+                <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.8rem; font-weight:700;">
+                    <span id="progress-message">Preparing...</span>
+                    <span id="progress-percent">0%</span>
                 </div>
             </div>
-            
-            <div id="result-container" class="result-card" style="display: none;">
-                <div class="result-header">
-                    <div class="result-icon">✅</div>
-                    <div>
-                        <strong>Conversion Complete!</strong>
-                        <div class="text-muted" id="result-filename"></div>
-                    </div>
-                </div>
-                <a href="#" id="download-link" class="btn btn-success btn-block btn-lg" style="display: none;" download>
-                    ⬇️ Download {to_upper}
-                </a>
-                <div class="bookmark-badge">
-                    ⭐ Bookmark this tool – you'll need it again
-                </div>
+
+            <div id="result-container" style="display: none; margin-top: 30px;">
+                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:800;">✅ CONVERSION SUCCESSFUL</div>
+                <div id="result-filename" style="margin-bottom:20px; opacity:0.7;"></div>
+                <a href="#" id="download-link" class="action-btn" style="display: inline-block; text-decoration:none;" download>Download {to_upper}</a>
             </div>
-            
+
             <div id="status-message" class="status-message"></div>
         </div>
-        
-        <!-- SEO Content (Below the tool) -->
-        <div class="seo-content">
-            <h2>Convert {from_upper} to {to_upper} Online Free</h2>
-            <p>
-                Our <strong>{from_format} to {to_format} converter</strong> is the fastest and easiest way to convert your files online. 
-                {description}. Whether you're a designer, developer, or just need a quick conversion, our tool handles it all.
-            </p>
-            
-            <h3>Why Use Our {title} Converter?</h3>
-            <ul>
-                <li><strong>100% Free:</strong> No hidden costs, no premium plans, completely free forever</li>
-                <li><strong>No Signup Required:</strong> Start converting immediately without creating an account</li>
-                <li><strong>Fast Processing:</strong> Lightning-fast conversions powered by optimized servers</li>
-                <li><strong>Secure & Private:</strong> Files deleted immediately after conversion (within 1 hour)</li>
-                <li><strong>Auto-Download:</strong> Your converted file downloads automatically at 100%</li>
-            </ul>
-            
-            <h3>How to Convert {from_upper} to {to_upper}</h3>
-            <ol>
-                <li>Click or drag your {from_upper} file to the upload zone above</li>
-                <li>Wait a few seconds while we convert it to {to_upper} format</li>
-                <li>Your {to_upper} file downloads automatically - that's it!</li>
-            </ol>
-            
-            <h3>Common Questions</h3>
-            <p>
-                <strong>Is it really free?</strong> Yes! We never charge for conversions. 
-                <strong>Are my files safe?</strong> Absolutely. All uploads use HTTPS encryption and files are automatically deleted. 
-                <strong>What's the file size limit?</strong> We support files up to 100MB for most formats.
-            </p>
-            
-            <h3>Related Tools</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+
+        <div class="tool-section">
+            <div class="section-head"><h2>Related Lab Tools</h2></div>
+            <div class="grid-tools">
                 {related_html}
             </div>
         </div>
-        
-        <footer class="footer">
-            <div class="footer-brand">🚀 <span class="footer-logo">ConvertRocket</span></div>
-            <p class="footer-tagline">The World's Fastest All-In-One Converter • 100% Free • No Signup</p>
-            <div class="footer-links">
-                <a href="/video-converter">Video Downloader</a> •
-                <a href="/mp3-converter">MP3 Converter</a> •
-                <a href="/pdf-tools">PDF Tools</a> •
-                <a href="/image-converter">Image Tools</a>
-            </div>
-            <p class="copyright">© 2025 ConvertRocket.online - Fast & Private File Conversion</p>
-        </footer>
+
+        <div class="tool-section" style="opacity:0.6; font-size: 0.9rem;">
+            <h2>About {from_upper} to {to_upper} Conversion</h2>
+            <p>ConvertRocket provides high-fidelity conversion from {from_upper} to {to_upper}. 
+               Our cloud-based laboratory uses enterprise-grade engines to ensure every bit of your data is preserved. 
+               100% Privacy - nothing is stored on our servers longer than 60 minutes.</p>
+        </div>
     </div>
-    
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • ALL-IN-ONE LABORATORY
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Specific conversion handler
         const API_BASE = '';
         const TARGET_FORMAT = '{to_format}';
-        const SOURCE_FORMAT = '{from_format}';
         
         document.addEventListener('DOMContentLoaded', () => {{
             const uploadZone = document.getElementById('upload-zone');
@@ -313,89 +194,34 @@ def generate_page(from_format, to_format, description, accepts, category=''):
             const resultFilename = document.getElementById('result-filename');
             const statusMessage = document.getElementById('status-message');
             
-            // Upload zone click
             uploadZone.addEventListener('click', () => fileInput.click());
             
-            // Drag and drop
-            uploadZone.addEventListener('dragover', (e) => {{
-                e.preventDefault();
-                uploadZone.classList.add('dragover');
-            }});
-            
-            uploadZone.addEventListener('dragleave', () => {{
-                uploadZone.classList.remove('dragover');
-            }});
-            
-            uploadZone.addEventListener('drop', (e) => {{
-                e.preventDefault();
-                uploadZone.classList.remove('dragover');
-                if (e.dataTransfer.files.length > 0) {{
-                    handleFile(e.dataTransfer.files[0]);
-                }}
-            }});
-            
-            // File input change
             fileInput.addEventListener('change', (e) => {{
-                if (e.target.files.length > 0) {{
-                    handleFile(e.target.files[0]);
-                }}
+                if (e.target.files.length > 0) handleFile(e.target.files[0]);
             }});
-            
-            // Share button
-            const shareBtn = document.getElementById('share-btn');
-            if (shareBtn) {{
-                shareBtn.addEventListener('click', async () => {{
-                    try {{
-                        await navigator.clipboard.writeText(window.location.href);
-                        shareBtn.innerHTML = '✅ <span>Copied!</span>';
-                        setTimeout(() => {{
-                            shareBtn.innerHTML = '📤 <span>Share</span>';
-                        }}, 2000);
-                    }} catch (err) {{
-                        console.error('Share failed:', err);
-                    }}
-                }});
-            }}
-            
+
             async function handleFile(file) {{
-                // Show file info
-                const ext = file.name.split('.').pop().toLowerCase();
-                fileInfo.innerHTML = `
-                    <div class="result-header">
-                        <div class="result-icon">{icon}</div>
-                        <div>
-                            <strong>${{escapeHtml(file.name)}}</strong>
-                            <div class="text-muted">${{formatFileSize(file.size)}} • ${{ext.toUpperCase()}}</div>
-                        </div>
-                    </div>
-                `;
+                fileInfo.innerHTML = `<strong>Selected:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
                 fileInfo.style.display = 'block';
-                
-                // Reset UI
                 resultContainer.style.display = 'none';
-                statusMessage.className = 'status-message';
                 
-                // Start conversion
-                await convertFile(file);
-            }}
-            
-            async function convertFile(file) {{
-                progressContainer.style.display = 'block';
+                progressContainer.classList.add('active');
                 progressMessage.textContent = 'Uploading...';
                 
                 const formData = new FormData();
                 formData.append('file', file);
                 formData.append('target_format', TARGET_FORMAT);
                 
-                // Simulate progress
                 let progress = 0;
                 const progressInterval = setInterval(() => {{
-                    progress = Math.min(progress + Math.random() * 10, 90);
-                    updateProgress(progress);
-                }}, 300);
+                    progress = Math.min(progress + Math.random() * 10, 95);
+                    progressFill.style.width = progress + '%';
+                    progressPercent.textContent = Math.round(progress) + '%';
+                    if(progress > 40) progressMessage.textContent = 'Processing in Lab...';
+                }}, 400);
                 
                 try {{
-                    const response = await fetch(`${{API_BASE}}/api/convert/upload`, {{
+                    const response = await fetch(API_BASE + '/api/convert/upload', {{
                         method: 'POST',
                         body: formData
                     }});
@@ -404,63 +230,25 @@ def generate_page(from_format, to_format, description, accepts, category=''):
                     const data = await response.json();
                     
                     if (data.success) {{
-                        // Show 100% completion
-                        updateProgress(100);
-                        progressMessage.textContent = 'Complete!';
+                        progressFill.style.width = '100%';
+                        progressPercent.textContent = '100%';
+                        progressMessage.textContent = 'Ready!';
                         
-                        // Show result
                         setTimeout(() => {{
-                            progressContainer.style.display = 'none';
+                            progressContainer.classList.remove('active');
                             resultContainer.style.display = 'block';
                             resultFilename.textContent = data.converted_file;
                             downloadLink.href = data.download_url;
-                            downloadLink.download = data.converted_file;
-                            downloadLink.style.display = 'block';
-                            
-                            // AUTO-DOWNLOAD - Downloads automatically without user clicking
-                            setTimeout(() => {{
-                                downloadLink.click();
-                            }}, 500);
-                        }}, 800);
+                            downloadLink.click(); // Auto download
+                        }}, 500);
                     }} else {{
-                        throw new Error(data.message || 'Conversion failed');
+                        throw new Error(data.message || 'Error occurred');
                     }}
                 }} catch (error) {{
                     clearInterval(progressInterval);
-                    progressContainer.style.display = 'none';
-                    showStatus(error.message || 'Something went wrong. Please try again!', 'error');
+                    statusMessage.textContent = 'Error: ' + error.message;
+                    statusMessage.classList.add('active', 'error');
                 }}
-            }}
-            
-            function updateProgress(value) {{
-                progressFill.style.width = `${{value}}%`;
-                progressPercent.textContent = `${{Math.round(value)}}%`;
-                if (value > 30) progressMessage.textContent = 'Converting...';
-            }}
-            
-            function showStatus(message, type) {{
-                statusMessage.className = `status-message active ${{type}}`;
-                statusMessage.innerHTML = `<span>${{message}}</span>`;
-                setTimeout(() => {{
-                    statusMessage.classList.remove('active');
-                }}, 5000);
-            }}
-            
-            function formatFileSize(bytes) {{
-                const units = ['B', 'KB', 'MB', 'GB'];
-                let size = bytes;
-                let unitIndex = 0;
-                while (size >= 1024 && unitIndex < units.length - 1) {{
-                    size /= 1024;
-                    unitIndex++;
-                }}
-                return `${{size.toFixed(2)}} ${{units[unitIndex]}}`;
-            }}
-            
-            function escapeHtml(text) {{
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
             }}
         }});
     </script>
@@ -470,39 +258,13 @@ def generate_page(from_format, to_format, description, accepts, category=''):
     return filename, html
 
 def main():
-    """Generate all converter pages"""
     output_dir = 'frontend'
-    os.makedirs(output_dir, exist_ok=True)
-    
-    generated_files = []
-    
     for category, converters in CONVERTERS.items():
         for conv in converters:
-            filename, html = generate_page(
-                conv['from'], 
-                conv['to'], 
-                conv['desc'], 
-                conv['accepts'],
-                conv.get('category', category)
-            )
-            
-            filepath = os.path.join(output_dir, filename)
-            with open(filepath, 'w', encoding='utf-8') as f:
+            filename, html = generate_page(conv['from'], conv['to'], conv['desc'], conv['accepts'], conv.get('category', category))
+            with open(os.path.join(output_dir, filename), 'w', encoding='utf-8') as f:
                 f.write(html)
-            
-            generated_files.append(filename)
-            print(f"[OK] Generated: {filename}")
-    
-    print(f"\n[SUCCESS] Generated {len(generated_files)} converter pages!")
-    print("\nGenerated files:")
-    for f in sorted(generated_files):
-        print(f"  - {f}")
-    
-    # Generate sitemap entry list
-    print("\n[SITEMAP] Add these to sitemap.xml:")
-    for f in sorted(generated_files):
-        url = f.replace('.html', '')
-        print(f"    <url><loc>https://convertrocket.online/{url}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>")
+            print(f"Generated: {filename}")
 
 if __name__ == '__main__':
     main()

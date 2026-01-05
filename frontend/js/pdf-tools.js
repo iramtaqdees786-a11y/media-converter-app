@@ -1,140 +1,80 @@
-function selectTool(toolName) {
-    // Hide all workspaces
-    document.querySelectorAll('.tool-workspace').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tool-card').forEach(el => el.classList.remove('active'));
+/* PDF Tools Logic for ConvertRocket - Individual Page Support */
 
-    // Show selected
-    document.getElementById(`workspace-${toolName}`).classList.add('active');
-    document.getElementById(`card-${toolName}`).classList.add('active');
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadZone = document.getElementById('upload-zone');
+    const fileInput = document.getElementById('file-input');
+    const pdfFileInfo = document.getElementById('pdf-file-info');
+    const pdfToolsActions = document.getElementById('pdf-tools-actions');
+    const startCompress = document.getElementById('start-compress');
+    const statusMessage = document.getElementById('status-message');
+    const progressContainer = document.getElementById('pdf-progress');
+    const progressFill = document.getElementById('progress-fill');
+    const progressPercent = document.getElementById('progress-percent');
+    const pdfResult = document.getElementById('pdf-result');
+    const downloadLink = document.getElementById('pdf-download-link');
+    const resultStats = document.getElementById('result-stats');
 
-// Helper to handle file selection display
-document.querySelectorAll('input[type="file"]').forEach(input => {
-    input.addEventListener('change', (e) => {
-        const zone = input.parentElement;
-        if (input.files.length > 0) {
-            zone.querySelector('p').textContent = `Selected: ${input.files.length} file(s)`;
-            zone.style.borderColor = '#4CAF50';
+    if (!uploadZone || !fileInput) return;
+
+    uploadZone.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            const file = e.target.files[0];
+            pdfFileInfo.innerHTML = `<strong>File:</strong> ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            pdfFileInfo.style.display = 'block';
+            pdfToolsActions.style.display = 'block';
+            pdfResult.style.display = 'none';
         }
     });
+
+    if (startCompress) {
+        startCompress.addEventListener('click', async () => {
+            const file = fileInput.files[0];
+            const level = document.getElementById('compression-level')?.value || 'ebook';
+
+            if (!file) return;
+
+            progressContainer.classList.add('active');
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress = Math.min(progress + 5, 95);
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = `${Math.round(progress)}%`;
+            }, 500);
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('power', level);
+
+            try {
+                const res = await fetch('/api/pdf/compress', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                clearInterval(interval);
+
+                if (data.success) {
+                    progressFill.style.width = '100%';
+                    progressPercent.textContent = '100%';
+
+                    setTimeout(() => {
+                        progressContainer.classList.remove('active');
+                        pdfResult.style.display = 'block';
+                        resultStats.innerHTML = `File reduced from <strong>${data.original_size}</strong> to <strong>${data.compressed_size}</strong>`;
+                        downloadLink.href = data.download_url;
+                        downloadLink.click();
+                    }, 500);
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (err) {
+                clearInterval(interval);
+                progressContainer.classList.remove('active');
+                statusMessage.textContent = 'Error: ' + err.message;
+                statusMessage.classList.add('active', 'error');
+            }
+        });
+    }
 });
-
-async function executeMerge() {
-    const input = document.getElementById('merge-input');
-    if (input.files.length < 2) {
-        alert("Please select at least 2 PDF files to merge.");
-        return;
-    }
-
-    const formData = new FormData();
-    for (let i = 0; i < input.files.length; i++) {
-        formData.append('files', input.files[i]);
-    }
-
-    showLoading('merge-result');
-    try {
-        const res = await fetch('/api/pdf/merge', {
-            method: 'POST',
-            body: formData
-        });
-        handleResponse(res, 'merge-result');
-    } catch (e) {
-        showError('merge-result', e);
-    }
-}
-
-async function executeRemovePages() {
-    const input = document.getElementById('remove-input');
-    const pages = document.getElementById('remove-pages-input').value;
-
-    if (!input.files[0] || !pages) {
-        alert("Please select a file and enter page numbers.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', input.files[0]);
-    formData.append('pages', pages);
-
-    showLoading('remove-result');
-    try {
-        const res = await fetch('/api/pdf/remove-pages', {
-            method: 'POST',
-            body: formData
-        });
-        handleResponse(res, 'remove-result');
-    } catch (e) {
-        showError('remove-result', e);
-    }
-}
-
-async function executeCompress() {
-    const input = document.getElementById('compress-input');
-    if (!input.files[0]) return alert("Select a file");
-
-    const formData = new FormData();
-    formData.append('file', input.files[0]);
-
-    showLoading('compress-result');
-    const res = await fetch('/api/pdf/compress', { method: 'POST', body: formData });
-    handleResponse(res, 'compress-result');
-}
-
-async function executeGrayscale() {
-    const input = document.getElementById('grayscale-input');
-    if (!input.files[0]) return alert("Select a file");
-
-    const formData = new FormData();
-    formData.append('file', input.files[0]);
-
-    showLoading('grayscale-result');
-    const res = await fetch('/api/pdf/grayscale', { method: 'POST', body: formData });
-    handleResponse(res, 'grayscale-result');
-}
-
-async function executePdfa() {
-    const input = document.getElementById('pdfa-input');
-    if (!input.files[0]) return alert("Select a file");
-
-    const formData = new FormData();
-    formData.append('file', input.files[0]);
-
-    showLoading('pdfa-result');
-    const res = await fetch('/api/pdf/pdfa', { method: 'POST', body: formData });
-    handleResponse(res, 'pdfa-result');
-}
-
-function showLoading(elementId) {
-    document.getElementById(elementId).innerHTML = '<div style="color:white; margin-top:20px;">Processing... ⏳</div>';
-}
-
-async function handleResponse(res, elementId) {
-    const el = document.getElementById(elementId);
-    if (res.ok) {
-        const data = await res.json();
-        if (data.success) {
-            el.innerHTML = `
-                <div style="margin-top:20px;">
-                    <p style="color:#4CAF50;">Success! 🎉 Starting download...</p>
-                    <a href="${data.download_url}" id="auto-download-link" download class="action-btn" style="text-decoration:none; display:inline-block; width:auto; margin-top:10px;">Download Manually (if it didn't start)</a>
-                </div>
-            `;
-            // Trigger automatic download
-            const link = document.createElement('a');
-            link.href = data.download_url;
-            link.download = data.filename || 'converted_file.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        } else {
-            el.innerHTML = `<p style="color:red;">Error: ${data.message}</p>`;
-        }
-    } else {
-        const err = await res.json();
-        el.innerHTML = `<p style="color:red;">Error: ${err.detail || 'Something went wrong'}</p>`;
-    }
-}
-
-function showError(elementId, e) {
-    document.getElementById(elementId).innerHTML = `<p style="color:red;">Error: ${e.message}</p>`;
-}

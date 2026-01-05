@@ -1,99 +1,87 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
 
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-ZBZSYT7DRY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Image Converter - PNG, JPG, WebP, HEIC | ConvertRocket</title>
+    <meta name="description"
+        content="Convert any image format instantly. HEIC to JPG, WebP to PNG, JPG to SVG and more. Free, fast and private.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
     <script src="/static/js/minimalist-search.js" defer></script>
 </head>
-<body>
 
+<body>
     <div class="bg-animated"></div>
-    <section class="hero-minimal">
+
+    <section class="hero-minimal" style="padding: 80px 0 40px;">
         <div class="container">
             <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
             <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
+                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
                 <div id="search-results" class="search-results"></div>
             </div>
         </div>
     </section>
 
+    <div class="container">
+        <div class="converter-box">
+            <h2 style="margin-bottom: 40px; font-weight: 800; font-size: 2.5rem;">Image <span
+                    style="color:var(--neon-cyan)">Converter</span></h2>
 
+            <div class="upload-zone" id="upload-zone">
+                <div class="icon">🖼️</div>
+                <p style="font-size: 1.2rem; font-weight: 700;">Drop Image Here</p>
+                <p style="opacity: 0.5;">JPG, PNG, WEBP, HEIC, GIF, BMP, TIFF</p>
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
+            </div>
+
+            <div id="selected-file-info" style="display: none; margin-top: 30px;"></div>
+
+            <div id="convert-controls" style="display: none; margin-top: 30px;">
+                <div
+                    style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                    <span style="opacity:0.6;">Convert to:</span>
+                    <select id="target-format" class="search-input"
+                        style="width: auto; padding: 10px 20px !important; border-radius: 12px !important;">
+                        <option value="jpg">JPG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WebP</option>
+                        <option value="gif">GIF</option>
+                        <option value="bmp">BMP</option>
+                        <option value="pdf">PDF</option>
+                    </select>
+                </div>
+                <button id="convert-btn" class="action-btn" style="width: 100%;">Process Image</button>
+            </div>
+
+            <div id="convert-progress" class="progress-container">
+                <div class="progress-fill"></div>
+            </div>
+
+            <div id="convert-result" style="display: none; margin-top: 30px;"></div>
+            <div id="convert-status" class="status-message"></div>
+        </div>
+    </div>
 
     <footer class="resource-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • IMAGE ENGINE V4
             </div>
         </div>
     </footer>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-<script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-ZBZSYT7DRY');
-    </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"
-        crossorigin="anonymous"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "ConvertRocket Image Converter",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "MultimediaApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Convert Images Online",
-      "step": [
-        { "@type": "HowToStep", "name": "Select", "text": "Upload the photos you want to convert." },
-        { "@type": "HowToStep", "name": "Target", "text": "Select your desired output format." },
-        { "@type": "HowToStep", "name": "Convert", "text": "Download your converted images instantly." }
-      ]
-    }
-  ]
-}
-</script>
-<script src="/static/js/seo-hacks.min.js" defer></script>
-<script src="/static/js/i18n.min.js?v=2.2" defer></script>
-<script src="/static/js/app.min.js?v=2.2" defer></script>
+    <script src="/static/js/app.js?v=3.0" defer></script>
 </body>
+
 </html>

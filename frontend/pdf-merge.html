@@ -1,158 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
-    <script src="/static/js/minimalist-search.js" defer></script>
-</head>
-<body>
-
-    <div class="bg-animated"></div>
-    <section class="hero-minimal">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
-            </div>
-        </div>
-    </footer>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-<script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
-<script src="/static/js/seo-hacks.min.js" defer></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "ConvertRocket PDF Merger",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "ProductivityApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Merge PDF Files Online",
-      "step": [
-        { "@type": "HowToStep", "name": "Upload PDFs", "text": "Select two or more PDF files from your device." },
-        { "@type": "HowToStep", "name": "Merge", "text": "Click the 'Merge PDFs Now' button to combine them." },
-        { "@type": "HowToStep", "name": "Download", "text": "The merged file will download automatically." }
-      ]
-    }
-  ]
-}
-</script>
-<script>
-        // Inline script for specific page logic
-        const input = document.getElementById('merge-input');
-        const listDisplay = document.getElementById('file-list-display');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge PDF Files Online - Combine Documents | ConvertRocket</title>
+    <meta name="description"
+        content="Combine multiple PDF files into one document instantly. Fast, secure, and no sign-up required. Free online laboratory.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <script src="/static/js/minimalist-search.js" defer></script>
+</head>
 
-        input.addEventListener('change', () => {
-            listDisplay.innerHTML = '';
-            if (input.files.length > 0) {
-                Array.from(input.files).forEach(file => {
-                    const div = document.createElement('div');
-                    div.className = 'file-item';
-                    div.innerHTML = `<span>📄 ${file.name}</span> <span style="font-size:0.8em; color:#ddd;">${(file.size / 1024).toFixed(1)} KB</span>`;
-                    listDisplay.appendChild(div);
-                });
-                // Scroll to button
-                document.querySelector('.action-btn').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+<body>
+    <div class="bg-animated"></div>
 
-        async function executeMerge() {
-            if (input.files.length < 2) {
-                alert("Please select at least 2 PDF files to merge.");
-                return;
-            }
-            const formData = new FormData();
-            for (let i = 0; i < input.files.length; i++) {
-                formData.append('files', input.files[i]);
-            }
+    <section class="hero-minimal" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
 
-            const resDiv = document.getElementById('merge-result');
-            resDiv.innerHTML = '<div style="color:white;">Merging... ⏳</div>';
+    <div class="container">
+        <div class="converter-box">
+            <h2 style="margin-bottom: 40px; font-weight: 800; font-size: 2.5rem;">Merge <span
+                    style="color:var(--neon-cyan)">PDFs</span></h2>
 
-            try {
-                const res = await fetch('/api/pdf/merge', {
-                    method: 'POST',
-                    body: formData
-                });
-                const data = await res.json();
+            <div class="upload-zone" id="upload-zone" style="border-style: solid;">
+                <div class="icon">🔗</div>
+                <p style="font-size: 1.2rem; font-weight: 700;">Select Multiple PDF Files</p>
+                <p style="opacity: 0.5;">Combine documents into one single file</p>
+                <input type="file" id="file-input" accept=".pdf" multiple style="display: none;">
+            </div>
 
-                if (data.success) {
-                    resDiv.innerHTML = `
-                        <div style="background: rgba(76, 175, 80, 0.2); border: 1px solid #4CAF50; padding: 20px; border-radius: 12px; display: inline-block;">
-                            <h3 style="color:#4CAF50; margin:0 0 10px 0;">Success! 🎉</h3>
-                            <p>Your files have been merged.</p>
-                            <a href="${data.download_url}" class="action-btn" style="text-decoration:none; display:inline-block; margin-top:10px;">Download Merged PDF</a>
-                        </div>
-                    `;
-                
-                    // Automatic download trigger
-                    setTimeout(() => {
-                        const link = document.createElement('a');
-                        link.href = data.download_url;
-                        link.download = data.filename || 'converted_file';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    }, 500);} else {
-                    resDiv.innerHTML = `<p style="color:red;">Error: ${data.detail}</p>`;
+            <div id="file-list"
+                style="display: none; margin-top: 30px; text-align: left; padding: 20px; border: 1px solid var(--glass-border); border-radius: 20px; background: rgba(255,255,255,0.02);">
+            </div>
+
+            <div id="merge-action" style="display: none; margin-top: 30px;">
+                <button id="start-merge" class="action-btn" style="width: 100%;">Merge All Now</button>
+            </div>
+
+            <div id="pdf-progress" class="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <div id="pdf-result" style="display: none; margin-top: 30px;">
+                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:800;">🔗 DOCUMENTS COMBINED</div>
+                <a href="#" id="pdf-download-link" class="action-btn"
+                    style="display: inline-block; text-decoration:none;" download>Download Merged PDF</a>
+            </div>
+
+            <div id="status-message" class="status-message"></div>
+        </div>
+    </div>
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • PDF ENGINE V4
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const uploadZone = document.getElementById('upload-zone');
+            const fileInput = document.getElementById('file-input');
+            const fileList = document.getElementById('file-list');
+            const mergeAction = document.getElementById('merge-action');
+            const startMerge = document.getElementById('start-merge');
+            const progressContainer = document.getElementById('pdf-progress');
+            const progressFill = document.getElementById('progress-fill');
+            const pdfResult = document.getElementById('pdf-result');
+            const downloadLink = document.getElementById('pdf-download-link');
+
+            uploadZone.addEventListener('click', () => fileInput.click());
+
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    fileList.innerHTML = '<strong>Files selected:</strong><ul style="margin-top:10px; padding-left:20px; opacity:0.7;">' +
+                        Array.from(e.target.files).map(f => `<li>${f.name}</li>`).join('') + '</ul>';
+                    fileList.style.display = 'block';
+                    mergeAction.style.display = 'block';
                 }
-            } catch (e) {
-                resDiv.innerHTML = `<p style="color:red;">Error: ${e.message}</p>`;
-            }
-        }
+            });
+
+            startMerge.addEventListener('click', async () => {
+                const files = fileInput.files;
+                if (files.length < 2) return alert("Select at least 2 files");
+
+                progressContainer.classList.add('active');
+                const formData = new FormData();
+                for (let file of files) formData.append('files', file);
+
+                try {
+                    const res = await fetch('/api/pdf/merge', { method: 'POST', body: formData });
+                    const data = await res.json();
+                    if (data.success) {
+                        progressFill.style.width = '100%';
+                        setTimeout(() => {
+                            progressContainer.classList.remove('active');
+                            pdfResult.style.display = 'block';
+                            downloadLink.href = data.download_url;
+                            downloadLink.click();
+                        }, 500);
+                    }
+                } catch (err) {
+                    alert('Error: ' + err.message);
+                }
+            });
+        });
     </script>
 </body>
+
 </html>

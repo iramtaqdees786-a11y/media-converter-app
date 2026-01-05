@@ -1,99 +1,105 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
 
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-ZBZSYT7DRY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Video Downloader & Converter | ConvertRocket</title>
+    <meta name="description"
+        content="Download and convert videos from YouTube, TikTok, Instagram and more. High quality MP4/MP3 downloads. Free and Private.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
     <script src="/static/js/minimalist-search.js" defer></script>
 </head>
-<body>
 
+<body>
     <div class="bg-animated"></div>
-    <section class="hero-minimal">
+
+    <section class="hero-minimal" style="padding: 80px 0 40px;">
         <div class="container">
             <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
             <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
+                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
                 <div id="search-results" class="search-results"></div>
             </div>
         </div>
     </section>
 
+    <div class="container">
+        <div class="converter-box" style="padding: 60px 40px;">
+            <h2 style="margin-bottom: 40px; font-weight: 800; font-size: 2.5rem;">Video <span
+                    style="color:var(--neon-cyan)">Downloader</span></h2>
 
+            <div style="margin-bottom: 30px; display: flex; gap: 10px;">
+                <input type="text" id="url-input" class="search-input"
+                    placeholder="Paste YouTube, TikTok or Instagram URL here..." style="padding: 20px 30px !important;">
+                <button id="get-info-btn" class="action-btn" style="padding: 0 40px; border-radius: 24px;">Scan</button>
+            </div>
+
+            <div id="video-preview"
+                style="display: none; margin-top: 30px; text-align: left; padding: 25px; border: 1px solid var(--glass-border); border-radius: 30px; background: rgba(0,0,0,0.3); backdrop-filter: blur(20px);">
+            </div>
+
+            <div id="download-controls" style="display: none; margin-top: 30px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                    <select id="format-type" class="search-input"
+                        style="padding: 15px 25px !important; border-radius: 15px !important; font-size: 1rem !important;">
+                        <option value="video">MP4 Video</option>
+                        <option value="audio">MP3 Audio</option>
+                    </select>
+                    <select id="quality-select" class="search-input"
+                        style="padding: 15px 25px !important; border-radius: 15px !important; font-size: 1rem !important;">
+                        <option value="best">Best Quality</option>
+                        <option value="1080p">1080p</option>
+                        <option value="720p">720p</option>
+                        <option value="480p">480p</option>
+                    </select>
+                </div>
+                <button id="download-btn" class="action-btn" style="width: 100%;">Start Download Now</button>
+            </div>
+
+            <div id="download-progress" class="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
+                <div
+                    style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.8rem; font-weight:700;">
+                    <span id="progress-message">Preparing...</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+            </div>
+
+            <div id="download-result" style="display: none; margin-top: 30px;"></div>
+            <div id="download-status" class="status-message"></div>
+        </div>
+
+        <div class="tool-section">
+            <div class="section-head">
+                <h2>Supported Platforms</h2>
+            </div>
+            <div
+                style="display: flex; gap: 20px; flex-wrap: wrap; opacity: 0.5; justify-content: center; font-size: 1.5rem;">
+                <span>YouTube</span> • <span>TikTok</span> • <span>Instagram</span> • <span>Twitter</span> •
+                <span>Facebook</span>
+            </div>
+        </div>
+    </div>
 
     <footer class="resource-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • VIDEO ENGINE V8
             </div>
         </div>
     </footer>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-<script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-ZBZSYT7DRY');
-    </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"
-        crossorigin="anonymous"></script>
-<script src="/static/js/seo-hacks.min.js" defer></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "ConvertRocket Video Downloader",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "MultimediaApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Download Videos Online",
-      "step": [
-        { "@type": "HowToStep", "name": "Copy Link", "text": "Copy the video URL from YouTube or TikTok." },
-        { "@type": "HowToStep", "name": "Paste", "text": "Paste the link into the ConvertRocket input box." },
-        { "@type": "HowToStep", "name": "Download", "text": "Select format and click download." }
-      ]
-    }
-  ]
-}
-</script>
-<script src="/static/js/i18n.min.js?v=2.2" defer></script>
-<script src="/static/js/app.min.js?v=2.2" defer></script>
+    <script src="/static/js/app.js?v=3.0" defer></script>
 </body>
+
 </html>

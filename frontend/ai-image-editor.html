@@ -1,77 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
-    <script src="/static/js/minimalist-search.js" defer></script>
-</head>
-<body>
-
-    <div class="bg-animated"></div>
-    <section class="hero-minimal">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-            </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
-            </div>
-        </div>
-    </footer>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-<script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZBZSYT7DRY');
     </script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747/selfie_segmentation.js"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Editor - Magic Photo Tools | ConvertRocket</title>
+    <meta name="description"
+        content="Free AI photo editor. Remove backgrounds, blur faces, and enhance images instantly in your browser.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <script src="/static/js/minimalist-search.js" defer></script>
+    <style>
+        .ai-canvas-container {
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            display: none;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .ai-toolbar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .ai-op-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .ai-op-btn:hover {
+            background: var(--grad-ion);
+            color: black;
+            transform: translateY(-3px);
+        }
+
+        .ai-op-btn .icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+
+    <section class="hero-minimal" style="padding: 80px 0 40px;">
+        <div class="container">
+            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
+            <div class="search-wrapper">
+                <input type="text" id="global-search" class="search-input" placeholder="Search AI tools...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="converter-box">
+            <h2 style="margin-bottom: 10px; font-weight: 800; font-size: 2.5rem;">AI Image <span
+                    style="color:var(--neon-purple)">Laboratory</span></h2>
+            <p style="margin-bottom: 40px; opacity:0.6;">Upload a photo to unlock magic AI operations</p>
+
+            <div class="upload-zone" id="upload-zone">
+                <div class="icon">🪄</div>
+                <p style="font-size: 1.2rem; font-weight: 700;">Select Image to Edit</p>
+                <p style="opacity: 0.5;">Works entirely in your browser. 100% Private.</p>
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
+            </div>
+
+            <div id="ai-workspace" style="display:none; margin-top:40px;">
+                <div class="ai-canvas-container" id="canvas-wrapper">
+                    <canvas id="main-canvas"></canvas>
+                </div>
+
+                <div class="ai-toolbar" id="ai-tools">
+                    <button class="ai-op-btn" id="op-remove-bg">
+                        <span class="icon">🪄</span>
+                        Remove BG
+                    </button>
+                    <button class="ai-op-btn" id="op-blur-face">
+                        <span class="icon">👤</span>
+                        Blur Faces
+                    </button>
+                    <button class="ai-op-btn" id="op-grayscale">
+                        <span class="icon">🌑</span>
+                        Grayscale
+                    </button>
+                    <button class="ai-op-btn" id="op-enhance">
+                        <span class="icon">✨</span>
+                        Auto-Enhance
+                    </button>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <button id="download-ai-result" class="action-btn">Save Magic Result</button>
+                    <button onclick="location.reload()"
+                        style="background:none; border:none; color:rgba(255,255,255,0.3); cursor:pointer; margin-top:20px; display:block; width:100%;">Start
+                        Over</button>
+                </div>
+            </div>
+
+            <div id="status-message" class="status-message"></div>
+        </div>
+
+        <div class="tool-section">
+            <div class="section-head">
+                <h2>Why AI Laboratory?</h2>
+            </div>
+            <div class="grid-tools">
+                <div class="tool-card">
+                    <div class="icon">🔒</div>
+                    <div class="info">
+                        <h3>Private Processing</h3>
+                        <p>Your photos never leave your device. AI runs locally.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="icon">⚡</div>
+                    <div class="info">
+                        <h3>Instant Results</h3>
+                        <p>No queues, no waiting. Real-time neural processing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="resource-footer">
+        <div class="container">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
+                © 2026 CONVERTROCKET • AI VISION MODULE
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load AI Models -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747/selfie_segmentation.js"
         crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.4.1646425229/face_detection.js"
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.4.1646425229/face_detection.js"
         crossorigin="anonymous"></script>
-<script src="/static/js/ai-image-editor.js" type="module"></script>
+    <script src="/static/js/ai-image-editor.js" type="module"></script>
 </body>
+
 </html>
