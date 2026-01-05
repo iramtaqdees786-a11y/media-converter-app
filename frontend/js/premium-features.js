@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initToasts();
     initSelectionFix();
     updateToolStats();
+    initCommandTabs();
+    initFlowArrow();
 });
 
 // 1. Particle System (Aesthetic Flow)
@@ -191,4 +193,44 @@ function updateToolStats() {
         const rand = Math.floor(Math.random() * 500) + 100;
         stat.textContent = `${rand} converted today`;
     });
+}
+// 6. Command Center Tabs
+function initCommandTabs() {
+    const tabs = document.querySelectorAll('.cmd-tab');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-tab');
+
+            // Sync UI
+            tabs.forEach(t => t.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+
+            tab.classList.add('active');
+            const targetPane = document.getElementById(target);
+            if (targetPane) targetPane.classList.add('active');
+
+            // Sync with global app state if needed
+            if (window.switchTab) {
+                const globalTab = target === 'universal-converter' ? 'convert' : 'download';
+                window.switchTab(globalTab);
+            }
+        });
+    });
+}
+
+// 7. Flow Arrow Logic
+function initFlowArrow() {
+    const arrow = document.querySelector('.flow-arrow');
+    if (arrow) {
+        arrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = arrow.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
 }

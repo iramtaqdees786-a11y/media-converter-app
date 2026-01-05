@@ -93,6 +93,17 @@ body {
     line-height: 1.6;
     display: flex;
     flex-direction: column;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Performance Guard */
+.converter-box,
+.tool-card,
+.search-input,
+.cmd-tab,
+.upload-zone {
+    will-change: transform;
 }
 
 /* --- Premium Background Logic --- */
@@ -179,8 +190,121 @@ body {
 
 /* --- Hero Section --- */
 .hero-minimal {
-    padding: 80px 0 60px;
+    padding: 60px 0 40px;
     text-align: center;
+}
+
+/* --- Command Center --- */
+.command-center {
+    margin: 40px auto 80px;
+    max-width: 900px;
+}
+
+.command-tabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 10px;
+    border-radius: 35px;
+    gap: 12px;
+    margin-bottom: 50px;
+    backdrop-filter: blur(20px);
+}
+
+.cmd-tab {
+    flex: 1;
+    padding: 22px;
+    border-radius: 28px;
+    cursor: pointer;
+    font-weight: 800;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cmd-tab.active {
+    background: var(--grad-ion);
+    color: #000;
+    box-shadow: 0 15px 40px rgba(188, 19, 254, 0.4);
+}
+
+.cmd-tab:not(.active):hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.tab-pane {
+    display: none;
+    animation: ionFadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes ionFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flow-arrow-container {
+    text-align: center;
+    margin-top: -60px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 10;
+}
+
+.flow-arrow {
+    display: inline-block;
+    color: var(--neon-cyan);
+    font-size: 3rem;
+    animation: ionBounce 2s infinite;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+@keyframes ionBounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(20px);
+    }
+
+    60% {
+        transform: translateY(10px);
+    }
+}
+
+.flow-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0.3;
+    margin-top: 10px;
 }
 
 .hero-minimal h1 {

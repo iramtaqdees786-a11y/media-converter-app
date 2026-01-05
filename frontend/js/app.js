@@ -164,6 +164,9 @@ function switchTab(tabId) {
     window.history.replaceState(null, null, `#${tabId}`);
 }
 
+// Global exposure for interaction sync
+window.switchTab = switchTab;
+
 // Download Section
 function initDownloadSection() {
     if (elements.downloadBtn) {
@@ -415,27 +418,33 @@ function initConvertSection() {
 
 function handleFileSelect(file) {
     state.currentFile = file;
-
     const fileInfo = elements.selectedFileInfo;
     const ext = file.name.split('.').pop().toLowerCase();
     const category = getFileCategory(ext);
 
-    fileInfo.innerHTML = `
-        <div class="result-header">
-            <div class="result-icon">${getCategoryIcon(category)}</div>
-            <div>
-                <strong>${escapeHtml(file.name)}</strong>
-                <div class="text-muted">${formatFileSize(file.size)} • ${ext.toUpperCase()}</div>
+    // Optimized: Use requestAnimationFrame to prevent UI thread lag on selection
+    requestAnimationFrame(() => {
+        if (!fileInfo) return;
+        fileInfo.innerHTML = `
+            <div class="result-header">
+                <div class="result-icon">${getCategoryIcon(category)}</div>
+                <div style="overflow: hidden;">
+                    <strong style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(file.name)}</strong>
+                    <div class="text-muted">${formatFileSize(file.size)} • ${ext.toUpperCase()}</div>
+                </div>
             </div>
-        </div>
-    `;
-    fileInfo.style.display = 'block';
-    fileInfo.classList.add('active');
+        `;
+        fileInfo.style.display = 'block';
+        fileInfo.classList.add('active');
 
-    // Update available target formats
-    updateTargetFormats(category, ext);
+        // Update available target formats
+        updateTargetFormats(category, ext);
+        if (elements.convertBtn) elements.convertBtn.disabled = false;
 
-    elements.convertBtn.disabled = false;
+        // Show controls
+        const controls = document.getElementById('convert-controls');
+        if (controls) controls.style.display = 'block';
+    });
 }
 
 function updateTargetFormats(category, currentExt) {
