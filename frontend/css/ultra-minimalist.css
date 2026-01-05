@@ -125,19 +125,49 @@ option {
     color: #fff !important;
 }
 
-/* Sticky Lab Hub (Fixed Top) */
+/* Main Navigation Hub */
 .hub-sticky-container {
-    position: sticky;
-    top: 0;
+    position: relative;
+    /* Moved below hero, so no longer sticky by default here */
     z-index: 1000;
-    background: rgba(13, 14, 26, 0.98);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
-    margin: 0 -20px 40px -20px;
-    padding: 10px 20px;
+    margin: 40px auto;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.cat-link {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cat-link.active,
+.cat-link:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.cat-link .icon {
+    font-size: 1.1rem;
 }
 
 .category-bar-wrapper {
@@ -148,9 +178,11 @@ option {
 /* Side-by-Side Dashboard (V7) */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin: 0 auto 80px auto;
+    max-width: 1000px;
+    width: 100%;
 }
 
 @media (max-width: 992px) {
@@ -941,4 +973,75 @@ select.search-input option {
 /* Sticky Footer --- */
 footer {
     margin-top: auto;
+}
+/* --- High-Visibility Scanning Unit --- */
+#get-info-btn {
+    background: rgba(188, 19, 254, 0.15) !important;
+    border: 1px solid var(--neon-purple) !important;
+    color: var(--neon-purple) !important;
+    font-weight: 900 !important;
+    transition: 0.3s !important;
+    border-radius: 12px !important;
+}
+
+#get-info-btn:hover {
+    background: var(--neon-purple) !important;
+    color: black !important;
+    box-shadow: 0 0 20px var(--neon-purple) !important;
+}
+
+/* --- Laboratory Progress Engine --- */
+.progress-container {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    height: 6px;
+    position: relative;
+    overflow: hidden;
+    display: none; /* STRICTLY HIDDEN */
+}
+
+.progress-container.active {
+    display: block !important; /* ONLY REVEAL ON ACTION */
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--grad-ion);
+    width: 0%;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 20px var(--neon-purple);
+}
+
+.progress-message {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--neon-cyan);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- Blog & Guide Architecture --- */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.blog-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 30px;
+    transition: 0.4s;
+    text-decoration: none;
+    color: white;
+}
+
+.blog-card:hover {
+    border-color: var(--neon-cyan);
+    transform: translateY(-5px);
 }

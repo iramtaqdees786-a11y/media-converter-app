@@ -38,29 +38,28 @@
             </div>
         </nav>
 
-        <!-- STICKY TOP HUB (V7 Speed) -->
+
+        <section class="hero-minimal" style="padding: 60px 0 20px;">
+            <h1 class="ion-title">The Future of Files</h1>
+            <p class="hero-tagline">Cloud-Scale Intelligence. Browser-Side Privacy. 100% Free.</p>
+        </section>
+
+        <!-- Command Hub (Below Hero) -->
         <div class="hub-sticky-container">
             <div class="search-lab" style="position: relative;">
                 <input type="text" id="global-search" class="search-input"
                     placeholder="Search 100+ lab modules (e.g. PDF, Image, Dev)..." style="border-radius: 25px;">
                 <div id="search-results" class="search-results"></div>
             </div>
-            <div class="category-bar-wrapper" id="tool-explorer">
-                <div class="category-bar">
-                    <div class="cat-pill active" data-filter="all">🚀 All Units</div>
-                    <div class="cat-pill" data-filter="ai">🪄 AI Lab</div>
-                    <div class="cat-pill" data-filter="media">🎬 Media Hub</div>
-                    <div class="cat-pill" data-filter="pdf">📄 PDF Lab</div>
-                    <div class="cat-pill" data-filter="dev">💻 Dev Suite</div>
-                    <div class="cat-pill" data-filter="utility">🛠️ Utilities</div>
-                </div>
+            <div class="category-nav" id="tool-explorer">
+                <div class="cat-link active" data-filter="all"><span class="icon">🚀</span> All Units</div>
+                <div class="cat-link" data-filter="ai"><span class="icon">🪄</span> AI Lab</div>
+                <div class="cat-link" data-filter="media"><span class="icon">🎬</span> Media Hub</div>
+                <div class="cat-link" data-filter="pdf"><span class="icon">📄</span> PDF Lab</div>
+                <div class="cat-link" data-filter="dev"><span class="icon">💻</span> Dev Suite</div>
+                <div class="cat-link" data-filter="utility"><span class="icon">🛠️</span> Utilities</div>
             </div>
         </div>
-
-        <section class="hero-minimal" style="padding: 20px 0;">
-            <h1 class="ion-title">The Future of Files</h1>
-            <p class="hero-tagline">Cloud-Scale Intelligence. Browser-Side Privacy. 100% Free.</p>
-        </section>
 
         <!-- Command Dashboard (Side-by-Side V7) -->
         <div class="dashboard-grid" id="universal-command">
@@ -73,11 +72,12 @@
                     </div>
                 </div>
 
-                <div class="upload-zone" id="upload-zone">
+                <div class="upload-zone" id="upload-zone" style="position:relative;">
                     <div class="upload-icon">📁</div>
                     <p style="font-size: 1.2rem; font-weight: 800;">Drop File Here</p>
                     <p style="opacity: 0.5; font-size: 0.8rem;">All formats supported</p>
-                    <input type="file" id="file-input">
+                    <input type="file" id="file-input"
+                        style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
                 </div>
 
                 <div id="selected-file-info"
@@ -145,8 +145,7 @@
                         </div>
                     </div>
                     <button id="get-info-btn" class="action-btn"
-                        style="width:100%; padding: 12px; font-size: 0.9rem; margin-bottom:15px; background:rgba(255,255,255,0.05); border-color:var(--glass-border);">Scan
-                        Source</button>
+                        style="width:100%; padding: 12px; font-size: 0.9rem; margin-bottom:15px;">Scan Source</button>
 
                     <div id="video-preview" class="video-preview"></div>
 

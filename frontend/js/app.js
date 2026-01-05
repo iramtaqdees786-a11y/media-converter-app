@@ -137,11 +137,17 @@ function initElements() {
 
 // Tab switching functionality
 function initTabs() {
-    if (!elements.tabs) return; // Dashboard mode (side-by-side)
+    elements.tabs = document.querySelectorAll('.cat-link');
+    if (!elements.tabs) return;
     elements.tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabId = tab.dataset.tab;
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = tab.dataset.filter;
             switchTab(tabId);
+
+            // UI Update
+            elements.tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
         });
     });
 }
@@ -151,7 +157,7 @@ function switchTab(tabId) {
 
     // Update tab buttons
     elements.tabs.forEach(tab => {
-        const isActive = tab.dataset.tab === tabId;
+        const isActive = (tab.dataset.filter === tabId);
         tab.classList.toggle('active', isActive);
         tab.setAttribute('aria-selected', isActive);
     });
@@ -376,8 +382,10 @@ function initConvertSection() {
 
     if (!uploadZone || !fileInput) return;
 
-    // Click to upload
-    uploadZone.addEventListener('click', () => fileInput.click());
+    // Click to upload (Refined to prevent double-trigger)
+    uploadZone.addEventListener('click', (e) => {
+        if (e.target !== fileInput) fileInput.click();
+    });
 
     // Keyboard accessibility
     uploadZone.addEventListener('keydown', (e) => {
@@ -679,6 +687,9 @@ function showProgress(elementId, value) {
 function updateProgress(elementId, value) {
     const container = document.getElementById(elementId);
     if (!container) return;
+
+    // Industrial Activation
+    container.classList.add('active');
 
     const fill = container.querySelector('.progress-fill');
     const text = container.querySelector('.progress-percent');

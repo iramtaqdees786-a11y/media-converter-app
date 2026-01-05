@@ -107,7 +107,9 @@ class AIImageEditor {
         const downloadBtn = document.getElementById('download-ai-result');
 
         // Upload events
-        uploadZone.addEventListener('click', () => imageInput.click());
+        uploadZone.addEventListener('click', (e) => {
+            if (e.target !== imageInput) imageInput.click();
+        });
 
         uploadZone.addEventListener('dragover', (e) => {
             e.preventDefault();
@@ -198,7 +200,7 @@ class AIImageEditor {
         }
 
         // Update active state
-        document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.ai-op-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         const tool = btn.dataset.tool;
