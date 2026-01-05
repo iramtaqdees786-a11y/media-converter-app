@@ -160,6 +160,12 @@ function initSelectionFix() {
         input.addEventListener('dragenter', () => zone.classList.add('dragover'));
         input.addEventListener('dragleave', () => zone.classList.remove('dragover'));
         input.addEventListener('drop', () => zone.classList.remove('dragover'));
+
+        // PERFORMANCE SHIELD: Trigger global boost on change
+        input.addEventListener('change', () => {
+            document.body.classList.add('perf-boost');
+            setTimeout(() => document.body.classList.remove('perf-boost'), 2000);
+        });
     });
 }
 

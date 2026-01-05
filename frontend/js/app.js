@@ -422,6 +422,9 @@ function handleFileSelect(file) {
     const ext = file.name.split('.').pop().toLowerCase();
     const category = getFileCategory(ext);
 
+    // ACTIVATE PERFORMANCE BOOST: Freeze animations during selection to prevent lag
+    document.body.classList.add('perf-boost');
+
     // Optimized: Use requestAnimationFrame to prevent UI thread lag on selection
     requestAnimationFrame(() => {
         if (!fileInfo) return;
@@ -444,6 +447,9 @@ function handleFileSelect(file) {
         // Show controls
         const controls = document.getElementById('convert-controls');
         if (controls) controls.style.display = 'block';
+
+        // DEACTIVATE PERFORMANCE BOOST after UI update
+        setTimeout(() => document.body.classList.remove('perf-boost'), 1000);
     });
 }
 
@@ -512,7 +518,7 @@ async function startConversion() {
     state.isProcessing = true;
 
     elements.convertBtn.disabled = true;
-    showStatus('convert-status', getTranslation('msg_uploading', 'Uploading and converting file...'), 'loading');
+    showStatus('convert-status', getTranslation('msg_uploading', 'Initializing secure laboratory conversion...'), 'loading');
     showProgress('convert-progress', 0);
     elements.convertResult.classList.remove('active');
 

@@ -126,7 +126,7 @@ def generate_page(from_format, to_format, description, accepts, category=''):
 
             <h3>Key Benefits:</h3>
             <ul>
-                <li><strong>Lossless Conversion:</strong> We preserve the maximum metadata and quality during the {from_upper} to {to_upper} transcode.</li>
+                <li><strong>Lossless Conversion:</strong> We preserve the maximum metadata and quality during the {from_upper} to {to_upper} conversion.</li>
                 <li><strong>No Signup:</strong> Start using the professional converter instantly. No email or registration required.</li>
                 <li><strong>High Speed:</strong> Powered by our high-frequency clustered servers in the USA and Europe.</li>
                 <li><strong>Universal:</strong> Optimized for Chrome, Safari, Firefox, and all mobile browsers.</li>
@@ -171,7 +171,7 @@ def generate_page(from_format, to_format, description, accepts, category=''):
                     p = Math.min(p + Math.random() * 10, 96);
                     fill.style.width = p + '%';
                     perc.textContent = Math.round(p) + '%';
-                    if(p > 40) msg.textContent = 'Laboratory Transcoding...';
+                    if(p > 40) msg.textContent = 'Laboratory Conversion...';
                     if(p > 80) msg.textContent = 'Finalizing Result...';
                 }}, 400);
 
