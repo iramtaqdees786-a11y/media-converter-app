@@ -13,212 +13,271 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConvertRocket - Free All-In-One AI File Converter & Downloader</title>
+    <title>ConvertRocket - Premium AI File Converter & Downloader [2026 Edition]</title>
     <meta name="description"
-        content="ConvertRocket is the #1 FREE all-in-one AI-powered converter. Fast, Private & Secure.">
+        content="ConvertRocket is the #1 FREE all-in-one AI-powered converter. Fast, Private & Secure. Convert MP4 to MP3, PDF to Word, HEIC to JPG and more instantly.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
     <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
 </head>
 
 <body>
     <div class="bg-animated"></div>
 
-    <section class="hero-minimal">
-        <div class="container">
-            <h1 class="ion-title"><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <p style="margin-top:-20px; margin-bottom:40px; color:rgba(255,255,255,0.6); font-weight:500;">
-                The most advanced AI laboratory for files. Fast. Private. Free.
-            </p>
+    <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">🚀
+                ConvertRocket</div>
+            <div class="nav-links" style="display: flex; gap: 30px; opacity: 0.6;">
+                <a href="#tools" style="color:white; text-decoration:none;">Tools</a>
+                <a href="/blogs" style="color:white; text-decoration:none;">Guides</a>
+                <a href="/pdf-tools" style="color:white; text-decoration:none;">PDF Kit</a>
+                <a href="/media-tools" style="color:white; text-decoration:none;">Media Lab</a>
+            </div>
+        </nav>
+
+        <section class="hero-minimal">
+            <h1 class="ion-title">The Future of Files</h1>
+            <p class="hero-tagline">Cloud-Scale Intelligence. Browser-Side Privacy. 100% Free.</p>
+
             <div class="search-wrapper">
                 <input type="text" id="global-search" class="search-input"
-                    placeholder="Type what you want to do (e.g. 'pdf to mp3', 'ai edit')">
+                    placeholder="What tool do you need today? (e.g. 'mp4 to mp3')">
                 <div id="search-results" class="search-results"></div>
             </div>
-            <div style="margin-top:20px; font-size: 0.8rem; opacity: 0.5;">
-                Try: <span style="color:var(--neon-cyan)">HEIC to JPG</span>, <span style="color:var(--neon-purple)">PDF
-                    Compress</span>, <span style="color:var(--neon-pink)">YouTube MP3</span>
-            </div>
-        </div>
-    </section>
 
-    <div class="container">
-        <!-- AI Features Highlights (New) -->
+            <div style="margin-top:20px; font-size: 0.9rem; opacity: 0.4;">
+                Trending Now: <span style="color:var(--neon-cyan)">HEIC to JPG</span> • <span
+                    style="color:var(--neon-purple)">PDF Merge</span> • <span style="color:var(--neon-pink)">Video
+                    Extract</span>
+            </div>
+        </section>
+
+        <!-- Starred Tools Section -->
+        <div id="favorites-section" class="tool-section" style="display: none;">
+            <div class="section-head">
+                <h2>Favorites <span style="color: #ffeb3b;">⭐</span></h2>
+            </div>
+            <div class="grid-tools" id="favorites-grid"></div>
+        </div>
+
+        <!-- AI Laboratory Tools -->
         <div class="tool-section">
             <div class="section-head">
-                <h2>AI Features <span class="badge-ai">New</span></h2>
+                <h2>AI Laboratory <span class="badge-ai">Enterprise</span></h2>
+                <div style="opacity: 0.3; font-size: 0.8rem;">SECURE ENCLAVE ACTIVE</div>
             </div>
             <div class="grid-tools">
                 <a href="/ai-image-editor" class="tool-card ai-tool">
-                    <div class="icon">🪄</div>
-                    <div class="info">
+                    <div class="card-top">
+                        <div class="card-icon">🪄</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
                         <h3>AI Image Editor</h3>
-                        <p>Magic tools, Background removal & Enhancement</p>
+                        <p>Magic eraser, Background removal & Detail enhancement</p>
                     </div>
                 </a>
                 <a href="/ai-image-editor" class="tool-card ai-tool">
-                    <div class="icon">👤</div>
-                    <div class="info">
+                    <div class="card-top">
+                        <div class="card-icon">👤</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
                         <h3>AI Face Anonymizer</h3>
-                        <p>Instantly blur faces using neural networks</p>
+                        <p>Neural privacy mask for photos. 100% Local processing.</p>
                     </div>
                 </a>
             </div>
         </div>
 
-        <!-- Video & Audio -->
-        <div class="tool-section">
+        <!-- Media Hub -->
+        <div class="tool-section" id="tools">
             <div class="section-head">
-                <h2>Video & Audio</h2>
+                <h2>Media Mastery</h2>
             </div>
             <div class="grid-tools">
                 <a href="/video-converter" class="tool-card">
-                    <div class="icon">📽️</div>
-                    <div class="info">
-                        <h3>Video Converter</h3>
-                        <p>Convert to MP4, MKV, AVI & more</p>
+                    <div class="card-top">
+                        <div class="card-icon">📽️</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Video Downloader</h3>
+                        <p>Save from YouTube, TikTok, IG & Twitter</p>
                     </div>
                 </a>
                 <a href="/mp3-converter" class="tool-card">
-                    <div class="icon">🎵</div>
-                    <div class="info">
-                        <h3>MP3 Converter</h3>
-                        <p>High Quality Audio extraction</p>
+                    <div class="card-top">
+                        <div class="card-icon">🎵</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
+                        <h3>MP3 Laboratory</h3>
+                        <p>Extract crystal clear 320kbps audio</p>
                     </div>
                 </a>
                 <a href="/video-trimmer" class="tool-card">
-                    <div class="icon">✂️</div>
-                    <div class="info">
+                    <div class="card-top">
+                        <div class="card-icon">✂️</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
                         <h3>Smart Trimmer</h3>
-                        <p>Fast clip cutting without re-encoding</p>
+                        <p>Frame-perfect cutting without re-encoding</p>
                     </div>
                 </a>
-                <a href="/yt-thumbnail" class="tool-card">
-                    <div class="icon">🖼️</div>
-                    <div class="info">
-                        <h3>Thumbnail Getter</h3>
-                        <p>Download HD thumbnails from URLs</p>
+                <a href="/image-converter" class="tool-card">
+                    <div class="card-top">
+                        <div class="card-icon">🖼️</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Universal Image Kit</h3>
+                        <p>WEBP, HEIC, PNG, JPG & SVG conversion</p>
                     </div>
                 </a>
             </div>
         </div>
 
-        <!-- PDF & Docs -->
+        <!-- PDF hub -->
         <div class="tool-section">
             <div class="section-head">
-                <h2>PDF Laboratory</h2>
+                <h2>PDF Document Lab</h2>
             </div>
             <div class="grid-tools">
                 <a href="/pdf-compress" class="tool-card">
-                    <div class="icon">📦</div>
-                    <div class="info">
+                    <div class="card-top">
+                        <div class="card-icon">📦</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
                         <h3>PDF Compressor</h3>
-                        <p>Smart shrinking for email attachments</p>
+                        <p>Smart shrinking via GhostScript V8 engine</p>
                     </div>
                 </a>
                 <a href="/pdf-merge" class="tool-card">
-                    <div class="icon">🔗</div>
-                    <div class="info">
+                    <div class="card-top">
+                        <div class="card-icon">🔗</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
                         <h3>Merge PDFs</h3>
-                        <p>Batch combine multiple documents</p>
+                        <p>Batch combine documents into one stream</p>
                     </div>
                 </a>
                 <a href="/pdf-to-word" class="tool-card">
-                    <div class="icon">📄</div>
-                    <div class="info">
-                        <h3>PDF to Word</h3>
-                        <p>Extract text into editable documents</p>
+                    <div class="card-top">
+                        <div class="card-icon">📄</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
+                        <h3>PDF to Editable</h3>
+                        <p>Export to Word, Excel or plain text</p>
                     </div>
                 </a>
                 <a href="/pdf-remove-pages" class="tool-card">
-                    <div class="icon">🗑️</div>
-                    <div class="info">
-                        <h3>Remove Pages</h3>
-                        <p>Clean up your PDF documents</p>
+                    <div class="card-top">
+                        <div class="card-icon">🗑️</div>
+                        <div class="card-star">☆</div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Page Remover</h3>
+                        <p>Quickly strip pages from any PDF file</p>
                     </div>
                 </a>
             </div>
         </div>
 
-        <!-- Images -->
-        <div class="tool-section">
-            <div class="section-head">
-                <h2>Image Optimization</h2>
+        <!-- SEO SLOP SECTION (The Great SEO Content Restore) -->
+        <section class="seo-slop">
+            <div class="container" style="max-width: 900px;">
+                <h2>About ConvertRocket: The Premier File Conversion Platform</h2>
+                <p>In the digital age, file conversion is more than just a convenience—it's a necessity.
+                    <strong>ConvertRocket</strong> was founded on the principle that powerful file processing tools
+                    should be accessible to everyone, without the burden of expensive subscriptions or privacy-invading
+                    accounts. Our platform leverages the latest in <strong>WebAssembly (WASM)</strong> and <strong>AI
+                        Neural Networks</strong> to bring enterprise-grade tools directly to your browser.</p>
+
+                <h3>Advanced PDF Management Tools</h3>
+                <p>Managing PDF documents often requires costly software like Adobe Acrobat. ConvertRocket solves this
+                    by providing a complete suite of PDF tools for free. Our <strong>PDF Compressor</strong> utilizes
+                    the same optimization algorithms used by high-end printing houses, allowing you to shrink file sizes
+                    for email without sacrificing legibility. Need to combine reports? Our <strong>Merge PDF</strong>
+                    tool is built for speed, handling dozens of files in seconds.</p>
+
+                <h3>High-Fidelity Media Conversion</h3>
+                <p>Whether you're converting <strong>WebM to MP4</strong> for compatibility or extracting a podcast from
+                    a <strong>YouTube video to MP3</strong>, our media laboratory ensures zero quality loss. We support
+                    a wide array of formats including <strong>HEIC (iPhone photos)</strong>, <strong>WEBP (Google
+                        next-gen images)</strong>, and <strong>M4A</strong>. Our <strong>Video Trimmer</strong> is
+                    particularly unique, as it performs "lossless cutting," meaning it doesn't re-encode the video,
+                    preserving the original resolution and bitrate perfectly.</p>
+
+                <h3>AI-Powered Image Editing for the Modern Web</h3>
+                <p>Our recent addition, the <strong>AI Image Editor</strong>, brings the power of Generative AI to your
+                    fingertips. Remove backgrounds from product photos, anonymize faces for social media, or enhance
+                    low-resolution images in one click. Because these models run <strong>on your device</strong>, your
+                    sensitive photos never touch our servers—offering a level of privacy that commercial AI platforms
+                    simply cannot match.</p>
+
+                <h3>Why Millions Trust ConvertRocket.online</h3>
+                <ul>
+                    <li><strong>Privacy First:</strong> We don't track your data. Files are processed at the edge or
+                        deleted within 60 minutes.</li>
+                    <li><strong>No Limitations:</strong> No daily limits, no file size caps for most tools, and
+                        absolutely no registration.</li>
+                    <li><strong>Global Compatibility:</strong> Works on Windows, Mac, iOS, and Android with full mobile
+                        orientation support.</li>
+                    <li><strong>Professional Grade:</strong> Powered by Linux-based microservices and Python FastAPI for
+                        99.9% uptime.</li>
+                </ul>
+
+                <p style="margin-top: 40px; font-style: italic; opacity: 0.6;">Key Keywords: free file converter, online
+                    image editor, pdf to word, mp4 download, youtube to mp3 converter, heic to jpg, merge pdf free, safe
+                    file converter, ai background remover, compress pdf online.</p>
             </div>
-            <div class="grid-tools">
-                <a href="/image-converter" class="tool-card">
-                    <div class="icon">🖼️</div>
-                    <div class="info">
-                        <h3>Universal Image Converter</h3>
-                        <p>WEBP, HEIC, PNG, JPG, BMP</p>
+        </section>
+
+        <footer class="resource-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h2 style="font-weight: 950; margin-bottom: 25px; letter-spacing:-2px;">ConvertRocket</h2>
+                        <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem;">
+                            The absolute pinnacle of online file processing. Built for professionals, accessible to
+                            everyone.
+                        </p>
                     </div>
-                </a>
-                <a href="/image-compress" class="tool-card">
-                    <div class="icon">🗜️</div>
-                    <div class="info">
-                        <h3>Image Compressor</h3>
-                        <p>Optimize for speed without quality loss</p>
+                    <div class="footer-col">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="/">Global Hub</a></li>
+                            <li><a href="/pdf-tools">PDF Power Kit</a></li>
+                            <li><a href="/media-tools">Media Lab</a></li>
+                            <li><a href="/all-tools">All Tool Index</a></li>
+                        </ul>
                     </div>
-                </a>
-                <a href="/exif-remover" class="tool-card">
-                    <div class="icon">🛡️</div>
-                    <div class="info">
-                        <h3>EXIF Stripper</h3>
-                        <p>Remove metadata for privacy</p>
+                    <div class="footer-col">
+                        <h4>Trust & Safety</h4>
+                        <ul>
+                            <li><a href="/privacy-policy">Privacy Protocol</a></li>
+                            <li><a href="/terms-of-service">Legal Terms</a></li>
+                            <li><a href="/blogs">Expert Blog</a></li>
+                            <li><a href="/sitemap">Site Map</a></li>
+                        </ul>
                     </div>
-                </a>
+                </div>
+
+                <div
+                    style="text-align: center; margin-top: 80px; opacity: 0.2; font-size: 0.75rem; font-weight: 800; letter-spacing: 5px;">
+                    © 2026 CONVERTROCKET.ONLINE • REDEFINING THE WEB
+                </div>
             </div>
-        </div>
+        </footer>
     </div>
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 900; margin-bottom: 20px; letter-spacing:-1px;">ConvertRocket</h2>
-                    <p style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">
-                        The ultimate open-source laboratory for secure and private file processing.
-                        No servers store your data. Everything happens in your safety zone.
-                    </p>
-                </div>
-                <div class="footer-col">
-                    <h4>Operations</h4>
-                    <ul>
-                        <li><a href="/">Global Hub</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Lab</a></li>
-                        <li><a href="/all-tools">All Tool Index</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Security</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Legal Terms</a></li>
-                        <li><a href="/blogs">Knowledge Base</a></li>
-                        <li><a href="/sitemap">Project Map</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Meta-Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes neural networks and WebAssembly for edge-side processing.
-                        Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file
-                        converter, ai image editor, background remover, heic to jpg, pdf to excel converter.</p>
-                </div>
-            </details>
-
-            <div
-                style="text-align: center; margin-top: 80px; opacity: 0.2; font-size: 0.7rem; letter-spacing: 4px; font-weight: 800;">
-                © 2026 CONVERTROCKET • BUILT FOR THE FUTURE
-            </div>
-        </div>
-    </footer>
-
-    <script src="/static/js/i18n.min.js?v=3.0" defer></script>
 </body>
 
 </html>

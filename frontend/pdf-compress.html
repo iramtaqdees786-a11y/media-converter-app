@@ -3,96 +3,151 @@
 
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-ZBZSYT7DRY');
-    </script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compress PDF Online - Fast & Secure Reduction | ConvertRocket</title>
+    <title>Compress PDF Online - Fast & Secure Document Shrinking | ConvertRocket</title>
     <meta name="description"
-        content="Reduce PDF file size without losing quality. Optimized compression for web and email. 100% Free and Private.">
+        content="Reduce PDF file size without losing quality. Professional-grade document optimization lab. 100% Free, Secure and No Registration.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
     <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
 </head>
 
 <body>
     <div class="bg-animated"></div>
-
-    <section class="hero-minimal" style="padding: 80px 0 40px;">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
     <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
+                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+        </nav>
+
+        <div class="breadcrumbs">
+            <a href="/">Home</a> <span>/</span> <a href="/pdf-tools">PDF Tools</a> <span>/</span> Compress PDF
+        </div>
+
         <div class="converter-box">
-            <h2 style="margin-bottom: 40px; font-weight: 800; font-size: 2.5rem;">PDF <span
-                    style="color:var(--neon-cyan)">Compressor</span></h2>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+                <h2 style="font-weight: 900; font-size: 2.2rem; margin:0;">PDF <span
+                        style="color:var(--neon-cyan)">Compressor</span></h2>
+                <div class="card-star active" style="font-size:2rem; cursor:pointer;"
+                    onclick="toggleThisStar(this, '/pdf-compress')">☆</div>
+            </div>
 
             <div class="upload-zone" id="upload-zone">
-                <div class="icon">📦</div>
-                <p style="font-size: 1.2rem; font-weight: 700;">Drop PDF File</p>
-                <p style="opacity: 0.5;">Shrink your document for easy sharing</p>
-                <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                <div class="upload-icon">📦</div>
+                <p style="font-size: 1.4rem; font-weight: 800;">Drop your PDF here</p>
+                <p style="opacity: 0.5;">Shrink your document via GhostScript V8 Laboratory</p>
+                <input type="file" id="file-input" accept=".pdf">
             </div>
 
             <div id="pdf-file-info"
-                style="display: none; margin-top: 30px; text-align: left; padding: 20px; border: 1px solid var(--glass-border); border-radius: 20px; background: rgba(255,255,255,0.02);">
+                style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
             </div>
 
-            <div id="pdf-tools-actions" style="display: none; margin-top: 30px;">
-                <div style="margin-bottom: 20px;">
-                    <label style="display:block; margin-bottom:10px; opacity:0.6; font-size:0.9rem;">Compression
-                        Level:</label>
-                    <select id="compression-level" class="search-input"
-                        style="padding: 12px 25px !important; border-radius: 12px !important;">
-                        <option value="screen">Web Optimized (Smallest)</option>
-                        <option value="ebook" selected>eBook Quality (Balanced)</option>
-                        <option value="printer">High Quality Print</option>
-                        <option value="prepress">Prepress (Original quality)</option>
-                    </select>
-                </div>
-                <button id="start-compress" class="action-btn" style="width: 100%;">Shrink PDF Now</button>
+            <div id="pdf-tools-actions" style="display:none; margin-top:30px; text-align:left;">
+                <label style="display:block; margin-bottom:15px; font-weight:700; opacity:0.6;">Select Compression
+                    Intelligence:</label>
+                <select id="compression-level" class="search-input"
+                    style="padding:15px 25px !important; border-radius:15px !important; font-size:1rem !important; margin-bottom:30px;">
+                    <option value="screen">Web Optimized (Ultra Small)</option>
+                    <option value="ebook" selected>eBook Fidelity (Balanced)</option>
+                    <option value="printer">High Res Print (Max Detail)</option>
+                    <option value="prepress">Prepress (Zero Loss)</option>
+                </select>
+                <button id="start-compress" class="action-btn" style="width:100%;">Initialize Compression</button>
             </div>
 
             <div id="pdf-progress" class="progress-container">
                 <div class="progress-fill" id="progress-fill"></div>
                 <div
-                    style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.8rem; font-weight:700;">
-                    <span id="progress-message">Optimizing...</span>
+                    style="display:flex; justify-content:space-between; margin-top:15px; font-size:0.9rem; font-weight:700;">
+                    <span id="progress-message">Optimizing streams...</span>
                     <span id="progress-percent">0%</span>
                 </div>
             </div>
 
-            <div id="pdf-result" style="display: none; margin-top: 30px;">
-                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:800;">✨ DOCUMENT SHRINKED</div>
-                <div id="result-stats" style="margin-bottom:20px; opacity:0.8; font-size:0.9rem;"></div>
+            <div id="pdf-result" style="display:none; margin-top:40px;">
+                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:900; letter-spacing:1px;">✨
+                    OPTIMIZATION SCAN COMPLETE</div>
+                <div id="result-stats"
+                    style="margin-bottom:30px; padding:20px; border-radius:20px; background:rgba(0,0,0,0.3);"></div>
                 <a href="#" id="pdf-download-link" class="action-btn"
-                    style="display: inline-block; text-decoration:none;" download>Download Compressed PDF</a>
+                    style="display:inline-block; text-decoration:none;" download>Save Optimized Results</a>
             </div>
 
             <div id="status-message" class="status-message"></div>
         </div>
-    </div>
 
-    <footer class="resource-footer">
-        <div class="container">
-            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
-                © 2026 CONVERTROCKET • PDF ENGINE V4
+        <section class="seo-slop">
+            <h2>The Ultimate Guide to Online PDF Compression</h2>
+            <p>Reducing the size of a PDF document is crucial for digital efficiency. Whether you're applying for a job,
+                submitting a government form, or sending a large report via email, <strong>PDF compression</strong>
+                ensures your file arrives safely without being blocked by server limits. At
+                <strong>ConvertRocket</strong>, our laboratory uses advanced <strong>GhostScript</strong> algorithms to
+                strip redundant data, downsample high-res images, and subset fonts, resulting in significantly smaller
+                file sizes.</p>
+
+            <h3>How our PDF Laboratory works?</h3>
+            <p>Traditional "online compressors" often ruin the quality of your images or break the formatting of your
+                text. Our tool offers four levels of intelligence: <strong>Screen</strong> for the smallest possible
+                size (72dpi), <strong>eBook</strong> for a perfect balance of quality and size (150dpi), and
+                <strong>Printer/Prepress</strong> for professional-grade results where quality is paramount. Every
+                stream in your PDF is analyzed and optimized for its specific content type.</p>
+
+            <h3>Is PDF Shrinking Secure?</h3>
+            <p>Security is our laboratory's primary directive. When you upload a file to our <strong>secure
+                    zone</strong>, it is encrypted via TLS 1.3 during transit. The compression occurs on isolated,
+                temporary storage that is purged the moment your session ends or 60 minutes after inactivity. We never
+                store personal data, passwords, or the content of your documents.</p>
+
+            <h3>Why millions choose ConvertRocket PDF Compressor:</h3>
+            <ul>
+                <li><strong>No Watermarks:</strong> We never add branding to your professional documents.</li>
+                <li><strong>Auto-Download:</strong> Once the laboratory finishes the optimization, your file is
+                    automatically returned.</li>
+                <li><strong>GhostScript Engine:</strong> We use the industry-standard PDF engine for the highest
+                    reliability.</li>
+                <li><strong>Zero Cost:</strong> Truly free, no "premium" upsells for large files.</li>
+            </ul>
+        </section>
+
+        <footer class="resource-footer">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+                © 2026 CONVERTROCKET.ONLINE • ION PREMIUM V4.0
             </div>
-        </div>
-    </footer>
-
-    <script src="/static/js/pdf-tools.js?v=3.0" defer></script>
+        </footer>
+    </div>
+    <script src="/static/js/pdf-tools.js?v=4.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            {
+                const url = '/pdf-compress';
+                const star = document.querySelector('.card-star');
+                const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+                if (starred.includes(url)) { { star.textContent = '⭐'; star.classList.add('active'); } }
+            }
+        });
+        function toggleThisStar(el, url) {
+            {
+                let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+                if (el.classList.contains('active')) {
+                    {
+                        el.classList.remove('active'); el.textContent = '☆';
+                        starred = starred.filter(u => u !== url);
+                    }
+                } else {
+                    {
+                        el.classList.add('active'); el.textContent = '⭐';
+                        if (!starred.includes(url)) starred.push(url);
+                    }
+                }
+                localStorage.setItem('starredTools', JSON.stringify(starred));
+            }
+        }
+    </script>
 </body>
 
 </html>

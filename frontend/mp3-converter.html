@@ -3,68 +3,68 @@
 
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-ZBZSYT7DRY');
-    </script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High Quality MP3 Converter - Instant Audio Extraction | ConvertRocket</title>
+    <title>High Quality MP3 Converter - Zero Quality Loss | ConvertRocket</title>
     <meta name="description"
-        content="Extract MP3 audio from any video or convert audio files to high quality MP3. 320kbps supported. Free and Private.">
+        content="Extract MP3 audio from any video or convert audio files to high quality MP3. 320kbps supported. Free, Secure and Private laboratory.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
     <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
 </head>
 
 <body>
     <div class="bg-animated"></div>
-
-    <section class="hero-minimal" style="padding: 80px 0 40px;">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
     <div class="container">
-        <div class="converter-box">
-            <h2 style="margin-bottom: 40px; font-weight: 800; font-size: 2.5rem;">MP3 <span
-                    style="color:var(--neon-cyan)">Converter</span></h2>
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
+                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+        </nav>
 
-            <div style="margin-bottom: 30px; display: flex; gap: 10px;">
+        <div class="breadcrumbs">
+            <a href="/">Home</a> <span>/</span> <a href="/media-tools">Media Tools</a> <span>/</span> MP3 Lab
+        </div>
+
+        <div class="converter-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+                <h2 style="font-weight: 950; font-size: 2.8rem; margin:0;">MP3 <span
+                        style="color:var(--neon-cyan)">Laboratory</span></h2>
+                <div class="card-star active" style="font-size:2rem; cursor:pointer;"
+                    onclick="toggleThisStar(this, '/mp3-converter')">☆</div>
+            </div>
+
+            <div style="margin-bottom: 40px; display: flex; gap: 10px;">
                 <input type="text" id="url-input" class="search-input"
-                    placeholder="Paste Video URL for MP3 extraction..." style="padding: 20px 30px !important;">
+                    placeholder="Paste Video URL for high-res extraction..." style="padding: 24px 30px !important;">
                 <button id="get-info-btn" class="action-btn" style="padding: 0 40px; border-radius: 24px;">Scan</button>
             </div>
 
-            <p style="margin: 20px 0; opacity: 0.5;">— OR —</p>
+            <p style="margin: 20px 0; opacity: 0.3; font-weight: 900; letter-spacing: 5px;">OR DROP LOCAL FILE</p>
 
             <div class="upload-zone" id="upload-zone">
-                <div class="icon">🎵</div>
-                <p style="font-size: 1.2rem; font-weight: 700;">Drop Audio/Video File</p>
-                <p style="opacity: 0.5;">Convert any media to high-quality MP3</p>
+                <div class="upload-icon">🎵</div>
+                <p style="font-size: 1.4rem; font-weight: 800;">Laboratory Drop Zone</p>
+                <p style="opacity: 0.5;">Convert any media to studio-grade MP3</p>
                 <input type="file" id="file-input" style="display: none;">
                 <input type="hidden" id="target-format" value="mp3">
             </div>
 
             <div id="video-preview" style="display: none; margin-top: 30px;"></div>
-            <div id="selected-file-info" style="display: none; margin-top: 30px;"></div>
+            <div id="selected-file-info"
+                style="display: none; margin-top: 30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
+            </div>
 
             <div id="download-controls" style="display: none; margin-top: 30px;">
                 <input type="hidden" id="format-type" value="audio">
                 <input type="hidden" id="quality-select" value="best">
-                <button id="download-btn" class="action-btn" style="width: 100%;">Start MP3 Extraction</button>
+                <button id="download-btn" class="action-btn" style="width: 100%;">Initialize MP3 Stream</button>
             </div>
 
             <div id="convert-btn-container" style="display:none; margin-top:30px;">
-                <button id="convert-btn" class="action-btn" style="width: 100%;">Convert to MP3</button>
+                <button id="convert-btn" class="action-btn" style="width: 100%;">Transcode to MP3</button>
             </div>
 
             <div id="download-progress" class="progress-container">
@@ -80,17 +80,66 @@
             <div id="download-status" class="status-message"></div>
             <div id="convert-status" class="status-message"></div>
         </div>
-    </div>
 
-    <footer class="resource-footer">
-        <div class="container">
-            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
-                © 2026 CONVERTROCKET • AUDIO LAB
+        <section class="seo-slop">
+            <h2>Professional MP3 Extraction Laboratory</h2>
+            <p>At <strong>ConvertRocket</strong>, we treat audio as a science. Our online <strong>MP3 converter</strong>
+                is engineered to provide the highest possible dynamic range during the transcoding process. Whether you
+                are using a <strong>YouTube link</strong> as your source or uploading a <strong>WAV</strong>,
+                <strong>FLAC</strong>, or <strong>MOV</strong> file, our LAME-powered engine ensures that every
+                frequency is preserved with crystalline clarity.</p>
+
+            <h3>High Bitrate vs. Quality</h3>
+            <p>Most online tools compress your audio to 128kbps to save server space. We don't. Our laboratory defaults
+                to <strong>320kbps</strong> for all extractions, providing "Broadcasting Standard" quality suitable for
+                professional playback, DJ sets, or high-end sound systems. Our <strong>Variable Bitrate (VBR)</strong>
+                logic dynamically adjusts to the complexity of the audio stream to maximize efficiency while maintaining
+                transparency.</p>
+
+            <h3>Safe and Volatile Processing</h3>
+            <p>The privacy of your audio content is paramount. When you convert a file in our lab, the data resides in
+                <strong>RAM-only processing buffers</strong>. This means that if our power is pulled, the data
+                disappears. We never archive your conversations, songs, or memos. Once your conversion is complete and
+                the file is downloaded, the buffer is flushed and overwritten.</p>
+
+            <h3>Why our MP3 Lab is Superior:</h3>
+            <ul>
+                <li><strong>No Clipping:</strong> Our engine includes automatic normalization to prevent digital
+                    distortion.</li>
+                <li><strong>ID3 Tag Preservation:</strong> We retain as much metadata as possible from your source
+                    files.</li>
+                <li><strong>Ultra-Fast Encoding:</strong> Multi-threaded processing for instant results.</li>
+                <li><strong>Universal Player Support:</strong> Our MP3s work on all OS, iPods, Smartphones, and Tesla
+                    systems.</li>
+            </ul>
+        </section>
+
+        <footer class="resource-footer">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+                © 2026 CONVERTROCKET.ONLINE • AUDIO ENGINE V9.0
             </div>
-        </div>
-    </footer>
-
-    <script src="/static/js/app.js?v=3.0" defer></script>
+        </footer>
+    </div>
+    <script src="/static/js/app.js?v=4.0"></script>
+    <script>
+        function toggleThisStar(el, url) {
+            {
+                let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+                if (el.classList.contains('active')) {
+                    {
+                        el.classList.remove('active'); el.textContent = '☆';
+                        starred = starred.filter(u => u !== url);
+                    }
+                } else {
+                    {
+                        el.classList.add('active'); el.textContent = '⭐';
+                        if (!starred.includes(url)) starred.push(url);
+                    }
+                }
+                localStorage.setItem('starredTools', JSON.stringify(starred));
+            }
+        }
+    </script>
 </body>
 
 </html>

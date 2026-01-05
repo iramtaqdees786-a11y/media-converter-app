@@ -2,168 +2,160 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-ZBZSYT7DRY');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JPG to PNG Converter - Free & Fast | ConvertRocket</title>
-    <meta name="description" content="Convert JPG to PNG for free. No signup, fast and secure file conversion laboratory.">
+    <title>JPG to PNG Converter - Free Online Laboratory | ConvertRocket</title>
+    <meta name="description" content="Convert JPG to PNG for free. High-fidelity conversion lab for jpg files. Safe, secure, and no signup.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=3.0">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
     <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
 </head>
 <body>
     <div class="bg-animated"></div>
-    
-    <section class="hero-minimal" style="padding: 80px 0 40px;">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="Search other tools...">
-                <div id="search-results" class="search-results"></div>
-            </div>
-        </div>
-    </section>
-
     <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/" style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+        </nav>
+
+        <div class="breadcrumbs">
+            <a href="/">Home</a> <span>/</span> <a href="/all-tools">Converters</a> <span>/</span> JPG to PNG
+        </div>
+
         <div class="converter-box">
-            <h2 style="margin-bottom: 30px; font-weight: 800; font-size: 2rem;">JPG <span style="color:var(--neon-cyan)">→</span> PNG</h2>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+                <h2 style="font-weight: 900; font-size: 2.2rem; margin:0;">JPG <span style="color:var(--neon-cyan)">→</span> PNG</h2>
+                <div class="card-star active" style="font-size:2rem; cursor:pointer;" onclick="toggleThisStar(this, '/jpg-to-png')">☆</div>
+            </div>
             
             <div class="upload-zone" id="upload-zone">
-                <div class="icon">🖼️</div>
-                <p style="font-size: 1.2rem; font-weight: 700;">Drop your JPG file here</p>
-                <p style="opacity: 0.5;">or click to select from your device</p>
-                <input type="file" id="file-input" accept=".jpg,.jpeg" style="display: none;">
+                <div class="upload-icon">🖼️</div>
+                <p style="font-size: 1.4rem; font-weight: 800;">Drop your JPG here</p>
+                <p style="opacity: 0.5;">or click to browse your Laboratory</p>
+                <input type="file" id="file-input" accept=".jpg,.jpeg">
             </div>
 
-            <div id="file-info" style="display: none; margin-top: 30px; text-align: left; padding: 20px; border: 1px solid var(--glass-border); border-radius: 20px; background: rgba(255,255,255,0.02);"></div>
+            <div id="file-info" style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);"></div>
             
             <div id="progress-container" class="progress-container">
                 <div class="progress-fill" id="progress-fill"></div>
-                <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.8rem; font-weight:700;">
-                    <span id="progress-message">Preparing...</span>
+                <div style="display:flex; justify-content:space-between; margin-top:15px; font-size:0.9rem; font-weight:700;">
+                    <span id="progress-message">Analyzing structure...</span>
                     <span id="progress-percent">0%</span>
                 </div>
             </div>
 
-            <div id="result-container" style="display: none; margin-top: 30px;">
-                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:800;">✅ CONVERSION SUCCESSFUL</div>
-                <div id="result-filename" style="margin-bottom:20px; opacity:0.7;"></div>
-                <a href="#" id="download-link" class="action-btn" style="display: inline-block; text-decoration:none;" download>Download PNG</a>
+            <div id="result-container" style="display:none; margin-top:40px;">
+                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:900; letter-spacing:1px;">✅ LABORATORY SUCCESS</div>
+                <a href="#" id="download-link" class="action-btn" style="display:inline-block; text-decoration:none;" download>Save PNG Result</a>
             </div>
 
             <div id="status-message" class="status-message"></div>
         </div>
 
-        <div class="tool-section">
-            <div class="section-head"><h2>Related Lab Tools</h2></div>
-            <div class="grid-tools">
-                <a href="/png-to-jpg" class="tool-card" style="padding:15px; border-radius:15px;">
-                    <div class="info"><h3>PNG to JPG</h3><p>Fast processing</p></div>
-                </a>
-<a href="/webp-to-jpg" class="tool-card" style="padding:15px; border-radius:15px;">
-                    <div class="info"><h3>WebP to JPG</h3><p>Fast processing</p></div>
-                </a>
-<a href="/heic-to-jpg" class="tool-card" style="padding:15px; border-radius:15px;">
-                    <div class="info"><h3>HEIC to JPG</h3><p>Fast processing</p></div>
-                </a>
-            </div>
-        </div>
+        <section class="seo-slop">
+            <h2>Detailed Guide for JPG to PNG</h2>
+            <p>Our professional <strong>jpg to png converter</strong> is designed for users who demand the highest possible fidelity. When you convert JPG files in our lab, we use a hybrid processing model that combines browser-side execution for privacy and high-performance server-side engines for complex operations.</p>
+            
+            <h3>How to convert JPG effectively?</h3>
+            <p>Simply drag and drop your file into the secure <strong>upload zone</strong> above. Our system will automatically detect the bitrate, resolution, and metadata of your jpg file. Once you click "Process," the magic happens. Your file is converted to PNG format and then automatically downloaded back to your device.</p>
+            
+            <h3>Is this JPG to PNG converter safe?</h3>
+            <p>Absolutely. <strong>ConvertRocket.online</strong> operates on a <em>Zero-Persistence</em> policy. Your JPG file is strictly used for the conversion process and is wiped from our volatile memory immediately after you download the PNG result. We use end-to-end SSL encryption to ensure your data is never intercepted.</p>
 
-        <div class="tool-section" style="opacity:0.6; font-size: 0.9rem;">
-            <h2>About JPG to PNG Conversion</h2>
-            <p>ConvertRocket provides high-fidelity conversion from JPG to PNG. 
-               Our cloud-based laboratory uses enterprise-grade engines to ensure every bit of your data is preserved. 
-               100% Privacy - nothing is stored on our servers longer than 60 minutes.</p>
-        </div>
+            <h3>Key Benefits:</h3>
+            <ul>
+                <li><strong>Lossless Conversion:</strong> We preserve the maximum metadata and quality during the JPG to PNG transcode.</li>
+                <li><strong>No Signup:</strong> Start using the professional converter instantly. No email or registration required.</li>
+                <li><strong>High Speed:</strong> Powered by our high-frequency clustered servers in the USA and Europe.</li>
+                <li><strong>Universal:</strong> Optimized for Chrome, Safari, Firefox, and all mobile browsers.</li>
+            </ul>
+        </section>
+
+        <footer class="resource-footer">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+                © 2026 CONVERTROCKET.ONLINE • ION PREMIUM V4.0
+            </div>
+        </footer>
     </div>
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:2px;">
-                © 2026 CONVERTROCKET • ALL-IN-ONE LABORATORY
-            </div>
-        </div>
-    </footer>
 
     <script>
         const API_BASE = '';
         const TARGET_FORMAT = 'png';
         
         document.addEventListener('DOMContentLoaded', () => {
-            const uploadZone = document.getElementById('upload-zone');
-            const fileInput = document.getElementById('file-input');
-            const fileInfo = document.getElementById('file-info');
-            const progressContainer = document.getElementById('progress-container');
-            const progressFill = document.getElementById('progress-fill');
-            const progressPercent = document.getElementById('progress-percent');
-            const progressMessage = document.getElementById('progress-message');
-            const resultContainer = document.getElementById('result-container');
-            const downloadLink = document.getElementById('download-link');
-            const resultFilename = document.getElementById('result-filename');
-            const statusMessage = document.getElementById('status-message');
+            const zone = document.getElementById('upload-zone');
+            const input = document.getElementById('file-input');
+            const progress = document.getElementById('progress-container');
+            const fill = document.getElementById('progress-fill');
+            const perc = document.getElementById('progress-percent');
+            const msg = document.getElementById('progress-message');
+            const result = document.getElementById('result-container');
+            const down = document.getElementById('download-link');
+            const info = document.getElementById('file-info');
             
-            uploadZone.addEventListener('click', () => fileInput.click());
-            
-            fileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) handleFile(e.target.files[0]);
-            });
-
-            async function handleFile(file) {
-                fileInfo.innerHTML = `<strong>Selected:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
-                fileInfo.style.display = 'block';
-                resultContainer.style.display = 'none';
-                
-                progressContainer.classList.add('active');
-                progressMessage.textContent = 'Uploading...';
+            input.addEventListener('change', async (e) => {
+                if (e.target.files.length === 0) return;
+                const file = e.target.files[0];
+                info.innerHTML = `<strong>File Identified:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
+                info.style.display = 'block';
+                progress.classList.add('active');
                 
                 const formData = new FormData();
                 formData.append('file', file);
                 formData.append('target_format', TARGET_FORMAT);
                 
-                let progress = 0;
-                const progressInterval = setInterval(() => {
-                    progress = Math.min(progress + Math.random() * 10, 95);
-                    progressFill.style.width = progress + '%';
-                    progressPercent.textContent = Math.round(progress) + '%';
-                    if(progress > 40) progressMessage.textContent = 'Processing in Lab...';
+                let p = 0;
+                const interval = setInterval(() => {
+                    p = Math.min(p + Math.random() * 10, 96);
+                    fill.style.width = p + '%';
+                    perc.textContent = Math.round(p) + '%';
+                    if(p > 40) msg.textContent = 'Laboratory Transcoding...';
+                    if(p > 80) msg.textContent = 'Finalizing Result...';
                 }, 400);
-                
+
                 try {
-                    const response = await fetch(API_BASE + '/api/convert/upload', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    clearInterval(progressInterval);
-                    const data = await response.json();
-                    
-                    if (data.success) {
-                        progressFill.style.width = '100%';
-                        progressPercent.textContent = '100%';
-                        progressMessage.textContent = 'Ready!';
-                        
+                    const r = await fetch(API_BASE + '/api/convert/upload', { method: 'POST', body: formData });
+                    const d = await r.json();
+                    clearInterval(interval);
+                    if (d.success) {
+                        fill.style.width = '100%';
+                        perc.textContent = '100%';
+                        msg.textContent = 'Ready for Save!';
                         setTimeout(() => {
-                            progressContainer.classList.remove('active');
-                            resultContainer.style.display = 'block';
-                            resultFilename.textContent = data.converted_file;
-                            downloadLink.href = data.download_url;
-                            downloadLink.click(); // Auto download
-                        }, 500);
-                    } else {
-                        throw new Error(data.message || 'Error occurred');
+                            progress.classList.remove('active');
+                            result.style.display = 'block';
+                            down.href = d.download_url;
+                            down.click(); // Auto save
+                        }, 600);
                     }
-                } catch (error) {
-                    clearInterval(progressInterval);
-                    statusMessage.textContent = 'Error: ' + error.message;
-                    statusMessage.classList.add('active', 'error');
+                } catch (err) { 
+                    alert('Error in Lab: ' + err.message); 
+                    clearInterval(interval);
+                    progress.classList.remove('active');
                 }
-            }
+            });
+        
+            // Sync Star
+            const star = document.querySelector('.card-star');
+            const url = '/jpg-to-png';
+            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+            if (starred.includes(url)) { star.textContent = '⭐'; star.classList.add('active'); }
+            else { star.textContent = '☆'; star.classList.remove('active'); }
         });
+
+        function toggleThisStar(el, url) {
+            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+            if (el.classList.contains('active')) {
+                el.classList.remove('active'); el.textContent = '☆';
+                starred = starred.filter(u => u !== url);
+            } else {
+                el.classList.add('active'); el.textContent = '⭐';
+                if(!starred.includes(url)) starred.push(url);
+            }
+            localStorage.setItem('starredTools', JSON.stringify(starred));
+        }
     </script>
 </body>
 </html>
