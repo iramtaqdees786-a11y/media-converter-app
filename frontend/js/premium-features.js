@@ -1,7 +1,7 @@
 /* 
    ============================================================
    ConvertRocket - Premium Feature Core
-   Handles: Starring tools, History, Notifications, Layout 
+   Handles: Starring tools, History, Notifications, Layout
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateToolStats();
     initCommandTabs();
     initFlowArrow();
+    initToolExplorer(); // NEW: UX Filter
 });
 
 // 1. Particle System (Aesthetic Flow)
@@ -240,3 +241,53 @@ function initFlowArrow() {
         });
     }
 }
+
+// 8. Result Hub Actions
+function copyResultLink() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+        if (window.showToast) window.showToast('Lab link copied to clipboard!', 'success');
+    });
+}
+
+function bookmarkTool() {
+    if (window.showToast) window.showToast('Press Ctrl+D to bookmark this laboratory module!', 'info');
+}
+
+// Global exposure
+window.copyResultLink = copyResultLink;
+window.bookmarkTool = bookmarkTool;
+// 9. Tool Category Filtering (Speed & UX)
+function initToolExplorer() {
+    const pills = document.querySelectorAll('.cat-pill');
+    const sections = document.querySelectorAll('.tool-section[data-category]');
+
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            const filter = pill.getAttribute('data-filter');
+
+            // Update UI
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+
+            // Filter sections
+            sections.forEach(section => {
+                const category = section.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    section.classList.remove('hidden');
+                    section.style.opacity = '0';
+                    setTimeout(() => section.style.opacity = '1', 10);
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            // Smooth scroll to results
+            const explorer = document.getElementById('tool-explorer');
+            if (explorer) explorer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+}
+
+// Global exposure
+window.initToolExplorer = initToolExplorer;

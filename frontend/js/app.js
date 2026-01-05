@@ -363,6 +363,9 @@ function displayDownloadResult(data) {
         link.click();
         document.body.removeChild(link);
     }, 1000);
+
+    const toolbar = document.getElementById('download-result-toolbar');
+    if (toolbar) toolbar.style.display = 'block';
 }
 
 // Convert Section
@@ -610,6 +613,9 @@ function displayConvertResult(data) {
         link.click();
         document.body.removeChild(link);
     }, 1000);
+
+    const toolbar = document.getElementById('convert-result-toolbar');
+    if (toolbar) toolbar.style.display = 'block';
 }
 
 // Load supported formats from API

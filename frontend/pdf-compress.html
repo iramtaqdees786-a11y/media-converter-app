@@ -22,6 +22,9 @@
         <nav class="nav-premium">
             <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
                     style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+            <div class="nav-links" style="display: flex; gap: 20px; opacity: 0.6;">
+                <a href="/blogs" style="color:white; text-decoration:none; font-size:0.9rem;">Guides</a>
+            </div>
         </nav>
 
         <div class="breadcrumbs">
@@ -74,8 +77,25 @@
                     OPTIMIZATION SCAN COMPLETE</div>
                 <div id="result-stats"
                     style="margin-bottom:30px; padding:20px; border-radius:20px; background:rgba(0,0,0,0.3);"></div>
-                <a href="#" id="pdf-download-link" class="action-btn"
-                    style="display:inline-block; text-decoration:none;" download>Save Optimized Results</a>
+
+                <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                    <a href="#" id="pdf-download-link" class="action-btn"
+                        style="display:inline-block; text-decoration:none; width: 100%; text-align: center;"
+                        download>Save Optimized Results</a>
+
+                    <!-- Result Actions (Bookmark/Copy) -->
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                        <button onclick="copyResultLink()" class="btn-tool"
+                            style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
+                            🔗 Copy Link
+                        </button>
+                        <button onclick="bookmarkTool()" class="btn-tool"
+                            style="flex: 1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
+                            ⭐ Bookmark
+                        </button>
+                    </div>
+                    <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
+                </div>
             </div>
 
             <div id="status-message" class="status-message"></div>
@@ -88,14 +108,16 @@
                 ensures your file arrives safely without being blocked by server limits. At
                 <strong>ConvertRocket</strong>, our laboratory uses advanced <strong>GhostScript</strong> algorithms to
                 strip redundant data, downsample high-res images, and subset fonts, resulting in significantly smaller
-                file sizes.</p>
+                file sizes.
+            </p>
 
             <h3>How our PDF Laboratory works?</h3>
             <p>Traditional "online compressors" often ruin the quality of your images or break the formatting of your
                 text. Our tool offers four levels of intelligence: <strong>Screen</strong> for the smallest possible
                 size (72dpi), <strong>eBook</strong> for a perfect balance of quality and size (150dpi), and
                 <strong>Printer/Prepress</strong> for professional-grade results where quality is paramount. Every
-                stream in your PDF is analyzed and optimized for its specific content type.</p>
+                stream in your PDF is analyzed and optimized for its specific content type.
+            </p>
 
             <h3>Is PDF Shrinking Secure?</h3>
             <p>Security is our laboratory's primary directive. When you upload a file to our <strong>secure
@@ -146,6 +168,14 @@
                 }
                 localStorage.setItem('starredTools', JSON.stringify(starred));
             }
+        }
+
+        function copyResultLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to laboratory clipboard!'));
+        }
+
+        function bookmarkTool() {
+            alert('Press Ctrl+D to bookmark this tool!');
         }
     </script>
 </body>

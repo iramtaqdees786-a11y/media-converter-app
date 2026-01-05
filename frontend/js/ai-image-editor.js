@@ -12,9 +12,9 @@ class AIImageEditor {
     constructor() {
         this.originalImage = null;
         this.currentImage = null;
-        this.canvas = document.getElementById('mainCanvas');
+        this.canvas = document.getElementById('main-canvas');
         this.ctx = this.canvas.getContext('2d', { willReadFrequently: true });
-        this.maskCanvas = document.getElementById('maskCanvas');
+        this.maskCanvas = document.createElement('canvas'); // Internal mask
         this.maskCtx = this.maskCanvas.getContext('2d');
 
         // AI Models
@@ -41,9 +41,10 @@ class AIImageEditor {
      * Load all AI models asynchronously
      */
     async loadModels() {
-        const statusEl = document.getElementById('status');
+        const statusEl = document.getElementById('status-message');
+        if (!statusEl) return;
         statusEl.classList.add('active');
-        statusEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading AI models...</p></div>';
+        statusEl.innerHTML = '<div class="loading"><p>Loading AI models...</p></div>';
 
         try {
             // Load TensorFlow models in parallel
@@ -101,9 +102,9 @@ class AIImageEditor {
      * Setup all event listeners
      */
     setupEventListeners() {
-        const uploadZone = document.getElementById('uploadZone');
-        const imageInput = document.getElementById('imageInput');
-        const downloadBtn = document.getElementById('downloadBtn');
+        const uploadZone = document.getElementById('upload-zone');
+        const imageInput = document.getElementById('file-input');
+        const downloadBtn = document.getElementById('download-ai-result');
 
         // Upload events
         uploadZone.addEventListener('click', () => imageInput.click());
@@ -134,7 +135,7 @@ class AIImageEditor {
         });
 
         // Tool buttons
-        document.querySelectorAll('.tool-btn').forEach(btn => {
+        document.querySelectorAll('.ai-op-btn').forEach(btn => {
             btn.addEventListener('click', () => this.handleToolClick(btn));
         });
 
@@ -155,9 +156,10 @@ class AIImageEditor {
                 this.displayImage(img);
 
                 // Show canvas, hide upload zone
-                document.getElementById('uploadZone').classList.add('active');
-                document.getElementById('canvasContainer').classList.add('active');
-                document.getElementById('downloadBtn').style.display = 'block';
+                document.getElementById('upload-zone').style.display = 'none';
+                document.getElementById('ai-workspace').style.display = 'block';
+                document.getElementById('canvas-wrapper').style.display = 'block';
+                document.getElementById('ai-tools').style.display = 'grid';
 
                 // Clear cached detections
                 this.cachedDetections = {

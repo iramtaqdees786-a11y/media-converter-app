@@ -48,7 +48,20 @@
 
             <div id="result-container" style="display:none; margin-top:40px;">
                 <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:900; letter-spacing:1px;">✅ LABORATORY SUCCESS</div>
-                <a href="#" id="download-link" class="action-btn" style="display:inline-block; text-decoration:none;" download>Save MOV Result</a>
+                <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                    <a href="#" id="download-link" class="action-btn" style="display:inline-block; text-decoration:none; width: 100%; text-align: center;" download>Save MOV Result</a>
+                    
+                    <!-- Result Actions (Bookmark/Copy) -->
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                        <button onclick="copyResultLink()" class="btn-tool" style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
+                            🔗 Copy Link
+                        </button>
+                        <button onclick="bookmarkTool()" class="btn-tool" style="flex: 1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
+                            ⭐ Bookmark
+                        </button>
+                    </div>
+                    <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
+                </div>
             </div>
 
             <div id="status-message" class="status-message"></div>
@@ -155,6 +168,14 @@
                 if(!starred.includes(url)) starred.push(url);
             }
             localStorage.setItem('starredTools', JSON.stringify(starred));
+        }
+
+        function copyResultLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to laboratory clipboard!'));
+        }
+
+        function bookmarkTool() {
+            alert('Press Ctrl+D to bookmark this tool!');
         }
     </script>
 </body>

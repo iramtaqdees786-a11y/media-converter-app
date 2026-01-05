@@ -33,7 +33,7 @@
                 ConvertRocket</div>
             <div class="nav-links" style="display: flex; gap: 30px; opacity: 0.6;">
                 <a href="#universal-command" style="color:white; text-decoration:none;">Universal Lab</a>
-                <a href="#tools" style="color:white; text-decoration:none;">Toolbox</a>
+                <a href="/blogs" style="color:white; text-decoration:none;">Guides</a>
                 <a href="/pdf-tools" style="color:white; text-decoration:none;">PDF Kit</a>
                 <a href="/media-tools" style="color:white; text-decoration:none;">Media Lab</a>
             </div>
@@ -43,11 +43,6 @@
             <h1 class="ion-title">The Future of Files</h1>
             <p class="hero-tagline">Cloud-Scale Intelligence. Browser-Side Privacy. 100% Free.</p>
 
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input"
-                    placeholder="Search 100+ tools... (e.g. 'webp to jpg')">
-                <div id="search-results" class="search-results"></div>
-            </div>
         </section>
 
         <!-- Command Center (The Tabs) -->
@@ -87,7 +82,27 @@
                     <div id="convert-progress" class="progress-container">
                         <div class="progress-fill"></div>
                     </div>
-                    <div id="convert-result" style="display:none; margin-top:30px;"></div>
+                    <div id="convert-result" style="display:none; margin-top:30px;">
+                    </div>
+
+                    <!-- Result Actions (Bookmark/Copy) -->
+                    <div id="convert-result-toolbar"
+                        style="display: none; margin-top: 20px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <button onclick="copyResultLink()" class="btn-tool"
+                                style="background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+                                🔗 Copy Link
+                            </button>
+                            <button onclick="bookmarkTool()" class="btn-tool"
+                                style="background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+                                ⭐ Bookmark
+                            </button>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
+                        </div>
+                    </div>
+
                     <div id="convert-status" class="status-message"></div>
                 </div>
             </div>
@@ -126,15 +141,50 @@
                         <div class="progress-fill"></div>
                     </div>
                     <div id="download-result" style="display: none; margin-top: 30px;"></div>
+
+                    <!-- Result Actions (Bookmark/Copy) -->
+                    <div id="download-result-toolbar"
+                        style="display: none; margin-top: 20px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <button onclick="copyResultLink()" class="btn-tool"
+                                style="background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+                                🔗 Copy Link
+                            </button>
+                            <button onclick="bookmarkTool()" class="btn-tool"
+                                style="background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+                                ⭐ Bookmark
+                            </button>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
+                        </div>
+                    </div>
+
                     <div id="download-status" class="status-message"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Flow Arrow -->
-        <div class="flow-arrow-container">
-            <a href="#favorites-section" class="flow-arrow" title="Discover More Tools">↓</a>
-            <span class="flow-label">Find 100+ More Features Below</span>
+        <!-- STICKY HUB (UX Speed & Discovery) -->
+        <div class="hub-sticky-container">
+            <!-- Search Lab -->
+            <div class="search-lab" style="margin: 0; padding: 0; position: relative;">
+                <input type="text" id="global-search" class="search-input"
+                    placeholder="Search 100+ lab modules (e.g. PDF, Image, Dev)..." style="border-radius: 20px;">
+                <div id="search-results" class="search-results"></div>
+            </div>
+
+            <!-- Category Quick-Bar -->
+            <div class="category-bar-wrapper" id="tool-explorer" style="margin: 0;">
+                <div class="category-bar">
+                    <div class="cat-pill active" data-filter="all">🚀 All Tools</div>
+                    <div class="cat-pill" data-filter="ai">🪄 AI Lab</div>
+                    <div class="cat-pill" data-filter="media">🎬 Media</div>
+                    <div class="cat-pill" data-filter="pdf">📄 PDF</div>
+                    <div class="cat-pill" data-filter="dev">💻 Dev Lab</div>
+                    <div class="cat-pill" data-filter="utility">🛠️ Utility</div>
+                </div>
+            </div>
         </div>
 
         <!-- Starred Tools Section -->
@@ -146,7 +196,7 @@
         </div>
 
         <!-- AI Laboratory Tools -->
-        <div class="tool-section">
+        <div class="tool-section" data-category="ai">
             <div class="section-head">
                 <h2>AI Laboratory <span class="badge-ai">Enterprise</span></h2>
                 <div style="opacity: 0.3; font-size: 0.8rem;">SECURE ENCLAVE ACTIVE</div>
@@ -176,7 +226,7 @@
         </div>
 
         <!-- Productivity Suite (NEW FEATURES) -->
-        <div class="tool-section">
+        <div class="tool-section" data-category="utility">
             <div class="section-head">
                 <h2>Productivity Suite</h2>
             </div>
@@ -225,7 +275,7 @@
         </div>
 
         <!-- Dev & Data Lab (NEW FEATURES) -->
-        <div class="tool-section">
+        <div class="tool-section" data-category="dev">
             <div class="section-head">
                 <h2>Developer Laboratory</h2>
             </div>
@@ -274,7 +324,7 @@
         </div>
 
         <!-- Media Hub -->
-        <div class="tool-section" id="tools">
+        <div class="tool-section" id="tools" data-category="media">
             <div class="section-head">
                 <h2>Media Mastery</h2>
             </div>
@@ -323,7 +373,7 @@
         </div>
 
         <!-- PDF hub -->
-        <div class="tool-section">
+        <div class="tool-section" data-category="pdf">
             <div class="section-head">
                 <h2>PDF Document Lab</h2>
             </div>
@@ -372,7 +422,7 @@
         </div>
 
         <!-- Extra Tools (20+ more) -->
-        <div class="tool-section">
+        <div class="tool-section" data-category="utility">
             <div class="section-head">
                 <h2>Specialized Lab Modules</h2>
             </div>
@@ -461,7 +511,7 @@
         </div>
 
         <!-- Utility Lab (MORE NEW FEATURES) -->
-        <div class="tool-section">
+        <div class="tool-section" data-category="utility">
             <div class="section-head">
                 <h2>Utility Lab</h2>
             </div>
@@ -531,6 +581,33 @@
                     image editor, pdf to word, mp4 download, youtube to mp3 converter, heic to jpg, merge pdf free, safe
                     file converter, ai background remover, compress pdf online, json formatter, qr code creator, base64
                     encoder.</p>
+            </div>
+        </section>
+
+        <!-- Guides & Articles Section (RESTORED) -->
+        <section class="tool-section" id="guides">
+            <div class="section-head">
+                <h2>Laboratory Guides & Knowledge Base</h2>
+            </div>
+            <div class="grid-tools">
+                <a href="/blogs" class="tool-card">
+                    <div class="card-info">
+                        <h3>HEIC to JPG Guide</h3>
+                        <p>How to convert iPhone photos without quality loss [2026]</p>
+                    </div>
+                </a>
+                <a href="/blogs" class="tool-card">
+                    <div class="card-info">
+                        <h3>Safe PDF Compressing</h3>
+                        <p>Advanced techniques for shrinking massive PDF archives</p>
+                    </div>
+                </a>
+                <a href="/blogs" class="tool-card">
+                    <div class="card-info">
+                        <h3>Social Video Extraction</h3>
+                        <p>The definitive guide to saving high-quality social reels</p>
+                    </div>
+                </a>
             </div>
         </section>
 
