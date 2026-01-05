@@ -29,607 +29,570 @@
 
     <div class="container">
         <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">🚀
-                ConvertRocket</div>
-            <div class="nav-links" style="display: flex; gap: 30px; opacity: 0.6;">
-                <a href="#universal-command" style="color:white; text-decoration:none;">Universal Lab</a>
-                <a href="/blogs" style="color:white; text-decoration:none;">Guides</a>
-                <a href="/pdf-tools" style="color:white; text-decoration:none;">PDF Kit</a>
-                <a href="/media-tools" style="color:white; text-decoration:none;">Media Lab</a>
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
+                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+            <div class="nav-links" style="display: flex; gap: 20px; opacity: 0.8;">
+                <a href="/blogs"
+                    style="color:var(--neon-cyan); text-decoration:none; font-size:0.9rem; font-weight:800; text-transform:uppercase; letter-spacing:1px;">📚
+                    Guides & Articles</a>
             </div>
         </nav>
 
-        <section class="hero-minimal">
-            <h1 class="ion-title">The Future of Files</h1>
-            <p class="hero-tagline">Cloud-Scale Intelligence. Browser-Side Privacy. 100% Free.</p>
-
-        </section>
-
-        <!-- Command Center (The Tabs) -->
-        <div class="command-center" id="universal-command">
-            <div class="command-tabs">
-                <div class="cmd-tab active" data-tab="universal-converter">
-                    <span>🔄</span> Universal Converter
-                </div>
-                <div class="cmd-tab" data-tab="universal-downloader">
-                    <span>☁️</span> Cloud Downloader
-                </div>
-            </div>
-
-            <div class="tab-pane active" id="universal-converter">
-                <div class="converter-box" style="margin-bottom: 0;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                        <h2 style="font-weight: 950; font-size: 1.8rem; margin:0;">Universal <span
-                                style="color:var(--neon-cyan)">Converter</span></h2>
-                    </div>
-
-                    <div class="upload-zone" id="upload-zone">
-                        <div class="upload-icon">📁</div>
-                        <p style="font-size: 1.4rem; font-weight: 800;">Drop ANY file here</p>
-                        <p style="opacity: 0.5;">Auto-detecting 50+ formats for instant processing</p>
-                        <input type="file" id="file-input">
-                    </div>
-
-                    <div id="selected-file-info"
-                        style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
-                    </div>
-                    <div id="convert-controls" style="display:none; margin-top:30px;">
-                        <select id="target-format" class="search-input"
-                            style="padding:15px 25px !important; margin-bottom:20px;"></select>
-                        <button id="convert-btn" class="action-btn" style="width:100%;">Execute Conversion</button>
-                    </div>
-
-                    <div id="convert-progress" class="progress-container">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div id="convert-result" style="display:none; margin-top:30px;">
-                    </div>
-
-                    <!-- Result Actions (Bookmark/Copy) -->
-                    <div id="convert-result-toolbar"
-                        style="display: none; margin-top: 20px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
-                        <div style="display: flex; gap: 15px; justify-content: center;">
-                            <button onclick="copyResultLink()" class="btn-tool"
-                                style="background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
-                                🔗 Copy Link
-                            </button>
-                            <button onclick="bookmarkTool()" class="btn-tool"
-                                style="background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
-                                ⭐ Bookmark
-                            </button>
-                        </div>
-                        <div style="text-align: center;">
-                            <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
-                        </div>
-                    </div>
-
-                    <div id="convert-status" class="status-message"></div>
-                </div>
-            </div>
-
-            <div class="tab-pane" id="universal-downloader">
-                <div class="converter-box" style="margin-bottom: 0;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                        <h2 style="font-weight: 950; font-size: 1.8rem; margin:0;">Cloud <span
-                                style="color:var(--neon-purple)">Downloader</span></h2>
-                    </div>
-
-                    <div style="margin-bottom: 30px; display: flex; gap: 10px;">
-                        <input type="text" id="url-input" class="search-input"
-                            placeholder="Paste URL (YouTube, TikTok, Instagram...)"
-                            style="padding: 24px 30px !important;">
-                        <button id="get-info-btn" class="action-btn"
-                            style="padding: 0 40px; border-radius: 24px;">Scan</button>
-                    </div>
-
-                    <div id="video-preview" style="display: none; margin-top: 30px;"></div>
-                    <div id="download-controls" style="display: none; margin-top: 30px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
-                            <select id="format-type" class="search-input" style="padding: 15px 25px !important;">
-                                <option value="video">MP4 Video</option>
-                                <option value="audio">MP3 Audio</option>
-                            </select>
-                            <select id="quality-select" class="search-input" style="padding: 15px 25px !important;">
-                                <option value="best">Best Quality</option>
-                                <option value="720p">720p HD</option>
-                            </select>
-                        </div>
-                        <button id="download-btn" class="action-btn" style="width: 100%;">Initialize Stream</button>
-                    </div>
-
-                    <div id="download-progress" class="progress-container">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <div id="download-result" style="display: none; margin-top: 30px;"></div>
-
-                    <!-- Result Actions (Bookmark/Copy) -->
-                    <div id="download-result-toolbar"
-                        style="display: none; margin-top: 20px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
-                        <div style="display: flex; gap: 15px; justify-content: center;">
-                            <button onclick="copyResultLink()" class="btn-tool"
-                                style="background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
-                                🔗 Copy Link
-                            </button>
-                            <button onclick="bookmarkTool()" class="btn-tool"
-                                style="background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer;">
-                                ⭐ Bookmark
-                            </button>
-                        </div>
-                        <div style="text-align: center;">
-                            <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
-                        </div>
-                    </div>
-
-                    <div id="download-status" class="status-message"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- STICKY HUB (UX Speed & Discovery) -->
+        <!-- STICKY TOP HUB (V7 Speed) -->
         <div class="hub-sticky-container">
-            <!-- Search Lab -->
-            <div class="search-lab" style="margin: 0; padding: 0; position: relative;">
+            <div class="search-lab" style="position: relative;">
                 <input type="text" id="global-search" class="search-input"
-                    placeholder="Search 100+ lab modules (e.g. PDF, Image, Dev)..." style="border-radius: 20px;">
+                    placeholder="Search 100+ lab modules (e.g. PDF, Image, Dev)..." style="border-radius: 25px;">
                 <div id="search-results" class="search-results"></div>
             </div>
-
-            <!-- Category Quick-Bar -->
-            <div class="category-bar-wrapper" id="tool-explorer" style="margin: 0;">
+            <div class="category-bar-wrapper" id="tool-explorer">
                 <div class="category-bar">
-                    <div class="cat-pill active" data-filter="all">🚀 All Tools</div>
+                    <div class="cat-pill active" data-filter="all">🚀 All Units</div>
                     <div class="cat-pill" data-filter="ai">🪄 AI Lab</div>
-                    <div class="cat-pill" data-filter="media">🎬 Media</div>
-                    <div class="cat-pill" data-filter="pdf">📄 PDF</div>
-                    <div class="cat-pill" data-filter="dev">💻 Dev Lab</div>
-                    <div class="cat-pill" data-filter="utility">🛠️ Utility</div>
+                    <div class="cat-pill" data-filter="media">🎬 Media Hub</div>
+                    <div class="cat-pill" data-filter="pdf">📄 PDF Lab</div>
+                    <div class="cat-pill" data-filter="dev">💻 Dev Suite</div>
+                    <div class="cat-pill" data-filter="utility">🛠️ Utilities</div>
                 </div>
             </div>
         </div>
 
-        <!-- Starred Tools Section -->
-        <div id="favorites-section" class="tool-section" style="display: none;">
-            <div class="section-head">
-                <h2>Favorites <span style="color: #ffeb3b;">⭐</span></h2>
-            </div>
-            <div class="grid-tools" id="favorites-grid"></div>
-        </div>
-
-        <!-- AI Laboratory Tools -->
-        <div class="tool-section" data-category="ai">
-            <div class="section-head">
-                <h2>AI Laboratory <span class="badge-ai">Enterprise</span></h2>
-                <div style="opacity: 0.3; font-size: 0.8rem;">SECURE ENCLAVE ACTIVE</div>
-            </div>
-            <div class="grid-tools">
-                <a href="/ai-image-editor" class="tool-card ai-tool">
-                    <div class="card-top">
-                        <div class="card-icon">🪄</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>AI Image Magic</h3>
-                        <p>Magic eraser, Background removal & Detail enhancement</p>
-                    </div>
-                </a>
-                <a href="/ai-image-editor" class="tool-card ai-tool">
-                    <div class="card-top">
-                        <div class="card-icon">👤</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Face Anonymizer</h3>
-                        <p>Neural privacy mask for photos. 100% Local processing.</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Productivity Suite (NEW FEATURES) -->
-        <div class="tool-section" data-category="utility">
-            <div class="section-head">
-                <h2>Productivity Suite</h2>
-            </div>
-            <div class="grid-tools">
-                <a href="/qr-creator" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🏁</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>QR Generator</h3>
-                        <p>Create branded QR codes with dynamic links</p>
-                    </div>
-                </a>
-                <a href="/pdf-password" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🔐</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>PDF Shield</h3>
-                        <p>Add or remove passwords from PDF archives</p>
-                    </div>
-                </a>
-                <a href="/image-resizer" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📏</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Smart Resizer</h3>
-                        <p>Scale images without losing pixel data</p>
-                    </div>
-                </a>
-                <a href="/base64-converter" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🧬</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Base64 Lab</h3>
-                        <p>Convert images or text to Base64 strings</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Dev & Data Lab (NEW FEATURES) -->
-        <div class="tool-section" data-category="dev">
-            <div class="section-head">
-                <h2>Developer Laboratory</h2>
-            </div>
-            <div class="grid-tools">
-                <a href="/json-formatter" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">{}</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>JSON Magician</h3>
-                        <p>Prettify, minify and validate JSON data</p>
-                    </div>
-                </a>
-                <a href="/csv-to-json" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📋</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>CSV Streamer</h3>
-                        <p>Convert spreadsheets to industrial JSON</p>
-                    </div>
-                </a>
-                <a href="/svg-optimizer" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">⚡</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>SVG Lightning</h3>
-                        <p>Shrink vector files for maximum web speed</p>
-                    </div>
-                </a>
-                <a href="/password-gen" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🔑</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Safe Entropy</h3>
-                        <p>Generate military-grade secure passwords</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Media Hub -->
-        <div class="tool-section" id="tools" data-category="media">
-            <div class="section-head">
-                <h2>Media Mastery</h2>
-            </div>
-            <div class="grid-tools">
-                <a href="/video-converter" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📽️</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Video Tool</h3>
-                        <p>Save from YouTube, TikTok, IG & Twitter</p>
-                    </div>
-                </a>
-                <a href="/mp3-converter" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🎵</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>MP3 Laboratory</h3>
-                        <p>Extract crystal clear 320kbps audio</p>
-                    </div>
-                </a>
-                <a href="/video-trimmer" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">✂️</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Smart Trimmer</h3>
-                        <p>Frame-perfect cutting without re-encoding</p>
-                    </div>
-                </a>
-                <a href="/image-converter" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🖼️</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Image Kit</h3>
-                        <p>WEBP, HEIC, PNG, JPG & SVG conversion</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- PDF hub -->
-        <div class="tool-section" data-category="pdf">
-            <div class="section-head">
-                <h2>PDF Document Lab</h2>
-            </div>
-            <div class="grid-tools">
-                <a href="/pdf-compress" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📦</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>PDF Compressor</h3>
-                        <p>Smart shrinking via GhostScript V8 engine</p>
-                    </div>
-                </a>
-                <a href="/pdf-merge" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🔗</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Merge PDFs</h3>
-                        <p>Batch combine documents into one stream</p>
-                    </div>
-                </a>
-                <a href="/pdf-to-word" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📄</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>PDF to Editable</h3>
-                        <p>Export to Word, Excel or plain text</p>
-                    </div>
-                </a>
-                <a href="/pdf-remove-pages" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🗑️</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Page Remover</h3>
-                        <p>Quickly strip pages from any PDF file</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Extra Tools (20+ more) -->
-        <div class="tool-section" data-category="utility">
-            <div class="section-head">
-                <h2>Specialized Lab Modules</h2>
-            </div>
-            <div class="grid-tools">
-                <a href="/insta-photo-down" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📸</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Insta Saver</h3>
-                        <p>Download full-res Instagram photos</p>
-                    </div>
-                </a>
-                <a href="/tiktok-no-watermark" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📱</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>TikTok Pure</h3>
-                        <p>Extract TikTok videos without watermark</p>
-                    </div>
-                </a>
-                <a href="/pdf-to-txt" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🔤</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>PDF to Text</h3>
-                        <p>OCR-style text extraction from documents</p>
-                    </div>
-                </a>
-                <a href="/pdf-rotate" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🔄</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>PDF Rotation</h3>
-                        <p>Fix orientation for multiple PDF pages</p>
-                    </div>
-                </a>
-                <a href="/png-to-ico" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🎯</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Favicon Gen</h3>
-                        <p>Create Windows .ico files from any image</p>
-                    </div>
-                </a>
-                <a href="/image-grayscale" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🌑</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Grayscale lab</h3>
-                        <p>Convert any photo to artistic B&W</p>
-                    </div>
-                </a>
-                <a href="/exif-remover" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🕵️</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>EXIF Strip</h3>
-                        <p>Remove metadata for absolute privacy</p>
-                    </div>
-                </a>
-                <a href="/yt-thumbnail" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🖼️</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Thumbnail Lab</h3>
-                        <p>Grab HD cover art from YouTube</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Utility Lab (MORE NEW FEATURES) -->
-        <div class="tool-section" data-category="utility">
-            <div class="section-head">
-                <h2>Utility Lab</h2>
-            </div>
-            <div class="grid-tools">
-                <a href="/url-shortener" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">🔗</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Rocket Links</h3>
-                        <p>Shorten and track your universal URLs</p>
-                    </div>
-                </a>
-                <a href="/lorem-gen" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">📝</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Lorem Ipsum</h3>
-                        <p>Generate professional placeholder text</p>
-                    </div>
-                </a>
-                <a href="/diff-checker" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">⚖️</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Diff Scan</h3>
-                        <p>Compare two text files for pixel-perfect changes</p>
-                    </div>
-                </a>
-                <a href="/timezone-conv" class="tool-card">
-                    <div class="card-top">
-                        <div class="card-icon">⏰</div>
-                        <div class="card-star">☆</div>
-                    </div>
-                    <div class="card-info">
-                        <h3>Temporal Sync</h3>
-                        <p>Convert times across 400+ world regions</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- SEO SLOP SECTION -->
-        <section class="seo-slop">
-            <div class="container" style="max-width: 900px;">
-                <h2>About ConvertRocket: The Premier File Conversion Platform</h2>
-                <p>In the digital age, file conversion is more than just a convenience—it's a necessity.
-                    <strong>ConvertRocket</strong> was founded on the principle that powerful file processing tools
-                    should be accessible to everyone, without the burden of expensive subscriptions or privacy-invading
-                    accounts. Our platform leverages the latest in <strong>WebAssembly (WASM)</strong> and <strong>AI
-                        Neural Networks</strong> to bring enterprise-grade tools directly to your browser.
-                </p>
-
-                <h3>Advanced PDF Management Tools</h3>
-                <p>Managing PDF documents often requires costly software like Adobe Acrobat. ConvertRocket solves this
-                    by providing a complete suite of PDF tools for free. Our <strong>PDF Compressor</strong> utilizes
-                    the same optimization algorithms used by high-end printing houses, allowing you to shrink file sizes
-                    for email without sacrificing legibility. Need to combine reports? Our <strong>Merge PDF</strong>
-                    tool is built for speed, handling dozens of files in seconds.</p>
-
-                <p style="margin-top: 40px; font-style: italic; opacity: 0.6;">Key Keywords: free file converter, online
-                    image editor, pdf to word, mp4 download, youtube to mp3 converter, heic to jpg, merge pdf free, safe
-                    file converter, ai background remover, compress pdf online, json formatter, qr code creator, base64
-                    encoder.</p>
-            </div>
+        <section class="hero-minimal" style="padding: 20px 0;">
+            <h1 class="ion-title">The Future of Files</h1>
+            <p class="hero-tagline">Cloud-Scale Intelligence. Browser-Side Privacy. 100% Free.</p>
         </section>
 
-        <!-- Guides & Articles Section (RESTORED) -->
-        <section class="tool-section" id="guides">
-            <div class="section-head">
-                <h2>Laboratory Guides & Knowledge Base</h2>
-            </div>
-            <div class="grid-tools">
-                <a href="/blogs" class="tool-card">
-                    <div class="card-info">
-                        <h3>HEIC to JPG Guide</h3>
-                        <p>How to convert iPhone photos without quality loss [2026]</p>
+        <!-- Command Dashboard (Side-by-Side V7) -->
+        <div class="dashboard-grid" id="universal-command">
+            <!-- Converter Block -->
+            <div class="dashboard-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h2 style="font-weight: 950; font-size: 1.6rem; margin:0;">Universal <span
+                                style="color:var(--neon-cyan)">Converter</span></h2>
+                        <div style="font-size:0.6rem; opacity:0.4; letter-spacing:2px; font-weight:900;">UNIT 01: ONLINE
+                        </div>
                     </div>
-                </a>
-                <a href="/blogs" class="tool-card">
-                    <div class="card-info">
-                        <h3>Safe PDF Compressing</h3>
-                        <p>Advanced techniques for shrinking massive PDF archives</p>
+                    <div class="upload-zone" id="upload-zone" style="padding: 30px 15px;">
+                        <div class="upload-icon" style="font-size: 3rem;">📁</div>
+                        <p style="font-size: 1.2rem; font-weight: 800;">Drop File Here</p>
+                        <input type="file" id="file-input">
                     </div>
-                </a>
-                <a href="/blogs" class="tool-card">
-                    <div class="card-info">
-                        <h3>Social Video Extraction</h3>
-                        <p>The definitive guide to saving high-quality social reels</p>
+                    <div id="convert-controls" style="display:none; margin-top:20px;">
+                        <select id="target-format" class="search-input"
+                            style="padding:12px 20px !important; margin-bottom:15px; font-size:0.9rem !important;"></select>
+                        <button id="convert-btn" class="action-btn"
+                            style="width:100%; padding: 15px; font-size: 1rem;">Execute Conversion</button>
                     </div>
-                </a>
-            </div>
-        </section>
-
-        <footer class="resource-footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h2 style="font-weight: 950; margin-bottom: 25px; letter-spacing:-2px;">ConvertRocket</h2>
-                        <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem;">
-                            The absolute pinnacle of online file processing. Built for professionals, accessible to
-                            everyone.
-                        </p>
+                    <div id="convert-status" class="status-message"></div>
+                    <div id="convert-result" style="display:none; margin-top:20px;"></div>
+                    <div id="convert-result-toolbar"
+                        style="display: none; margin-top: 15px; border-top: 1px solid var(--glass-border); padding-top: 15px;">
+                        <div style="display: flex; gap: 10px; justify-content: center;">
+                            <button onclick="copyResultLink()" class="btn-tool"
+                                style="flex:1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 8px; border-radius: 10px; font-size:0.8rem;">🔗
+                                Copy</button>
+                            <button onclick="bookmarkTool()" class="btn-tool"
+                                style="flex:1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 8px; border-radius: 10px; font-size:0.8rem;">⭐
+                                Save</button>
+                        </div>
+                    </div>
+                    <div id="selected-file-info" style="display:none; margin-top:15px; font-size:0.8rem; opacity:0.5;">
                     </div>
                 </div>
 
-                <div
-                    style="text-align: center; margin-top: 80px; opacity: 0.2; font-size: 0.75rem; font-weight: 800; letter-spacing: 5px;">
-                    © 2026 CONVERTROCKET.ONLINE • REDEFINING THE WEB
+                <!-- Downloader Block -->
+                <div class="dashboard-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h2 style="font-weight: 950; font-size: 1.6rem; margin:0;">Cloud <span
+                                style="color:var(--neon-purple)">Downloader</span></h2>
+                        <div style="font-size:0.6rem; opacity:0.4; letter-spacing:2px; font-weight:900;">UNIT 02: ONLINE
+                        </div>
+                    </div>
+                    <input type="text" id="url-input" class="search-input" placeholder="Paste URL (YouTube, TikTok...)"
+                        style="padding: 15px !important; margin-bottom:15px; font-size:0.9rem !important;">
+                    <button id="get-info-btn" class="action-btn"
+                        style="width:100%; padding: 15px; font-size: 1rem; margin-bottom:15px;">Scan Source</button>
+
+                    <div id="download-controls" style="display: none; margin-top: 15px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                            <select id="format-type" class="search-input"
+                                style="padding: 10px !important; font-size:0.8rem !important;">
+                                <option value="video">MP4</option>
+                                <option value="audio">MP3</option>
+                            </select>
+                            <select id="quality-select" class="search-input"
+                                style="padding: 10px !important; font-size:0.8rem !important;">
+                                <option value="best">Best Quality</option>
+                            </select>
+                        </div>
+                        <button id="download-btn" class="action-btn"
+                            style="width: 100%; padding:15px;">Download</button>
+                    </div>
+                    <div id="download-status" class="status-message"></div>
+                    <div id="download-result" style="display: none; margin-top: 15px;"></div>
+                    <div id="download-result-toolbar"
+                        style="display: none; margin-top: 15px; border-top: 1px solid var(--glass-border); padding-top: 15px;">
+                        <button onclick="bookmarkTool()" class="btn-tool"
+                            style="width:100%; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 8px; border-radius: 10px;">⭐
+                            Save to Lab</button>
+                    </div>
                 </div>
             </div>
-        </footer>
-    </div>
+
+
+            <!-- Starred Tools Section -->
+            <div id="favorites-section" class="tool-section" style="display: none;">
+                <div class="section-head">
+                    <h2>Favorites <span style="color: #ffeb3b;">⭐</span></h2>
+                </div>
+                <div class="grid-tools" id="favorites-grid"></div>
+            </div>
+
+            <!-- AI Laboratory Tools -->
+            <div class="tool-section" data-category="ai">
+                <div class="section-head">
+                    <h2>AI Laboratory <span class="badge-ai">Enterprise</span></h2>
+                    <div style="opacity: 0.3; font-size: 0.8rem;">SECURE ENCLAVE ACTIVE</div>
+                </div>
+                <div class="grid-tools">
+                    <a href="/ai-image-editor" class="tool-card ai-tool">
+                        <div class="card-top">
+                            <div class="card-icon">🪄</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>AI Image Magic</h3>
+                            <p>Magic eraser, Background removal & Detail enhancement</p>
+                        </div>
+                    </a>
+                    <a href="/ai-image-editor" class="tool-card ai-tool">
+                        <div class="card-top">
+                            <div class="card-icon">👤</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Face Anonymizer</h3>
+                            <p>Neural privacy mask for photos. 100% Local processing.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Productivity Suite (NEW FEATURES) -->
+            <div class="tool-section" data-category="utility">
+                <div class="section-head">
+                    <h2>Productivity Suite</h2>
+                </div>
+                <div class="grid-tools">
+                    <a href="/qr-creator" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🏁</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>QR Generator</h3>
+                            <p>Create branded QR codes with dynamic links</p>
+                        </div>
+                    </a>
+                    <a href="/pdf-password" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🔐</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>PDF Shield</h3>
+                            <p>Add or remove passwords from PDF archives</p>
+                        </div>
+                    </a>
+                    <a href="/image-resizer" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📏</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Smart Resizer</h3>
+                            <p>Scale images without losing pixel data</p>
+                        </div>
+                    </a>
+                    <a href="/base64-converter" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🧬</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Base64 Lab</h3>
+                            <p>Convert images or text to Base64 strings</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dev & Data Lab (NEW FEATURES) -->
+            <div class="tool-section" data-category="dev">
+                <div class="section-head">
+                    <h2>Developer Laboratory</h2>
+                </div>
+                <div class="grid-tools">
+                    <a href="/json-formatter" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">{}</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>JSON Magician</h3>
+                            <p>Prettify, minify and validate JSON data</p>
+                        </div>
+                    </a>
+                    <a href="/csv-to-json" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📋</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>CSV Streamer</h3>
+                            <p>Convert spreadsheets to industrial JSON</p>
+                        </div>
+                    </a>
+                    <a href="/svg-optimizer" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>SVG Lightning</h3>
+                            <p>Shrink vector files for maximum web speed</p>
+                        </div>
+                    </a>
+                    <a href="/password-gen" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🔑</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Safe Entropy</h3>
+                            <p>Generate military-grade secure passwords</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Media Hub -->
+            <div class="tool-section" id="tools" data-category="media">
+                <div class="section-head">
+                    <h2>Media Mastery</h2>
+                </div>
+                <div class="grid-tools">
+                    <a href="/video-converter" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📽️</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Video Tool</h3>
+                            <p>Save from YouTube, TikTok, IG & Twitter</p>
+                        </div>
+                    </a>
+                    <a href="/mp3-converter" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🎵</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>MP3 Laboratory</h3>
+                            <p>Extract crystal clear 320kbps audio</p>
+                        </div>
+                    </a>
+                    <a href="/video-trimmer" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">✂️</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Smart Trimmer</h3>
+                            <p>Frame-perfect cutting without re-encoding</p>
+                        </div>
+                    </a>
+                    <a href="/image-converter" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🖼️</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Image Kit</h3>
+                            <p>WEBP, HEIC, PNG, JPG & SVG conversion</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PDF hub -->
+            <div class="tool-section" data-category="pdf">
+                <div class="section-head">
+                    <h2>PDF Document Lab</h2>
+                </div>
+                <div class="grid-tools">
+                    <a href="/pdf-compress" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📦</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>PDF Compressor</h3>
+                            <p>Smart shrinking via GhostScript V8 engine</p>
+                        </div>
+                    </a>
+                    <a href="/pdf-merge" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🔗</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Merge PDFs</h3>
+                            <p>Batch combine documents into one stream</p>
+                        </div>
+                    </a>
+                    <a href="/pdf-to-word" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📄</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>PDF to Editable</h3>
+                            <p>Export to Word, Excel or plain text</p>
+                        </div>
+                    </a>
+                    <a href="/pdf-remove-pages" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🗑️</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Page Remover</h3>
+                            <p>Quickly strip pages from any PDF file</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Extra Tools (20+ more) -->
+            <div class="tool-section" data-category="utility">
+                <div class="section-head">
+                    <h2>Specialized Lab Modules</h2>
+                </div>
+                <div class="grid-tools">
+                    <a href="/insta-photo-down" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📸</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Insta Saver</h3>
+                            <p>Download full-res Instagram photos</p>
+                        </div>
+                    </a>
+                    <a href="/tiktok-no-watermark" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📱</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>TikTok Pure</h3>
+                            <p>Extract TikTok videos without watermark</p>
+                        </div>
+                    </a>
+                    <a href="/pdf-to-txt" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🔤</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>PDF to Text</h3>
+                            <p>OCR-style text extraction from documents</p>
+                        </div>
+                    </a>
+                    <a href="/pdf-rotate" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🔄</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>PDF Rotation</h3>
+                            <p>Fix orientation for multiple PDF pages</p>
+                        </div>
+                    </a>
+                    <a href="/png-to-ico" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🎯</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Favicon Gen</h3>
+                            <p>Create Windows .ico files from any image</p>
+                        </div>
+                    </a>
+                    <a href="/image-grayscale" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🌑</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Grayscale lab</h3>
+                            <p>Convert any photo to artistic B&W</p>
+                        </div>
+                    </a>
+                    <a href="/exif-remover" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🕵️</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>EXIF Strip</h3>
+                            <p>Remove metadata for absolute privacy</p>
+                        </div>
+                    </a>
+                    <a href="/yt-thumbnail" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🖼️</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Thumbnail Lab</h3>
+                            <p>Grab HD cover art from YouTube</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Utility Lab (MORE NEW FEATURES) -->
+            <div class="tool-section" data-category="utility">
+                <div class="section-head">
+                    <h2>Utility Lab</h2>
+                </div>
+                <div class="grid-tools">
+                    <a href="/url-shortener" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">🔗</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Rocket Links</h3>
+                            <p>Shorten and track your universal URLs</p>
+                        </div>
+                    </a>
+                    <a href="/lorem-gen" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">📝</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Lorem Ipsum</h3>
+                            <p>Generate professional placeholder text</p>
+                        </div>
+                    </a>
+                    <a href="/diff-checker" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">⚖️</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Diff Scan</h3>
+                            <p>Compare two text files for pixel-perfect changes</p>
+                        </div>
+                    </a>
+                    <a href="/timezone-conv" class="tool-card">
+                        <div class="card-top">
+                            <div class="card-icon">⏰</div>
+                            <div class="card-star">☆</div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Temporal Sync</h3>
+                            <p>Convert times across 400+ world regions</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SEO SLOP SECTION -->
+            <section class="seo-slop">
+                <div class="container" style="max-width: 900px;">
+                    <h2>About ConvertRocket: The Premier File Conversion Platform</h2>
+                    <p>In the digital age, file conversion is more than just a convenience—it's a necessity.
+                        <strong>ConvertRocket</strong> was founded on the principle that powerful file processing tools
+                        should be accessible to everyone, without the burden of expensive subscriptions or
+                        privacy-invading
+                        accounts. Our platform leverages the latest in <strong>WebAssembly (WASM)</strong> and
+                        <strong>AI
+                            Neural Networks</strong> to bring enterprise-grade tools directly to your browser.
+                    </p>
+
+                    <h3>Advanced PDF Management Tools</h3>
+                    <p>Managing PDF documents often requires costly software like Adobe Acrobat. ConvertRocket solves
+                        this
+                        by providing a complete suite of PDF tools for free. Our <strong>PDF Compressor</strong>
+                        utilizes
+                        the same optimization algorithms used by high-end printing houses, allowing you to shrink file
+                        sizes
+                        for email without sacrificing legibility. Need to combine reports? Our <strong>Merge
+                            PDF</strong>
+                        tool is built for speed, handling dozens of files in seconds.</p>
+
+                    <p style="margin-top: 40px; font-style: italic; opacity: 0.6;">Key Keywords: free file converter,
+                        online
+                        image editor, pdf to word, mp4 download, youtube to mp3 converter, heic to jpg, merge pdf free,
+                        safe
+                        file converter, ai background remover, compress pdf online, json formatter, qr code creator,
+                        base64
+                        encoder.</p>
+                </div>
+            </section>
+
+            <!-- Guides & Articles Section (RESTORED) -->
+            <section class="tool-section" id="guides">
+                <div class="section-head">
+                    <h2>Laboratory Guides & Knowledge Base</h2>
+                </div>
+                <div class="grid-tools">
+                    <a href="/blogs" class="tool-card">
+                        <div class="card-info">
+                            <h3>HEIC to JPG Guide</h3>
+                            <p>How to convert iPhone photos without quality loss [2026]</p>
+                        </div>
+                    </a>
+                    <a href="/blogs" class="tool-card">
+                        <div class="card-info">
+                            <h3>Safe PDF Compressing</h3>
+                            <p>Advanced techniques for shrinking massive PDF archives</p>
+                        </div>
+                    </a>
+                    <a href="/blogs" class="tool-card">
+                        <div class="card-info">
+                            <h3>Social Video Extraction</h3>
+                            <p>The definitive guide to saving high-quality social reels</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <footer class="resource-footer">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <h2 style="font-weight: 950; margin-bottom: 25px; letter-spacing:-2px;">ConvertRocket</h2>
+                            <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem;">
+                                The absolute pinnacle of online file processing. Built for professionals, accessible to
+                                everyone.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="text-align: center; margin-top: 80px; opacity: 0.2; font-size: 0.75rem; font-weight: 800; letter-spacing: 5px;">
+                        © 2026 CONVERTROCKET.ONLINE • REDEFINING THE WEB
+                    </div>
+                </div>
+            </footer>
+        </div>
 </body>
 
 </html>

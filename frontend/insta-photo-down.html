@@ -5,8 +5,8 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator - ConvertRocket Laboratory</title>
-    <meta name="description" content="Create high-resolution QR codes for websites, WiFi, and business cards.">
+    <title>Insta Saver - ConvertRocket Laboratory</title>
+    <meta name="description" content="Download Instagram photos and reels in high resolution.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
     <script src="/static/js/minimalist-search.js" defer></script>
@@ -23,20 +23,20 @@
         </nav>
 
         <div class="breadcrumbs">
-            <a href="/">Home</a> <span>/</span> Utility Lab <span>/</span> QR Code Generator
+            <a href="/">Home</a> <span>/</span> Social Media Hub <span>/</span> Insta Saver
         </div>
 
         <div class="converter-box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <h2 style="font-weight: 950; font-size: 2.2rem; margin:0;">QR <span style='color:var(--neon-cyan)'>Generator</span></h2>
-                <div class="card-star" style="font-size:2rem; cursor:pointer;" onclick="toggleThisStar(this, '/qr-creator')">☆</div>
+                <h2 style="font-weight: 950; font-size: 2.2rem; margin:0;">Insta <span style='color:var(--neon-pink)'>Saver</span></h2>
+                <div class="card-star" style="font-size:2rem; cursor:pointer;" onclick="toggleThisStar(this, '/insta-photo-down')">☆</div>
             </div>
 
             <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">🏁</div>
-                <p style="font-size: 1.4rem; font-weight: 800;">Enter Data for QR</p>
-                <p style="opacity: 0.5;">Neural QR generation engine active</p>
-                <input type="file" id="file-input" type="text" placeholder="https://example.com" class="search-input">
+                <div class="upload-icon">📸</div>
+                <p style="font-size: 1.4rem; font-weight: 800;">Enter Instagram Link</p>
+                <p style="opacity: 0.5;">Public media extraction active</p>
+                <input type="file" id="file-input" type="text" class="search-input">
             </div>
 
             <div id="tool-ui" style="display:none; margin-top:30px; text-align:left;">
@@ -65,8 +65,8 @@
         </div>
 
         <section class="seo-slop">
-            <h2>Professional QR Generation Engine</h2>
-            <p>Our QR generator creates surgical-grade matrix codes with error correction levels optimized for mobile scanning. Encrypt links, contact info, or plain text into high-fidelity SVG or PNG assets.</p>
+            <h2>Instagram Media Extraction Laboratory</h2>
+            <p>Save beautiful memories from Instagram. Our tool extracts original resolution media from public links safely and securely.</p>
         </section>
 
         <footer class="resource-footer">
@@ -90,7 +90,7 @@
             if (e.target.files.length > 0) {
                 uploadZone.style.display = 'none';
                 toolUi.style.display = 'block';
-                status.innerHTML = 'File loaded. Initializing QR Code Generator...';
+                status.innerHTML = 'File loaded. Initializing Insta Saver...';
                 // Mock success for UI demo - backend handles real logic
                 setTimeout(() => {
                    status.innerHTML = '✅ Ready to process';

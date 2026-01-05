@@ -31,7 +31,17 @@ const tools = [
     // Formats
     { name: 'HEIC to JPG', url: '/heic-to-jpg', cat: 'Image', icon: '📸', keywords: 'iphone photo apple' },
     { name: 'WebP to PNG', url: '/webp-to-png', cat: 'Image', icon: '🕸️', keywords: 'google image transparency' },
-    { name: 'SVG to PNG', url: '/image-converter', cat: 'Image', icon: '📐', keywords: 'vector vectorization' }
+    { name: 'SVG to PNG', url: '/image-converter', cat: 'Image', icon: '📐', keywords: 'vector vectorization' },
+
+    // Core Utilities (V7 Sync)
+    { name: 'QR Generator', url: '/qr-creator', cat: 'Utility', icon: '🏁', keywords: 'code scan link linktr' },
+    { name: 'PDF Shield', url: '/pdf-password', cat: 'PDF', icon: '🔐', keywords: 'lock security encrypt' },
+    { name: 'Base64 Lab', url: '/base64-converter', cat: 'Dev', icon: '🧬', keywords: 'encode decode binary' },
+    { name: 'JSON Magician', url: '/json-formatter', cat: 'Dev', icon: '{}', keywords: 'pretty minify validate' },
+    { name: 'Insta Saver', url: '/insta-photo-down', cat: 'Social', icon: '📸', keywords: 'ig reels photo save' },
+    { name: 'TikTok Pure', url: '/tiktok-no-watermark', cat: 'Social', icon: '🎵', keywords: 'tt no-watermark download' },
+    { name: 'PDF to Text', url: '/pdf-to-text', cat: 'PDF', icon: '📄', keywords: 'txt extract ocr' },
+    { name: 'Safe Entropy', url: '/password-gen', cat: 'Dev', icon: '🔑', keywords: 'password secure random' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {

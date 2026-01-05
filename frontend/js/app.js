@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSupportedFormats();
 
     // Track page view for analytics
-    console.log('🚀 ConvertRocket - All-In-One Universal Converter');
+    console.log('🚀 ConvertRocket - Industrial Dashboard Active');
     console.log('🌐 Domain: convertrocket.online');
 
     // Keep service alive
@@ -137,6 +137,7 @@ function initElements() {
 
 // Tab switching functionality
 function initTabs() {
+    if (!elements.tabs) return; // Dashboard mode (side-by-side)
     elements.tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const tabId = tab.dataset.tab;
