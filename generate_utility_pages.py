@@ -25,8 +25,18 @@ TEMPLATE = '''<!DOCTYPE html>
             </div>
         </nav>
 
-        <div class="breadcrumbs">
-            <a href="/">Home</a> <span>/</span> {category} <span>/</span> {title}
+        <!-- Command Hub (Below Hero) -->
+        <div class="hub-sticky-container">
+            <div class="category-nav">
+                <a href="/all-tools" class="cat-link"><span class="icon">🚀</span> All Units</a>
+                <a href="/ai-lab" class="cat-link"><span class="icon">🪄</span> AI Lab</a>
+                <a href="/media-hub" class="cat-link"><span class="icon">🎬</span> Media Hub</a>
+                <a href="/pdf-lab" class="cat-link"><span class="icon">📄</span> PDF Lab</a>
+                <a href="/dev-suite" class="cat-link"><span class="icon">💻</span> Dev Suite</a>
+                <a href="/utilities" class="cat-link"><span class="icon">🛠️</span> Utilities</a>
+                <a href="/downloader" class="cat-link"><span class="icon">⬇️</span> Downloader</a>
+                <a href="/converter" class="cat-link"><span class="icon">🔄</span> Converter</a>
+            </div>
         </div>
 
         <div class="converter-box">
@@ -120,58 +130,6 @@ TEMPLATE = '''<!DOCTYPE html>
 
 TOOLS = [
     {
-        "slug": "qr-creator",
-        "title": "QR Code Generator",
-        "title_html": "QR <span style='color:var(--neon-cyan)'>Generator</span>",
-        "description": "Create high-resolution QR codes for websites, WiFi, and business cards.",
-        "category": "Utility Lab",
-        "icon": "🏁",
-        "action_text": "Enter Data for QR",
-        "sub_text": "Neural QR generation engine active",
-        "accept": 'type="text" placeholder="https://example.com" class="search-input"',
-        "seo_title": "Professional QR Generation Engine",
-        "seo_text": "Our QR generator creates surgical-grade matrix codes with error correction levels optimized for mobile scanning. Encrypt links, contact info, or plain text into high-fidelity SVG or PNG assets."
-    },
-    {
-        "slug": "pdf-password",
-        "title": "PDF Shield",
-        "title_html": "PDF <span style='color:var(--neon-purple)'>Shield</span>",
-        "description": "Protect your PDF files with military-grade encryption or remove existing passwords.",
-        "category": "PDF Lab",
-        "icon": "🔐",
-        "action_text": "Select PDF to Secure",
-        "sub_text": "GhostScript V8 Encryption active",
-        "accept": 'accept=".pdf"',
-        "seo_title": "Enterprise-Grade PDF Security",
-        "seo_text": "Security is paramount. Our PDF Shield utilizes AES-256 bit encryption to lock your documents. We also offer a secure removal laboratory for authorized document unlocking."
-    },
-    {
-        "slug": "base64-converter",
-        "title": "Base64 Lab",
-        "title_html": "Base64 <span style='color:var(--neon-pink)'>Laboratory</span>",
-        "description": "Convert binary data to Base64 strings or decode back to original format.",
-        "category": "Dev Lab",
-        "icon": "🧬",
-        "action_text": "Drop file or enter text",
-        "sub_text": "Binary streamer active",
-        "accept": '',
-        "seo_title": "Advanced Base64 Encoding Engine",
-        "seo_text": "Encode images, fonts, or raw data into data-uri strings for web optimization. Our lab handles massive payloads with zero-copy stream processing."
-    },
-    {
-        "slug": "json-formatter",
-        "title": "JSON Magician",
-        "title_html": "JSON <span style='color:var(--neon-cyan)'>Magician</span>",
-        "description": "Prettify, minify, and validate JSON structures instantly.",
-        "category": "Dev Lab",
-        "icon": "{}",
-        "action_text": "Paste your JSON here",
-        "sub_text": "Neural validation active",
-        "accept": '',
-        "seo_title": "Professional JSON Data Lab",
-        "seo_text": "Developer efficiency is key. Format messy JSON into beautiful, readable structures or shrink them for production deployment."
-    },
-    {
         "slug": "insta-photo-down",
         "title": "Insta Saver",
         "title_html": "Insta <span style='color:var(--neon-pink)'>Saver</span>",
@@ -209,19 +167,6 @@ TOOLS = [
         "accept": 'accept=".pdf"',
         "seo_title": "PDF Text Extraction Laboratory",
         "seo_text": "Convert un-selectable PDF data into plain text instantly. Perfect for research, data entry, and archiving."
-    },
-    {
-        "slug": "password-gen",
-        "title": "Safe Entropy",
-        "title_html": "Safe <span style='color:var(--neon-cyan)'>Entropy</span>",
-        "description": "Generate military-grade secure passwords with high entropy.",
-        "category": "Dev Lab",
-        "icon": "🔑",
-        "action_text": "Configure Entropy Settings",
-        "sub_text": "Cryptographically secure random engine active",
-        "accept": 'type="button" class="action-btn" value="Generate Password"',
-        "seo_title": "High-Entropy Password Generator",
-        "seo_text": "Protect your digital identity with non-guessable passwords. Custom lengths and character sets available."
     }
 ]
 

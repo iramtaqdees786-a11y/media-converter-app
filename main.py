@@ -227,25 +227,10 @@ async def redirect_mp4_converter():
 async def serve_image_converter():
     return FileResponse(FRONTEND_DIR / "image-converter.html")
 
-@app.get("/image-compress")
-async def serve_image_compress():
-    return FileResponse(FRONTEND_DIR / "image-compress.html")
-
 @app.get("/ai-image-editor")
 async def serve_ai_image_editor():
     return FileResponse(FRONTEND_DIR / "ai-image-editor.html")
 
-
-@app.get("/pdf-tools")
-@app.get("/pdf-tools.html")
-async def serve_pdf_tools():
-    return FileResponse(FRONTEND_DIR / "pdf-tools.html")
-
-
-@app.get("/media-tools")
-@app.get("/media-tools.html")
-async def serve_media_tools():
-    return FileResponse(FRONTEND_DIR / "media-tools.html")
 
 
 @app.get("/pdf-merge")
@@ -277,6 +262,33 @@ async def serve_exif_remover(): return FileResponse(FRONTEND_DIR / "exif-remover
 async def serve_all_tools():
     return FileResponse(FRONTEND_DIR / "all-tools.html")
 
+@app.get("/ai-lab")
+async def serve_ai_lab():
+    return FileResponse(FRONTEND_DIR / "ai-lab.html")
+
+@app.get("/media-hub")
+async def serve_media_hub():
+    return FileResponse(FRONTEND_DIR / "media-hub.html")
+
+@app.get("/pdf-lab")
+async def serve_pdf_lab():
+    return FileResponse(FRONTEND_DIR / "pdf-lab.html")
+
+@app.get("/dev-suite")
+async def serve_dev_suite():
+    return FileResponse(FRONTEND_DIR / "dev-suite.html")
+
+@app.get("/utilities")
+async def serve_utilities():
+    return FileResponse(FRONTEND_DIR / "utilities.html")
+
+@app.get("/downloader")
+async def serve_downloader():
+    return FileResponse(FRONTEND_DIR / "downloader.html")
+
+@app.get("/converter")
+async def serve_converter():
+    return FileResponse(FRONTEND_DIR / "converter.html")
 
 @app.get("/blogs")
 @app.get("/blogs.html")

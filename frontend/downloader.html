@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Downloader - Save Social Media Video & Audio | ConvertRocket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
+    <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
+    <script src="/static/js/app.js" defer></script>
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+    <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
+                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+        </nav>
+
+        <section class="hero-minimal" style="padding: 60px 0 20px;">
+            <h1 class="ion-title">Cloud Downloader</h1>
+            <p class="hero-tagline">Industrial-Grade Extraction Studio.</p>
+        </section>
+
+        <!-- Command Hub (Below Hero) -->
+        <div class="hub-sticky-container">
+            <div class="category-nav">
+                <a href="/all-tools" class="cat-link"><span class="icon">🚀</span> All Units</a>
+                <a href="/ai-lab" class="cat-link"><span class="icon">🪄</span> AI Lab</a>
+                <a href="/media-hub" class="cat-link"><span class="icon">🎬</span> Media Hub</a>
+                <a href="/pdf-lab" class="cat-link"><span class="icon">📄</span> PDF Lab</a>
+                <a href="/dev-suite" class="cat-link"><span class="icon">💻</span> Dev Suite</a>
+                <a href="/utilities" class="cat-link"><span class="icon">🛠️</span> Utilities</a>
+                <a href="/downloader" class="cat-link"><span class="icon">⬇️</span> Downloader</a>
+                <a href="/converter" class="cat-link"><span class="icon">🔄</span> Converter</a>
+            </div>
+        </div>
+
+        <div class="dashboard-grid" style="grid-template-columns: 1fr; max-width: 700px; margin: 0 auto;">
+            <div class="dashboard-card shadow-premium">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 style="font-weight: 950; font-size: 1.6rem; margin:0;">Cloud <span
+                            style="color:var(--neon-purple)">Downloader</span></h2>
+                    <div style="font-size:0.6rem; opacity:0.4; letter-spacing:2px; font-weight:900;">UNIT 02: ONLINE
+                    </div>
+                </div>
+
+                <div
+                    style="padding: 30px; border:1px dashed var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.01);">
+                    <div style="display:flex; gap:15px; margin-bottom:25px; align-items:center;">
+                        <span style="font-size:2rem;">🔗</span>
+                        <div style="flex:1;">
+                            <label
+                                style="display:block; font-size:0.75rem; font-weight:900; opacity:0.5; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">Target
+                                Resource Link</label>
+                            <input type="text" id="url-input" class="search-input"
+                                placeholder="Paste TikTok, YouTube, IG, or Twitter URL..."
+                                style="padding: 12px 0 !important; border:none; background:none; border-bottom:2px solid var(--glass-border); border-radius:0; width:100%; font-size:1.1rem; color:white;">
+                        </div>
+                    </div>
+                    <button id="get-info-btn" class="action-btn"
+                        style="width:100%; padding: 18px; font-size: 1rem; margin-bottom:20px;">Scan Remote
+                        Source</button>
+
+                    <div id="video-preview" class="video-preview"></div>
+
+                    <div id="download-controls" style="display: none; margin-top: 25px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                            <div class="select-wrapper">
+                                <label
+                                    style="display:block; font-size:0.65rem; font-weight:900; opacity:0.4; margin-bottom:8px;">FORMAT</label>
+                                <select id="format-type" class="search-input"
+                                    style="padding: 12px !important; font-size:0.85rem !important; background:rgba(0,0,0,0.3);">
+                                    <option value="video">MP4 Video</option>
+                                    <option value="audio">MP3 Audio</option>
+                                </select>
+                            </div>
+                            <div class="select-wrapper">
+                                <label
+                                    style="display:block; font-size:0.65rem; font-weight:900; opacity:0.4; margin-bottom:8px;">PRECISION</label>
+                                <select id="quality-select" class="search-input"
+                                    style="padding: 12px !important; font-size:0.85rem !important; background:rgba(0,0,0,0.3);">
+                                    <option value="best">Highest Qual</option>
+                                    <option value="worst">Lite Qual (Speed)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="download-btn" class="action-btn"
+                            style="width: 100%; padding:20px; background:var(--grad-ion); color:black;">Capture
+                            Stream</button>
+                    </div>
+
+                    <div id="download-progress" class="progress-container">
+                        <div class="progress-fill" id="download-progress-fill"></div>
+                        <div
+                            style="display:flex; justify-content:space-between; margin-top:15px; font-size:0.8rem; font-weight:800; color:var(--neon-cyan);">
+                            <span id="download-progress-message">Neutralizing...</span>
+                            <span id="download-progress-percent">0%</span>
+                        </div>
+                    </div>
+
+                    <div id="download-status" class="status-message"></div>
+                    <div id="download-result" style="display: none; margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="seo-slop">
+            <h2>Industrial-Grade Media Extraction</h2>
+            <p>ConvertRocket's <strong>Cloud Downloader</strong> is built upon the same robust infrastructure used for
+                professional content analysis. We support high-speed capture from major platforms including
+                <strong>YouTube, TikTok, Instagram, Twitter (X), and Facebook</strong>. Our laboratory engines
+                automatically detect the highest available bitrate and resolution to ensure your downloads are
+                pixel-perfect.
+            </p>
+        </section>
+
+        <footer class="resource-footer">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+                © 2026 CONVERTROCKET.ONLINE • STUDIO MODULE V2.1
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

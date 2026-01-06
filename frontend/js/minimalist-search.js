@@ -2,13 +2,13 @@
 
 const tools = [
     // Video & Audio
-    { name: 'Video Converter', url: '/video-converter', cat: 'Video', icon: '📽️', keywords: 'mp4 mkv avi mov webm download' },
-    { name: 'MP3 Converter', url: '/mp3-converter', cat: 'Audio', icon: '🎵', keywords: 'audio music sound extract download' },
+    { name: 'Video Converter', url: '/converter', cat: 'Converter', icon: '📽️', keywords: 'mp4 mkv avi mov webm download' },
+    { name: 'MP3 Converter', url: '/converter', cat: 'Converter', icon: '🎵', keywords: 'audio music sound extract download' },
     { name: 'MP4 to MP3', url: '/mp4-to-mp3', cat: 'Audio', icon: '🎶', keywords: 'extract audio high quality' },
     { name: 'Video Trimmer', url: '/video-trimmer', cat: 'Video', icon: '✂️', keywords: 'cut clip crop edit' },
-    { name: 'YouTube Downloader', url: '/video-converter', cat: 'Video', icon: '▶️', keywords: 'yt download mp3 mp4 4k' },
-    { name: 'TikTok Downloader', url: '/video-converter', cat: 'Video', icon: '📱', keywords: 'save video no watermark' },
-    { name: 'Instagram Downloader', url: '/video-converter', cat: 'Video', icon: '📸', keywords: 'reels igtv stories' },
+    { name: 'YouTube Downloader', url: '/downloader', cat: 'Downloader', icon: '▶️', keywords: 'yt download mp3 mp4 4k' },
+    { name: 'TikTok Downloader', url: '/downloader', cat: 'Downloader', icon: '📱', keywords: 'save video no watermark' },
+    { name: 'Instagram Downloader', url: '/downloader', cat: 'Downloader', icon: '📸', keywords: 'reels igtv stories' },
 
     // PDF & Docs
     { name: 'PDF Compressor', url: '/pdf-compress', cat: 'PDF', icon: '📦', keywords: 'shrink small resize optimize' },
@@ -18,26 +18,21 @@ const tools = [
     { name: 'Remove PDF Pages', url: '/pdf-remove-pages', cat: 'PDF', icon: '🗑️', keywords: 'delete extract' },
     { name: 'PDF to Grayscale', url: '/pdf-grayscale', cat: 'PDF', icon: '🌑', keywords: 'black and white b&w' },
     { name: 'PDF to PDF/A', url: '/pdf-pdfa', cat: 'PDF', icon: '🏛️', keywords: 'archive long term' },
+    { name: 'PDF to Text', url: '/pdf-to-text', cat: 'PDF', icon: '📄', keywords: 'txt extract ocr' },
 
     // Images
     { name: 'Image Converter', url: '/image-converter', cat: 'Image', icon: '🖼️', keywords: 'png jpg webp bmp transform' },
-    { name: 'Image Compressor', url: '/image-compress', cat: 'Image', icon: '🗜️', keywords: 'shrink small quality resize' },
+    { name: 'EXIF Strip', url: '/exif-remover', cat: 'Media', icon: '🕵️', keywords: 'privacy metadata remover clean' },
 
     // AI Tools (Prominent)
-    { name: 'AI Image Editor', url: '/ai-image-editor', cat: 'AI Feature', icon: '🎨', keywords: 'ai rewrite enhance background remove beauty magic edit', ai: true },
-    { name: 'AI Face Blur', url: '/ai-image-editor', cat: 'AI Feature', icon: '👤', keywords: 'anonymous privacy hide face', ai: true },
+    { name: 'AI Image Editor', url: '/ai-image-editor', cat: 'AI Feature', icon: '🎨', keywords: 'ai background remove magic edit', ai: true },
     { name: 'AI Background Remover', url: '/ai-image-editor', cat: 'AI Feature', icon: '🪄', keywords: 'transparency cut out mask', ai: true },
 
-    // Formats
-    { name: 'HEIC to JPG', url: '/heic-to-jpg', cat: 'Image', icon: '📸', keywords: 'iphone photo apple' },
-    { name: 'WebP to PNG', url: '/webp-to-png', cat: 'Image', icon: '🕸️', keywords: 'google image transparency' },
-    { name: 'SVG to PNG', url: '/image-converter', cat: 'Image', icon: '📐', keywords: 'vector vectorization' },
-
-    // Core Utilities (V7 Sync)
-    { name: 'PDF Shield', url: '/pdf-password', cat: 'PDF', icon: '🔐', keywords: 'lock security encrypt' },
-    { name: 'Base64 Lab', url: '/base64-converter', cat: 'Dev', icon: '🧬', keywords: 'encode decode binary' },
-    { name: 'JSON Magician', url: '/json-formatter', cat: 'Dev', icon: '{}', keywords: 'pretty minify validate' },
-    { name: 'PDF to Text', url: '/pdf-to-text', cat: 'PDF', icon: '📄', keywords: 'txt extract ocr' }
+    // Hubs
+    { name: 'Cloud Downloader', url: '/downloader', cat: 'Hub', icon: '⬇️', keywords: 'yt tiktok social save' },
+    { name: 'Universal Converter', url: '/converter', cat: 'Hub', icon: '🔄', keywords: 'all formats transform' },
+    { name: 'Media Hub', url: '/media-hub', cat: 'Hub', icon: '🎬', keywords: 'video image tools' },
+    { name: 'PDF Lab', url: '/pdf-lab', cat: 'Hub', icon: '📄', keywords: 'office document tools' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {

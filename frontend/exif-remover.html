@@ -1,87 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strip EXIF & Metadata - Private Image Lab | ConvertRocket</title>
+    <meta name="description"
+        content="Remove EXIF, GPS, and camera metadata from your photos instantly. Professional-grade privacy tool for secure sharing. 100% Free.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
     <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
 </head>
+
 <body>
-
     <div class="bg-animated"></div>
-    <section class="hero-minimal">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
-                <div id="search-results" class="search-results"></div>
+    <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
+                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+        </nav>
+
+        <!-- Command Hub (Below Hero) -->
+        <div class="hub-sticky-container">
+            <div class="category-nav">
+                <a href="/all-tools" class="cat-link"><span class="icon">🚀</span> All Units</a>
+                <a href="/ai-lab" class="cat-link"><span class="icon">🪄</span> AI Lab</a>
+                <a href="/media-hub" class="cat-link"><span class="icon">🎬</span> Media Hub</a>
+                <a href="/pdf-lab" class="cat-link"><span class="icon">📄</span> PDF Lab</a>
+                <a href="/dev-suite" class="cat-link"><span class="icon">💻</span> Dev Suite</a>
+                <a href="/utilities" class="cat-link"><span class="icon">🛠️</span> Utilities</a>
+                <a href="/downloader" class="cat-link"><span class="icon">⬇️</span> Downloader</a>
+                <a href="/converter" class="cat-link"><span class="icon">🔄</span> Converter</a>
             </div>
         </div>
-    </section>
 
-
-
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
+        <div class="converter-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+                <h2 style="font-weight: 900; font-size: 2.2rem; margin:0;">Privacy <span
+                        style="color:var(--neon-cyan)">Stripper</span></h2>
+                <div class="card-star active" style="font-size:2rem; cursor:pointer;"
+                    onclick="toggleThisStar(this, '/exif-remover')">☆</div>
             </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
+
+            <div class="upload-zone" id="upload-zone">
+                <div class="upload-icon">🕵️</div>
+                <p style="font-size: 1.4rem; font-weight: 800;">Drop Image to Clean</p>
+                <p style="opacity: 0.5;">Surgical EXIF & GPS metadata removal engine</p>
+                <input type="file" id="exif-input" accept="image/*">
             </div>
+
+            <div id="file-info"
+                style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
+                <p id="file-name" style="font-weight:800; margin-bottom:10px;"></p>
+                <button onclick="executeExif()" class="action-btn" style="width:100%;">Neutralize Metadata</button>
+            </div>
+
+            <div id="exif-result"></div>
+
+            <div id="status-message" class="status-message"></div>
         </div>
-    </footer>
 
-<script src="/static/js/seo-hacks.min.js" defer></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "ConvertRocket EXIF Remover",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "ProductivityApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Remove EXIF from Photos",
-      "step": [
-        { "@type": "HowToStep", "name": "Upload Junk", "text": "Choose your image files." },
-        { "@type": "HowToStep", "name": "Strip", "text": "Click 'Remove Metadata'." },
-        { "@type": "HowToStep", "name": "Download", "text": "Get your clean, private images." }
-      ]
-    }
-  ]
-}
-</script>
+        <section class="seo-slop">
+            <h2>Why Remove EXIF Data from Your Photos?</h2>
+            <p>Every digital photograph contains hidden <strong>metadata (EXIF)</strong> that can reveal sensitive
+                information about you. This includes the <strong>exact GPS coordinates</strong> where the photo was
+                taken, the date and time, and the specific camera or phone model used. Sharing these images on social
+                media or forums without cleaning them first can compromise your privacy and security.</p>
+
+            <h3>How our Metadata Removal Laboratory works?</h3>
+            <p>Our <strong>Privacy Stripper</strong> tool uses a forensic-grade scrubbing algorithm to clone your image
+                without copying any of the metadata tags. The resulting image is identical in visual quality but
+                completely blank in terms of hidden data. We support JPG, JPEG, PNG, and TIFF formats.</p>
+
+            <h3>Is the cleaning process secure?</h3>
+            <p>Security is built into our core. All processing happens in volatile memory and is never written to
+                permanent disk storage. Your original file is purged the instant the clean version is generated. We
+                don't track your location, your device, or your identity.</p>
+        </section>
+
+        <footer class="resource-footer">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+                © 2026 CONVERTROCKET.ONLINE • ION PREMIUM V4.0
+            </div>
+        </footer>
+    </div>
+    <script src="/static/js/media-tools.js?v=4.0"></script>
+    <script>
+        const exifInput = document.getElementById('exif-input');
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInfo = document.getElementById('file-info');
+        const fileNameDisp = document.getElementById('file-name');
+
+        exifInput.addEventListener('change', () => {
+            if (exifInput.files[0]) {
+                fileNameDisp.textContent = `Target Identified: ${exifInput.files[0].name}`;
+                fileInfo.style.display = 'block';
+                uploadZone.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const url = '/exif-remover';
+            const star = document.querySelector('.card-star');
+            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+            if (starred.includes(url)) { star.textContent = '⭐'; star.classList.add('active'); }
+        });
+
+        function toggleThisStar(el, url) {
+            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+            if (el.classList.contains('active')) {
+                el.classList.remove('active'); el.textContent = '☆';
+                starred = starred.filter(u => u !== url);
+            } else {
+                el.classList.add('active'); el.textContent = '⭐';
+                if (!starred.includes(url)) starred.push(url);
+            }
+            localStorage.setItem('starredTools', JSON.stringify(starred));
+        }
+    </script>
 </body>
+
 </html>

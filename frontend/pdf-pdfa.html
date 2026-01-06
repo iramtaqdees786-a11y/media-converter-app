@@ -1,116 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=2.3">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert PDF to PDF/A - Long-Term Archiving | ConvertRocket</title>
+    <meta name="description"
+        content="Transform standard PDF files into ISO-compliant PDF/A format for long-term digital preservation. Embed fonts and color profiles securely. 100% Free.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
     <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
 </head>
+
 <body>
-
     <div class="bg-animated"></div>
-    <section class="hero-minimal">
-        <div class="container">
-            <h1><a href="/" style="text-decoration:none; color:inherit;">ConvertRocket</a></h1>
-            <div class="search-wrapper">
-                <input type="text" id="global-search" class="search-input" placeholder="What tool do you need today?">
-                <div id="search-results" class="search-results"></div>
+    <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
+                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+        </nav>
+
+        <!-- Command Hub (Below Hero) -->
+        <div class="hub-sticky-container">
+            <div class="category-nav">
+                <a href="/all-tools" class="cat-link"><span class="icon">🚀</span> All Units</a>
+                <a href="/ai-lab" class="cat-link"><span class="icon">🪄</span> AI Lab</a>
+                <a href="/media-hub" class="cat-link"><span class="icon">🎬</span> Media Hub</a>
+                <a href="/pdf-lab" class="cat-link"><span class="icon">📄</span> PDF Lab</a>
+                <a href="/dev-suite" class="cat-link"><span class="icon">💻</span> Dev Suite</a>
+                <a href="/utilities" class="cat-link"><span class="icon">🛠️</span> Utilities</a>
+                <a href="/downloader" class="cat-link"><span class="icon">⬇️</span> Downloader</a>
+                <a href="/converter" class="cat-link"><span class="icon">🔄</span> Converter</a>
             </div>
         </div>
-    </section>
 
+        <div class="converter-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+                <h2 style="font-weight: 950; font-size: 2.2rem; margin:0;">PDF <span
+                        style="color:var(--neon-pink)">Archive</span></h2>
+                <div class="card-star" style="font-size:2rem; cursor:pointer;"
+                    onclick="toggleThisStar(this, '/pdf-pdfa')">☆</div>
+            </div>
 
+            <div class="upload-zone" id="upload-zone">
+                <div class="upload-icon">🏛️</div>
+                <p style="font-size: 1.4rem; font-weight: 800;">Select Standard PDF</p>
+                <p style="opacity: 0.5;">ISO-Standard Digital Preservation Laboratory</p>
+                <input type="file" id="file-input" accept=".pdf">
+            </div>
 
-    <footer class="resource-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h2 style="font-weight: 800; margin-bottom: 20px;">ConvertRocket</h2>
-                    <p style="color: #a0a0b8; font-size: 0.9rem;">The world's most advanced privacy-focused file conversion platform.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Ecosystem</h4>
-                    <ul>
-                        <li><a href="/">Universal Converter</a></li>
-                        <li><a href="/pdf-tools">PDF Power Kit</a></li>
-                        <li><a href="/media-tools">Media Laboratory</a></li>
-                        <li><a href="/blogs">Expert Guides</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Protocol</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="/contact">Support Center</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
+            <div id="pdf-file-info"
+                style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
+            </div>
+
+            <div id="pdf-tools-actions" style="display:none; margin-top:30px; text-align:left;">
+                <button id="start-pdfa" class="action-btn" style="width:100%;">Initialize PDF/A Conversion</button>
+            </div>
+
+            <div id="pdf-progress" class="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
+                <div
+                    style="display:flex; justify-content:space-between; margin-top:15px; font-size:0.9rem; font-weight:700;">
+                    <span id="progress-message">Embedding data...</span>
+                    <span id="progress-percent">0%</span>
                 </div>
             </div>
-            <details class="seo-collapsible">
-                <summary>Platform Architecture & SEO Data</summary>
-                <div class="seo-content-inner">
-                    <p>ConvertRocket utilizes browser-side WebAssembly (WASM) for 10x faster processing. 100% Privacy by design. 
-                    Keywords: mp4 converter, pdf compressor, image optimizer, youtube downloader, free file converter, convertrocket.</p>
-                </div>
-            </details>
-            <div style="text-align: center; margin-top: 60px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • PREMIUM ALPHA
+
+            <div id="pdf-result" style="display:none; margin-top:40px;">
+                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:900; letter-spacing:1px;">✨ ARCHIVE
+                    READY</div>
+                <div id="result-stats"
+                    style="margin-bottom:30px; padding:20px; border-radius:20px; background:rgba(0,0,0,0.3);"></div>
+                <a href="#" id="pdf-download-link" class="action-btn"
+                    style="display:inline-block; text-decoration:none; width: 100%; text-align: center;" download>Save
+                    PDF/A Document</a>
             </div>
+
+            <div id="status-message" class="status-message"></div>
         </div>
-    </footer>
 
-<script src="/static/js/seo-hacks.min.js" defer></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "ConvertRocket PDF/A Converter",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "ProductivityApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    {
-      "@type": "HowTo",
-      "name": "How to Convert PDF to PDF/A",
-      "step": [
-        { "@type": "HowToStep", "name": "Select PDF", "text": "Upload the document you want to archive." },
-        { "@type": "HowToStep", "name": "Standardize", "text": "Select the PDF/A format and click convert." },
-        { "@type": "HowToStep", "name": "Archive", "text": "Download the archival compliant file." }
-      ]
-    }
-  ]
-}
-</script>
-<script>
-        const input = document.getElementById('file-input');
-        input.addEventListener('change', () => {
-            if (input.files[0]) document.getElementById('file-label').textContent = `Selected: ${input.files[0].name}`;
+        <section class="seo-slop">
+            <h2>Understanding PDF/A for Digital Archiving</h2>
+            <p>Standard PDF files are not always suitable for long-term storage because they often rely on external
+                fonts and external resources. <strong>PDF/A</strong> is an ISO-standardized version of PDF specialized
+                for the digital preservation of electronic documents. Our laboratory ensures that all fonts are embedded
+                and all external dependencies are internalized.</p>
+
+            <h3>Why convert to PDF/A?</h3>
+            <p>Many government agencies, legal firms, and libraries require documents in PDF/A format to ensure they
+                will remain readable for decades to come, regardless of the software or fonts available on future
+                systems. Our tool supports the <strong>PDF/A-1b</strong> and <strong>PDF/A-2b</strong> compliance
+                levels.</p>
+
+            <h3>Is my archived data safe?</h3>
+            <p>The conversion process is executed on high-security computational nodes. We use enterprise-grade
+                GhostScript configurations to ensure compliance. Once your PDF/A file is delivered, all temporary data
+                is flushed from our laboratory's memory.</p>
+        </section>
+
+        <footer class="resource-footer">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+                © 2026 CONVERTROCKET.ONLINE • ION PREMIUM V4.0
+            </div>
+        </footer>
+    </div>
+    <script src="/static/js/pdf-tools.js?v=4.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const url = '/pdf-pdfa';
+            const star = document.querySelector('.card-star');
+            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+            if (starred.includes(url)) { star.textContent = '⭐'; star.classList.add('active'); }
         });
-
-        async function executePdfa() {
-            if (!input.files[0]) return alert("Select a PDF");
-
-            const formData = new FormData();
-            formData.append('file', input.files[0]);
-
-            const resDiv = document.getElementById('result');
-            resDiv.innerHTML = 'Processing...';
-
-            try {
-                const res = await fetch('/api/pdf/pdfa', { method: 'POST', body: formData });
-                const data = await res.json();
-
-                if (data.success) {
-                    resDiv.innerHTML = `<a href="${data.download_url}" class="action-btn" style="text-decoration:none;">Download PDF/A</a>`;
-                } else {
-                    resDiv.innerHTML = "Error: " + data.detail;
-                }
-            } catch (e) {
-                resDiv.innerHTML = "Error: " + e.message;
+        function toggleThisStar(el, url) {
+            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+            if (el.classList.contains('active')) {
+                el.classList.remove('active'); el.textContent = '☆';
+                starred = starred.filter(u => u !== url);
+            } else {
+                el.classList.add('active'); el.textContent = '⭐';
+                if (!starred.includes(url)) starred.push(url);
             }
+            localStorage.setItem('starredTools', JSON.stringify(starred));
         }
     </script>
 </body>
+
 </html>
