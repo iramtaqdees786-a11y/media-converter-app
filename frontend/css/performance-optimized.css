@@ -1,0 +1,524 @@
+/*
+=============================================================================
+PERFORMANCE-OPTIMIZED PREMIUM CSS - ConvertRocket V5.0
+Ultra-fast, lag-free, beautiful design system
+GPU-accelerated animations only where needed
+=============================================================================
+*/
+
+:root {
+    /* Core Colors - Optimized */
+    --bg-deep: #020308;
+    --bg-card: rgba(10, 11, 20, 0.6);
+    --neon-cyan: #00f2ff;
+    --neon-purple: #bc13fe;
+    --neon-pink: #ff00de;
+    --neon-green: #00ff88;
+
+    /* Gradients */
+    --grad-ion: linear-gradient(135deg, #00f2ff 0%, #bc13fe 50%, #ff00de 100%);
+    --grad-card: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+
+    /* Glass */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Shadows - GPU friendly */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 40px rgba(0, 242, 255, 0.3);
+
+    /* Timing */
+    --fast: 0.2s;
+    --normal: 0.3s;
+    --slow: 0.5s;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* GPU Acceleration Globals */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Only animate transforms and opacity (GPU accelerated) */
+.gpu-animate {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Ultra-Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Optimized Background - Lighter blur */
+.bg-animated {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    background: radial-gradient(circle at 50% 50%, #0d0e1a 0%, var(--bg-deep) 100%);
+}
+
+.bg-animated::before,
+.bg-animated::after {
+    content: '';
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    animation: pulseGlow 10s ease-in-out infinite;
+}
+
+.bg-animated::before {
+    background: rgba(0, 242, 255, 0.15);
+    top: -10%;
+    left: -5%;
+}
+
+.bg-animated::after {
+    background: rgba(188, 19, 254, 0.12);
+    bottom: -10%;
+    right: -5%;
+    animation-delay: -5s;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.2;
+        transform: scale(1.05);
+    }
+}
+
+/* Optimized 3D Cards */
+.tool-card-3d,
+.glass-panel-3d,
+.dashboard-card {
+    position: relative;
+    background: var(--grad-card);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all var(--normal) var(--ease-out-expo);
+}
+
+.tool-card-3d:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(0, 242, 255, 0.3);
+    box-shadow:
+        var(--shadow-lg),
+        0 0 40px rgba(0, 242, 255, 0.2);
+}
+
+/* Interactive 3D Orb - Optimized */
+.orb-3d-interactive {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%,
+            rgba(0, 242, 255, 0.25),
+            rgba(188, 19, 254, 0.15),
+            transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: -2;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+/* Mouse-following orb */
+#interactive-orb {
+    opacity: 0.6;
+}
+
+/* Lightweight Cube - Static position, CSS only */
+.cube-minimal {
+    position: fixed;
+    top: 15%;
+    right: 8%;
+    width: 120px;
+    height: 120px;
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    animation: cubeRotateSlow 30s linear infinite;
+}
+
+@keyframes cubeRotateSlow {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+.cube-minimal-face {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(0, 242, 255, 0.2);
+    background: linear-gradient(135deg,
+            rgba(0, 242, 255, 0.05),
+            rgba(188, 19, 254, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* Premium Button Effects */
+.cmd-tab,
+button {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--normal) var(--ease-out-expo);
+    cursor: pointer;
+}
+
+.cmd-tab::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cmd-tab:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cmd-tab.active {
+    background: var(--grad-ion);
+    color: #000;
+    box-shadow:
+        0 8px 32px rgba(188, 19, 254, 0.4),
+        0 0 60px rgba(0, 242, 255, 0.3);
+}
+
+/* Floating Input - GPU Optimized */
+.search-input {
+    transition:
+        transform var(--normal) var(--ease-out-expo),
+        box-shadow var(--normal) var(--ease-out-expo),
+        border-color var(--fast);
+    will-change: transform;
+}
+
+.search-input:focus {
+    transform: translateY(-4px) scale(1.01);
+    border-color: var(--neon-cyan);
+    box-shadow:
+        0 20px 60px rgba(0, 242, 255, 0.15),
+        0 0 0 1px rgba(0, 242, 255, 0.2);
+}
+
+/* Status Indicators - Instant feedback */
+.status-text {
+    padding: 16px 24px;
+    border-radius: 16px;
+    font-weight: 700;
+    text-align: center;
+    animation: statusSlideIn 0.3s var(--ease-out-expo);
+}
+
+@keyframes statusSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.status-text.loading {
+    background: rgba(0, 242, 255, 0.1);
+    color: var(--neon-cyan);
+    border: 1px solid rgba(0, 242, 255, 0.3);
+}
+
+.status-text.success {
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--neon-green);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.status-text.error {
+    background: rgba(255, 71, 87, 0.1);
+    color: #ff4757;
+    border: 1px solid rgba(255, 71, 87, 0.3);
+}
+
+/* Premium Ripple Effect */
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease-out, height 0.6s ease-out, opacity 0.6s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ripple-effect:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+}
+
+/* Optimized Hover States */
+.square-item {
+    transition: all var(--normal) var(--ease-spring);
+    will-change: transform;
+}
+
+.square-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow:
+        var(--shadow-md),
+        0 0 30px rgba(0, 242, 255, 0.2);
+}
+
+.square-item:active {
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* Card Icon Animations */
+.card-icon {
+    transition: all var(--normal) var(--ease-spring);
+}
+
+.tool-card:hover .card-icon {
+    transform: scale(1.1) rotate(-5deg);
+    background: var(--grad-ion);
+    color: #000;
+}
+
+/* Loading Spinner - CSS only */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 242, 255, 0.1);
+    border-top-color: var(--neon-cyan);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Optimized Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--neon-purple), var(--neon-pink));
+}
+
+/* Selection */
+::selection {
+    background: rgba(0, 242, 255, 0.3);
+    color: #fff;
+}
+
+/* Focus Visible */
+*:focus-visible {
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 3px;
+}
+
+/* Performance: Reduce motion on mobile */
+@media (max-width: 768px) {
+
+    .bg-animated::before,
+    .bg-animated::after {
+        filter: blur(80px);
+        opacity: 0.1;
+    }
+
+    .cube-minimal {
+        display: none;
+    }
+
+    .tool-card-3d:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+
+    .search-input:focus {
+        transform: translateY(-2px) scale(1.005);
+    }
+}
+
+/* Optimize for 60fps */
+@media (min-width: 769px) {
+
+    .tool-card-3d,
+    .square-item,
+    .cmd-tab,
+    .search-input {
+        will-change: transform;
+    }
+}
+
+/* Particle Effect - Ultra Lightweight */
+.particle-float {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: var(--neon-cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.4;
+    animation: floatUp 8s ease-in infinite;
+    z-index: -1;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+
+    10%,
+    90% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Glassmorphism - Optimized */
+.glass-effect {
+    background: rgba(15, 16, 30, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        var(--shadow-sm);
+}
+
+/* Micro-interaction: Scale on tap */
+.tap-scale {
+    transition: transform 0.15s ease-out;
+}
+
+.tap-scale:active {
+    transform: scale(0.95);
+}
+
+/* Success Checkmark Animation */
+@keyframes checkmark {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(45deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(45deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(45deg);
+    }
+}
+
+.checkmark-animated {
+    animation: checkmark 0.5s var(--ease-spring);
+}
+
+/* Gradient Text - No animation for performance */
+.gradient-text {
+    background: var(--grad-ion);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer Effect - On demand only */
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    animation: shimmerSlide 2s infinite;
+}
+
+@keyframes shimmerSlide {
+    to {
+        left: 100%;
+    }
+}
