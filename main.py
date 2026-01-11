@@ -95,6 +95,49 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# WWW Redirect & Canonical URL Middleware (CRITICAL FOR SEO)
+@app.middleware("http")
+async def canonical_url_middleware(request: Request, call_next):
+    """
+    Ensures all traffic goes to www.convertrocket.online with proper redirects.
+    Fixes Google Search Console indexing issues.
+    """
+    host = request.headers.get("host", "")
+    scheme = request.url.scheme
+    path = request.url.path
+    query = request.url.query
+    
+    # 1. Force HTTPS in production
+    if scheme == "http" and "localhost" not in host and "127.0.0.1" not in host:
+        url = f"https://{host}{path}"
+        if query:
+            url += f"?{query}"
+        return RedirectResponse(url=url, status_code=301)
+    
+    # 2. Force WWW subdomain (Critical for SEO)
+    if host == "convertrocket.online":
+        url = f"{scheme}://www.convertrocket.online{path}"
+        if query:
+            url += f"?{query}"
+        return RedirectResponse(url=url, status_code=301)
+    
+    # 3. Remove trailing slashes for consistency (except root)
+    if path != "/" and path.endswith("/"):
+        new_path = path.rstrip("/")
+        url = f"{scheme}://{host}{new_path}"
+        if query:
+            url += f"?{query}"
+        return RedirectResponse(url=url, status_code=301)
+    
+    # 4. Redirect index.html to root
+    if path == "/index.html":
+        url = f"{scheme}://{host}/"
+        if query:
+            url += f"?{query}"
+        return RedirectResponse(url=url, status_code=301)
+    
+    return await call_next(request)
+
 # Custom Middleware for SEO & Performance
 @app.middleware("http")
 async def seo_and_performance_middleware(request: Request, call_next):

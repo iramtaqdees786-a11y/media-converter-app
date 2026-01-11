@@ -18,7 +18,7 @@ User-agent: Slurp
 Allow: /
 
 # Sitemaps
-Sitemap: https://convertrocket.online/sitemap.xml
+Sitemap: https://www.convertrocket.online/sitemap.xml
 
 # Crawl-delay (optional, helps prevent server overload)
 Crawl-delay: 1
