@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator - ConvertRocket</title>
+    <meta name="description"
+        content="Free online JSON formatter, validator and beautifier. Format, validate and minify JSON instantly.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/ultra-minimalist.css">
+    <link rel="stylesheet" href="/css/premium-effects.css">
+    <link rel="stylesheet" href="/css/ultra-tabs.css">
+    <link rel="stylesheet" href="/css/3d-elements.css">
+    <link rel="canonical" href="https://www.convertrocket.online/json-formatter">
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+
+    <!-- 3D Elements -->
+    <div class="orb-3d orb-3d-1"></div>
+    <div class="orb-3d orb-3d-2"></div>
+
+    <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;">
+                <a href="/" style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a>
+            </div>
+        </nav>
+
+        <section class="hero-minimal" style="padding: 40px 0 20px;">
+            <h1 class="ion-title" style="font-size: 3rem;">JSON Formatter</h1>
+            <p class="hero-tagline">Format, validate & beautify JSON instantly</p>
+        </section>
+
+        <div class="command-center glass-panel-3d">
+            <div class="command-tabs">
+                <div class="cmd-tab active" onclick="switchTab('format')">✨ Format</div>
+                <div class="cmd-tab" onclick="switchTab('minify')">📦 Minify</div>
+                <div class="cmd-tab" onclick="switchTab('validate')">✅ Validate</div>
+            </div>
+
+            <div class="dashboard-card tool-card-3d">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--neon-cyan);">
+                        Input JSON
+                    </label>
+                    <textarea id="json-input" class="search-input"
+                        placeholder='{"name": "ConvertRocket", "features": ["fast", "free", "secure"]}' rows="10"
+                        style="width: 100%; resize: vertical; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6;">
+</textarea>
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <button onclick="processJSON()" class="cmd-tab active" style="flex: 1; min-width: 200px;">
+                        ⚡ Process
+                    </button>
+                    <button onclick="copyResult()" class="cmd-tab" style="flex: 1; min-width: 200px;">
+                        📋 Copy Result
+                    </button>
+                    <button onclick="clearAll()" class="cmd-tab" style="flex: 1; min-width: 200px;">
+                        🗑️ Clear
+                    </button>
+                </div>
+
+                <div id="json-status" style="margin-bottom: 20px;"></div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--neon-purple);">
+                        Output
+                    </label>
+                    <textarea id="json-output" class="search-input" placeholder="Formatted JSON will appear here..."
+                        rows="10" readonly
+                        style="width: 100%; resize: vertical; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6;">
+</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'format';
+
+        function switchTab(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.cmd-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const inputPlaceholder = {
+                'format': '{"name": "ConvertRocket", "features": ["fast", "free", "secure"]}',
+                'minify': '{\n  "name": "ConvertRocket",\n  "features": [\n    "fast"\n  ]\n}',
+                'validate': '{"valid": true, "data": [1, 2, 3]}'
+            };
+
+            document.getElementById('json-input').placeholder = inputPlaceholder[mode];
+        }
+
+        function processJSON() {
+            const input = document.getElementById('json-input').value.trim();
+            const statusDiv = document.getElementById('json-status');
+            const output = document.getElementById('json-output');
+
+            if (!input) {
+                statusDiv.innerHTML = '<div class="status-text error">⚠️ Please enter JSON</div>';
+                return;
+            }
+
+            statusDiv.innerHTML = '<div class="status-text loading">Processing...</div>';
+
+            setTimeout(() => {
+                try {
+                    const parsed = JSON.parse(input);
+
+                    if (currentMode === 'format') {
+                        output.value = JSON.stringify(parsed, null, 2);
+                        statusDiv.innerHTML = '<div class="status-text success">✅ JSON formatted successfully!</div>';
+                    } else if (currentMode === 'minify') {
+                        output.value = JSON.stringify(parsed);
+                        statusDiv.innerHTML = '<div class="status-text success">✅ JSON minified successfully!</div>';
+                    } else if (currentMode === 'validate') {
+                        const stats = {
+                            valid: true,
+                            keys: Object.keys(parsed).length,
+                            type: Array.isArray(parsed) ? 'Array' : 'Object'
+                        };
+                        output.value = JSON.stringify(stats, null, 2);
+                        statusDiv.innerHTML = '<div class="status-text success">✅ Valid JSON!</div>';
+                    }
+                } catch (e) {
+                    output.value = '';
+                    statusDiv.innerHTML = `<div class="status-text error">❌ Invalid JSON: ${e.message}</div>`;
+                }
+            }, 300);
+        }
+
+        function copyResult() {
+            const output = document.getElementById('json-output');
+            if (!output.value) {
+                alert('Nothing to copy');
+                return;
+            }
+
+            output.select();
+            document.execCommand('copy');
+
+            const statusDiv = document.getElementById('json-status');
+            statusDiv.innerHTML = '<div class="status-text success">📋 Copied to clipboard!</div>';
+            setTimeout(() => {
+                statusDiv.innerHTML = '';
+            }, 2000);
+        }
+
+        function clearAll() {
+            document.getElementById('json-input').value = '';
+            document.getElementById('json-output').value = '';
+            document.getElementById('json-status').innerHTML = '';
+        }
+    </script>
+</body>
+
+</html>

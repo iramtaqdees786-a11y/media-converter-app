@@ -1,0 +1,328 @@
+/*
+=============================================================================
+ULTRA PREMIUM TAB SYSTEM - Works on ALL devices
+Fixes hyperlink → tab appearance consistency
+=============================================================================
+*/
+
+/* ===== PREMIUM TAB NAVIGATION (Mobile-First) ===== */
+.category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 30px 0;
+    padding: 12px;
+    background: rgba(10, 11, 20, 0.6);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+}
+
+.cat-link {
+    /* Force tab appearance on ALL devices */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    /* Tab styling */
+    padding: 14px 20px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+
+    /* Typography */
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* Interactions */
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+
+    /* 3D effect */
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* Tab icon styling */
+.cat-link .icon {
+    font-size: 1.2rem;
+    filter: grayscale(0.5);
+    transition: all 0.3s ease;
+}
+
+/* Hover state */
+.cat-link:hover {
+    background: rgba(0, 242, 255, 0.1) !important;
+    border-color: rgba(0, 242, 255, 0.3) !important;
+    color: #fff !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow:
+        0 10px 30px rgba(0, 242, 255, 0.2),
+        0 0 40px rgba(0, 242, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.cat-link:hover .icon {
+    filter: grayscale(0);
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* Active/selected state */
+.cat-link.active {
+    background: linear-gradient(135deg,
+            rgba(0, 242, 255, 0.2),
+            rgba(188, 19, 254, 0.2)) !important;
+    border-color: var(--neon-cyan) !important;
+    color: var(--neon-cyan) !important;
+    box-shadow:
+        0 0 30px rgba(0, 242, 255, 0.4),
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+.cat-link.active .icon {
+    filter: grayscale(0) drop-shadow(0 0 8px currentColor);
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .category-nav {
+        gap: 6px;
+        padding: 10px;
+    }
+
+    .cat-link {
+        padding: 12px 16px !important;
+        font-size: 0.75rem !important;
+        min-width: auto;
+    }
+
+    .cat-link .icon {
+        font-size: 1rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .cat-link {
+        padding: 10px 12px !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.5px;
+    }
+
+    .cat-link .icon {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== COMMAND CENTER TABS ===== */
+.command-tabs {
+    display: flex;
+    background: rgba(10, 11, 20, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 8px !important;
+    border-radius: 30px !important;
+    gap: 8px !important;
+    backdrop-filter: blur(40px) !important;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.cmd-tab {
+    flex: 1;
+    padding: 18px 24px !important;
+    border-radius: 24px !important;
+    cursor: pointer;
+    font-weight: 800 !important;
+    text-align: center;
+    font-size: 1.1rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    background: transparent !important;
+    border: 2px solid transparent !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.cmd-tab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(0, 242, 255, 0.1),
+            rgba(188, 19, 254, 0.1));
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.cmd-tab:hover::before {
+    opacity: 1;
+}
+
+.cmd-tab:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    transform: translateY(-2px);
+}
+
+.cmd-tab.active {
+    background: linear-gradient(135deg,
+            var(--neon-cyan),
+            var(--neon-purple)) !important;
+    color: #000 !important;
+    font-weight: 900 !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow:
+        0 0 60px rgba(0, 242, 255, 0.6),
+        0 20px 60px rgba(188, 19, 254, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Mobile tabs */
+@media (max-width: 768px) {
+    .command-tabs {
+        flex-direction: column;
+        gap: 6px !important;
+    }
+
+    .cmd-tab {
+        padding: 16px 20px !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* ===== SQUARE MENU ITEMS (Rapid Access) ===== */
+.square-menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.square-item {
+    aspect-ratio: 1;
+    background: rgba(10, 11, 20, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 24px !important;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+
+    /* 3D setup */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.square-item .icon {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.square-item .label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.square-item:hover {
+    background: linear-gradient(135deg,
+            rgba(0, 242, 255, 0.15),
+            rgba(188, 19, 254, 0.15)) !important;
+    border-color: var(--neon-cyan) !important;
+    color: #fff !important;
+    transform: translateY(-10px) rotateX(8deg) rotateY(-8deg) scale(1.08) !important;
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(0, 242, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.square-item:hover .icon {
+    transform: scale(1.2) translateZ(20px);
+    filter: drop-shadow(0 8px 20px rgba(0, 242, 255, 0.5));
+}
+
+/* Mobile grid adjustment */
+@media (max-width: 768px) {
+    .square-menu-container {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 12px;
+    }
+
+    .square-item .icon {
+        font-size: 2rem;
+    }
+
+    .square-item .label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .square-menu-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+}
+
+/* ===== TAB CONSISTENCY FIX ===== */
+/* Ensure ALL links that should be tabs look like tabs */
+a[href*="/all-tools"],
+a[href*="/ai-lab"],
+a[href*="/media-hub"],
+a[href*="/pdf-lab"],
+a[href*="/dev-suite"],
+a[href*="/utilities"],
+a[href*="/downloader"],
+a[href*="/converter"] {
+    /* Inherit tab styles */
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 14px 20px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    text-decoration: none !important;
+}

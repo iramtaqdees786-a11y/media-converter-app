@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder/Decoder - ConvertRocket</title>
+    <meta name="description"
+        content="Free online Base64 encoder and decoder. Encode text to Base64 or decode Base64 to text instantly.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/ultra-minimalist.css">
+    <link rel="stylesheet" href="/css/premium-effects.css">
+    <link rel="stylesheet" href="/css/ultra-tabs.css">
+    <link rel="stylesheet" href="/css/3d-elements.css">
+    <link rel="canonical" href="https://www.convertrocket.online/base64-encoder">
+</head>
+
+<body>
+    <div class="bg-animated"></div>
+
+    <!-- 3D Elements -->
+    <div class="orb-3d orb-3d-1"></div>
+    <div class="orb-3d orb-3d-2"></div>
+
+    <div class="container">
+        <nav class="nav-premium">
+            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;">
+                <a href="/" style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a>
+            </div>
+        </nav>
+
+        <section class="hero-minimal" style="padding: 40px 0 20px;">
+            <h1 class="ion-title" style="font-size: 3rem;">Base64 Tool</h1>
+            <p class="hero-tagline">Encode & Decode Base64 instantly</p>
+        </section>
+
+        <div class="command-center glass-panel-3d">
+            <div class="command-tabs">
+                <div class="cmd-tab active" onclick="switchMode('encode')">🔐 Encode</div>
+                <div class="cmd-tab" onclick="switchMode('decode')">🔓 Decode</div>
+            </div>
+
+            <div class="dashboard-card tool-card-3d">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--neon-cyan);">
+                        Input
+                    </label>
+                    <textarea id="base64-input" class="search-input" placeholder="Enter text to encode..." rows="8"
+                        style="width: 100%; resize: vertical; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+</textarea>
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <button onclick="processBase64()" class="cmd-tab active" style="flex: 1; min-width: 200px;">
+                        ⚡ Process
+                    </button>
+                    <button onclick="copyOutput()" class="cmd-tab" style="flex: 1; min-width: 200px;">
+                        📋 Copy
+                    </button>
+                    <button onclick="swap()" class="cmd-tab" style="flex: 1; min-width: 200px;">
+                        🔄 Swap
+                    </button>
+                </div>
+
+                <div id="base64-status" style="margin-bottom: 20px;"></div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--neon-purple);">
+                        Output
+                    </label>
+                    <textarea id="base64-output" class="search-input" placeholder="Result will appear here..." rows="8"
+                        readonly
+                        style="width: 100%; resize: vertical; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'encode';
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.cmd-tab').forEach((tab, idx) => {
+                tab.classList.remove('active');
+                if ((mode === 'encode' && idx === 0) || (mode === 'decode' && idx === 1)) {
+                    tab.classList.add('active');
+                }
+            });
+
+            document.getElementById('base64-input').placeholder =
+                mode === 'encode' ? 'Enter text to encode...' : 'Enter Base64 to decode...';
+        }
+
+        function processBase64() {
+            const input = document.getElementById('base64-input').value;
+            const statusDiv = document.getElementById('base64-status');
+            const output = document.getElementById('base64-output');
+
+            if (!input.trim()) {
+                statusDiv.innerHTML = '<div class="status-text error">⚠️ Please enter text</div>';
+                return;
+            }
+
+            statusDiv.innerHTML = '<div class="status-text loading">Processing...</div>';
+
+            setTimeout(() => {
+                try {
+                    if (currentMode === 'encode') {
+                        output.value = btoa(unescape(encodeURIComponent(input)));
+                        statusDiv.innerHTML = '<div class="status-text success">✅ Encoded successfully!</div>';
+                    } else {
+                        output.value = decodeURIComponent(escape(atob(input)));
+                        statusDiv.innerHTML = '<div class="status-text success">✅ Decoded successfully!</div>';
+                    }
+                } catch (e) {
+                    output.value = '';
+                    statusDiv.innerHTML = `<div class="status-text error">❌ Error: ${e.message}</div>`;
+                }
+            }, 200);
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('base64-output');
+            if (!output.value) {
+                alert('Nothing to copy');
+                return;
+            }
+
+            output.select();
+            document.execCommand('copy');
+
+            document.getElementById('base64-status').innerHTML =
+                '<div class="status-text success">📋 Copied!</div>';
+        }
+
+        function swap() {
+            const input = document.getElementById('base64-input');
+            const output = document.getElementById('base64-output');
+
+            const temp = input.value;
+            input.value = output.value;
+            output.value = temp;
+
+            currentMode = currentMode === 'encode' ? 'decode' : 'encode';
+            switchMode(currentMode);
+        }
+    </script>
+</body>
+
+</html>

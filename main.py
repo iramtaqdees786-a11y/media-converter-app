@@ -329,9 +329,26 @@ async def serve_utilities():
 async def serve_downloader():
     return FileResponse(FRONTEND_DIR / "downloader.html")
 
+
 @app.get("/converter")
 async def serve_converter():
     return FileResponse(FRONTEND_DIR / "converter.html")
+
+@app.get("/qr-generator")
+async def serve_qr_generator():
+    return FileResponse(FRONTEND_DIR / "qr-generator.html")
+
+@app.get("/json-formatter")
+async def serve_json_formatter():
+    return FileResponse(FRONTEND_DIR / "json-formatter.html")
+
+@app.get("/base64-encoder")
+async def serve_base64_encoder():
+    return FileResponse(FRONTEND_DIR / "base64-encoder.html")
+
+@app.get("/color-picker")
+async def serve_color_picker():
+    return FileResponse(FRONTEND_DIR / "color-picker.html")
 
 @app.get("/blogs")
 @app.get("/blogs.html")

@@ -20,6 +20,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=4.0">
     <link rel="stylesheet" href="/css/premium-effects.css">
+    <link rel="stylesheet" href="/css/ultra-tabs.css">
+    <link rel="stylesheet" href="/css/3d-elements.css">
     <script src="/static/js/minimalist-search.js" defer></script>
     <script src="/static/js/premium-features.js" defer></script>
     <script src="/static/js/app.js" defer></script>
@@ -28,6 +30,35 @@
 
 <body>
     <div class="bg-animated"></div>
+
+    <!-- 3D Visual Elements for Premium Look -->
+    <div class="orb-3d orb-3d-1"></div>
+    <div class="orb-3d orb-3d-2"></div>
+    <div class="orb-3d orb-3d-3"></div>
+
+    <div class="cube-3d-container">
+        <div class="cube-3d">
+            <div class="cube-face cube-front">🚀</div>
+            <div class="cube-face cube-back">⚡</div>
+            <div class="cube-face cube-right">🎯</div>
+            <div class="cube-face cube-left">💎</div>
+            <div class="cube-face cube-top">✨</div>
+            <div class="cube-face cube-bottom">🔥</div>
+        </div>
+    </div>
+
+    <div class="ring-3d-container">
+        <div class="ring-3d">
+            <div class="ring-particle" style="top: 0; left: 50%; transform: translate(-50%, -50%);"></div>
+            <div class="ring-particle" style="top: 25%; right: 15%; transform: translate(50%, -50%);"></div>
+            <div class="ring-particle" style="top: 50%; right: 0; transform: translate(50%, -50%);"></div>
+            <div class="ring-particle" style="bottom: 25%; right: 15%; transform: translate(50%, 50%);"></div>
+            <div class="ring-particle" style="bottom: 0; left: 50%; transform: translate(-50%, 50%);"></div>
+            <div class="ring-particle" style="bottom: 25%; left: 15%; transform: translate(-50%, 50%);"></div>
+            <div class="ring-particle" style="top: 50%; left: 0; transform: translate(-50%, -50%);"></div>
+            <div class="ring-particle" style="top: 25%; left: 15%; transform: translate(-50%, -50%);"></div>
+        </div>
+    </div>
 
     <div class="container">
         <nav class="nav-premium">
@@ -123,6 +154,22 @@
             <a href="/exif-remover" class="square-item">
                 <span class="icon">🕵️</span>
                 <span class="label">Strip EXIF</span>
+            </a>
+            <a href="/qr-generator" class="square-item">
+                <span class="icon">📱</span>
+                <span class="label">QR Code</span>
+            </a>
+            <a href="/json-formatter" class="square-item">
+                <span class="icon">{ }</span>
+                <span class="label">JSON Tool</span>
+            </a>
+            <a href="/base64-encoder" class="square-item">
+                <span class="icon">🔐</span>
+                <span class="label">Base64</span>
+            </a>
+            <a href="/color-picker" class="square-item">
+                <span class="icon">🎨</span>
+                <span class="label">Color Pick</span>
             </a>
         </div>
 
