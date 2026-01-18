@@ -137,38 +137,50 @@ function initElements() {
 
 // Tab switching functionality
 function initTabs() {
-    elements.tabs = document.querySelectorAll('.cat-link');
-    if (!elements.tabs) return;
+    // Collect all potential tab triggers
+    elements.tabs = document.querySelectorAll('.cat-link, .tab-btn');
+    if (!elements.tabs.length) return;
+
     elements.tabs.forEach(tab => {
         tab.addEventListener('click', (e) => {
-            e.preventDefault();
-            const tabId = tab.dataset.filter;
-            switchTab(tabId);
+            const filter = tab.getAttribute('data-filter') || tab.dataset.filter;
 
-            // UI Update
-            elements.tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
+            // CRITICAL: Only intercept if it's a dynamic tab trigger (has data-filter)
+            if (filter && filter !== 'null' && filter !== 'undefined') {
+                e.preventDefault();
+                switchTab(filter);
+            }
+            // Otherwise, let the browser handle the natural link navigation
         });
     });
 }
 
 function switchTab(tabId) {
+    if (!tabId || tabId === 'undefined') return;
+
     state.activeTab = tabId;
 
     // Update tab buttons
-    elements.tabs.forEach(tab => {
-        const isActive = (tab.dataset.filter === tabId);
-        tab.classList.toggle('active', isActive);
-        tab.setAttribute('aria-selected', isActive);
-    });
+    if (elements.tabs) {
+        elements.tabs.forEach(tab => {
+            const filter = tab.getAttribute('data-filter') || tab.dataset.filter;
+            const isActive = (filter === tabId);
+            tab.classList.toggle('active', isActive);
+            tab.setAttribute('aria-selected', isActive);
+        });
+    }
 
     // Update tab contents
-    elements.tabContents.forEach(content => {
-        content.classList.toggle('active', content.id === `${tabId}-tab`);
-    });
+    if (elements.tabContents) {
+        elements.tabContents.forEach(content => {
+            content.classList.toggle('active', content.id === `${tabId}-tab`);
+        });
+    }
 
-    // Update URL hash for SEO
-    window.history.replaceState(null, null, `#${tabId}`);
+    // Update URL hash for SEO (only if it makes sense)
+    if (tabId !== 'convert' && tabId !== 'download') {
+        window.history.replaceState(null, null, `#${tabId}`);
+    }
 }
 
 // Global exposure for interaction sync
