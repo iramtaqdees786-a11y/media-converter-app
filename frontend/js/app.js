@@ -53,9 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initSpecialTabs();
     loadSupportedFormats();
 
+    // Modern Dashboard Additions
+    initToastSystem();
+    initSystemActivity();
+
     // Track page view for analytics
-    console.log('🚀 ConvertRocket - Industrial Dashboard Active');
-    console.log('🌐 Domain: convertrocket.online');
+    console.log('🚀 ConvertRocket - Modern Dashboard Activated');
 
     // Keep service alive
     initKeepAlive();
@@ -65,6 +68,74 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('page-ready');
     }, 100);
 });
+
+// Toast Notification System
+function initToastSystem() {
+    const toastContainer = document.createElement('div');
+    toastContainer.id = 'toast-container';
+    toastContainer.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 9999;
+    `;
+    document.body.appendChild(toastContainer);
+
+    window.showToast = (message, type = 'info') => {
+        const toast = document.createElement('div');
+        toast.className = 'toast reveal';
+        const colors = {
+            success: '#10b981',
+            error: '#ef4444',
+            info: '#00f2ff'
+        };
+        toast.style.cssText = `
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid ${colors[type]};
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            min-width: 200px;
+        `;
+        toast.innerHTML = message;
+        toastContainer.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(20px)';
+            setTimeout(() => toast.remove(), 500);
+        }, 4000);
+    };
+}
+
+// System Activity Simulation (Live Vibe)
+function initSystemActivity() {
+    if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') return;
+
+    const messages = [
+        "User converted HEIC to JPG (4.2 MB)",
+        "Social Extraction: TikTok video processed",
+        "PDF Laboratory: Optimized dossier for architect",
+        "New conversion node active: US-East",
+        "Protocol V8: 100% Signal strength",
+        "User merged 5 PDF files into a single dossier",
+        "Data Architect used JSON Lab for validation"
+    ];
+
+    setInterval(() => {
+        if (Math.random() > 0.7) {
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+            window.showToast(`📡 ${msg}`, 'info');
+        }
+    }, 15000);
+}
 
 // Replace placeholders [MONTH_YEAR] and [TODAY] with actual dates
 function initDynamicDates() {

@@ -6,140 +6,109 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universal Converter - High-Fidelity File Transformation | ConvertRocket</title>
+    <title>Universal Converter | Professional File Engine | ConvertRocket</title>
     <meta name="description"
-        content="Free universal file converter. Convert PDF to Word, MP4 to MP3, HEIC to JPG, and more. Fast, secure, and privacy-focused online tool.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
-    <link rel="stylesheet" href="/css/ultra-tabs.css?v=6.0">
-    <link rel="stylesheet" href="/css/premium-effects.css?v=6.0">
-    <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
-    <script src="/static/js/premium-features.js?v=6.0" defer></script>
-    <script src="/static/js/app.js?v=6.0" defer></script>
+        content="Industrial-grade file conversion. Supports 1000+ formats with zero latency. 100% Secure and Private.">
+    <link rel="stylesheet" href="/css/modern-dashboard.css?v=8.0">
+    <script src="/js/app.js?v=7.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/converter">
 </head>
 
-<body>
-    <div class="bg-animated"></div>
-    <div class="container">
-        <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
-                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
-        </nav>
+<body class="reveal">
+    <div class="bg-modern"></div>
 
-        <section class="hero-minimal" style="padding: 60px 0 20px;">
-            <h1 class="ion-title">Universal Converter</h1>
-            <p class="hero-tagline">Cloud-Scale Intelligence. Browser-Side Privacy.</p>
+    <nav class="nav-modern">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="/" class="brand">
+                <div class="brand-icon">🚀</div>
+                <span>ConvertRocket</span>
+            </a>
+            <div class="nav-links">
+                <a href="/all-tools">All Units</a>
+                <a href="/downloader" style="margin-left: 20px;">Downloader</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero-modern" style="padding: 60px 0 40px;">
+            <div class="status-bar">
+                <span class="status-indicator"></span>
+                <span>WASM Engine: Active</span>
+            </div>
+            <h1 style="font-size: 3.5rem;">Universal Converter</h1>
+            <p>Select your file to initiate the industrial conversion protocol.</p>
         </section>
 
-        <!-- Primary Command Hub -->
-        <div class="primary-hub">
-            <a href="/converter" class="primary-tab converter-gold">
-                <span class="icon">🔄</span>
-                <span>Universal Converter</span>
-            </a>
-            <a href="/downloader" class="primary-tab downloader-gold">
-                <span class="icon">⬇️</span>
-                <span>Cloud Downloader</span>
-            </a>
-        </div>
-
-        <!-- Secondary Navigation -->
-        <div class="hub-sticky-container">
-            <div class="category-nav">
-                <a href="/all-tools" class="cat-link"><span class="icon">🚀</span> All Units</a>
-                <a href="/media-hub" class="cat-link"><span class="icon">🎬</span> Media Hub</a>
-                <a href="/pdf-lab" class="cat-link"><span class="icon">📄</span> PDF Lab</a>
-                <a href="/dev-suite" class="cat-link"><span class="icon">💻</span> Dev Suite</a>
-                <a href="/utilities" class="cat-link"><span class="icon">🛠️</span> Utilities</a>
+        <div class="tool-dashboard">
+            <div id="upload-zone" class="upload-zone"
+                style="border: 2px dashed rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 80px 40px; text-align: center; cursor: pointer; transition: var(--transition-base); background: rgba(255,255,255,0.02);">
+                <div style="font-size: 4rem; margin-bottom: 20px;">📂</div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 12px;">Drop File
+                    Architect</h3>
+                <p style="color: var(--text-secondary);">or click to browse local laboratory. Max: 2GB per session.</p>
+                <input type="file" id="file-input" style="display: none;">
             </div>
-        </div>
 
-        <div class="dashboard-grid" style="grid-template-columns: 1fr; max-width: 700px; margin: 0 auto;">
-            <div class="dashboard-card shadow-premium">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                    <h2 style="font-weight: 950; font-size: 1.6rem; margin:0;">Target <span
-                            style="color:var(--neon-cyan)">Laboratory</span></h2>
-                    <div style="font-size:0.6rem; opacity:0.4; letter-spacing:2px; font-weight:900;">UNIT 01: ONLINE
-                    </div>
-                </div>
-
-                <div class="upload-zone" id="upload-zone" style="position:relative; padding: 60px 20px;">
-                    <div class="upload-icon">📁</div>
-                    <p style="font-size: 1.4rem; font-weight: 900;">SELECT SOURCE FILE</p>
-                    <p style="opacity: 0.5; font-size: 0.9rem; font-weight:700;">Drop any document, video or image unit
-                        here</p>
-                    <input type="file" id="file-input"
-                        style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
-                </div>
-
+            <!-- Pre-conversion Controls (Hidden by default) -->
+            <div id="convert-controls" style="display: none; margin-top: 40px; text-align: center;">
                 <div id="selected-file-info"
-                    style="display:none; margin-top:25px; padding:20px; border:1px solid var(--glass-border); border-radius:20px; background:rgba(255,255,255,0.03); text-align:center;">
+                    style="background: var(--bg-elevated); padding: 20px; border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--glass-border); display: inline-block; min-width: 300px;">
+                    <!-- Dynamically filled -->
                 </div>
 
-                <div id="convert-controls" style="display:none; margin-top:25px;">
-                    <div class="select-wrapper" style="margin-bottom:20px;">
-                        <label
-                            style="display:block; font-size:0.75rem; font-weight:900; opacity:0.5; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;">Target
-                            Laboratory Format</label>
-                        <select id="target-format" class="search-input"
-                            style="padding:15px 25px !important; font-size:1rem !important; border-radius:20px !important;"></select>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-weight: 700; color: var(--text-secondary);">Target Protocol:</span>
+                        <select id="target-format"
+                            style="background: var(--bg-surface); color: white; border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: var(--radius-full); font-weight: 600; outline: none;">
+                            <!-- Dynamically filled -->
+                        </select>
                     </div>
-                    <button id="convert-btn" class="action-btn"
-                        style="width:100%; padding: 22px; font-size: 1.1rem; border-radius:20px;">Execute
-                        Transformation</button>
-                    <button onclick="location.reload()"
-                        style="width:100%; background:none; border:none; color:rgba(255,255,255,0.2); cursor:pointer; font-size:0.8rem; margin-top:15px; font-weight:900; letter-spacing:1px;">RESET
-                        LABORATORY</button>
+                    <button id="convert-btn"
+                        style="background: white; color: black; padding: 14px 40px; border-radius: var(--radius-full); font-weight: 800; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">Initiate
+                        Conversion</button>
                 </div>
+            </div>
 
-                <div id="convert-progress" class="progress-container">
-                    <div class="progress-fill" id="progress-fill"></div>
-                    <div
-                        style="display:flex; justify-content:space-between; margin-top:15px; font-size:0.9rem; font-weight:900; color:var(--neon-cyan);">
-                        <span class="progress-message">Optimizing...</span>
-                        <span class="progress-percent">0%</span>
-                    </div>
+            <div id="convert-status" class="status-message" style="margin-top: 20px; text-align: center;"></div>
+
+            <div id="convert-progress" class="progress-bar"
+                style="display: none; height: 8px; background: var(--bg-elevated); border-radius: 4px; margin-top: 30px; overflow: hidden;">
+                <div class="progress-fill"
+                    style="width: 0%; height: 100%; background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); transition: width 0.3s;">
                 </div>
+            </div>
 
-                <div id="convert-status" class="status-message"></div>
-                <div id="convert-result" style="display:none; margin-top:25px;"></div>
-
-                <div id="convert-result-toolbar"
-                    style="display: none; margin-top: 20px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
-                    <div style="display: flex; gap: 15px; justify-content: center;">
-                        <button onclick="copyResultLink()" class="btn-tool"
-                            style="flex:1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight:700;">🔗
-                            Copy Hub Link</button>
-                        <button onclick="bookmarkTool()" class="btn-tool"
-                            style="flex:1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 12px; border-radius: 15px; font-weight:700;">⭐
-                            Save Module</button>
-                    </div>
-                </div>
+            <div id="convert-result"
+                style="display: none; margin-top: 40px; padding: 30px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: var(--radius-lg); text-align: center;">
+                <!-- Result content -->
             </div>
         </div>
 
-        <footer class="footer-sigma">
-            <div class="container">
-                <div class="sigma-badge">
-                    <span class="sigma-text">Engineered for the Elite</span>
-                    <div class="made-by">MADE BY IZYAAN</div>
-                </div>
-                <div style="text-align:center;">
-                    <p class="sigma-slogan">
-                        The ultimate protocol for <strong>Developers</strong>, <strong>Influencers</strong>, and
-                        <strong>Digital Architects</strong>.
-                        No compromise. Just pure execution.
-                    </p>
-                    <div style="margin-top: 40px; opacity:0.2; font-size:0.7rem; letter-spacing:4px;">
-                        © 2026 CONVERTROCKET.ONLINE • PROTOCOL SIGMA
-                    </div>
-                </div>
+        <section class="seo-section">
+            <h2>Industrial-Grade Conversion Engine</h2>
+            <p>Our universal conversion laboratory is powered by modern WebAssembly protocols, allowing for
+                high-performance data transformation without ever leaving your machine. We support over 1000+
+                combinations including video (MP4, MKV), audio (MP3, WAV), imagery (HEIC, RAW), and document structures.
+            </p>
+        </section>
+
+        <footer class="footer-modern">
+            <div class="sigma-badge">
+                <span class="badge-text">Engineered for the Elite</span>
+                <div class="badge-brand">MADE BY IZYAAN</div>
             </div>
+            <div class="footer-links">
+                <a href="/blogs">Archives</a>
+                <a href="/privacy-policy">Privacy</a>
+                <a href="/terms-of-service">ToS</a>
+                <a href="/sitemap">Sitemap</a>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.8rem; letter-spacing: 2px;">© 2026 CONVERTROCKET.ONLINE • THE
+                SIGMA PROTOCOL</p>
         </footer>
     </div>
-    <script src="/static/js/app.js?v=6.0"></script>
 </body>
 
 </html>

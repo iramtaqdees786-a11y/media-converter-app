@@ -96,6 +96,7 @@ app.add_middleware(
 )
 
 # WWW Redirect & Canonical URL Middleware (CRITICAL FOR SEO)
+# WWW Redirect & Canonical URL Middleware (CRITICAL FOR SEO)
 @app.middleware("http")
 async def canonical_url_middleware(request: Request, call_next):
     """
@@ -112,29 +113,29 @@ async def canonical_url_middleware(request: Request, call_next):
         url = f"https://{host}{path}"
         if query:
             url += f"?{query}"
-        return RedirectResponse(url=url, status_code=301)
+        return RedirectResponse(url=url, status_code=308) # use 308 for permanent redirect preserving method
     
     # 2. Force WWW subdomain (Critical for SEO)
     if host == "convertrocket.online":
         url = f"{scheme}://www.convertrocket.online{path}"
         if query:
             url += f"?{query}"
-        return RedirectResponse(url=url, status_code=301)
+        return RedirectResponse(url=url, status_code=308)
     
     # 3. Remove trailing slashes for consistency (except root)
-    if path != "/" and path.endswith("/"):
+    if path != "/" and path.endswith("/") and not path.startswith("/api/"):
         new_path = path.rstrip("/")
         url = f"{scheme}://{host}{new_path}"
         if query:
             url += f"?{query}"
-        return RedirectResponse(url=url, status_code=301)
+        return RedirectResponse(url=url, status_code=308)
     
     # 4. Redirect index.html to root
     if path == "/index.html":
         url = f"{scheme}://{host}/"
         if query:
             url += f"?{query}"
-        return RedirectResponse(url=url, status_code=301)
+        return RedirectResponse(url=url, status_code=308)
     
     return await call_next(request)
 
@@ -148,32 +149,36 @@ async def seo_and_performance_middleware(request: Request, call_next):
     
     # 1. Add Cache-Control & Expires for Assets
     if any(path.startswith(pre) for pre in ["/static/", "/css/", "/js/", "/img/", "/assets/"]) or \
-       any(path.endswith(ext) for ext in [".js", ".css", ".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico"]):
-        # Cache for 1 month
-        response.headers["Cache-Control"] = "public, max-age=2592000"
-        expires_date = (datetime.utcnow() + timedelta(days=30)).strftime("%a, %d %b %Y %H:%M:%S GMT")
+       any(path.endswith(ext) for ext in [".js", ".css", ".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico", ".woff", ".woff2"]):
+        # Cache for 1 year for static assets (standard practice)
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        expires_date = (datetime.utcnow() + timedelta(days=365)).strftime("%a, %d %b %Y %H:%M:%S GMT")
         response.headers["Expires"] = expires_date
         return response
 
     # 2. Dynamic SEO Placeholder Replacement [MONTH_YEAR]
-    # We only want to do this for HTML responses
     content_type = response.headers.get("content-type", "")
-    if "text/html" in content_type and (isinstance(response, FileResponse) or isinstance(response, Response)):
+    if "text/html" in content_type:
         try:
-            # For FileResponse, we need to read the content
+            # Safer way to handle FileResponse or regular Response
             if isinstance(response, FileResponse):
-                with open(response.path, "r", encoding="utf-8") as f:
-                    content = f.read()
-            else:
-                # This part is tricky for streaming responses, but usually we return Responses for small components
-                return response
-                
-            current_date = datetime.now().strftime("%B %Y") # e.g., "December 2025"
-            if "[MONTH_YEAR]" in content:
-                content = content.replace("[MONTH_YEAR]", current_date)
-                return Response(content=content, media_type="text/html", headers=dict(response.headers))
+                # We skip replacement for binary or very large files if they were somehow served as text/html
+                if response.path.endswith(".html"):
+                    with open(response.path, "r", encoding="utf-8", errors="ignore") as f:
+                        content = f.read()
+                    
+                    current_date = datetime.now().strftime("%B %Y")
+                    if "[MONTH_YEAR]" in content:
+                        content = content.replace("[MONTH_YEAR]", current_date)
+                        # We return a new Response with the modified content
+                        new_response = Response(content=content, media_type="text/html", headers=dict(response.headers))
+                        # Remove content-length as it changed
+                        if "content-length" in new_response.headers:
+                            del new_response.headers["content-length"]
+                        return new_response
         except Exception as e:
-            print(f"SEO Middleware Error: {e}")
+            # LOG ERROR INSTEAD OF CRASHING
+            print(f"SEO Middleware Error serving {path}: {e}")
             
     return response
 
@@ -185,7 +190,7 @@ async def friendly_urls_middleware(request: Request, call_next):
     # Redirect .html to clean URL
     if path.endswith(".html") and not path.startswith("/api/"):
         new_path = path[:-5]
-        return RedirectResponse(url=new_path, status_code=301)
+        return RedirectResponse(url=new_path, status_code=308)
 
     if not path.endswith(".html") and not path.split("/")[-1].count(".") and path != "/" and not path.startswith("/api/"):
         potential_file = FRONTEND_DIR / f"{path.strip('/')}.html"

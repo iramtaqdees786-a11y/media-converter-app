@@ -6,153 +6,121 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Downloader - Save Social Media Video & Audio | ConvertRocket</title>
+    <title>Cloud Downloader | Media Extraction Protocol | ConvertRocket</title>
     <meta name="description"
-        content="Download videos and audio from TikTok, YouTube, Instagram, and Twitter for free. Fast, high-quality cloud downloader without watermarks.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
-    <link rel="stylesheet" href="/css/ultra-tabs.css?v=6.0">
-    <link rel="stylesheet" href="/css/premium-effects.css?v=6.0">
-    <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
-    <script src="/static/js/premium-features.js?v=6.0" defer></script>
-    <script src="/static/js/app.js?v=6.0" defer></script>
+        content="High-speed media extraction from 1000+ social platforms. YouTube, TikTok, Instagram, and more. 4K & MP3 Support.">
+    <link rel="stylesheet" href="/css/modern-dashboard.css?v=8.0">
+    <script src="/js/app.js?v=7.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/downloader">
 </head>
 
-<body>
-    <div class="bg-animated"></div>
+<body class="reveal">
+    <div class="bg-modern"></div>
+
+    <nav class="nav-modern">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="/" class="brand">
+                <div class="brand-icon">🚀</div>
+                <span>ConvertRocket</span>
+            </a>
+            <div class="nav-links">
+                <a href="/all-tools">All Units</a>
+                <a href="/converter" style="margin-left: 20px;">Converter</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
-                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
-        </nav>
-
-        <section class="hero-minimal" style="padding: 60px 0 20px;">
-            <h1 class="ion-title">Cloud Downloader</h1>
-            <p class="hero-tagline">Industrial-Grade Extraction Studio.</p>
+        <section class="hero-modern" style="padding: 60px 0 40px;">
+            <div class="status-bar">
+                <span class="status-indicator"></span>
+                <span>Cloud Extraction: Active</span>
+            </div>
+            <h1 style="font-size: 3.5rem;">Cloud Downloader</h1>
+            <p>Paste your digital stream URL to initiate high-fidelity extraction.</p>
         </section>
 
-        <!-- Primary Command Hub -->
-        <div class="primary-hub">
-            <a href="/converter" class="primary-tab converter-gold">
-                <span class="icon">🔄</span>
-                <span>Universal Converter</span>
-            </a>
-            <a href="/downloader" class="primary-tab downloader-gold"
-                style="border-color: var(--neon-purple) !important; box-shadow: 0 0 30px rgba(188, 19, 254, 0.4) !important;">
-                <span class="icon">⬇️</span>
-                <span>Cloud Downloader</span>
-            </a>
-        </div>
+        <div class="tool-dashboard">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="search-hub" style="margin-bottom: 30px;">
+                    <input type="text" id="url-input"
+                        placeholder="Paste link here (YouTube, TikTok, Instagram, Twitter)...">
+                    <button id="get-info-btn">Analyze</button>
+                </div>
 
-        <!-- Secondary Navigation -->
-        <div class="hub-sticky-container">
-            <div class="category-nav">
-                <a href="/all-tools" class="cat-link"><span class="icon">🚀</span> All Units</a>
-                <a href="/media-hub" class="cat-link"><span class="icon">🎬</span> Media Hub</a>
-                <a href="/pdf-lab" class="cat-link"><span class="icon">📄</span> PDF Lab</a>
-                <a href="/dev-suite" class="cat-link"><span class="icon">💻</span> Dev Suite</a>
-                <a href="/utilities" class="cat-link"><span class="icon">🛠️</span> Utilities</a>
-            </div>
-        </div>
+                <div id="download-status" style="text-align: center; margin-bottom: 20px;"></div>
 
-        <div class="dashboard-grid" style="grid-template-columns: 1fr; max-width: 700px; margin: 0 auto;">
-            <div class="dashboard-card shadow-premium">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                    <h2 style="font-weight: 950; font-size: 1.6rem; margin:0;">Cloud <span
-                            style="color:var(--neon-purple)">Downloader</span></h2>
-                    <div style="font-size:0.6rem; opacity:0.4; letter-spacing:2px; font-weight:900;">UNIT 02: ONLINE
+                <!-- Video Preview Area -->
+                <div id="video-preview"
+                    style="display: none; background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 30px;">
+                    <!-- Dynamically filled -->
+                </div>
+
+                <div id="download-options"
+                    style="display: none; text-align: center; background: var(--bg-elevated); padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--glass-border);">
+                    <div
+                        style="display: flex; justify-content: center; gap: 20px; align-items: center; flex-wrap: wrap; margin-bottom: 24px;">
+                        <div>
+                            <span
+                                style="font-weight: 700; color: var(--text-secondary); margin-right: 12px;">Format:</span>
+                            <select id="format-type"
+                                style="background: var(--bg-surface); color: white; border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: var(--radius-full);">
+                                <option value="video">MP4 Video</option>
+                                <option value="audio">MP3 Audio</option>
+                            </select>
+                        </div>
+                        <div>
+                            <span
+                                style="font-weight: 700; color: var(--text-secondary); margin-right: 12px;">Quality:</span>
+                            <select id="quality-select"
+                                style="background: var(--bg-surface); color: white; border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: var(--radius-full);">
+                                <option value="best">Best Available</option>
+                                <option value="1080p">1080p HD</option>
+                                <option value="720p">720p</option>
+                                <option value="480p">480p</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="download-btn"
+                        style="background: white; color: black; padding: 16px 60px; border-radius: var(--radius-full); font-weight: 800; border: none; cursor: pointer; text-transform: uppercase; font-size: 1.1rem;">Download
+                        Now</button>
+                </div>
+
+                <div id="download-progress" class="progress-bar"
+                    style="display: none; height: 8px; background: var(--bg-elevated); border-radius: 4px; margin-top: 30px; overflow: hidden;">
+                    <div class="progress-fill"
+                        style="width: 0%; height: 100%; background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); transition: width 0.3s;">
                     </div>
                 </div>
 
-                <div
-                    style="padding: 30px; border:1px dashed var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.01);">
-                    <div style="display:flex; gap:15px; margin-bottom:25px; align-items:center;">
-                        <span style="font-size:2rem;">🔗</span>
-                        <div style="flex:1;">
-                            <label
-                                style="display:block; font-size:0.75rem; font-weight:900; opacity:0.5; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">Target
-                                Resource Link</label>
-                            <input type="text" id="url-input" class="search-input"
-                                placeholder="Paste TikTok, YouTube, IG, or Twitter URL..."
-                                style="padding: 12px 0 !important; border:none; background:none; border-bottom:2px solid var(--glass-border); border-radius:0; width:100%; font-size:1.1rem; color:white;">
-                        </div>
-                    </div>
-                    <button id="get-info-btn" class="action-btn"
-                        style="width:100%; padding: 18px; font-size: 1rem; margin-bottom:20px;">Scan Remote
-                        Source</button>
-
-                    <div id="video-preview" class="video-preview"></div>
-
-                    <div id="download-controls" style="display: none; margin-top: 25px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                            <div class="select-wrapper">
-                                <label
-                                    style="display:block; font-size:0.65rem; font-weight:900; opacity:0.4; margin-bottom:8px;">FORMAT</label>
-                                <select id="format-type" class="search-input"
-                                    style="padding: 12px !important; font-size:0.85rem !important; background:rgba(0,0,0,0.3);">
-                                    <option value="video">MP4 Video</option>
-                                    <option value="audio">MP3 Audio</option>
-                                </select>
-                            </div>
-                            <div class="select-wrapper">
-                                <label
-                                    style="display:block; font-size:0.65rem; font-weight:900; opacity:0.4; margin-bottom:8px;">PRECISION</label>
-                                <select id="quality-select" class="search-input"
-                                    style="padding: 12px !important; font-size:0.85rem !important; background:rgba(0,0,0,0.3);">
-                                    <option value="best">Highest Qual</option>
-                                    <option value="worst">Lite Qual (Speed)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button id="download-btn" class="action-btn"
-                            style="width: 100%; padding:20px; background:var(--grad-ion); color:black;">Capture
-                            Stream</button>
-                    </div>
-
-                    <div id="download-progress" class="progress-container">
-                        <div class="progress-fill" id="download-progress-fill"></div>
-                        <div
-                            style="display:flex; justify-content:space-between; margin-top:15px; font-size:0.8rem; font-weight:800; color:var(--neon-cyan);">
-                            <span id="download-progress-message">Neutralizing...</span>
-                            <span id="download-progress-percent">0%</span>
-                        </div>
-                    </div>
-
-                    <div id="download-status" class="status-message"></div>
-                    <div id="download-result" style="display: none; margin-top: 20px;"></div>
+                <div id="download-result"
+                    style="display: none; margin-top: 40px; padding: 30px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: var(--radius-lg); text-align: center;">
+                    <!-- Result content -->
                 </div>
             </div>
         </div>
 
-        <section class="seo-slop">
-            <h2>Industrial-Grade Media Extraction</h2>
-            <p>ConvertRocket's <strong>Cloud Downloader</strong> is built upon the same robust infrastructure used for
-                professional content analysis. We support high-speed capture from major platforms including
-                <strong>YouTube, TikTok, Instagram, Twitter (X), and Facebook</strong>. Our laboratory engines
-                automatically detect the highest available bitrate and resolution to ensure your downloads are
-                pixel-perfect.
-            </p>
+        <section class="seo-section">
+            <h2>High-Intensity Cloud Extraction</h2>
+            <p>Our cloud downloader utilizes the Protocol V8 engine to bypass standard media limitations, delivering
+                high-bitrate video and audio extractions from over 1000+ social platforms. Whether you need YouTube for
+                archiving, TikTok for research, or Instagram for creative assets, we provide the cleanest output
+                available.</p>
         </section>
 
-        <footer class="footer-sigma">
-            <div class="container">
-                <div class="sigma-badge">
-                    <span class="sigma-text">Engineered for the Elite</span>
-                    <div class="made-by">MADE BY IZYAAN</div>
-                </div>
-                <div style="text-align:center;">
-                    <p class="sigma-slogan">
-                        The ultimate protocol for <strong>Developers</strong>, <strong>Influencers</strong>, and
-                        <strong>Digital Architects</strong>.
-                        No compromise. Just pure execution.
-                    </p>
-                    <div style="margin-top: 40px; opacity:0.2; font-size:0.7rem; letter-spacing:4px;">
-                        © 2026 CONVERTROCKET.ONLINE • PROTOCOL SIGMA
-                    </div>
-                </div>
+        <footer class="footer-modern">
+            <div class="sigma-badge">
+                <span class="badge-text">Engineered for the Elite</span>
+                <div class="badge-brand">MADE BY IZYAAN</div>
             </div>
+            <div class="footer-links">
+                <a href="/blogs">Archives</a>
+                <a href="/privacy-policy">Privacy</a>
+                <a href="/terms-of-service">Terms</a>
+                <a href="/sitemap">Sitemap</a>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.8rem; letter-spacing: 2px;">© 2026 CONVERTROCKET.ONLINE • THE
+                SIGMA PROTOCOL</p>
         </footer>
     </div>
 </body>

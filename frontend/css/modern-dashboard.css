@@ -1,0 +1,481 @@
+/* 
+   ============================================================
+   ConvertRocket - MODERN TOOL DASHBOARD (V8 SIGMA)
+   Focus: Industrial Utility, Professional SaaS Aesthetic, Zero Lag
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg-darkest: #04050a;
+    --bg-deep: #080a12;
+    --bg-surface: #0f121d;
+    --bg-elevated: #161a29;
+
+    --neon-cyan: #00f2ff;
+    --neon-purple: #9d4eff;
+    --neon-pink: #ff2da4;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-dim: #475569;
+
+    --accent: var(--neon-cyan);
+    --accent-dark: #0ea5e9;
+
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Base & Scrollbar --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-darkest);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+body {
+    background-color: var(--bg-darkest);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Modern Background Overlay --- */
+.bg-modern {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(157, 78, 255, 0.05) 0%, transparent 50%),
+        var(--bg-darkest);
+}
+
+.bg-modern::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+/* --- Container --- */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- Navigation --- */
+.nav-modern {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(4, 5, 10, 0.8);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--neon-cyan);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition-base);
+}
+
+.nav-links a:hover {
+    color: var(--neon-cyan);
+}
+
+/* --- Hero --- */
+.hero-modern {
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.hero-modern h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-modern p {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- System Status Bar --- */
+.status-bar {
+    background: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Bento Grid Tools --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(160px, auto);
+    gap: 24px;
+    margin: 60px 0;
+}
+
+.bento-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    text-decoration: none;
+    color: white;
+    transition: var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 70%);
+    opacity: 0;
+    transition: var(--transition-base);
+}
+
+.bento-item:hover {
+    background: var(--bg-elevated);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.bento-item:hover::after {
+    opacity: 1;
+}
+
+.bento-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-item.wide {
+    grid-column: span 2;
+}
+
+.bento-item.tall {
+    grid-row: span 2;
+}
+
+.bento-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.bento-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.bento-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* --- Search Hub --- */
+.search-hub {
+    max-width: 800px;
+    margin: 0 auto 80px;
+    background: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-base);
+}
+
+.search-hub:focus-within {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.15);
+}
+
+.search-hub input {
+    background: transparent;
+    border: none;
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    color: white;
+    width: 100%;
+}
+
+.search-hub button {
+    background: var(--neon-cyan);
+    color: var(--bg-darkest);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.search-hub button:hover {
+    transform: scale(1.05);
+}
+
+/* --- Category Tabs --- */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+}
+
+.cat-tab {
+    padding: 10px 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition-base);
+}
+
+.cat-tab:hover,
+.cat-tab.active {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+/* --- Tool Layout --- */
+.tool-dashboard {
+    background: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 60px;
+}
+
+/* --- SEO Slop Modern --- */
+.seo-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--glass-border);
+}
+
+.seo-section h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 24px;
+}
+
+.seo-section p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    max-width: 800px;
+}
+
+/* --- Footer Sigma V2 --- */
+.footer-modern {
+    padding: 100px 0 60px;
+    border-top: 1px solid var(--glass-border);
+    text-align: center;
+}
+
+.sigma-badge {
+    margin-bottom: 40px;
+}
+
+.badge-text {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.badge-brand {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 950;
+    background: linear-gradient(to right, #fff, var(--neon-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.footer-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: var(--transition-base);
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* --- Animations --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealIn 0.8s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes revealIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Mobile --- */
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-item.large,
+    .bento-item.wide {
+        grid-column: span 1;
+    }
+
+    .hero-modern h1 {
+        font-size: 3rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
