@@ -3,7 +3,7 @@
   <!-- Main Pages -->
   <url>
     <loc>https://www.convertrocket.online/</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,37 +11,37 @@
   <!-- Hub Pages -->
   <url>
     <loc>https://www.convertrocket.online/all-tools</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/pdf-lab</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/media-hub</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/ai-lab</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/downloader</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/converter</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -49,19 +49,19 @@
   <!-- Primary Converter Pages -->
   <url>
     <loc>https://www.convertrocket.online/video-converter</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/mp3-converter</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/image-converter</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -69,83 +69,71 @@
   <!-- PDF Tools -->
   <url>
     <loc>https://www.convertrocket.online/pdf-to-excel</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/pdf-to-word</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/pdf-merge</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/pdf-compress</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/pdf-remove-pages</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/pdf-grayscale</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/pdf-pdfa</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- AI Tools -->
   <url>
-    <loc>https://www.convertrocket.online/ai-image-editor</loc>
-    <lastmod>2026-01-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://www.convertrocket.online/image-compress</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <!-- Developer Tools -->
   <url>
-    <loc>https://www.convertrocket.online/qr-generator</loc>
-    <lastmod>2026-01-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.convertrocket.online/json-formatter</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/base64-encoder</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/color-picker</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -153,93 +141,93 @@
   <!-- Media Tools -->
   <url>
     <loc>https://www.convertrocket.online/yt-thumbnail</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/video-trimmer</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.convertrocket.online/exif-remover</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Individual Image Converters -->
-  <url><loc>https://www.convertrocket.online/jpg-to-png</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/png-to-jpg</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/webp-to-jpg</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/webp-to-png</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/jpg-to-webp</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/png-to-webp</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/heic-to-jpg</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/heic-to-png</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/gif-to-mp4</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/bmp-to-jpg</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/bmp-to-png</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/tiff-to-jpg</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/tiff-to-png</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/jpg-to-png</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/png-to-jpg</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/webp-to-jpg</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/webp-to-png</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/jpg-to-webp</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/png-to-webp</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/heic-to-jpg</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/heic-to-png</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/gif-to-mp4</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/bmp-to-jpg</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/bmp-to-png</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/tiff-to-jpg</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/tiff-to-png</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   
   <!-- Document Converters -->
-  <url><loc>https://www.convertrocket.online/word-to-pdf</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/excel-to-pdf</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/ppt-to-pdf</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/jpg-to-pdf</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/png-to-pdf</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/word-to-pdf</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/excel-to-pdf</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/ppt-to-pdf</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/jpg-to-pdf</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/png-to-pdf</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   
   <!-- Video Converters -->
-  <url><loc>https://www.convertrocket.online/mp4-to-mp3</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/mp4-to-avi</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/mp4-to-mov</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/avi-to-mp4</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/mov-to-mp4</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/mkv-to-mp4</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/webm-to-mp4</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/flv-to-mp4</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/mp4-to-mp3</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/mp4-to-avi</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/mp4-to-mov</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/avi-to-mp4</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/mov-to-mp4</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/mkv-to-mp4</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/webm-to-mp4</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/flv-to-mp4</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   
   <!-- Audio Converters -->
-  <url><loc>https://www.convertrocket.online/wav-to-mp3</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/mp3-to-wav</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/flac-to-mp3</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/aac-to-mp3</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/m4a-to-mp3</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/wav-to-mp3</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/mp3-to-wav</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/flac-to-mp3</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/aac-to-mp3</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/m4a-to-mp3</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   
   <!-- Blog Section -->
   <url>
     <loc>https://www.convertrocket.online/blogs</loc>
-    <lastmod>2026-01-11</lastmod>
+    <lastmod>2026-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Blog Posts -->
-  <url><loc>https://www.convertrocket.online/blog/heic-to-jpg-ultimate-guide</loc><lastmod>2026-01-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/pdf-to-word-without-software</loc><lastmod>2026-01-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/how-to-batch-convert-images</loc><lastmod>2026-01-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/tiktok-downloader-no-watermark</loc><lastmod>2026-01-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/webp-to-png-conversion-guide</loc><lastmod>2026-01-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/youtube-downloader</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/tiktok-downloader</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/instagram-reels-downloader</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/mp4-to-mp3</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/pdf-to-excel</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/pdf-to-word-guide-students</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/image-optimizer</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/best-video-converters-2025</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/safety-guide</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/top-5-youtube-downloaders-2025</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/how-to-compress-video-without-losing-quality</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.convertrocket.online/blog/free-tools-for-content-creators</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/heic-to-jpg-ultimate-guide</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/pdf-to-word-without-software</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/how-to-batch-convert-images</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/tiktok-downloader-no-watermark</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/webp-to-png-conversion-guide</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/youtube-downloader</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/tiktok-downloader</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/instagram-reels-downloader</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/mp4-to-mp3</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/pdf-to-excel</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/pdf-to-word-guide-students</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/image-optimizer</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/best-video-converters-2025</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/safety-guide</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/top-5-youtube-downloaders-2025</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/how-to-compress-video-without-losing-quality</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.convertrocket.online/blog/free-tools-for-content-creators</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   
   <!-- Authority & Legal Pages -->
-  <url><loc>https://www.convertrocket.online/about</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.convertrocket.online/contact</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.convertrocket.online/privacy-policy</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.convertrocket.online/terms-of-service</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.convertrocket.online/sitemap</loc><lastmod>2026-01-11</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.convertrocket.online/about</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.convertrocket.online/contact</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.convertrocket.online/privacy-policy</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.convertrocket.online/terms-of-service</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.convertrocket.online/sitemap</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
 </urlset>

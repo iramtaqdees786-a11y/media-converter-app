@@ -21,30 +21,41 @@
     let targetX = mouseX;
     let targetY = mouseY;
 
-    // Track mouse movement
+    // Track mouse movement with throttling for performance
+    let lastMove = 0;
     document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastMove < 16) return; // ~60fps throttle
+        lastMove = now;
         mouseX = e.clientX;
         mouseY = e.clientY;
+
+        // Update orb position directly for immediate feedback (better performance than loop)
+        const orb = document.getElementById('interactive-orb');
+        if (orb) {
+            orb.style.left = `${mouseX}px`;
+            orb.style.top = `${mouseY}px`;
+        }
     });
 
     /**
-     * Interactive Orb - Follows mouse cursor
+     * Interactive Orb - CSS Optimized
      */
     function initInteractiveOrb() {
         const orb = document.getElementById('interactive-orb');
         if (!orb) return;
 
-        function animate() {
-            // Smooth lerp animation
-            targetX += (mouseX - targetX) * CONFIG.orbSmoothness;
-            targetY += (mouseY - targetY) * CONFIG.orbSmoothness;
-
-            orb.style.transform = `translate(${targetX - 150}px, ${targetY - 150}px)`;
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
+        // Set initial styles for CSS-based smoothing
+        orb.style.position = 'fixed';
+        orb.style.pointerEvents = 'none';
+        orb.style.zIndex = '-5';
+        orb.style.width = '300px';
+        orb.style.height = '300px';
+        orb.style.borderRadius = '50%';
+        orb.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%)';
+        orb.style.filter = 'blur(40px)';
+        orb.style.transform = 'translate(-50%, -50%)';
+        orb.style.transition = 'left 0.1s ease-out, top 0.1s ease-out';
     }
 
     /**
@@ -90,7 +101,15 @@
 
         if (parallaxElements.length === 0 || !CONFIG.enableMobileEffects) return;
 
+        let lastUpdate = 0;
         function updateParallax() {
+            const now = Date.now();
+            if (now - lastUpdate < 32) { // ~30fps for parallax is plenty
+                requestAnimationFrame(updateParallax);
+                return;
+            }
+            lastUpdate = now;
+
             const scrollY = window.scrollY;
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;

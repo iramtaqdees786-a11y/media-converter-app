@@ -269,13 +269,6 @@ async def redirect_mp4_converter():
 @app.get("/image-converter.html")
 async def serve_image_converter():
     return FileResponse(FRONTEND_DIR / "image-converter.html")
-
-@app.get("/ai-image-editor")
-async def serve_ai_image_editor():
-    return FileResponse(FRONTEND_DIR / "ai-image-editor.html")
-
-
-
 @app.get("/pdf-merge")
 async def serve_pdf_merge(): return FileResponse(FRONTEND_DIR / "pdf-merge.html")
 
@@ -329,14 +322,9 @@ async def serve_utilities():
 async def serve_downloader():
     return FileResponse(FRONTEND_DIR / "downloader.html")
 
-
 @app.get("/converter")
 async def serve_converter():
     return FileResponse(FRONTEND_DIR / "converter.html")
-
-@app.get("/qr-generator")
-async def serve_qr_generator():
-    return FileResponse(FRONTEND_DIR / "qr-generator.html")
 
 @app.get("/json-formatter")
 async def serve_json_formatter():
