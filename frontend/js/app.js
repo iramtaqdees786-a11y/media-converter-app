@@ -59,6 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Keep service alive
     initKeepAlive();
+
+    // Premium Reveal Sequence
+    setTimeout(() => {
+        document.body.classList.add('page-ready');
+    }, 100);
 });
 
 // Replace placeholders [MONTH_YEAR] and [TODAY] with actual dates

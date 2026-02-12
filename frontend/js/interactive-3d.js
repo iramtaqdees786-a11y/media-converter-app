@@ -49,13 +49,28 @@
         orb.style.position = 'fixed';
         orb.style.pointerEvents = 'none';
         orb.style.zIndex = '-5';
-        orb.style.width = '300px';
-        orb.style.height = '300px';
+        orb.style.width = '400px';
+        orb.style.height = '400px';
         orb.style.borderRadius = '50%';
-        orb.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%)';
-        orb.style.filter = 'blur(40px)';
+        orb.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.12) 0%, rgba(188, 19, 254, 0.05) 50%, transparent 80%)';
+        orb.style.filter = 'blur(60px)';
         orb.style.transform = 'translate(-50%, -50%)';
-        orb.style.transition = 'left 0.1s ease-out, top 0.1s ease-out';
+        orb.style.transition = 'left 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), top 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)';
+
+        // Add pulsing animation
+        orb.style.animation = 'orb-pulse 10s infinite alternate cubic-bezier(0.45, 0, 0.55, 1)';
+
+        if (!document.getElementById('orb-pulse-style')) {
+            const style = document.createElement('style');
+            style.id = 'orb-pulse-style';
+            style.textContent = `
+                @keyframes orb-pulse {
+                    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+                    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     }
 
     /**

@@ -14,12 +14,13 @@
     --text-main: #ffffff;
     --text-dim: rgba(255, 255, 255, 0.5);
     --grad-ion: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 50%, var(--neon-pink) 100%);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-blur: blur(20px);
-    --shadow-premium: 0 50px 100px rgba(0, 0, 0, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-blur: blur(25px);
+    --shadow-premium: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
     --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-    --radius-lg: 35px;
-    --radius-md: 20px;
+    --radius-lg: 40px;
+    --radius-md: 24px;
+    --cubic-premium: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* --- Global Reset & Performance --- */
@@ -37,11 +38,12 @@ body {
     font-family: var(--font-main);
     min-height: 100vh;
     overflow-x: hidden;
-    line-height: 1.6;
+    line-height: 1.5;
     display: flex;
     flex-direction: column;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
 }
 
 /* --- Premium Background Logic (Reduced Lag) --- */
@@ -124,45 +126,78 @@ body {
     margin: 0 auto;
 }
 
-/* --- Command Hub (Tabs) --- */
+/* --- Command Hub (Tabs) - Redesigned --- */
 .primary-hub {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin: 60px auto;
-    max-width: 900px;
+    gap: 30px;
+    margin: 80px auto;
+    max-width: 1000px;
 }
 
 .primary-tab {
-    background: var(--bg-card);
+    position: relative;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
     border: 1px solid var(--glass-border);
-    padding: 25px;
-    border-radius: var(--radius-md);
+    padding: 40px 30px;
+    border-radius: var(--radius-lg);
     text-decoration: none;
     color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 15px;
-    font-weight: 800;
-    font-size: 1.1rem;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    font-weight: 900;
+    font-size: 1.4rem;
+    transition: all 0.6s var(--cubic-premium);
     backdrop-filter: var(--glass-blur);
+    overflow: hidden;
+}
+
+.primary-tab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--grad-ion);
+    opacity: 0;
+    transition: 0.6s var(--cubic-premium);
+    z-index: -1;
 }
 
 .primary-tab:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--neon-cyan);
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-12px) scale(1.02);
+    border-color: transparent;
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.5);
+}
+
+.primary-tab:hover::before {
+    opacity: 0.15;
+}
+
+.primary-tab .icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    transition: 0.6s var(--cubic-premium);
+}
+
+.primary-tab:hover .icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .converter-gold {
-    border-left: 4px solid var(--neon-cyan);
+    border-top: 2px solid var(--neon-cyan);
 }
 
 .downloader-gold {
-    border-left: 4px solid var(--neon-purple);
+    border-top: 2px solid var(--neon-purple);
+}
+
+.primary-tab span:not(.icon) {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* --- Category Navigation --- */
@@ -379,10 +414,48 @@ body {
     margin-bottom: 30px;
 }
 
-/* --- Footer --- */
-.resource-footer {
-    padding: 100px 0 40px;
-    background: rgba(0, 0, 0, 0.3);
+/* --- Footer Logic - Sigma Protocol --- */
+.footer-sigma {
+    padding: 120px 0 60px;
+    border-top: 1px solid var(--glass-border);
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.sigma-badge {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sigma-text {
+    font-weight: 950;
+    font-size: 0.8rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.made-by {
+    font-size: 1.4rem;
+    font-weight: 900;
+    background: var(--grad-ion);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.sigma-slogan {
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+}
+
+.sigma-slogan strong {
+    color: white;
 }
 
 /* --- Animations --- */
@@ -400,6 +473,42 @@ body {
 
 .ion-title {
     animation: float 6s ease-in-out infinite;
+}
+
+/* --- Premium Page Reveal --- */
+body {
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.page-ready {
+    opacity: 1;
+}
+
+.container {
+    transform: translateY(20px);
+    transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.page-ready .container {
+    transform: translateY(0);
+}
+
+/* --- Interactive Orb Enhanced --- */
+#interactive-orb {
+    animation: orb-pulse 10s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@keyframes orb-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0.9;
+    }
 }
 
 /* Mobile Optimizations */
