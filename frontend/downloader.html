@@ -545,12 +545,12 @@
                 }, 400);
 
                 try {
-                    const response = await fetch('/api/download', {
+                    const response = await fetch('/api/download/start', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             url: url,
-                            format: formatSelect.value,
+                            format_type: formatSelect.value,
                             quality: qualitySelect.value
                         })
                     });
