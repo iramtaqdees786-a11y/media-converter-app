@@ -80,11 +80,11 @@ def _get_cookiefile() -> Optional[str]:
 
 def _build_http_headers(url: str) -> Dict[str, str]:
     """Build browser-like HTTP headers to reduce 403/anti-bot issues."""
-    # Use a modern desktop browser user agent; sites frequently block generic clients
+    # Use the latest Chrome user agent for better compatibility
     user_agent = (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
+        "Chrome/131.0.0.0 Safari/537.36"
     )
 
     return {
@@ -94,8 +94,13 @@ def _build_http_headers(url: str) -> Dict[str, str]:
             "image/avif,image/webp,image/apng,*/*;q=0.8"
         ),
         "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
         "Referer": url,
         "Connection": "keep-alive",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Upgrade-Insecure-Requests": "1",
     }
 
 
@@ -107,8 +112,17 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "nocheckcertificate": True,
         "http_headers": _build_http_headers(url),
         # Retry a few times on transient HTTP errors
-        "retries": 3,
-        "fragment_retries": 3,
+        "retries": 5,
+        "fragment_retries": 5,
+        # Use legacy server connect for better compatibility
+        "legacy_server_connect": True,
+        # Add extractor args for YouTube
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android", "web"],
+                "skip": ["hls", "dash"]
+            }
+        },
     }
 
     cookiefile = _get_cookiefile()
@@ -251,7 +265,7 @@ async def download_video(
     # Set format based on type
     if format_type == "audio":
         ydl_opts.update({
-            'format': 'bestaudio/bestvideo+bestaudio/best',
+            'format': 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
@@ -259,12 +273,35 @@ async def download_video(
             }],
         })
     else:
+        # Improved format selection for better YouTube compatibility
         if quality == "best":
-            ydl_opts['format'] = 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
+            # Try progressive formats first (single file with video+audio)
+            # Then fall back to adaptive formats (separate video+audio that need merging)
+            ydl_opts['format'] = (
+                'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best'
+            )
+        elif quality == "1080p":
+            ydl_opts['format'] = (
+                'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/'
+                'best[ext=mp4][height<=1080]/best[height<=1080]'
+            )
+        elif quality == "720p":
+            ydl_opts['format'] = (
+                'bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/'
+                'best[ext=mp4][height<=720]/best[height<=720]'
+            )
+        elif quality == "480p":
+            ydl_opts['format'] = (
+                'bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/'
+                'best[ext=mp4][height<=480]/best[height<=480]'
+            )
         elif quality == "worst":
             ydl_opts['format'] = 'worstvideo+worstaudio/worst'
         else:
             ydl_opts['format'] = quality
+        
+        # Ensure output is MP4
+        ydl_opts['merge_output_format'] = 'mp4'
     
     loop = asyncio.get_event_loop()
     
@@ -314,33 +351,46 @@ async def download_video(
         
     except yt_dlp.DownloadError as e:
         error_msg = str(e)
+        # Log for debugging
+        print(f"yt-dlp DownloadError: {error_msg}")
+        
         # Provide user-friendly error messages
         if "Private video" in error_msg:
             return DownloadResult(success=False, message="This video is private. The owner has restricted access.")
-        elif "Video unavailable" in error_msg:
-            return DownloadResult(success=False, message="This video is currently unavailable. It may have been removed.")
+        elif "Video unavailable" in error_msg or "This video is unavailable" in error_msg:
+            return DownloadResult(success=False, message="This video is unavailable. It may have been removed or made private.")
         elif "Sign in" in error_msg or "login" in error_msg.lower():
             return DownloadResult(success=False, message="This video requires login. Please try a public video.")
         elif "copyright" in error_msg.lower():
             return DownloadResult(success=False, message="This video has copyright restrictions in your region.")
-        elif "age" in error_msg.lower():
+        elif "age" in error_msg.lower() or "age-restricted" in error_msg.lower():
             return DownloadResult(success=False, message="This video is age-restricted. Please try another video.")
-        elif "geo" in error_msg.lower() or "country" in error_msg.lower():
+        elif "geo" in error_msg.lower() or "country" in error_msg.lower() or "not available in your country" in error_msg.lower():
             return DownloadResult(success=False, message="This video is not available in your region.")
-        elif "429" in error_msg or "rate" in error_msg.lower():
+        elif "429" in error_msg or "rate" in error_msg.lower() or "Too Many Requests" in error_msg:
             return DownloadResult(success=False, message="Too many requests. Please wait a moment and try again!")
+        elif "403" in error_msg or "Forbidden" in error_msg:
+            return DownloadResult(success=False, message="Access denied by the platform. This might be a temporary issue - please try again in a few minutes.")
+        elif "410" in error_msg or "Gone" in error_msg:
+            return DownloadResult(success=False, message="This video has been removed and is no longer available.")
         elif "network" in error_msg.lower() or "connection" in error_msg.lower():
             return DownloadResult(success=False, message="Network issue detected. Please check your connection and try again.")
+        elif "format" in error_msg.lower() and "not available" in error_msg.lower():
+            return DownloadResult(success=False, message="The requested video quality is not available. Try selecting 'Best Available' quality.")
+        elif "Unsupported URL" in error_msg or "not supported" in error_msg.lower():
+            return DownloadResult(success=False, message="This URL is not supported. Please try a different video URL.")
+        elif "extractor" in error_msg.lower():
+            return DownloadResult(success=False, message="Unable to extract video information. The platform may have changed - please try updating yt-dlp or try again later.")
         else:
-            return DownloadResult(success=False, message="We couldn't download this video. Please try a different URL or try again later!")
+            return DownloadResult(success=False, message=f"Download failed: {error_msg[:200]}. Please try again or use a different video.")
     
     except asyncio.TimeoutError:
         return DownloadResult(success=False, message="Download is taking too long. Please try again with a shorter video.")
     
     except Exception as e:
         # Log actual error for debugging
-        print(f"Download error: {str(e)}")
-        return DownloadResult(success=False, message="Something went wrong! Our servers are working hard. Please try again in a moment.")
+        print(f"Unexpected download error: {type(e).__name__}: {str(e)}")
+        return DownloadResult(success=False, message=f"Unexpected error occurred: {str(e)[:200]}. Please try again.")
 
 
 async def download_audio_only(url: str) -> DownloadResult:
