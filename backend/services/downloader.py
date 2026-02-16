@@ -81,26 +81,16 @@ def _get_cookiefile() -> Optional[str]:
 def _build_http_headers(url: str) -> Dict[str, str]:
     """Build browser-like HTTP headers to reduce 403/anti-bot issues."""
     # Use the latest Chrome user agent for better compatibility
-    user_agent = (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/131.0.0.0 Safari/537.36"
-    )
-
     return {
-        "User-Agent": user_agent,
-        "Accept": (
-            "text/html,application/xhtml+xml,application/xml;q=0.9," 
-            "image/avif,image/webp,image/apng,*/*;q=0.8"
+        "User-Agent": (
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) "
+            "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
         ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Referer": url,
-        "Connection": "keep-alive",
-        "Sec-Fetch-Dest": "document",
         "Sec-Fetch-Mode": "navigate",
-        "Sec-Fetch-Site": "none",
-        "Upgrade-Insecure-Requests": "1",
+        "Referer": "https://www.youtube.com/",
+        "Origin": "https://www.youtube.com",
     }
 
 
@@ -108,7 +98,7 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
     """Common yt-dlp options for both info extraction and download."""
     opts: Dict[str, Any] = {
         "quiet": True,
-        "no_warnings": True,
+        "no_warnings": False,  # Enable warnings for better debugging in logs
         "nocheckcertificate": True,
         "http_headers": _build_http_headers(url),
         "retries": 15,
@@ -119,22 +109,26 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["tv", "android_vr", "ios", "mweb"],
-                "player_skip": [],
+                "player_client": ["web_creator", "ios", "mweb", "android"],
+                "player_skip": ["webpage", "configs"],
             }
         },
         "nocheckcertificate": True,
         "prefer_insecure": True,
-        "youtube_include_dash_manifest": True,
-        "youtube_include_hls_manifest": True,
-        "youtube_skip_dash_manifest": False,
-        "youtube_skip_hls_manifest": False,
-        "socket_timeout": 30,
+        "youtube_include_dash_manifest": False,
+        "youtube_include_hls_manifest": False,
+        "youtube_skip_dash_manifest": True,
+        "youtube_skip_hls_manifest": True,
+        "socket_timeout": 60,
+        "http_chunk_size": 1048576,
     }
 
     cookiefile = _get_cookiefile()
     if cookiefile:
+        print(f"DEBUG: Using cookie file at {cookiefile}")
         opts["cookiefile"] = cookiefile
+    else:
+        print("DEBUG: No cookies.txt found. YouTube downloads may fail if IP is flagged.")
 
     return opts
 
