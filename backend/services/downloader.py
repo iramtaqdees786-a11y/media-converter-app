@@ -119,7 +119,8 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "ios", "web"],
+                "player_client": ["android_vr", "tv", "mweb", "web_creator"],
+                "player_skip": ["webpage", "configs"],
                 "skip": ["hls", "dash"]
             }
         },

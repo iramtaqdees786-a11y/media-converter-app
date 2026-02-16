@@ -6,164 +6,169 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConvertRocket | Premium File Converter & Video Downloader 2026</title>
+    <title>ConvertRocket | The Fastest Universal Media Lab 2026</title>
     <meta name="description"
-        content="The fastest way to download videos & convert files. 1000+ formats supported. YouTube, TikTok, Instagram downloads. No watermark, 100% free.">
+        content="Free online video downloader and file converter. Support for YouTube, TikTok, Instagram, PDF, JPG, MP4 and 1000+ more formats.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/css/seo-optimized.css?v=2.0">
-    <style>
-        .bento-tools {
-            margin-top: 20px;
-        }
-
-        .hero {
-            padding-bottom: 20px;
-        }
-
-        .upload-zone {
-            border: 2px dashed var(--border-subtle);
-            border-radius: 12px;
-            padding: 30px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: rgba(0, 0, 0, 0.2);
-            margin-bottom: 15px;
-        }
-
-        .upload-zone:hover {
-            border-color: var(--accent-primary);
-            background: rgba(0, 242, 255, 0.05);
-        }
-    </style>
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=3.0">
 </head>
 
 <body>
-    <nav class="nav-premium">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+    <nav class="nav-standard">
+        <div class="container nav-content">
+            <a href="/" class="brand">🚀 CONVERT<span>ROCKET</span></a>
             <div class="nav-links">
                 <a href="/all-tools">Tools</a>
                 <a href="/blogs">Blog</a>
-                <a href="/contact">Support</a>
+                <a href="/media-hub">Media</a>
+                <a href="/pdf-lab">PDF</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero-minimal">
         <div class="container">
-            <h1>The All-In-One Media Lab</h1>
-            <p>Download from any platform. Convert to any format. Fast, secure, and completely free.</p>
+            <h1>The Media Lab</h1>
+            <p>One unified interface to convert anything and download from anywhere.</p>
         </div>
     </header>
 
     <main class="container">
-        <div class="bento-tools">
-            <!-- Universal Converter -->
-            <div class="tool-card">
-                <h2>🔄 Universal Converter</h2>
-                <div id="converter-ui">
-                    <div class="format-flex">
-                        <select id="from-format" class="select-premium">
-                            <option value="">FROM</option>
-                            <option value="heic">HEIC</option>
-                            <option value="png">PNG</option>
-                            <option value="pdf">PDF</option>
-                            <option value="mp4">MP4</option>
-                        </select>
-                        <select id="to-format" class="select-premium">
-                            <option value="">TO</option>
-                            <option value="jpg">JPG</option>
-                            <option value="png">PNG</option>
-                            <option value="pdf">PDF</option>
-                            <option value="mp3">MP3</option>
-                        </select>
+        <div class="lab-interface">
+            <div class="lab-tabs">
+                <button class="tab-btn active" onclick="switchLab('downloader')">Video Downloader</button>
+                <button class="tab-btn" onclick="switchLab('converter')">Universal Converter</button>
+            </div>
+
+            <!-- Downloader Section -->
+            <div id="downloader-lab" class="tool-section active">
+                <input type="text" id="video-url" class="input-minimal"
+                    placeholder="Paste link from YouTube, TikTok, or Instagram...">
+                <div class="options-flex">
+                    <select id="dl-quality" class="select-slick">
+                        <option value="best">Best Quality</option>
+                        <option value="1080p">1080p Full HD</option>
+                        <option value="720p">720p HD</option>
+                    </select>
+                    <select id="dl-format" class="select-slick">
+                        <option value="video">MP4 Video</option>
+                        <option value="audio">MP3 Audio</option>
+                    </select>
+                </div>
+                <button id="download-btn" class="btn-slick">START DOWNLOAD</button>
+                <div class="progress-minimal" id="dl-progress">
+                    <div class="bar-track">
+                        <div class="bar-fill" id="dl-bar"></div>
                     </div>
-                    <div class="upload-zone" onclick="document.getElementById('file-input').click()">
-                        <div style="font-size: 2rem; margin-bottom: 8px;">📁</div>
-                        <div id="file-label" style="font-weight:700">Select or Drop File</div>
-                        <input type="file" id="file-input" style="display:none">
-                    </div>
-                    <button id="convert-btn" class="action-btn">Convert File</button>
-                    <div class="progress-wrap" id="convert-progress">
-                        <div class="bar-bg">
-                            <div class="bar-fill" id="convert-bar"></div>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-top: 5px;">
-                            <span id="convert-status">Processing...</span>
-                            <span id="convert-percent">0%</span>
-                        </div>
+                    <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-top: 8px;">
+                        <span id="dl-status">Analyzing link...</span>
+                        <span id="dl-percent">0%</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Video Downloader -->
-            <div class="tool-card">
-                <h2>⬇️ Video Downloader</h2>
-                <div id="downloader-ui">
-                    <input type="text" id="video-url" class="url-input"
-                        placeholder="Paste YouTube, TikTok, or Instagram link...">
-                    <div class="format-flex">
-                        <select id="dl-quality" class="select-premium">
-                            <option value="best">Best Quality</option>
-                            <option value="1080p">1080p HD</option>
-                            <option value="720p">720p</option>
-                        </select>
-                        <select id="dl-format" class="select-premium">
-                            <option value="video">MP4 Video</option>
-                            <option value="audio">MP3 Audio</option>
-                        </select>
-                    </div>
-                    <button id="download-btn" class="action-btn">Download Now</button>
-                    <div class="progress-wrap" id="dl-progress">
-                        <div class="bar-bg">
-                            <div class="bar-fill" id="dl-bar"></div>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-top: 5px;">
-                            <span id="dl-status">Fetching...</span>
-                            <span id="dl-percent">0%</span>
-                        </div>
-                    </div>
+            <!-- Converter Section -->
+            <div id="converter-lab" class="tool-section">
+                <div style="text-align: center; padding: 20px 0;">
+                    <button class="btn-slick"
+                        style="max-width: 300px; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border-subtle);"
+                        onclick="document.getElementById('file-input').click()">
+                        SELECT FILE TO CONVERT
+                    </button>
+                    <input type="file" id="file-input" style="display:none">
+                    <p id="file-name"
+                        style="margin-top: 15px; font-size: 0.9rem; color: var(--accent-primary); font-weight: 600;">
+                    </p>
                 </div>
+                <div class="options-flex" style="margin-top: 20px;">
+                    <select id="to-format" class="select-slick">
+                        <option value="">CONVERT TO...</option>
+                        <optgroup label="Images">
+                            <option value="jpg">JPG</option>
+                            <option value="png">PNG</option>
+                            <option value="webp">WebP</option>
+                        </optgroup>
+                        <optgroup label="Documents">
+                            <option value="pdf">PDF</option>
+                            <option value="docx">Word</option>
+                        </optgroup>
+                        <optgroup label="Media">
+                            <option value="mp3">MP3 Audio</option>
+                            <option value="mp4">MP4 Video</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <button id="convert-btn" class="btn-slick">CONVERT NOW</button>
             </div>
         </div>
 
-        <section>
-            <h2 style="text-align:center; font-weight:900; margin-bottom: 30px;">Popular Tools</h2>
-            <div class="popular-grid">
-                <a href="/heic-to-jpg" class="mini-tool">
-                    <div class="mini-tool-icon">📸</div>
-                    <h3>HEIC to JPG</h3>
-                </a>
-                <a href="/pdf-to-word" class="mini-tool">
-                    <div class="mini-tool-icon">📄</div>
-                    <h3>PDF to Word</h3>
-                </a>
-                <a href="/mp4-to-mp3" class="mini-tool">
-                    <div class="mini-tool-icon">🎵</div>
-                    <h3>Video to MP3</h3>
-                </a>
-                <a href="/video-trimmer" class="mini-tool">
-                    <div class="mini-tool-icon">✂️</div>
-                    <h3>Video Trimmer</h3>
-                </a>
-            </div>
+        <section class="tool-grid">
+            <a href="/heic-to-jpg" class="tool-item">
+                <h3>HEIC to JPG</h3>
+                <p>iPhone photo conversion</p>
+            </a>
+            <a href="/pdf-to-word" class="tool-item">
+                <h3>PDF to Word</h3>
+                <p>Edit PDF documents</p>
+            </a>
+            <a href="/mp4-to-mp3" class="tool-item">
+                <h3>Video to MP3</h3>
+                <p>Extract high-quality audio</p>
+            </a>
+            <a href="/video-trimmer" class="tool-item">
+                <h3>Video Trimmer</h3>
+                <p>Cut and edit clips</p>
+            </a>
         </section>
     </main>
 
-    <footer style="margin-top: 100px; padding: 60px 0; border-top: 1px solid var(--border-subtle); text-align:center;">
-        <div class="container">
-            <p style="color:var(--text-dim)">&copy; 2026 ConvertRocket.online | Made by Izyaan</p>
+    <footer style="margin-top: 120px; padding: 80px 0 40px; border-top: 1px solid var(--border-subtle);">
+        <div class="container"
+            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
+            <div>
+                <h4 style="margin-bottom: 20px;">Converters</h4>
+                <ul style="list-style:none; color: var(--text-secondary); line-height: 2;">
+                    <li><a href="/image-converter" style="color:inherit; text-decoration:none;">Image Converter</a></li>
+                    <li><a href="/pdf-lab" style="color:inherit; text-decoration:none;">PDF Tools</a></li>
+                    <li><a href="/video-converter" style="color:inherit; text-decoration:none;">Video Converter</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 20px;">Downloaders</h4>
+                <ul style="list-style:none; color: var(--text-secondary); line-height: 2;">
+                    <li><a href="/downloader" style="color:inherit; text-decoration:none;">TikTok Downloader</a></li>
+                    <li><a href="/downloader" style="color:inherit; text-decoration:none;">YouTube Downloader</a></li>
+                    <li><a href="/downloader" style="color:inherit; text-decoration:none;">Instagram Downloader</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 20px;">Company</h4>
+                <ul style="list-style:none; color: var(--text-secondary); line-height: 2;">
+                    <li><a href="/about" style="color:inherit; text-decoration:none;">About Us</a></li>
+                    <li><a href="/contact" style="color:inherit; text-decoration:none;">Contact</a></li>
+                    <li><a href="/privacy-policy" style="color:inherit; text-decoration:none;">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" style="text-align:center; margin-top: 80px; color: var(--text-dim); font-size: 0.8rem;">
+            &copy; 2026 ConvertRocket.online | Made by Izyaan
         </div>
     </footer>
 
     <script>
+        function switchLab(type) {
+            document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(type + '-lab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
         // Downloader Logic
         const downloadBtn = document.getElementById('download-btn');
         downloadBtn.onclick = async () => {
             const url = document.getElementById('video-url').value.trim();
-            if (!url) return alert('Paste a URL first');
+            if (!url) return;
 
             downloadBtn.disabled = true;
             document.getElementById('dl-progress').classList.add('active');

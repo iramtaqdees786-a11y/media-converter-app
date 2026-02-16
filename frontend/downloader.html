@@ -4,53 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Downloader | Premium Quality | ConvertRocket</title>
+    <title>Video Downloader | Full HD & MP3 | ConvertRocket</title>
+    <meta name="description"
+        content="Slick video downloader for YouTube, TikTok, and Instagram. No watermark, high quality MP4/MP3 downloads.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/css/seo-optimized.css?v=2.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=3.0">
 </head>
 
 <body>
-    <nav class="nav-premium">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+    <nav class="nav-standard">
+        <div class="container nav-content">
+            <a href="/" class="brand">🚀 CONVERT<span>ROCKET</span></a>
             <div class="nav-links">
                 <a href="/">Home</a>
                 <a href="/all-tools">Tools</a>
+                <a href="/blogs">Blog</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero-minimal">
         <div class="container">
             <h1>Video Downloader</h1>
-            <p>Save videos from YouTube, TikTok, Instagram, and more in HD quality.</p>
+            <p>Save high-quality media from your favorite platforms instantly.</p>
         </div>
     </header>
 
     <main class="container">
-        <div style="max-width: 600px; margin: 0 auto;">
-            <div class="tool-card">
-                <h2>⬇️ Paste Link</h2>
-                <input type="text" id="video-url" class="url-input" placeholder="YouTube, TikTok, Twitter link...">
-                <div class="format-flex">
-                    <select id="dl-quality" class="select-premium">
+        <div class="lab-interface" style="max-width: 700px; margin: 0 auto;">
+            <div id="downloader-lab" class="tool-section active">
+                <input type="text" id="video-url" class="input-minimal" placeholder="Paste link here...">
+                <div class="options-flex">
+                    <select id="dl-quality" class="select-slick">
                         <option value="best">Best Quality</option>
-                        <option value="1080p">1080p HD</option>
-                        <option value="720p">720p</option>
+                        <option value="1080p">1080p Full HD</option>
+                        <option value="720p">720p HD</option>
                     </select>
-                    <select id="dl-format" class="select-premium">
+                    <select id="dl-format" class="select-slick">
                         <option value="video">MP4 Video</option>
                         <option value="audio">MP3 Audio</option>
                     </select>
                 </div>
-                <button id="download-btn" class="action-btn">Start Download</button>
-                <div class="progress-wrap" id="dl-progress">
-                    <div class="bar-bg">
+                <button id="download-btn" class="btn-slick">DOWNLOAD NOW</button>
+                <div class="progress-minimal" id="dl-progress">
+                    <div class="bar-track">
                         <div class="bar-fill" id="dl-bar"></div>
                     </div>
-                    <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-top: 5px;">
-                        <span id="dl-status">Processing...</span>
+                    <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-top: 8px;">
+                        <span id="dl-status">Extracting media...</span>
                         <span id="dl-percent">0%</span>
                     </div>
                 </div>
@@ -58,24 +60,29 @@
         </div>
     </main>
 
+    <footer style="margin-top: 120px; padding: 60px 0; border-top: 1px solid var(--border-subtle); text-align:center;">
+        <div class="container">
+            <p style="color:var(--text-dim)">&copy; 2026 ConvertRocket.online | Made by Izyaan</p>
+        </div>
+    </footer>
+
     <script>
         const downloadBtn = document.getElementById('download-btn');
         downloadBtn.onclick = async () => {
             const url = document.getElementById('video-url').value.trim();
-            if (!url) return alert('Please enter a URL');
+            if (!url) return;
 
             downloadBtn.disabled = true;
             document.getElementById('dl-progress').classList.add('active');
-
-            const progressFill = document.getElementById('dl-bar');
-            const progressPercent = document.getElementById('dl-percent');
+            const fill = document.getElementById('dl-bar');
+            const percent = document.getElementById('dl-percent');
 
             let p = 0;
-            const interval = setInterval(() => {
-                p = Math.min(p + 1, 95);
-                progressFill.style.width = p + '%';
-                progressPercent.innerText = p + '%';
-            }, 250);
+            const inter = setInterval(() => {
+                p = Math.min(p + 1, 98);
+                fill.style.width = p + '%';
+                percent.innerText = p + '%';
+            }, 300);
 
             try {
                 const res = await fetch('/api/download/start', {
@@ -88,24 +95,23 @@
                     })
                 });
                 const data = await res.json();
-                clearInterval(interval);
+                clearInterval(inter);
 
                 if (data.success) {
-                    progressFill.style.width = '100%';
-                    progressPercent.innerText = '100%';
+                    fill.style.width = '100%';
+                    percent.innerText = '100%';
                     window.location.href = data.download_url;
                 } else {
-                    alert('Download Error: ' + (data.message || 'The server encountered an error processing your video.'));
-                    resetDl();
+                    alert('Download Alert: ' + data.message);
+                    resetLab();
                 }
             } catch (e) {
-                clearInterval(interval);
-                alert('Connection Error: ' + e.message + '\n\nPlease ensure you are connected to the internet and the server is running.');
-                resetDl();
+                alert('Connection error. Please try again.');
+                resetLab();
             }
         };
 
-        function resetDl() {
+        function resetLab() {
             downloadBtn.disabled = false;
             document.getElementById('dl-progress').classList.remove('active');
             document.getElementById('dl-bar').style.width = '0%';
