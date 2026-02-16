@@ -119,11 +119,17 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["android_vr", "tv", "mweb", "web_creator"],
+                "player_client": ["ios", "web_creator", "mweb", "android"],
                 "player_skip": ["webpage", "configs"],
-                "skip": ["hls", "dash"]
             }
         },
+        "ignoreerrors": True,
+        "nocheckcertificate": True,
+        "prefer_insecure": True,
+        "youtube_include_dash_manifest": False,
+        "youtube_include_hls_manifest": False,
+        "youtube_skip_dash_manifest": True,
+        "youtube_skip_hls_manifest": True,
     }
 
     cookiefile = _get_cookiefile()
