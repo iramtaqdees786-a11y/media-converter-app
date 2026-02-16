@@ -5,7 +5,7 @@ python-multipart==0.0.6
 aiofiles==23.2.1
 
 # Video Downloading
-yt-dlp>=2025.01.26
+yt-dlp>=2025.02.10
 
 # Image Processing
 Pillow==10.1.0

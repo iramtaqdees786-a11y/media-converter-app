@@ -136,88 +136,103 @@
             </div>
         </section>
 
-        <section style="margin-top: 80px;">
-            <h2 style="font-weight:900; letter-spacing:-1px; margin-bottom: 40px; text-align: center;">Global Tool Index
-            </h2>
-            <div class="tool-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <section style="margin-top: 100px; padding-top: 60px; border-top: 1px solid var(--border-subtle);">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 10px;">The Master
+                    Registry</h2>
+                <p style="color: var(--text-secondary); font-weight: 500;">Every conversion protocol, organized for
+                    efficiency.</p>
+            </div>
+
+            <div class="tool-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
                 <!-- Video Tools -->
-                <div
-                    style="background: var(--bg-surface); padding: 25px; border-radius: 20px; border: 1px solid var(--border-subtle);">
-                    <h3 style="margin-bottom: 15px; color: var(--accent-primary);">🎥 Video</h3>
-                    <ul style="list-style: none; line-height: 2; font-size: 0.9rem;">
-                        <li><a href="/downloader" style="color: var(--text-secondary); text-decoration: none;">Video
+                <div class="bento-card" style="padding: 30px;">
+                    <h3
+                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid var(--accent-primary); display: inline-block;">
+                        🎬 Video Studio</h3>
+                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
+                        <li><a href="/downloader"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">⚡ Pro
                                 Downloader</a></li>
-                        <li><a href="/video-trimmer" style="color: var(--text-secondary); text-decoration: none;">Video
-                                Trimmer</a></li>
+                        <li><a href="/video-trimmer"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">✂️
+                                Precision Trimmer</a></li>
                         <li><a href="/video-converter"
-                                style="color: var(--text-secondary); text-decoration: none;">Video Converter</a></li>
-                        <li><a href="/mp4-to-mp3" style="color: var(--text-secondary); text-decoration: none;">MP4 to
-                                MP3</a></li>
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔄 Format
+                                Shifter</a></li>
+                        <li><a href="/mp4-to-mp3"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🎶 Audio
+                                Stripper</a></li>
                         <li><a href="/yt-thumbnail"
-                                style="color: var(--text-secondary); text-decoration: none;">Thumbnail Downloader</a>
-                        </li>
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🖼️ Cover
+                                Extractor</a></li>
                     </ul>
                 </div>
-                <!-- Audio Tools -->
-                <div
-                    style="background: var(--bg-surface); padding: 25px; border-radius: 20px; border: 1px solid var(--border-subtle);">
-                    <h3 style="margin-bottom: 15px; color: var(--accent-secondary);">🎵 Audio</h3>
-                    <ul style="list-style: none; line-height: 2; font-size: 0.9rem;">
-                        <li><a href="/mp3-converter" style="color: var(--text-secondary); text-decoration: none;">MP3
-                                Converter</a></li>
-                        <li><a href="/wav-to-mp3" style="color: var(--text-secondary); text-decoration: none;">WAV to
-                                MP3</a></li>
-                        <li><a href="/aac-to-mp3" style="color: var(--text-secondary); text-decoration: none;">AAC to
-                                MP3</a></li>
-                        <li><a href="/audio-compress" style="color: var(--text-secondary); text-decoration: none;">Audio
-                                Compressor</a></li>
+
+                <!-- PDF Suite -->
+                <div class="bento-card" style="padding: 30px;">
+                    <h3
+                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid #00ff88; display: inline-block;">
+                        📄 Document Lab</h3>
+                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
+                        <li><a href="/pdf-merge"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔗
+                                Dossier Fusion</a></li>
+                        <li><a href="/pdf-compress"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📦 Volume
+                                Reducer</a></li>
+                        <li><a href="/pdf-to-word"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📝
+                                Editability Engine</a></li>
+                        <li><a href="/pdf-to-excel"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📊 Data
+                                Architect</a></li>
+                        <li><a href="/pdf-grayscale"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🌑
+                                Neutralizer</a></li>
                     </ul>
                 </div>
-                <!-- Image Tools -->
-                <div
-                    style="background: var(--bg-surface); padding: 25px; border-radius: 20px; border: 1px solid var(--border-subtle);">
-                    <h3 style="margin-bottom: 15px; color: #ff007a;">📸 Image</h3>
-                    <ul style="list-style: none; line-height: 2; font-size: 0.9rem;">
-                        <li><a href="/image-converter" style="color: var(--text-secondary); text-decoration: none;">Full
-                                Converter</a></li>
-                        <li><a href="/heic-to-jpg" style="color: var(--text-secondary); text-decoration: none;">HEIC to
-                                JPG</a></li>
-                        <li><a href="/png-to-jpg" style="color: var(--text-secondary); text-decoration: none;">PNG to
-                                JPG</a></li>
-                        <li><a href="/webp-to-jpg" style="color: var(--text-secondary); text-decoration: none;">WebP to
-                                JPG</a></li>
-                        <li><a href="/exif-remover" style="color: var(--text-secondary); text-decoration: none;">Exif
-                                Remover</a></li>
+
+                <!-- Photo Factory -->
+                <div class="bento-card" style="padding: 30px;">
+                    <h3
+                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid #ff007a; display: inline-block;">
+                        📸 Photo Engine</h3>
+                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
+                        <li><a href="/heic-to-jpg"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📱 Mobile
+                                Unifier</a></li>
+                        <li><a href="/png-to-jpg"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🖼️ Web
+                                Optimizer</a></li>
+                        <li><a href="/image-converter"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🎨 Batch
+                                Processor</a></li>
+                        <li><a href="/exif-remover"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🕵️
+                                Privacy Shield</a></li>
                     </ul>
                 </div>
-                <!-- PDF & Docs -->
-                <div
-                    style="background: var(--bg-surface); padding: 25px; border-radius: 20px; border: 1px solid var(--border-subtle);">
-                    <h3 style="margin-bottom: 15px; color: #00ff88;">📄 PDF Lab</h3>
-                    <ul style="list-style: none; line-height: 2; font-size: 0.9rem;">
-                        <li><a href="/pdf-merge" style="color: var(--text-secondary); text-decoration: none;">PDF
-                                Merger</a></li>
-                        <li><a href="/pdf-compress" style="color: var(--text-secondary); text-decoration: none;">PDF
-                                Compressor</a></li>
-                        <li><a href="/pdf-to-word" style="color: var(--text-secondary); text-decoration: none;">PDF to
-                                Word</a></li>
-                        <li><a href="/pdf-to-excel" style="color: var(--text-secondary); text-decoration: none;">PDF to
-                                Excel</a></li>
-                    </ul>
-                </div>
-                <!-- Developers -->
-                <div
-                    style="background: var(--bg-surface); padding: 25px; border-radius: 20px; border: 1px solid var(--border-subtle);">
-                    <h3 style="margin-bottom: 15px; color: #ffaa00;">💻 Developers</h3>
-                    <ul style="list-style: none; line-height: 2; font-size: 0.9rem;">
-                        <li><a href="/json-formatter" style="color: var(--text-secondary); text-decoration: none;">JSON
-                                Formatter</a></li>
+
+                <!-- Developer Suite -->
+                <div class="bento-card" style="padding: 30px;">
+                    <h3
+                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid #ffaa00; display: inline-block;">
+                        💻 Dev Suite</h3>
+                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
+                        <li><a href="/json-formatter"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔤 Syntax
+                                Polisher</a></li>
                         <li><a href="/base64-encoder"
-                                style="color: var(--text-secondary); text-decoration: none;">Base64 Engine</a></li>
-                        <li><a href="/qr-generator" style="color: var(--text-secondary); text-decoration: none;">QR
-                                Generator</a></li>
-                        <li><a href="/color-picker" style="color: var(--text-secondary); text-decoration: none;">Pro
-                                Color Picker</a></li>
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔐 String
+                                Engine</a></li>
+                        <li><a href="/qr-generator"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔳 Link
+                                Matrix</a></li>
+                        <li><a href="/color-picker"
+                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🌈 Hue
+                                Architect</a></li>
                     </ul>
                 </div>
             </div>

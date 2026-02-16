@@ -111,19 +111,18 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "no_warnings": True,
         "nocheckcertificate": True,
         "http_headers": _build_http_headers(url),
-        "retries": 10,
-        "fragment_retries": 10,
+        "retries": 15,
+        "fragment_retries": 15,
         "legacy_server_connect": True,
         "no_playlist": True,
         "playlist_items": "1",
         "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["ios", "web_creator", "mweb", "android"],
+                "player_client": ["android", "web", "mweb", "ios"],
                 "player_skip": ["webpage", "configs"],
             }
         },
-        "ignoreerrors": True,
         "nocheckcertificate": True,
         "prefer_insecure": True,
         "youtube_include_dash_manifest": False,
