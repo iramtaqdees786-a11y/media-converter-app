@@ -268,7 +268,7 @@
     </footer>
 
     <script>
-        // Downloader Logic
+        // --- 1. Downloader Logic ---
         const dlBtn = document.getElementById('download-btn');
         dlBtn.onclick = async () => {
             const url = document.getElementById('video-url').value.trim();
@@ -322,10 +322,106 @@
             document.getElementById('dl-bar').style.width = '0%';
         }
 
+        // --- 2. Dynamic Converter Logic ---
         const fileInput = document.getElementById('file-input');
-        fileInput.onchange = () => {
-            if (fileInput.files.length) document.getElementById('file-name').innerText = 'Dossier Selected: ' + fileInput.files[0].name;
+        const formatSelect = document.getElementById('to-format');
+        const convertBtn = document.getElementById('convert-btn');
+        const fileNameDisplay = document.getElementById('file-name');
+
+        const formatMap = {
+            'video': ['mp4', 'mkv', 'webm', 'avi', 'mov', 'mp3', 'wav'],
+            'audio': ['mp3', 'wav', 'aac', 'flac', 'ogg'],
+            'image': ['jpg', 'png', 'webp', 'gif', 'bmp'],
+            'document': ['pdf', 'docx', 'txt'],
+            'spreadsheet': ['xlsx', 'xls', 'csv']
         };
+
+        const extToCat = {
+            'mp4': 'video', 'mkv': 'video', 'webm': 'video', 'avi': 'video', 'mov': 'video',
+            'mp3': 'audio', 'wav': 'audio', 'aac': 'audio', 'flac': 'audio', 'ogg': 'audio',
+            'jpg': 'image', 'jpeg': 'image', 'png': 'image', 'webp': 'image', 'gif': 'image', 'bmp': 'image',
+            'pdf': 'document', 'docx': 'document', 'txt': 'document',
+            'xlsx': 'spreadsheet', 'xls': 'spreadsheet', 'csv': 'spreadsheet'
+        };
+
+        fileInput.onchange = () => {
+            if (!fileInput.files.length) return;
+            const file = fileInput.files[0];
+            const ext = file.name.split('.').pop().toLowerCase();
+            const cat = extToCat[ext];
+
+            fileNameDisplay.innerText = 'Dossier Selected: ' + file.name;
+
+            // Clear and populate dropdown
+            formatSelect.innerHTML = '<option value="">Convert To...</option>';
+            if (cat && formatMap[cat]) {
+                formatMap[cat].forEach(f => {
+                    if (f !== ext) {
+                        const opt = document.createElement('option');
+                        opt.value = f;
+                        opt.innerText = f.toUpperCase() + (f === 'mp3' && cat === 'video' ? ' (Extract Audio)' : '');
+                        formatSelect.appendChild(opt);
+                    }
+                });
+            } else {
+                // Fallback options
+                ['pdf', 'mp4', 'mp3', 'jpg'].forEach(f => {
+                    const opt = document.createElement('option');
+                    opt.value = f;
+                    opt.innerText = f.toUpperCase();
+                    formatSelect.appendChild(opt);
+                });
+            }
+        };
+
+        convertBtn.onclick = async () => {
+            if (!fileInput.files.length) return alert('Please select a file first.');
+            const target = formatSelect.value;
+            if (!target) return alert('Select target format');
+
+            convertBtn.disabled = true;
+            document.getElementById('convert-progress').classList.add('active');
+            const fill = document.getElementById('convert-bar');
+            const pct = document.getElementById('convert-percent');
+
+            let p = 0;
+            const inter = setInterval(() => {
+                p = Math.min(p + 2, 98);
+                fill.style.width = p + '%';
+                pct.innerText = p + '%';
+            }, 500);
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('target_format', target);
+
+            try {
+                const res = await fetch('/api/convert/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                clearInterval(inter);
+
+                if (data.success) {
+                    fill.style.width = '100%';
+                    pct.innerText = '100%';
+                    window.location.href = data.download_url;
+                } else {
+                    alert('Conversion Alert: ' + data.message);
+                    resetConv();
+                }
+            } catch (e) {
+                alert('Connection Error during conversion.');
+                resetConv();
+            }
+        };
+
+        function resetConv() {
+            convertBtn.disabled = false;
+            document.getElementById('convert-progress').classList.remove('active');
+            document.getElementById('convert-bar').style.width = '0%';
+        }
     </script>
 </body>
 

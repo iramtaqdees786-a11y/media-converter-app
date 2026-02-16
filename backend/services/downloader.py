@@ -119,16 +119,17 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "web", "mweb", "ios"],
-                "player_skip": ["webpage", "configs"],
+                "player_client": ["tv", "android_vr", "ios", "mweb"],
+                "player_skip": [],
             }
         },
         "nocheckcertificate": True,
         "prefer_insecure": True,
-        "youtube_include_dash_manifest": False,
-        "youtube_include_hls_manifest": False,
-        "youtube_skip_dash_manifest": True,
-        "youtube_skip_hls_manifest": True,
+        "youtube_include_dash_manifest": True,
+        "youtube_include_hls_manifest": True,
+        "youtube_skip_dash_manifest": False,
+        "youtube_skip_hls_manifest": False,
+        "socket_timeout": 30,
     }
 
     cookiefile = _get_cookiefile()
@@ -358,59 +359,36 @@ async def download_video(
             thumbnail=info.get('thumbnail')
         )
         
-        return DownloadResult(
-            success=True,
-            message=f"Successfully downloaded from {platform}",
-            filename=filepath.name,
-            filepath=str(filepath),
-            title=info.get('title'),
-            duration=info.get('duration'),
-            filesize=filepath.stat().st_size if filepath.exists() else None,
-            thumbnail=info.get('thumbnail')
-        )
-        
     except yt_dlp.DownloadError as e:
         error_msg = str(e)
-        # Log for debugging
-        print(f"yt-dlp DownloadError: {error_msg}")
+        if "'NoneType' object has no attribute 'get'" in error_msg:
+             return DownloadResult(success=False, message="Metadata corruption detected. YouTube is blocking this specific stream format. Try a different video.")
         
         # Provide user-friendly error messages
         if "Private video" in error_msg:
-            return DownloadResult(success=False, message="This video is private. The owner has restricted access.")
-        elif "Video unavailable" in error_msg or "This video is unavailable" in error_msg:
-            return DownloadResult(success=False, message="This video is unavailable. It may have been removed or made private.")
-        elif "Sign in" in error_msg or "login" in error_msg.lower():
-            return DownloadResult(success=False, message="This video requires login. Please try a public video.")
+            return DownloadResult(success=False, message="This video is private.")
+        elif "Video unavailable" in error_msg:
+            return DownloadResult(success=False, message="This video is unavailable.")
+        elif "Sign in" in error_msg.lower():
+            return DownloadResult(success=False, message="This video requires login.")
         elif "copyright" in error_msg.lower():
-            return DownloadResult(success=False, message="This video has copyright restrictions in your region.")
-        elif "age" in error_msg.lower() or "age-restricted" in error_msg.lower():
-            return DownloadResult(success=False, message="This video is age-restricted. Please try another video.")
-        elif "geo" in error_msg.lower() or "country" in error_msg.lower() or "not available in your country" in error_msg.lower():
-            return DownloadResult(success=False, message="This video is not available in your region.")
-        elif "429" in error_msg or "rate" in error_msg.lower() or "Too Many Requests" in error_msg:
-            return DownloadResult(success=False, message="Too many requests. Please wait a moment and try again!")
+            return DownloadResult(success=False, message="Copyright restriction detected.")
+        elif "age" in error_msg.lower():
+            return DownloadResult(success=False, message="This video is age-restricted.")
+        elif "geo" in error_msg.lower() or "country" in error_msg.lower():
+            return DownloadResult(success=False, message="Not available in your country.")
+        elif "429" in error_msg or "rate" in error_msg.lower():
+            return DownloadResult(success=False, message="Too many requests. Please wait a moment.")
         elif "403" in error_msg or "Forbidden" in error_msg:
-            return DownloadResult(success=False, message="Access denied by the platform. This might be a temporary issue - please try again in a few minutes.")
-        elif "410" in error_msg or "Gone" in error_msg:
-            return DownloadResult(success=False, message="This video has been removed and is no longer available.")
-        elif "network" in error_msg.lower() or "connection" in error_msg.lower():
-            return DownloadResult(success=False, message="Network issue detected. Please check your connection and try again.")
-        elif "format" in error_msg.lower() and "not available" in error_msg.lower():
-            return DownloadResult(success=False, message="The requested video quality is not available. Try selecting 'Best Available' quality.")
-        elif "Unsupported URL" in error_msg or "not supported" in error_msg.lower():
-            return DownloadResult(success=False, message="This URL is not supported. Please try a different video URL.")
-        elif "extractor" in error_msg.lower():
-            return DownloadResult(success=False, message="Unable to extract video information. The platform may have changed - please try updating yt-dlp or try again later.")
+            return DownloadResult(success=False, message="Access denied by YouTube. Try again in 5 minutes.")
         else:
-            return DownloadResult(success=False, message=f"Download failed: {error_msg[:200]}. Please try again or use a different video.")
-    
-    except asyncio.TimeoutError:
-        return DownloadResult(success=False, message="Download is taking too long. Please try again with a shorter video.")
-    
+            return DownloadResult(success=False, message=f"Platform Error: {error_msg[:100]}")
+            
     except Exception as e:
-        # Log actual error for debugging
-        print(f"Unexpected download error: {type(e).__name__}: {str(e)}")
-        return DownloadResult(success=False, message=f"Unexpected error occurred: {str(e)[:200]}. Please try again.")
+        if "'NoneType' object has no attribute 'get'" in str(e):
+            return DownloadResult(success=False, message="Engine error: YouTube blocked the extraction protocol. We are working on a fix.")
+        print(f"Unexpected download error: {str(e)}")
+        return DownloadResult(success=False, message=f"Connection Error: {str(e)[:100]}")
 
 
 async def download_audio_only(url: str) -> DownloadResult:
