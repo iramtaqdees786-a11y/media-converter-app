@@ -29,7 +29,307 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
 
-    <!-- Structured Data: WebSite -->
+    <style>
+        /* Enhanced Hero Styles */
+        .hero-enhanced {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 40px 20px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(188, 19, 254, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(1.75rem, 5vw, 3rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #00f2ff 50%, #bc13fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 600;
+        }
+
+        .trust-badge span {
+            color: var(--accent-success);
+            font-size: 1rem;
+        }
+
+        /* Quick Action Cards */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+        }
+
+        .action-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 242, 255, 0.1);
+        }
+
+        .action-card-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .action-card-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .action-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Converter/Downloader Tabs */
+        .tool-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tool-tab {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .tool-tab.active {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
+        }
+
+        .tool-tab:hover:not(.active) {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+        }
+
+        .tool-panel {
+            display: none;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .tool-panel.active {
+            display: block;
+        }
+
+        .tool-interface {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-xl);
+            padding: 25px;
+        }
+
+        .format-selector {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .format-select {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .format-arrow {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border-medium);
+            border-radius: var(--radius-lg);
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--bg-elevated);
+            margin-bottom: 15px;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 242, 255, 0.02);
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .convert-btn {
+            width: 100%;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border: none;
+            padding: 15px;
+            border-radius: var(--radius-full);
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .convert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Popular Tools Section */
+        .popular-section {
+            max-width: 1200px;
+            margin: 40px auto 30px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-enhanced {
+                padding: 30px 15px 20px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 0 15px;
+            }
+
+            .action-card {
+                padding: 15px;
+            }
+
+            .tool-tabs {
+                gap: 8px;
+                padding: 0 10px;
+            }
+
+            .tool-tab {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+
+            .tool-interface {
+                padding: 20px 15px;
+            }
+
+            .format-selector {
+                gap: 8px;
+            }
+
+            .upload-area {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,19 +344,6 @@
     }
     </script>
 
-    <!-- Structured Data: Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "ConvertRocket",
-      "url": "https://www.convertrocket.online/",
-      "logo": "https://www.convertrocket.online/img/logo.png",
-      "sameAs": []
-    }
-    </script>
-
-    <!-- Structured Data: SoftwareApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -73,8 +360,7 @@
         "@type": "AggregateRating",
         "ratingValue": "4.9",
         "ratingCount": "5420"
-      },
-      "description": "Free online file converter and video downloader. Convert PDF, images, videos, audio. Download from TikTok, YouTube, Instagram."
+      }
     }
     </script>
 </head>
@@ -88,57 +374,195 @@
                 <span>ConvertRocket</span>
             </a>
             <div class="nav-links">
-                <a href="/all-tools">All Tools</a>
+                <a href="/all-tools">Tools</a>
                 <a href="/blogs">Guides</a>
-                <a href="/about">About</a>
                 <a href="/contact" class="nav-cta">Support</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-clean">
-        <h1>Free Online File Converter & Video Downloader</h1>
-        <p class="hero-subtitle">Convert 1000+ formats. Download from TikTok, YouTube, Instagram. No watermark, no
-            signup.</p>
+    <!-- Enhanced Hero Section -->
+    <section class="hero-enhanced">
+        <div class="hero-content">
+            <h1 class="hero-title">Convert Files & Download Videos — Instantly</h1>
+            <p class="hero-subtitle">1000+ formats supported. No watermarks, no signup, 100% free forever.</p>
 
-        <div class="trust-signals">
-            <div class="trust-badge">
-                <span>✓</span> 1M+ Users
-            </div>
-            <div class="trust-badge">
-                <span>✓</span> 100% Free
-            </div>
-            <div class="trust-badge">
-                <span>✓</span> No Signup
-            </div>
-            <div class="trust-badge">
-                <span>✓</span> Privacy First
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <span>✓</span> 1M+ Users
+                </div>
+                <div class="trust-badge">
+                    <span>✓</span> 100% Free
+                </div>
+                <div class="trust-badge">
+                    <span>✓</span> No Signup
+                </div>
+                <div class="trust-badge">
+                    <span>✓</span> Privacy First
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Search Bar -->
-    <div class="tool-container" style="margin-bottom: var(--space-xl);">
-        <div style="max-width: 600px; margin: 0 auto;">
-            <input type="text" id="tool-search"
-                placeholder="Search tools (e.g., 'HEIC to JPG', 'PDF to Word', 'TikTok downloader')..."
-                style="width: 100%; padding: var(--space-md); background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: var(--radius-full); color: var(--text-primary); font-size: 1rem; font-family: var(--font-primary);">
-            <div id="search-results" style="margin-top: var(--space-md);"></div>
+    <!-- Quick Action Cards -->
+    <div class="quick-actions">
+        <div class="action-card" onclick="showTab('converter')">
+            <div class="action-card-icon">🔄</div>
+            <h2 class="action-card-title">Universal Converter</h2>
+            <p class="action-card-desc">Convert between 1000+ formats: PDF, Word, Excel, Images, Videos, Audio</p>
+        </div>
+
+        <div class="action-card" onclick="showTab('downloader')">
+            <div class="action-card-icon">⬇️</div>
+            <h2 class="action-card-title">Video Downloader</h2>
+            <p class="action-card-desc">Download from TikTok, YouTube, Instagram, Twitter — No watermark, HD quality</p>
         </div>
     </div>
 
-    <!-- Popular Tools Grid -->
-    <section style="max-width: 1200px; margin: 0 auto var(--space-xl); padding: 0 var(--space-md);">
-        <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: var(--space-lg); text-align: center;">Popular
-            Tools</h2>
+    <!-- Tool Tabs -->
+    <div class="tool-tabs">
+        <button class="tool-tab active" onclick="showTab('converter')">🔄 Converter</button>
+        <button class="tool-tab" onclick="showTab('downloader')">⬇️ Downloader</button>
+    </div>
+
+    <!-- Converter Panel -->
+    <div class="tool-panel active" id="converter-panel">
+        <div class="tool-interface">
+            <div class="format-selector">
+                <select class="format-select" id="from-format">
+                    <option value="">From Format</option>
+                    <optgroup label="📄 Documents">
+                        <option value="pdf">PDF</option>
+                        <option value="docx">Word (DOCX)</option>
+                        <option value="xlsx">Excel (XLSX)</option>
+                        <option value="pptx">PowerPoint (PPTX)</option>
+                        <option value="txt">Text (TXT)</option>
+                    </optgroup>
+                    <optgroup label="🖼️ Images">
+                        <option value="heic">HEIC</option>
+                        <option value="png">PNG</option>
+                        <option value="jpg">JPG</option>
+                        <option value="webp">WebP</option>
+                        <option value="gif">GIF</option>
+                        <option value="bmp">BMP</option>
+                        <option value="tiff">TIFF</option>
+                    </optgroup>
+                    <optgroup label="🎬 Videos">
+                        <option value="mp4">MP4</option>
+                        <option value="avi">AVI</option>
+                        <option value="mov">MOV</option>
+                        <option value="mkv">MKV</option>
+                        <option value="webm">WebM</option>
+                        <option value="flv">FLV</option>
+                    </optgroup>
+                    <optgroup label="🎵 Audio">
+                        <option value="mp3">MP3</option>
+                        <option value="wav">WAV</option>
+                        <option value="aac">AAC</option>
+                        <option value="flac">FLAC</option>
+                        <option value="m4a">M4A</option>
+                    </optgroup>
+                </select>
+
+                <div class="format-arrow">→</div>
+
+                <select class="format-select" id="to-format">
+                    <option value="">To Format</option>
+                    <optgroup label="📄 Documents">
+                        <option value="pdf">PDF</option>
+                        <option value="docx">Word (DOCX)</option>
+                        <option value="xlsx">Excel (XLSX)</option>
+                        <option value="txt">Text (TXT)</option>
+                    </optgroup>
+                    <optgroup label="🖼️ Images">
+                        <option value="jpg">JPG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WebP</option>
+                        <option value="gif">GIF</option>
+                        <option value="pdf">PDF</option>
+                    </optgroup>
+                    <optgroup label="🎬 Videos">
+                        <option value="mp4">MP4</option>
+                        <option value="avi">AVI</option>
+                        <option value="mov">MOV</option>
+                        <option value="webm">WebM</option>
+                    </optgroup>
+                    <optgroup label="🎵 Audio">
+                        <option value="mp3">MP3</option>
+                        <option value="wav">WAV</option>
+                        <option value="aac">AAC</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="upload-area" id="upload-area">
+                <div class="upload-icon">📁</div>
+                <p style="font-weight: 700; margin-bottom: 5px;">Click to Upload File</p>
+                <small style="color: var(--text-dim);">or drag and drop here</small>
+                <input type="file" id="file-input" style="display: none;">
+            </div>
+
+            <button class="convert-btn" onclick="convertFile()">Convert Now</button>
+        </div>
+    </div>
+
+    <!-- Downloader Panel -->
+    <div class="tool-panel" id="downloader-panel">
+        <div class="tool-interface">
+            <input type="text" class="url-input" id="video-url"
+                placeholder="Paste TikTok, YouTube, Instagram, or Twitter video URL here...">
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                <div>
+                    <label
+                        style="display: block; margin-bottom: 6px; font-weight: 600; color: var(--text-secondary); font-size: 0.85rem;">Format</label>
+                    <select class="format-select" id="download-format">
+                        <option value="video">MP4 Video</option>
+                        <option value="audio">MP3 Audio</option>
+                    </select>
+                </div>
+                <div>
+                    <label
+                        style="display: block; margin-bottom: 6px; font-weight: 600; color: var(--text-secondary); font-size: 0.85rem;">Quality</label>
+                    <select class="format-select" id="download-quality">
+                        <option value="best">Best Available</option>
+                        <option value="1080p">1080p HD</option>
+                        <option value="720p">720p</option>
+                        <option value="480p">480p</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="convert-btn" onclick="downloadVideo()">Download Now</button>
+
+            <div style="margin-top: 15px; text-align: center;">
+                <p style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 8px;">Supported Platforms:</p>
+                <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                    <span
+                        style="background: var(--bg-elevated); padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600;">TikTok</span>
+                    <span
+                        style="background: var(--bg-elevated); padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600;">YouTube</span>
+                    <span
+                        style="background: var(--bg-elevated); padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600;">Instagram</span>
+                    <span
+                        style="background: var(--bg-elevated); padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600;">Twitter</span>
+                    <span
+                        style="background: var(--bg-elevated); padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600;">+1000
+                        More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popular Tools Section -->
+    <section class="popular-section">
+        <h2 class="section-title">Popular Tools</h2>
 
         <div class="tools-grid">
-            <!-- Image Converters -->
             <a href="/heic-to-jpg" class="tool-link">
                 <div class="tool-link-icon">📸</div>
                 <h3 class="tool-link-title">HEIC to JPG</h3>
-                <p class="tool-link-desc">Convert Apple HEIC images to JPG</p>
+                <p class="tool-link-desc">Convert Apple HEIC to JPG</p>
             </a>
 
             <a href="/png-to-jpg" class="tool-link">
@@ -147,23 +571,10 @@
                 <p class="tool-link-desc">Convert PNG to JPG format</p>
             </a>
 
-            <a href="/webp-to-jpg" class="tool-link">
-                <div class="tool-link-icon">🎨</div>
-                <h3 class="tool-link-title">WebP to JPG</h3>
-                <p class="tool-link-desc">Convert WebP to JPG online</p>
-            </a>
-
-            <!-- PDF Tools -->
             <a href="/pdf-to-word" class="tool-link">
                 <div class="tool-link-icon">📄</div>
                 <h3 class="tool-link-title">PDF to Word</h3>
                 <p class="tool-link-desc">Convert PDF to editable Word</p>
-            </a>
-
-            <a href="/pdf-to-excel" class="tool-link">
-                <div class="tool-link-icon">📊</div>
-                <h3 class="tool-link-title">PDF to Excel</h3>
-                <p class="tool-link-desc">Extract PDF tables to Excel</p>
             </a>
 
             <a href="/pdf-compress" class="tool-link">
@@ -172,197 +583,24 @@
                 <p class="tool-link-desc">Reduce PDF file size</p>
             </a>
 
-            <!-- Video & Audio -->
             <a href="/mp4-to-mp3" class="tool-link">
                 <div class="tool-link-icon">🎵</div>
                 <h3 class="tool-link-title">MP4 to MP3</h3>
                 <p class="tool-link-desc">Extract audio from videos</p>
             </a>
 
-            <a href="/downloader" class="tool-link">
-                <div class="tool-link-icon">⬇️</div>
-                <h3 class="tool-link-title">Video Downloader</h3>
-                <p class="tool-link-desc">Download TikTok, YouTube videos</p>
-            </a>
-
             <a href="/video-trimmer" class="tool-link">
                 <div class="tool-link-icon">✂️</div>
                 <h3 class="tool-link-title">Video Trimmer</h3>
-                <p class="tool-link-desc">Cut and trim videos online</p>
+                <p class="tool-link-desc">Cut and trim videos</p>
             </a>
         </div>
 
-        <div style="text-align: center; margin-top: var(--space-lg);">
+        <div style="text-align: center; margin-top: 25px;">
             <a href="/all-tools"
-                style="display: inline-block; background: var(--text-primary); color: var(--bg-primary); padding: var(--space-md) var(--space-xl); border-radius: var(--radius-full); font-weight: 800; text-decoration: none; transition: transform 0.2s;">
+                style="display: inline-block; background: var(--text-primary); color: var(--bg-primary); padding: 12px 30px; border-radius: var(--radius-full); font-weight: 800; text-decoration: none; transition: transform 0.2s; font-size: 0.95rem;">
                 View All 100+ Tools →
             </a>
-        </div>
-    </section>
-
-    <!-- Tool Categories -->
-    <section style="max-width: 1200px; margin: 0 auto var(--space-xl); padding: 0 var(--space-md);">
-        <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: var(--space-lg); text-align: center;">Browse by
-            Category</h2>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-md);">
-            <a href="/media-hub"
-                style="display: block; background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: var(--radius-lg); padding: var(--space-lg); text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 2.5rem; margin-bottom: var(--space-sm);">🎬</div>
-                <h3
-                    style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: var(--space-xs);">
-                    Media Hub</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Image, video & audio converters</p>
-            </a>
-
-            <a href="/pdf-lab"
-                style="display: block; background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: var(--radius-lg); padding: var(--space-lg); text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 2.5rem; margin-bottom: var(--space-sm);">📄</div>
-                <h3
-                    style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: var(--space-xs);">
-                    PDF Lab</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">PDF tools & converters</p>
-            </a>
-
-            <a href="/dev-suite"
-                style="display: block; background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: var(--radius-lg); padding: var(--space-lg); text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 2.5rem; margin-bottom: var(--space-sm);">💻</div>
-                <h3
-                    style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: var(--space-xs);">
-                    Dev Suite</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Developer tools & utilities</p>
-            </a>
-
-            <a href="/utilities"
-                style="display: block; background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: var(--radius-lg); padding: var(--space-lg); text-decoration: none; transition: all 0.2s;">
-                <div style="font-size: 2.5rem; margin-bottom: var(--space-sm);">🛠️</div>
-                <h3
-                    style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: var(--space-xs);">
-                    Utilities</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">QR codes, color picker & more</p>
-            </a>
-        </div>
-    </section>
-
-    <!-- SEO Content -->
-    <section class="seo-content">
-        <h2>Why Choose ConvertRocket?</h2>
-        <p>ConvertRocket is the most comprehensive <strong>free online file converter</strong> and <strong>video
-                downloader</strong> available. Whether you need to convert images, PDFs, videos, or audio files, or
-            download content from social media platforms, we provide professional-grade tools that are completely free
-            and require no signup.</p>
-
-        <h3>100% Free File Conversion</h3>
-        <p>Convert between 1000+ file formats including:</p>
-        <ul>
-            <li><strong>Image Formats:</strong> HEIC, PNG, JPG, WebP, GIF, BMP, TIFF, SVG</li>
-            <li><strong>Document Formats:</strong> PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), TXT</li>
-            <li><strong>Video Formats:</strong> MP4, AVI, MOV, MKV, WebM, FLV, WMV</li>
-            <li><strong>Audio Formats:</strong> MP3, WAV, AAC, FLAC, M4A, OGG</li>
-        </ul>
-
-        <h3>Video Downloader - No Watermark</h3>
-        <p>Download videos from popular platforms without watermarks:</p>
-        <ul>
-            <li><strong>TikTok Downloader:</strong> Save TikTok videos in HD without watermark</li>
-            <li><strong>YouTube Downloader:</strong> Download YouTube videos up to 4K resolution</li>
-            <li><strong>Instagram Downloader:</strong> Save Instagram Reels, Stories, and IGTV</li>
-            <li><strong>Twitter Downloader:</strong> Download Twitter videos and GIFs</li>
-        </ul>
-
-        <h3>Key Features</h3>
-        <ul>
-            <li><strong>No Signup Required:</strong> Start using tools immediately without creating an account</li>
-            <li><strong>100% Free:</strong> No hidden fees, no subscriptions, no watermarks</li>
-            <li><strong>Privacy First:</strong> Files are automatically deleted after conversion</li>
-            <li><strong>High Quality:</strong> Preserve maximum quality during conversion</li>
-            <li><strong>Fast Processing:</strong> Most conversions complete in under 10 seconds</li>
-            <li><strong>Works Everywhere:</strong> Compatible with all devices and browsers</li>
-            <li><strong>No Software:</strong> Everything works in your browser</li>
-            <li><strong>Batch Processing:</strong> Convert multiple files simultaneously</li>
-        </ul>
-
-        <h2>Popular Conversion Tools</h2>
-
-        <h3>Image Converters</h3>
-        <p>Convert images between formats while maintaining quality:</p>
-        <ul>
-            <li><a href="/heic-to-jpg"><strong>HEIC to JPG Converter</strong></a> - Convert Apple HEIC images to
-                universal JPG format</li>
-            <li><a href="/png-to-jpg"><strong>PNG to JPG Converter</strong></a> - Reduce file size by converting PNG to
-                JPG</li>
-            <li><a href="/webp-to-jpg"><strong>WebP to JPG Converter</strong></a> - Convert modern WebP to compatible
-                JPG</li>
-            <li><a href="/jpg-to-pdf"><strong>JPG to PDF Converter</strong></a> - Create PDF documents from JPG images
-            </li>
-        </ul>
-
-        <h3>PDF Tools</h3>
-        <p>Professional PDF tools for all your document needs:</p>
-        <ul>
-            <li><a href="/pdf-to-word"><strong>PDF to Word Converter</strong></a> - Convert PDF to editable Word
-                documents</li>
-            <li><a href="/pdf-to-excel"><strong>PDF to Excel Converter</strong></a> - Extract tables from PDF to Excel
-                spreadsheets</li>
-            <li><a href="/pdf-compress"><strong>PDF Compressor</strong></a> - Reduce PDF file size up to 90%</li>
-            <li><a href="/pdf-merge"><strong>PDF Merger</strong></a> - Combine multiple PDFs into one file</li>
-        </ul>
-
-        <h3>Video & Audio Tools</h3>
-        <p>Convert and download videos and audio files:</p>
-        <ul>
-            <li><a href="/mp4-to-mp3"><strong>MP4 to MP3 Converter</strong></a> - Extract audio from video files</li>
-            <li><a href="/downloader"><strong>Video Downloader</strong></a> - Download from TikTok, YouTube, Instagram
-            </li>
-            <li><a href="/video-trimmer"><strong>Video Trimmer</strong></a> - Cut and trim videos online</li>
-            <li><a href="/video-converter"><strong>Video Converter</strong></a> - Convert between video formats</li>
-        </ul>
-
-        <h2>How It Works</h2>
-        <p>Using ConvertRocket is simple:</p>
-        <ol>
-            <li><strong>Select Tool:</strong> Choose the converter or downloader you need</li>
-            <li><strong>Upload File:</strong> Upload your file or paste a URL</li>
-            <li><strong>Convert/Download:</strong> Click the button to process</li>
-            <li><strong>Save Result:</strong> Download your converted file or video</li>
-        </ol>
-
-        <h2>Frequently Asked Questions</h2>
-
-        <div class="faq-item">
-            <h3 class="faq-question">Is ConvertRocket really free?</h3>
-            <p class="faq-answer">Yes, 100% free. All tools are completely free to use with no hidden fees, no
-                subscriptions, and no watermarks on output files.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 class="faq-question">Do I need to create an account?</h3>
-            <p class="faq-answer">No signup required. You can start using any tool immediately without creating an
-                account or providing an email address.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 class="faq-question">Is my data safe?</h3>
-            <p class="faq-answer">Yes, completely safe. All files are processed securely with SSL encryption and
-                automatically deleted after conversion. We never store, share, or access your files.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 class="faq-question">What file formats are supported?</h3>
-            <p class="faq-answer">We support 1000+ file formats including images (HEIC, PNG, JPG, WebP), documents (PDF,
-                Word, Excel), videos (MP4, AVI, MOV), and audio (MP3, WAV, AAC).</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 class="faq-question">Are there any file size limits?</h3>
-            <p class="faq-answer">Most tools support files up to 50MB. Larger files may take longer to process but will
-                work successfully.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 class="faq-question">Can I use ConvertRocket on mobile?</h3>
-            <p class="faq-answer">Yes, all tools work perfectly on mobile devices including iPhone, Android, iPad, and
-                tablets. No app installation needed.</p>
         </div>
     </section>
 
@@ -372,56 +610,100 @@
             <a href="/all-tools">All Tools</a>
             <a href="/media-hub">Media Hub</a>
             <a href="/pdf-lab">PDF Lab</a>
-            <a href="/dev-suite">Dev Suite</a>
             <a href="/blogs">Blog</a>
             <a href="/privacy-policy">Privacy</a>
-            <a href="/terms-of-service">Terms</a>
-            <a href="/sitemap">Sitemap</a>
             <a href="/contact">Contact</a>
         </div>
         <p class="footer-copyright">© 2026 ConvertRocket.online • Made by Izyaan</p>
     </footer>
 
-    <!-- Search Functionality -->
+    <!-- JavaScript -->
     <script>
-        const tools = [
-            { name: 'HEIC to JPG', url: '/heic-to-jpg', keywords: 'heic jpg image convert apple iphone' },
-            { name: 'PNG to JPG', url: '/png-to-jpg', keywords: 'png jpg jpeg image convert' },
-            { name: 'WebP to JPG', url: '/webp-to-jpg', keywords: 'webp jpg image convert' },
-            { name: 'PDF to Word', url: '/pdf-to-word', keywords: 'pdf word docx document convert' },
-            { name: 'PDF to Excel', url: '/pdf-to-excel', keywords: 'pdf excel xlsx spreadsheet convert' },
-            { name: 'PDF Compress', url: '/pdf-compress', keywords: 'pdf compress reduce size' },
-            { name: 'MP4 to MP3', url: '/mp4-to-mp3', keywords: 'mp4 mp3 audio extract video' },
-            { name: 'Video Downloader', url: '/downloader', keywords: 'download video tiktok youtube instagram twitter' },
-            { name: 'Video Trimmer', url: '/video-trimmer', keywords: 'trim cut video edit' }
-        ];
+        // Tab switching
+        function showTab(tabName) {
+            // Update tabs
+            document.querySelectorAll('.tool-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
 
-        const searchInput = document.getElementById('tool-search');
-        const searchResults = document.getElementById('search-results');
+            // Update panels
+            document.querySelectorAll('.tool-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.getElementById(tabName + '-panel').classList.add('active');
+        }
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
+        // Upload area functionality
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
 
-            if (query.length < 2) {
-                searchResults.innerHTML = '';
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">✅</div>
+                    <p style="font-weight: 700; margin-bottom: 5px;">${file.name}</p>
+                    <small style="color: var(--text-dim);">${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+                `;
+            }
+        });
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--accent-primary)';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = 'var(--border-medium)';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--border-medium)';
+
+            if (e.dataTransfer.files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // Convert file function
+        function convertFile() {
+            const fromFormat = document.getElementById('from-format').value;
+            const toFormat = document.getElementById('to-format').value;
+            const file = fileInput.files[0];
+
+            if (!fromFormat || !toFormat) {
+                alert('Please select both FROM and TO formats');
                 return;
             }
 
-            const matches = tools.filter(tool =>
-                tool.name.toLowerCase().includes(query) ||
-                tool.keywords.includes(query)
-            ).slice(0, 5);
-
-            if (matches.length > 0) {
-                searchResults.innerHTML = matches.map(tool => `
-                    <a href="${tool.url}" style="display: block; padding: var(--space-sm); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); margin-bottom: var(--space-xs); text-decoration: none; color: var(--text-primary); font-weight: 600; transition: all 0.2s;">
-                        ${tool.name}
-                    </a>
-                `).join('');
-            } else {
-                searchResults.innerHTML = '<p style="color: var(--text-dim); text-align: center; padding: var(--space-md);">No tools found</p>';
+            if (!file) {
+                alert('Please upload a file');
+                return;
             }
-        });
+
+            // Redirect to specific converter page
+            const converterUrl = `/${fromFormat}-to-${toFormat}`;
+            window.location.href = converterUrl;
+        }
+
+        // Download video function
+        function downloadVideo() {
+            const url = document.getElementById('video-url').value.trim();
+
+            if (!url) {
+                alert('Please paste a video URL');
+                return;
+            }
+
+            // Redirect to downloader page
+            window.location.href = '/downloader';
+        }
     </script>
 </body>
 
