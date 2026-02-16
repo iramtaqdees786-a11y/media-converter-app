@@ -82,15 +82,9 @@ def _build_http_headers(url: str) -> Dict[str, str]:
     """Build browser-like HTTP headers to reduce 403/anti-bot issues."""
     # Use the latest Chrome user agent for better compatibility
     return {
-        "User-Agent": (
-            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) "
-            "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1"
-        ),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
-        "Sec-Fetch-Mode": "navigate",
-        "Referer": "https://www.youtube.com/",
-        "Origin": "https://www.youtube.com",
+        "Referer": "https://www.google.com/",
     }
 
 
@@ -98,29 +92,26 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
     """Common yt-dlp options for both info extraction and download."""
     opts: Dict[str, Any] = {
         "quiet": True,
-        "no_warnings": False,  # Enable warnings for better debugging in logs
+        "no_warnings": False,
         "nocheckcertificate": True,
+        "impersonate": "chrome",  # Bypasses TLS fingerprinting blocks
         "http_headers": _build_http_headers(url),
         "retries": 15,
         "fragment_retries": 15,
-        "legacy_server_connect": True,
         "no_playlist": True,
         "playlist_items": "1",
         "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["web_creator", "ios", "mweb", "android"],
+                "player_client": ["android", "ios", "mweb"],
                 "player_skip": ["webpage", "configs"],
             }
         },
-        "nocheckcertificate": True,
-        "prefer_insecure": True,
         "youtube_include_dash_manifest": False,
         "youtube_include_hls_manifest": False,
         "youtube_skip_dash_manifest": True,
         "youtube_skip_hls_manifest": True,
         "socket_timeout": 60,
-        "http_chunk_size": 1048576,
     }
 
     cookiefile = _get_cookiefile()
