@@ -319,6 +319,12 @@ async def download_video(
     try:
         info = await loop.run_in_executor(None, do_download)
         
+        if info is None:
+            return DownloadResult(
+                success=False,
+                message="Metadata extraction failed. This video might be restricted or blocked."
+            )
+            
         # Build the expected filename or find the actual one
         video_id = info.get('id', 'unknown')
         
