@@ -95,11 +95,12 @@
                     progressPercent.innerText = '100%';
                     window.location.href = data.download_url;
                 } else {
-                    alert('Error: ' + (data.message || 'The server encountered an unknown error. Please try a different video.'));
+                    alert('Download Error: ' + (data.message || 'The server encountered an error processing your video.'));
                     resetDl();
                 }
             } catch (e) {
-                alert('Fatal Error: ' + e.message);
+                clearInterval(interval);
+                alert('Connection Error: ' + e.message + '\n\nPlease ensure you are connected to the internet and the server is running.');
                 resetDl();
             }
         };

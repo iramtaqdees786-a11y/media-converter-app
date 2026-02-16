@@ -235,6 +235,11 @@ if FRONTEND_DIR.exists():
 
 
 
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(status_code=204)
+
+
 @app.get("/")
 async def serve_frontend():
     """Serve the frontend application."""

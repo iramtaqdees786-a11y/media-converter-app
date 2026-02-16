@@ -198,11 +198,12 @@
                     progressStatus.innerText = 'Complete!';
                     window.location.href = data.download_url;
                 } else {
-                    alert('Error: ' + (data.message || 'Unknown server error'));
+                    const errorMsg = data.message || 'The server encountered an unknown error.';
+                    alert('Download Alert: ' + errorMsg);
                     resetDl();
                 }
             } catch (e) {
-                alert('Fatal Error: ' + e.message);
+                alert('Connection Error: ' + e.message + '\n\nPlease check if the server is running or try a different URL.');
                 resetDl();
             }
         };

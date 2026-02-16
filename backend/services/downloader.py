@@ -111,15 +111,15 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "no_warnings": True,
         "nocheckcertificate": True,
         "http_headers": _build_http_headers(url),
-        # Retry a few times on transient HTTP errors
-        "retries": 5,
-        "fragment_retries": 5,
-        # Use legacy server connect for better compatibility
+        "retries": 10,
+        "fragment_retries": 10,
         "legacy_server_connect": True,
-        # Add extractor args for YouTube
+        "no_playlist": True,
+        "playlist_items": "1",
+        "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "web"],
+                "player_client": ["android", "ios", "web"],
                 "skip": ["hls", "dash"]
             }
         },

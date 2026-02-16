@@ -65,6 +65,8 @@ class DownloadResponse(BaseModel):
 download_progress = {}
 
 
+@router.post("", response_model=DownloadResponse)
+@router.post("/", response_model=DownloadResponse)
 @router.post("/start", response_model=DownloadResponse)
 async def start_download(request: DownloadRequest):
     """
