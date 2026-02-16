@@ -312,31 +312,39 @@ async def download_video(
     try:
         info = await loop.run_in_executor(None, do_download)
         
-        # Find the downloaded file
-        if format_type == "audio":
-            expected_ext = "mp3"
-        else:
-            expected_ext = info.get('ext', 'mp4')
-        
-        # Build the expected filename
-        title = info.get('title', 'video')
+        # Build the expected filename or find the actual one
         video_id = info.get('id', 'unknown')
         
-        # yt-dlp restricts filenames, so we need to find the actual file
+        # Look for the file in the downloads directory
+        filepath = None
         for file in DOWNLOADS_DIR.iterdir():
             if video_id in file.name:
                 filepath = file
                 break
-        else:
-            # Fallback: find most recent file
-            files = list(DOWNLOADS_DIR.iterdir())
-            if files:
-                filepath = max(files, key=lambda x: x.stat().st_mtime)
-            else:
-                return DownloadResult(
-                    success=False,
-                    message="Download completed but file not found"
-                )
+        
+        if not filepath:
+            # Fallback to the requested filename from info
+            ext = info.get('ext', 'mp4')
+            requested_file = DOWNLOADS_DIR / f"{info.get('title', 'video')}_{video_id}.{ext}"
+            if requested_file.exists():
+                filepath = requested_file
+        
+        if not filepath:
+            return DownloadResult(
+                success=False,
+                message="Download completed but file could not be located on server."
+            )
+        
+        return DownloadResult(
+            success=True,
+            message=f"Successfully downloaded from {platform}",
+            filename=filepath.name,
+            filepath=str(filepath.absolute()),
+            title=info.get('title'),
+            duration=info.get('duration'),
+            filesize=filepath.stat().st_size if filepath.exists() else None,
+            thumbnail=info.get('thumbnail')
+        )
         
         return DownloadResult(
             success=True,

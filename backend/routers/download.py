@@ -110,10 +110,11 @@ async def start_download(request: DownloadRequest):
             
     except Exception as e:
         # Log error for debugging
-        print(f"Download error: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return DownloadResponse(
             success=False,
-            message="Our download servers are busy. Please try again in a few seconds!"
+            message=f"Server error: {str(e)[:100]}. Please try again later."
         )
 
 
