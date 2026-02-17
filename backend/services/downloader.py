@@ -82,6 +82,7 @@ def _build_http_headers(url: str) -> Dict[str, str]:
     """Build browser-like HTTP headers to reduce 403/anti-bot issues."""
     # Use the latest Chrome user agent for better compatibility
     return {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
         "Referer": "https://www.google.com/",
@@ -94,24 +95,21 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "quiet": True,
         "no_warnings": False,
         "nocheckcertificate": True,
-        "impersonate": "chrome",  # Bypasses TLS fingerprinting blocks
         "http_headers": _build_http_headers(url),
         "retries": 15,
         "fragment_retries": 15,
         "no_playlist": True,
-        "playlist_items": "1",
         "geo_bypass": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "ios", "mweb"],
-                "player_skip": ["webpage", "configs"],
+                "player_client": ["tv", "tv_embedded"],
+                "player_skip": [],
             }
         },
-        "youtube_include_dash_manifest": False,
-        "youtube_include_hls_manifest": False,
-        "youtube_skip_dash_manifest": True,
-        "youtube_skip_hls_manifest": True,
+        "youtube_include_dash_manifest": True,
+        "youtube_include_hls_manifest": True,
         "socket_timeout": 60,
+        "concurrent_fragment_downloads": 5,
     }
 
     cookiefile = _get_cookiefile()
@@ -370,10 +368,16 @@ async def download_video(
             return DownloadResult(success=False, message=f"Platform Error: {error_msg[:100]}")
             
     except Exception as e:
-        if "'NoneType' object has no attribute 'get'" in str(e):
-            return DownloadResult(success=False, message="Engine error: YouTube blocked the extraction protocol. We are working on a fix.")
-        print(f"Unexpected download error: {str(e)}")
-        return DownloadResult(success=False, message=f"Connection Error: {str(e)[:100]}")
+        error_type = type(e).__name__
+        error_val = str(e)
+        if "'NoneType' object has no attribute 'get'" in error_val:
+            return DownloadResult(success=False, message="Engine error: YouTube metadata extraction failed. The platform is currently blocking this request.")
+        
+        # Log with much more detail for the dev
+        print(f"CRITICAL DOWNLOAD ERROR: {error_type} -> {error_val}")
+        
+        friendly_msg = error_val if error_val else f"Stream Interrupted ({error_type})"
+        return DownloadResult(success=False, message=f"Connection Error: {friendly_msg[:120]}")
 
 
 async def download_audio_only(url: str) -> DownloadResult:
