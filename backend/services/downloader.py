@@ -80,11 +80,14 @@ def _get_cookiefile() -> Optional[str]:
 
 def _build_http_headers(url: str) -> Dict[str, str]:
     """Build browser-like HTTP headers to reduce 403/anti-bot issues."""
-    # Use the latest Chrome user agent for better compatibility
     return {
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
         "Referer": "https://www.google.com/",
     }
 
@@ -100,9 +103,10 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "fragment_retries": 15,
         "no_playlist": True,
         "geo_bypass": True,
+        "noproxy": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["ios", "android", "mweb"],
+                "player_client": ["ios", "web_creator"], # ios and web_creator are currently the most stable
                 "player_skip": ["webpage", "configs"],
             }
         },
