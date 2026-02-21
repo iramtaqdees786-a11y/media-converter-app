@@ -330,3 +330,53 @@ body {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
     opacity: 0.5;
 }
+
+/* Resource Footer (For Hub Pages) */
+.resource-footer {
+    margin-top: 100px;
+    padding: 60px 0;
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+}
+
+/* Status Messages */
+.status-message {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.status-text.loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent-primary);
+}
+
+.status-text.loading::after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--accent-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tool Result UI */
+.result-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-top: 30px;
+}

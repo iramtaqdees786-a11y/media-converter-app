@@ -11,9 +11,7 @@
         content="Extract MP3 audio from any video or convert audio files to high quality MP3. 320kbps supported. Free, Secure and Private laboratory.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
-    <link rel="stylesheet" href="/css/ultra-tabs.css?v=6.0">
-    <link rel="stylesheet" href="/css/premium-effects.css?v=6.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
     <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
     <script src="/static/js/premium-features.js?v=6.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/mp3-converter">
@@ -23,9 +21,28 @@
     <div class="bg-animated"></div>
     <div class="container">
         <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
-                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+            <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+                <div class="nav-links">
+                    <a href="/all-tools">All Tools</a>
+                    <a href="/media-hub">Media Hub</a>
+                    <a href="/pdf-lab">PDF Lab</a>
+                    <a href="/blogs">Blog</a>
+                </div>
+            </div>
         </nav>
+
+        <header class="hero">
+            <div class="container">
+                <h1>MP3 Laboratory</h1>
+                <p>Studio-grade audio extraction and transcoding engine.</p>
+                <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                    <a href="/all-tools" class="btn-premium"
+                        style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                        All Tools</a>
+                </div>
+            </div>
+        </header>
 
         <!-- Primary Command Hub -->
         <div class="primary-hub">
@@ -52,58 +69,77 @@
             </div>
         </div>
 
-        <div class="converter-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <h2 style="font-weight: 950; font-size: 2.8rem; margin:0;">MP3 <span
-                        style="color:var(--neon-cyan)">Laboratory</span></h2>
-                <div class="card-star active" style="font-size:2rem; cursor:pointer;"
-                    onclick="toggleThisStar(this, '/mp3-converter')">☆</div>
+        <main class="container">
+            <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 850px; margin: 0 auto;">
+                <div class="bento-card">
+                    <div class="shine-overlay"></div>
+                    <h2 style="margin-bottom: 30px;">🎶 Audio Protocol Center</h2>
+
+                    <!-- Remote Extraction -->
+                    <div style="margin-bottom: 30px; display: flex; gap: 12px;">
+                        <input type="text" id="url-input" class="text-input"
+                            placeholder="Paste Video URL for extraction..." style="flex: 1;">
+                        <button id="get-info-btn" class="btn-premium"
+                            style="width: auto; padding-inline: 30px;">Scan</button>
+                    </div>
+
+                    <div id="video-preview"
+                        style="display: none; margin-bottom: 30px; text-align: left; padding: 25px; border: 1px solid var(--border-subtle); border-radius: 20px; background: rgba(255,255,255,0.03);">
+                    </div>
+
+                    <div style="margin-bottom: 30px; text-align: center;">
+                        <span style="font-weight: 950; opacity: 0.2; letter-spacing: 5px;">OR DROP LOCAL MEDIA</span>
+                    </div>
+
+                    <!-- Local Upload -->
+                    <div class="upload-zone" id="upload-zone" style="margin-bottom: 30px;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🎵</div>
+                        <p style="font-size: 1.2rem; font-weight: 700;">Select Media File</p>
+                        <p style="color: var(--text-secondary);">WAV, FLAC, M4A, AAC, MP4 Supported</p>
+                        <input type="file" id="file-input" style="display: none;">
+                        <input type="hidden" id="target-format" value="mp3">
+                    </div>
+
+                    <!-- Info and Controls -->
+                    <div id="selected-file-info" style="display: none; text-align: center; margin-bottom: 24px;">
+                    </div>
+
+                    <div id="download-controls" style="display: none; margin-bottom: 24px; text-align: center;">
+                        <input type="hidden" id="format-type" value="audio">
+                        <input type="hidden" id="quality-select" value="best">
+                        <button id="download-btn" class="btn-premium">Initialize MP3 Stream</button>
+                        <button onclick="location.reload()"
+                            style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700; display: block; margin-inline: auto;">NEW
+                            PROCESS</button>
+                    </div>
+
+                    <div id="convert-btn-container" style="display:none; margin-bottom: 24px; text-align: center;">
+                        <button id="convert-btn" class="btn-premium">Transcode to MP3</button>
+                        <button onclick="location.reload()"
+                            style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700; display: block; margin-inline: auto;">CHANGE
+                            FILE</button>
+                    </div>
+
+                    <!-- Progress Area -->
+                    <div class="progress-container" id="download-progress">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container" id="convert-progress">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="download-result" style="display: none; text-align: center; margin-top: 30px;"></div>
+                    <div id="convert-result" style="display: none; text-align: center; margin-top: 30px;"></div>
+                    <div id="download-status" class="status-message"></div>
+                    <div id="convert-status" class="status-message"></div>
+                </div>
             </div>
-
-            <div style="margin-bottom: 40px; display: flex; gap: 10px;">
-                <input type="text" id="url-input" class="search-input"
-                    placeholder="Paste Video URL for high-res extraction..." style="padding: 24px 30px !important;">
-                <button id="get-info-btn" class="action-btn" style="padding: 0 40px; border-radius: 24px;">Scan</button>
-            </div>
-
-            <p style="margin: 20px 0; opacity: 0.3; font-weight: 900; letter-spacing: 5px;">OR DROP LOCAL FILE</p>
-
-            <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">🎵</div>
-                <p style="font-size: 1.4rem; font-weight: 800;">Laboratory Drop Zone</p>
-                <p style="opacity: 0.5;">Convert any media to studio-grade MP3</p>
-                <input type="file" id="file-input" style="display: none;">
-                <input type="hidden" id="target-format" value="mp3">
-            </div>
-
-            <div id="video-preview" style="display: none; margin-top: 30px;"></div>
-            <div id="selected-file-info"
-                style="display: none; margin-top: 30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
-            </div>
-
-            <div id="download-controls" style="display: none; margin-top: 30px;">
-                <input type="hidden" id="format-type" value="audio">
-                <input type="hidden" id="quality-select" value="best">
-                <button id="download-btn" class="action-btn" style="width: 100%;">Initialize MP3 Stream</button>
-            </div>
-
-            <div id="convert-btn-container" style="display:none; margin-top:30px;">
-                <button id="convert-btn" class="action-btn" style="width: 100%;">Transcode to MP3</button>
-            </div>
-
-            <div id="download-progress" class="progress-container">
-                <div class="progress-fill"></div>
-            </div>
-            <div id="convert-progress" class="progress-container">
-                <div class="progress-fill"></div>
-            </div>
-
-            <div id="download-result" style="display: none; margin-top: 30px;"></div>
-            <div id="convert-result" style="display: none; margin-top: 30px;"></div>
-
-            <div id="download-status" class="status-message"></div>
-            <div id="convert-status" class="status-message"></div>
-        </div>
+        </main>
 
         <section class="seo-slop">
             <h2>Professional MP3 Extraction Laboratory</h2>

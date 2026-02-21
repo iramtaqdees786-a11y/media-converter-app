@@ -9,108 +9,72 @@
     <title>Developer Suite | Industrial Data Tools | ConvertRocket</title>
     <meta name="description"
         content="Precision data tools for developers and engineers. JSON formatting, Base64 encoding, and color extraction.">
-    <link rel="stylesheet" href="/css/modern-dashboard.css?v=8.0">
-    <script src="/js/minimalist-search.js?v=6.0" defer></script>
-    <script src="/js/app.js?v=7.0" defer></script>
-    <link rel="canonical" href="https://www.convertrocket.online/dev-suite">
-</head>
-
-<body class="reveal">
-    <div class="bg-modern"></div>
-
-    <nav class="nav-modern">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="/" class="brand">
-                <div class="brand-icon">🚀</div>
-                <span>ConvertRocket</span>
-            </a>
+    <nav class="nav-premium">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
             <div class="nav-links">
-                <a href="/blogs">Archives</a>
-                <a href="/about" style="margin-left: 20px;">About</a>
+                <a href="/all-tools">All Tools</a>
+                <a href="/media-hub">Media Hub</a>
+                <a href="/pdf-lab">PDF Lab</a>
+                <a href="/blogs">Blog</a>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <section class="hero-modern" style="padding: 60px 0 40px;">
-            <div class="status-bar">
-                <span class="status-indicator"></span>
-                <span>Developer Node: Operational</span>
-            </div>
-            <h1 style="font-size: 3.5rem;">Developer Suite</h1>
+    <header class="hero">
+        <div class="container">
+            <h1>Developer Suite</h1>
             <p>High-precision protocols for code and data architects.</p>
-        </section>
-
-        <div class="category-tabs">
-            <a href="/all-tools" class="cat-tab">All Units</a>
-            <a href="/media-hub" class="cat-tab">Media Hub</a>
-            <a href="/pdf-lab" class="cat-tab">PDF Lab</a>
-            <a href="/dev-suite" class="cat-tab active">Dev Suite</a>
-            <a href="/utilities" class="cat-tab">Utilities</a>
+            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                <a href="/all-tools" class="btn-premium"
+                    style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                    All Tools</a>
+            </div>
         </div>
+    </header>
 
+    <main class="container" style="margin-top: 50px;">
         <div class="bento-grid">
-            <a href="/json-formatter" class="bento-item large">
-                <div class="bento-icon">{ }</div>
-                <div class="bento-info">
-                    <h3>JSON Laboratory</h3>
-                    <p>Format, validate, and minify raw JSON streams. Industrial-grade debugging with instant error
-                        detection and high-fidelity output.</p>
-                </div>
+            <a href="/json-formatter" class="bento-card" style="text-decoration: none;">
+                <div class="shine-overlay"></div>
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">{ }</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 15px;">JSON Laboratory</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Format, validate, and minify raw JSON
+                    streams with industrial accuracy.</p>
             </a>
 
-            <a href="/base64-encoder" class="bento-item wide">
-                <div class="bento-icon">🔐</div>
-                <div class="bento-info">
-                    <h3>Base64 Protocol</h3>
-                    <p>High-speed encoding and decoding for binary data. Secure, browser-level processing ensures your
-                        sensitive keys never touch a server.</p>
-                </div>
+            <a href="/base64-encoder" class="bento-card" style="text-decoration: none;">
+                <div class="shine-overlay"></div>
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">🔐</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Base64 Protocol</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">High-speed encoding and decoding for binary
+                    data streams.</p>
             </a>
 
-            <a href="/color-picker" class="bento-item tall">
-                <div class="bento-icon">🎨</div>
-                <div class="bento-info">
-                    <h3>Color Architect</h3>
-                    <p>Precision color extraction and palatte generation for UI/UX engineers. Supports HEX, RGB, HSL,
-                        and CMYK formats.</p>
-                </div>
+            <a href="/color-picker" class="bento-card" style="text-decoration: none;">
+                <div class="shine-overlay"></div>
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">🎨</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Color Architect</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Precision color extraction and palatte
+                    generation for UI/UX engineers.</p>
             </a>
 
-            <!-- Adding some future tool placeholders style item to fill bento -->
-            <div class="bento-item" style="opacity: 0.5; cursor: default;">
-                <div class="bento-icon">⚛️</div>
-                <div class="bento-info">
-                    <h3>Regex Lab</h3>
-                    <p>Coming soon: Advanced pattern matching protocol.</p>
-                </div>
-            </div>
-
-            <div class="bento-item" style="opacity: 0.5; cursor: default;">
-                <div class="bento-icon">📦</div>
-                <div class="bento-info">
-                    <h3>Bundle Inspector</h3>
-                    <p>Coming soon: Static asset analysis tools.</p>
-                </div>
+            <div class="bento-card" style="opacity: 0.5; background: rgba(255,255,255,0.02);">
+                <div style="font-size: 2.5rem; margin-bottom: 20px;">⚛️</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Regex Lab</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Coming soon: Advanced pattern matching
+                    protocol.</p>
             </div>
         </div>
+    </main>
 
-        <footer class="footer-modern">
-            <div class="sigma-badge">
-                <span class="badge-text">Engineered for the Elite</span>
-                <div class="badge-brand">MADE BY IZYAAN</div>
-            </div>
-            <div class="footer-links">
-                <a href="/blogs">Archives</a>
-                <a href="/privacy-policy">Privacy</a>
-                <a href="/terms-of-service">Terms</a>
-                <a href="/sitemap">Sitemap</a>
-            </div>
-            <p style="color: var(--text-dim); font-size: 0.8rem; letter-spacing: 2px;">
-                © 2026 CONVERTROCKET.ONLINE • THE SIGMA PROTOCOL
-            </p>
-        </footer>
+    <footer class="resource-footer">
+        <div class="container">
+            <p style="opacity:0.3; font-size:0.8rem; letter-spacing:3px;">&copy; 2026 CONVERTROCKET.ONLINE • DEV SUITE
+                V6.0</p>
+        </div>
+    </footer>
     </div>
-</body>
+    </body>
 
 </html>

@@ -11,9 +11,7 @@
         content="Reduce PDF file size without losing quality. Professional-grade document optimization lab. 100% Free, Secure and No Registration.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
-    <link rel="stylesheet" href="/css/ultra-tabs.css?v=6.0">
-    <link rel="stylesheet" href="/css/premium-effects.css?v=6.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
     <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
     <script src="/static/js/premium-features.js?v=6.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/pdf-compress">
@@ -23,12 +21,28 @@
     <div class="bg-animated"></div>
     <div class="container">
         <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
-                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
-            <div class="nav-links" style="display: flex; gap: 20px; opacity: 0.6;">
-                <a href="/blogs" style="color:white; text-decoration:none; font-size:0.9rem;">Guides</a>
+            <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+                <div class="nav-links">
+                    <a href="/all-tools">All Tools</a>
+                    <a href="/media-hub">Media Hub</a>
+                    <a href="/pdf-lab">PDF Lab</a>
+                    <a href="/blogs">Blog</a>
+                </div>
             </div>
         </nav>
+
+        <header class="hero">
+            <div class="container">
+                <h1>PDF Compressor</h1>
+                <p>High-fidelity document optimization for the modern web.</p>
+                <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                    <a href="/all-tools" class="btn-premium"
+                        style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                        All Tools</a>
+                </div>
+            </div>
+        </header>
 
         <!-- Primary Command Hub -->
         <div class="primary-hub">
@@ -54,75 +68,71 @@
             </div>
         </div>
 
-        <div class="converter-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <h2 style="font-weight: 900; font-size: 2.2rem; margin:0;">PDF <span
-                        style="color:var(--neon-cyan)">Compressor</span></h2>
-                <div class="card-star active" style="font-size:2rem; cursor:pointer;"
-                    onclick="toggleThisStar(this, '/pdf-compress')">☆</div>
-            </div>
+        <main class="container" style="margin-top: 40px;">
+            <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+                <div class="bento-card">
+                    <div class="shine-overlay"></div>
+                    <h2 style="margin-bottom: 30px;">📦 Optimization Lab</h2>
 
-            <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">📦</div>
-                <p style="font-size: 1.4rem; font-weight: 800;">Drop your PDF here</p>
-                <p style="opacity: 0.5;">Shrink your document via GhostScript V8 Laboratory</p>
-                <input type="file" id="file-input" accept=".pdf">
-            </div>
-
-            <div id="pdf-file-info"
-                style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
-            </div>
-
-            <div id="pdf-tools-actions" style="display:none; margin-top:30px; text-align:left;">
-                <label style="display:block; margin-bottom:15px; font-weight:700; opacity:0.6;">Select Compression
-                    Intelligence:</label>
-                <select id="compression-level" class="search-input"
-                    style="padding:15px 25px !important; border-radius:15px !important; font-size:1rem !important; margin-bottom:30px;">
-                    <option value="screen">Web Optimized (Ultra Small)</option>
-                    <option value="ebook" selected>eBook Fidelity (Balanced)</option>
-                    <option value="printer">High Res Print (Max Detail)</option>
-                    <option value="prepress">Prepress (Zero Loss)</option>
-                </select>
-                <button id="start-compress" class="action-btn" style="width:100%;">Initialize Compression</button>
-            </div>
-
-            <div id="pdf-progress" class="progress-container">
-                <div class="progress-fill" id="progress-fill"></div>
-                <div
-                    style="display:flex; justify-content:space-between; margin-top:15px; font-size:0.9rem; font-weight:700;">
-                    <span id="progress-message">Optimizing streams...</span>
-                    <span id="progress-percent">0%</span>
-                </div>
-            </div>
-
-            <div id="pdf-result" style="display:none; margin-top:40px;">
-                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:900; letter-spacing:1px;">✨
-                    OPTIMIZATION SCAN COMPLETE</div>
-                <div id="result-stats"
-                    style="margin-bottom:30px; padding:20px; border-radius:20px; background:rgba(0,0,0,0.3);"></div>
-
-                <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-                    <a href="#" id="pdf-download-link" class="action-btn"
-                        style="display:inline-block; text-decoration:none; width: 100%; text-align: center;"
-                        download>Save Optimized Results</a>
-
-                    <!-- Result Actions (Bookmark/Copy) -->
-                    <div style="display: flex; gap: 10px; width: 100%;">
-                        <button onclick="copyResultLink()" class="btn-tool"
-                            style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
-                            🔗 Copy Link
-                        </button>
-                        <button onclick="bookmarkTool()" class="btn-tool"
-                            style="flex: 1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
-                            ⭐ Bookmark
-                        </button>
+                    <!-- Upload Zone -->
+                    <div class="upload-zone" id="upload-zone" style="margin-bottom: 30px;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">📦</div>
+                        <p style="font-size: 1.2rem; font-weight: 700;">Drop PDF Here</p>
+                        <p style="color: var(--text-secondary);">Shrink via GhostScript V8 protocol</p>
+                        <input type="file" id="file-input" accept=".pdf" style="display: none;">
                     </div>
-                    <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
+
+                    <!-- Info and Actions -->
+                    <div id="pdf-file-info" style="display: none; text-align: center; margin-bottom: 24px;">
+                    </div>
+
+                    <div id="pdf-tools-actions" style="display: none; margin-bottom: 30px; text-align: center;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 25px;">
+                            <span style="font-weight: 700; color: var(--text-secondary);">Fidelity:</span>
+                            <select id="compression-level" class="select-premium" style="width: auto;">
+                                <option value="screen">Web Optimized (Ultra Small)</option>
+                                <option value="ebook" selected>eBook Fidelity (Balanced)</option>
+                                <option value="printer">High Res Print (Max Detail)</option>
+                                <option value="prepress">Prepress (Zero Loss)</option>
+                            </select>
+                        </div>
+                        <button id="start-compress" class="btn-premium">Initialize Compression</button>
+                        <button onclick="location.reload()"
+                            style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700; display: block; margin-inline: auto;">CHANGE
+                            FILE</button>
+                    </div>
+
+                    <!-- Progress Area -->
+                    <div class="progress-container" id="pdf-progress" style="display: none; margin-top: 30px;">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="progress-fill"></div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; font-size: 0.85rem; margin-top: 10px;">
+                            <span id="progress-message">Optimizing streams...</span>
+                            <span id="progress-percent">0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="pdf-result" style="display: none; text-align: center; margin-top: 40px;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">✨</div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 10px;">Optimization Complete</h3>
+                        <div id="result-stats" style="margin-bottom: 25px; color: var(--text-secondary);"></div>
+                        <div style="display: flex; gap: 12px; justify-content: center;">
+                            <a href="#" id="pdf-download-link" class="btn-premium"
+                                style="text-decoration:none; width: auto; padding-inline: 40px;" download>Save
+                                Results</a>
+                            <button class="btn-premium"
+                                style="background: rgba(255,255,255,0.1); color:#fff; border: 1px solid var(--border-subtle); width: auto; padding-inline: 40px;"
+                                onclick="location.reload()">New Process</button>
+                        </div>
+                    </div>
+
+                    <div id="status-message" class="status-message"></div>
                 </div>
             </div>
-
-            <div id="status-message" class="status-message"></div>
-        </div>
+        </main>
 
         <section class="seo-slop">
             <h2>The Ultimate Guide to Online PDF Compression</h2>

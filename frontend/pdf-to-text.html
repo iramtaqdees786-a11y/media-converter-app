@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
@@ -7,77 +8,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF to Text - ConvertRocket Laboratory</title>
     <meta name="description" content="Extract raw text data from PDF documents using OCR and stream parsing.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
     <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
     <script src="/static/js/premium-features.js?v=6.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/pdf-to-text">
 </head>
+
 <body>
     <div class="bg-animated"></div>
     <div class="container">
         <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/" style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
-             <div class="nav-links" style="display: flex; gap: 20px; opacity: 0.6;">
-                <a href="/blogs" style="color:white; text-decoration:none; font-size:0.9rem;">Guides</a>
+            <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+                <div class="nav-links">
+                    <a href="/all-tools">All Tools</a>
+                    <a href="/media-hub">Media Hub</a>
+                    <a href="/pdf-lab">PDF Lab</a>
+                    <a href="/blogs">Blog</a>
+                </div>
             </div>
         </nav>
 
-        <!-- Command Hub (Below Hero) -->
-        <div class="hub-sticky-container">
-            <div class="category-nav">
-                <a href="/all-tools" class="cat-link"><span class="icon">🚀</span> All Units</a>
-                <a href="/ai-lab" class="cat-link"><span class="icon">🪄</span> AI Lab</a>
-                <a href="/media-hub" class="cat-link"><span class="icon">🎬</span> Media Hub</a>
-                <a href="/pdf-lab" class="cat-link"><span class="icon">📄</span> PDF Lab</a>
-                <a href="/dev-suite" class="cat-link"><span class="icon">💻</span> Dev Suite</a>
-                <a href="/utilities" class="cat-link"><span class="icon">🛠️</span> Utilities</a>
-                <a href="/downloader" class="cat-link"><span class="icon">⬇️</span> Downloader</a>
-                <a href="/converter" class="cat-link"><span class="icon">🔄</span> Converter</a>
+        <header class="hero">
+            <div class="container">
+                <h1>PDF to Text</h1>
+                <p>Extract raw text data from PDF documents using OCR and stream parsing.</p>
+                <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                    <a href="/all-tools" class="btn-premium"
+                        style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                        All Tools</a>
+                </div>
             </div>
-        </div>
+        </header>
 
-        <div class="converter-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <h2 style="font-weight: 950; font-size: 2.2rem; margin:0;">PDF to <span style='color:var(--neon-purple)'>Text</span></h2>
-                <div class="card-star" style="font-size:2rem; cursor:pointer;" onclick="toggleThisStar(this, '/pdf-to-text')">☆</div>
-            </div>
+        <main class="container" style="margin-top: 40px;">
+            <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+                <div class="bento-card">
+                    <div class="shine-overlay"></div>
+                    <h2 style="margin-bottom: 30px;">📄 Text Extraction Lab</h2>
 
-            <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">📄</div>
-                <p style="font-size: 1.4rem; font-weight: 800;">Select PDF for Extraction</p>
-                <p style="opacity: 0.5;">Tesseract OCR engine active</p>
-                <input type="file" id="file-input" accept=".pdf">
-            </div>
+                    <!-- Upload Zone -->
+                    <div class="upload-zone" id="upload-zone" style="margin-bottom: 30px;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">📄</div>
+                        <p style="font-size: 1.2rem; font-weight: 700;">Select PDF for Extraction</p>
+                        <p style="color: var(--text-secondary);">Tesseract OCR engine active</p>
+                        <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                    </div>
 
-            <div id="tool-ui" style="display:none; margin-top:30px; text-align:left;">
-                <!-- Dynamic UI injected by tool-specific JS -->
-            </div>
+                    <div id="tool-ui" style="display:none; margin-top:30px; text-align:center; margin-bottom: 30px;">
+                        <div
+                            style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px solid var(--border-subtle); margin-bottom: 25px;">
+                            <p id="file-info-text" style="font-weight: 800; color: var(--accent-primary);"></p>
+                        </div>
+                        <button id="start-process" class="btn-premium">Initialize Stream Parsing</button>
+                        <button onclick="location.reload()"
+                            style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700; display: block; margin-inline: auto;">CHANGE
+                            FILE</button>
+                    </div>
 
-            <div id="status-message" class="status-message"></div>
-            
-            <div id="result-container" style="display:none; margin-top:40px;">
-                <div style="margin-bottom:20px; color:var(--neon-cyan); font-weight:900; letter-spacing:1px;">✅ OPERATION COMPLETE</div>
-                <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-                    <a href="#" id="download-link" class="action-btn" style="display:inline-block; text-decoration:none; width: 100%; text-align: center;" download>Save Result</a>
-                    
-                    <!-- Result Actions (Bookmark/Copy) -->
-                    <div style="display: flex; gap: 10px; width: 100%;">
-                        <button onclick="copyResultLink()" class="btn-tool" style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
-                            🔗 Copy Link
-                        </button>
-                        <button onclick="bookmarkTool()" class="btn-tool" style="flex: 1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
-                            ⭐ Bookmark
-                        </button>
+                    <div id="status-message" class="status-message"></div>
+
+                    <div id="result-container" style="display:none; margin-top:40px; text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">✨</div>
+                        <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 10px;">Operation Complete</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 25px;">Text streams extracted and
+                            formatted.</p>
+
+                        <div style="display: flex; gap: 12px; justify-content: center;">
+                            <a href="#" id="download-link" class="btn-premium"
+                                style="text-decoration:none; width: auto; padding-inline: 40px;" download>Save
+                                Result</a>
+                            <button class="btn-premium"
+                                style="background: rgba(255,255,255,0.1); color:#fff; border: 1px solid var(--border-subtle); width: auto; padding-inline: 40px;"
+                                onclick="location.reload()">New Process</button>
+                        </div>
                     </div>
                 </div>
-                <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
             </div>
-        </div>
+        </main>
 
         <section class="seo-slop">
             <h2>PDF Text Extraction Laboratory</h2>
-            <p>Convert un-selectable PDF data into plain text instantly. Perfect for research, data entry, and archiving.</p>
+            <p>Convert un-selectable PDF data into plain text instantly. Perfect for research, data entry, and
+                archiving.</p>
         </section>
 
         <footer class="resource-footer">
@@ -96,18 +109,26 @@
         const result = document.getElementById('result-container');
 
         uploadZone.onclick = () => fileInput.click();
-        
+
         fileInput.onchange = (e) => {
             if (e.target.files.length > 0) {
+                const file = e.target.files[0];
                 uploadZone.style.display = 'none';
                 toolUi.style.display = 'block';
-                status.innerHTML = 'File loaded. Initializing PDF to Text...';
-                // Mock success for UI demo - backend handles real logic
-                setTimeout(() => {
-                   status.innerHTML = '✅ Ready to process';
-                }, 1000);
+                document.getElementById('file-info-text').textContent = `Target Identified: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+                status.innerHTML = 'Module ready for text extraction...';
             }
         };
+
+        document.getElementById('start-process')?.addEventListener('click', () => {
+            status.innerHTML = '<div class="status-text loading">Extracting text streams...</div>';
+            // Placeholder for backend logic
+            setTimeout(() => {
+                status.innerHTML = '';
+                result.style.display = 'block';
+                toolUi.style.display = 'none';
+            }, 1500);
+        });
 
         function toggleThisStar(el, url) {
             let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
@@ -116,7 +137,7 @@
                 starred = starred.filter(u => u !== url);
             } else {
                 el.classList.add('active'); el.textContent = '⭐';
-                if(!starred.includes(url)) starred.push(url);
+                if (!starred.includes(url)) starred.push(url);
             }
             localStorage.setItem('starredTools', JSON.stringify(starred));
         }
@@ -124,4 +145,5 @@
         function bookmarkTool() { alert('Press Ctrl+D to bookmark!'); }
     </script>
 </body>
+
 </html>

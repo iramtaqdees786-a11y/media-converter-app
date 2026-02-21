@@ -439,9 +439,14 @@ function displayDownloadResult(data) {
             </div>
             ` : ''}
         </div>
-        <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" download>
-            ⬇️ ${downloadText}
-        </a>
+        <div style="display: flex; gap: 12px; margin-top: 15px;">
+            <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" style="flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
+                ⬇️ ${downloadText}
+            </a>
+            <button class="btn btn-secondary" onclick="location.reload()" style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid var(--border-subtle); color: white; border-radius: 12px; cursor: pointer;">
+                🔄 Download Again
+            </button>
+        </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
             ⭐ Bookmark this tool – you'll need it again
         </div>
@@ -449,15 +454,18 @@ function displayDownloadResult(data) {
 
     result.classList.add('active');
 
-    // Automatic download trigger - downloads automatically at 100%
-    setTimeout(() => {
-        const link = document.createElement('a');
-        link.href = data.download_url;
-        link.download = data.filename || 'download';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }, 1000);
+    // Automatic download trigger
+    if (data.download_url) {
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = data.download_url;
+            link.setAttribute('download', data.filename || 'download');
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => document.body.removeChild(link), 100);
+        }, 1500);
+    }
 
     const toolbar = document.getElementById('download-result-toolbar');
     if (toolbar) toolbar.style.display = 'block';
@@ -698,9 +706,14 @@ function displayConvertResult(data) {
                 <div class="result-info-value">${data.converted_size || 'N/A'}</div>
             </div>
         </div>
-        <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" download>
-            ⬇️ ${downloadText}
-        </a>
+        <div style="display: flex; gap: 12px; margin-top: 15px;">
+            <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" style="flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
+                ⬇️ ${downloadText}
+            </a>
+            <button class="btn btn-secondary" onclick="location.reload()" style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid var(--border-subtle); color: white; border-radius: 12px; cursor: pointer;">
+                🔄 Convert Again
+            </button>
+        </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
             ⭐ Bookmark this tool – you'll need it again
         </div>
@@ -708,15 +721,18 @@ function displayConvertResult(data) {
 
     result.classList.add('active');
 
-    // Automatic download trigger - downloads automatically at 100%
-    setTimeout(() => {
-        const link = document.createElement('a');
-        link.href = data.download_url;
-        link.download = data.converted_file || 'converted_file';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }, 1000);
+    // Automatic download trigger
+    if (data.download_url) {
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = data.download_url;
+            link.setAttribute('download', data.converted_file || 'converted_file');
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => document.body.removeChild(link), 100);
+        }, 1500);
+    }
 
     const toolbar = document.getElementById('convert-result-toolbar');
     if (toolbar) toolbar.style.display = 'block';
@@ -783,7 +799,17 @@ function updateProgress(elementId, value) {
     const text = container.querySelector('.progress-percent');
 
     if (fill) fill.style.width = `${value}%`;
-    if (text) text.textContent = `${Math.round(value)}%`;
+    if (text) {
+        if (value >= 100) {
+            text.textContent = 'Conversion Complete';
+            text.style.color = '#38ef7d';
+            text.style.fontWeight = '800';
+        } else {
+            text.textContent = `${Math.round(value)}%`;
+            text.style.color = '';
+            text.style.fontWeight = '';
+        }
+    }
 }
 
 function hideProgress(elementId) {

@@ -11,8 +11,7 @@
         content="Remove EXIF, GPS, and camera metadata from your photos instantly. Professional-grade privacy tool for secure sharing. 100% Free.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
-<link rel="stylesheet" href="/css/premium-effects.css?v=6.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
     <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
     <script src="/static/js/premium-features.js?v=6.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/exif-remover">
@@ -22,9 +21,28 @@
     <div class="bg-animated"></div>
     <div class="container">
         <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
-                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+            <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+                <div class="nav-links">
+                    <a href="/all-tools">All Tools</a>
+                    <a href="/media-hub">Media Hub</a>
+                    <a href="/pdf-lab">PDF Lab</a>
+                    <a href="/blogs">Blog</a>
+                </div>
+            </div>
         </nav>
+
+        <header class="hero">
+            <div class="container">
+                <h1>EXIF Neutralizer</h1>
+                <p>Surgical forensic-grade metadata removal for total privacy.</p>
+                <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                    <a href="/all-tools" class="btn-premium"
+                        style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                        All Tools</a>
+                </div>
+            </div>
+        </header>
 
         <!-- Command Hub (Below Hero) -->
         <div class="hub-sticky-container">
@@ -40,31 +58,38 @@
             </div>
         </div>
 
-        <div class="converter-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <h2 style="font-weight: 900; font-size: 2.2rem; margin:0;">Privacy <span
-                        style="color:var(--neon-cyan)">Stripper</span></h2>
-                <div class="card-star active" style="font-size:2rem; cursor:pointer;"
-                    onclick="toggleThisStar(this, '/exif-remover')">☆</div>
+        <main class="container" style="margin-top: 40px;">
+            <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+                <div class="bento-card">
+                    <div class="shine-overlay"></div>
+                    <h2 style="margin-bottom: 30px;">🕵️ Privacy Hub</h2>
+
+                    <!-- Upload Zone -->
+                    <div class="upload-zone" id="upload-zone" style="margin-bottom: 30px;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🕵️</div>
+                        <p style="font-size: 1.2rem; font-weight: 700;">Drop Image to Clean</p>
+                        <p style="color: var(--text-secondary);">Supports JPG, PNG, WEBP, TIFF</p>
+                        <input type="file" id="exif-input" accept="image/*" style="display: none;">
+                    </div>
+
+                    <!-- Info and Actions -->
+                    <div id="file-info" style="display: none; text-align: center; margin-bottom: 30px;">
+                        <div
+                            style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px solid var(--border-subtle); margin-bottom: 25px;">
+                            <p id="file-name" style="font-weight: 800; color: var(--accent-primary);"></p>
+                        </div>
+                        <button onclick="executeExif()" class="btn-premium">Neutralize Metadata</button>
+                        <button onclick="location.reload()"
+                            style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700; display: block; margin-inline: auto;">CHANGE
+                            FILE</button>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="exif-result" style="text-align: center;"></div>
+                    <div id="status-message" class="status-message"></div>
+                </div>
             </div>
-
-            <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">🕵️</div>
-                <p style="font-size: 1.4rem; font-weight: 800;">Drop Image to Clean</p>
-                <p style="opacity: 0.5;">Surgical EXIF & GPS metadata removal engine</p>
-                <input type="file" id="exif-input" accept="image/*">
-            </div>
-
-            <div id="file-info"
-                style="display:none; margin-top:30px; text-align:left; padding:25px; border:1px solid var(--glass-border); border-radius:25px; background:rgba(255,255,255,0.03);">
-                <p id="file-name" style="font-weight:800; margin-bottom:10px;"></p>
-                <button onclick="executeExif()" class="action-btn" style="width:100%;">Neutralize Metadata</button>
-            </div>
-
-            <div id="exif-result"></div>
-
-            <div id="status-message" class="status-message"></div>
-        </div>
+        </main>
 
         <section class="seo-slop">
             <h2>Why Remove EXIF Data from Your Photos?</h2>

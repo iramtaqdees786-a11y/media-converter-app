@@ -211,17 +211,24 @@ if FRONTEND_DIR.exists():
     css_dir = FRONTEND_DIR / "css"
     if css_dir.exists():
         app.mount("/css", StaticFiles(directory=str(css_dir)), name="css")
+        # Legacy support
+        app.mount("/static/css", StaticFiles(directory=str(css_dir)), name="static_css")
+    
     # JS
     js_dir = FRONTEND_DIR / "js"
     if js_dir.exists():
         app.mount("/js", StaticFiles(directory=str(js_dir)), name="js")
-    # Images (optional)
+        # Legacy support
+        app.mount("/static/js", StaticFiles(directory=str(js_dir)), name="static_js")
+    
+    # Images
     img_dir = FRONTEND_DIR / "img"
     if not img_dir.exists():
-        # create empty img folder to avoid runtime errors
         img_dir.mkdir(parents=True, exist_ok=True)
     app.mount("/img", StaticFiles(directory=str(img_dir)), name="img")
-    # Serve root static files (e.g., index.html)
+    app.mount("/static/img", StaticFiles(directory=str(img_dir)), name="static_img")
+    
+    # Serve root static files (fallback)
     app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
     # Mount Generated Content Directories
@@ -294,6 +301,24 @@ async def serve_pdf_grayscale(): return FileResponse(FRONTEND_DIR / "pdf-graysca
 @app.get("/pdf-pdfa")
 async def serve_pdf_pdfa(): return FileResponse(FRONTEND_DIR / "pdf-pdfa.html")
 
+@app.get("/pdf-to-word")
+async def serve_pdf_to_word(): return FileResponse(FRONTEND_DIR / "pdf-to-word.html")
+
+@app.get("/heic-to-jpg")
+async def serve_heic_to_jpg(): return FileResponse(FRONTEND_DIR / "heic-to-jpg.html")
+
+@app.get("/png-to-jpg")
+async def serve_png_to_jpg(): return FileResponse(FRONTEND_DIR / "png-to-jpg.html")
+
+@app.get("/webp-to-jpg")
+async def serve_webp_to_jpg(): return FileResponse(FRONTEND_DIR / "webp-to-jpg.html")
+
+@app.get("/mp4-to-mp3")
+async def serve_mp4_to_mp3(): return FileResponse(FRONTEND_DIR / "mp4-to-mp3.html")
+
+@app.get("/image-compress")
+async def serve_image_compress(): return FileResponse(FRONTEND_DIR / "image-compress.html")
+
 @app.get("/yt-thumbnail")
 async def serve_yt_thumbnail(): return FileResponse(FRONTEND_DIR / "yt-thumbnail.html")
 
@@ -343,6 +368,10 @@ async def serve_json_formatter():
 @app.get("/base64-encoder")
 async def serve_base64_encoder():
     return FileResponse(FRONTEND_DIR / "base64-encoder.html")
+
+@app.get("/qr-generator")
+async def serve_qr_generator():
+    return FileResponse(FRONTEND_DIR / "qr-generator.html")
 
 @app.get("/color-picker")
 async def serve_color_picker():

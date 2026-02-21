@@ -11,8 +11,7 @@
         content="Download YouTube thumbnails in high quality (4K, HD, HQ). Just paste the video link and grab the cover art instantly. Free and fast.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
-<link rel="stylesheet" href="/css/premium-effects.css?v=6.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
     <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
     <script src="/static/js/premium-features.js?v=6.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/yt-thumbnail">
@@ -22,9 +21,28 @@
     <div class="bg-animated"></div>
     <div class="container">
         <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;"><a href="/"
-                    style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a></div>
+            <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+                <div class="nav-links">
+                    <a href="/all-tools">All Tools</a>
+                    <a href="/media-hub">Media Hub</a>
+                    <a href="/pdf-lab">PDF Lab</a>
+                    <a href="/blogs">Blog</a>
+                </div>
+            </div>
         </nav>
+
+        <header class="hero">
+            <div class="container">
+                <h1>Thumbnail Grabber</h1>
+                <p>High-resolution cover art extraction from YouTube servers.</p>
+                <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                    <a href="/all-tools" class="btn-premium"
+                        style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                        All Tools</a>
+                </div>
+            </div>
+        </header>
 
         <!-- Command Hub (Below Hero) -->
         <div class="hub-sticky-container">
@@ -40,29 +58,28 @@
             </div>
         </div>
 
-        <div class="converter-box" style="text-align:center;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <h2 style="font-weight: 900; font-size: 2.2rem; margin:0;">Thumbnail <span
-                        style="color:var(--neon-cyan)">Grabber</span></h2>
-                <div class="card-star active" style="font-size:2rem; cursor:pointer;"
-                    onclick="toggleThisStar(this, '/yt-thumbnail')">☆</div>
+        <main class="container" style="margin-top: 40px;">
+            <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+                <div class="bento-card">
+                    <div class="shine-overlay"></div>
+                    <h2 style="margin-bottom: 30px;">🖼️ Extraction Hub</h2>
+
+                    <div style="margin-bottom: 30px;">
+                        <label
+                            style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--text-secondary); text-align: left;">YouTube
+                            Video Protocol (URL):</label>
+                        <input type="text" id="thumb-url" class="text-input"
+                            placeholder="https://www.youtube.com/watch?v=...">
+                    </div>
+
+                    <button onclick="downloadThumbnail()" class="btn-premium">Identify & Extract Cover Art</button>
+
+                    <!-- Results -->
+                    <div id="thumbnail-result" style="margin-top: 40px;"></div>
+                    <div id="status-message" class="status-message"></div>
+                </div>
             </div>
-
-            <p style="margin-bottom: 30px; opacity:0.6; font-weight:700;">Enter YouTube Video URL to Extract Cover Art
-            </p>
-
-            <div class="search-wrapper" style="margin-bottom:30px;">
-                <input type="text" id="thumb-url" class="search-input" placeholder="https://www.youtube.com/watch?v=..."
-                    style="border-radius:25px !important; text-align:center;">
-            </div>
-
-            <button onclick="downloadThumbnail()" class="action-btn"
-                style="width:100%; max-width:400px; margin: 0 auto;">Identify & Extract</button>
-
-            <div id="thumbnail-result" style="margin-top:50px;"></div>
-
-            <div id="status-message" class="status-message"></div>
-        </div>
+        </main>
 
         <section class="seo-slop">
             <h2>Download YouTube Thumbnails in Full HD</h2>

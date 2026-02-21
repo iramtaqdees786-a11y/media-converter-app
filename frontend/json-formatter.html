@@ -9,86 +9,93 @@
         content="Free online JSON formatter, validator and beautifier. Format, validate and minify JSON instantly.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/css/ultra-minimalist.css?v=6.0">
-    <link rel="stylesheet" href="/css/premium-effects.css?v=6.0">
-    <link rel="stylesheet" href="/css/ultra-tabs.css?v=6.0">
-    <link rel="stylesheet" href="/css/3d-elements.css?v=6.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
     <link rel="canonical" href="https://www.convertrocket.online/json-formatter">
 </head>
 
 <body>
     <div class="bg-animated"></div>
 
-    <!-- 3D Elements -->
-    <div class="orb-3d orb-3d-1"></div>
-    <div class="orb-3d orb-3d-2"></div>
-
-    <div class="container">
-        <nav class="nav-premium">
-            <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;">
-                <a href="/" style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a>
+    <nav class="nav-premium">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+            <div class="nav-links">
+                <a href="/all-tools">All Tools</a>
+                <a href="/media-hub">Media Hub</a>
+                <a href="/pdf-lab">PDF Lab</a>
+                <a href="/blogs">Blog</a>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <section class="hero-minimal" style="padding: 40px 0 20px;">
-            <h1 class="ion-title" style="font-size: 3rem;">JSON Formatter</h1>
-            <p class="hero-tagline">Format, validate & beautify JSON instantly</p>
-        </section>
-
-        <div class="command-center glass-panel-3d">
-            <div class="command-tabs">
-                <div class="cmd-tab active" onclick="switchTab('format')">✨ Format</div>
-                <div class="cmd-tab" onclick="switchTab('minify')">📦 Minify</div>
-                <div class="cmd-tab" onclick="switchTab('validate')">✅ Validate</div>
+    <header class="hero">
+        <div class="container">
+            <h1>JSON Lab</h1>
+            <p>Format, validate, and minify JSON with architectural precision.</p>
+            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                <a href="/all-tools" class="btn-premium"
+                    style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                    All Tools</a>
             </div>
+        </div>
+    </header>
 
-            <div class="dashboard-card tool-card-3d">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--neon-cyan);">
-                        Input JSON
-                    </label>
-                    <textarea id="json-input" class="search-input"
-                        placeholder='{"name": "ConvertRocket", "features": ["fast", "free", "secure"]}' rows="10"
-                        style="width: 100%; resize: vertical; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6;">
-</textarea>
+    <main class="container" style="margin-top: 40px;">
+        <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
+            <div class="bento-card">
+                <div class="shine-overlay"></div>
+
+                <div class="command-tabs" style="margin-bottom: 30px;">
+                    <button class="cmd-tab active" id="tab-format" onclick="switchTab('format', this)">✨
+                        Format</button>
+                    <button class="cmd-tab" id="tab-minify" onclick="switchTab('minify', this)">📦 Minify</button>
+                    <button class="cmd-tab" id="tab-validate" onclick="switchTab('validate', this)">✅
+                        Validate</button>
                 </div>
 
-                <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                    <button onclick="processJSON()" class="cmd-tab active" style="flex: 1; min-width: 200px;">
-                        ⚡ Process
-                    </button>
-                    <button onclick="copyResult()" class="cmd-tab" style="flex: 1; min-width: 200px;">
-                        📋 Copy Result
-                    </button>
-                    <button onclick="clearAll()" class="cmd-tab" style="flex: 1; min-width: 200px;">
-                        🗑️ Clear
-                    </button>
+                <div style="margin-bottom: 25px;">
+                    <label
+                        style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--text-secondary); text-align: left;">Input
+                        JSON Protocol:</label>
+                    <textarea id="json-input" class="text-input"
+                        placeholder='{"name": "ConvertRocket", "features": ["fast", "free", "secure"]}' rows="8"
+                        style="font-family: monospace;"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-bottom: 30px; justify-content: center;">
+                    <button onclick="processJSON()" class="btn-premium" style="flex: 1;">⚡ Process</button>
+                    <button onclick="clearAll()" class="btn-premium"
+                        style="background: rgba(255,255,255,0.1); color:#fff; border: 1px solid var(--border-subtle); flex: 1;">🗑️
+                        Clear</button>
                 </div>
 
                 <div id="json-status" style="margin-bottom: 20px;"></div>
 
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--neon-purple);">
-                        Output
-                    </label>
-                    <textarea id="json-output" class="search-input" placeholder="Formatted JSON will appear here..."
-                        rows="10" readonly
-                        style="width: 100%; resize: vertical; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6;">
-</textarea>
+                <div style="margin-bottom: 10px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <label style="font-weight: 700; color: var(--text-secondary);">Result Output:</label>
+                        <button onclick="copyResult()"
+                            style="background:none; border:none; color:var(--accent-primary); cursor:pointer; font-size:0.85rem; font-weight:700;">📋
+                            COPY RESULTS</button>
+                    </div>
+                    <textarea id="json-output" class="text-input" placeholder="Processed output will appear here..."
+                        rows="8" readonly style="font-family: monospace; background: rgba(0,0,0,0.2);"></textarea>
                 </div>
             </div>
         </div>
+    </main>
     </div>
 
     <script>
         let currentMode = 'format';
 
-        function switchTab(mode) {
+        function switchTab(mode, el) {
             currentMode = mode;
             document.querySelectorAll('.cmd-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            event.target.classList.add('active');
+            el.classList.add('active');
 
             const inputPlaceholder = {
                 'format': '{"name": "ConvertRocket", "features": ["fast", "free", "secure"]}',

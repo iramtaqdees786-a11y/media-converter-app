@@ -130,88 +130,85 @@
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav-clean">
-        <div class="container">
-            <a href="/" class="brand-clean">
-                <span class="brand-icon">🚀</span>
-                <span>ConvertRocket</span>
-            </a>
+    <nav class="nav-premium">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
             <div class="nav-links">
-                <a href="/all-tools">Tools</a>
-                <a href="/blogs">Guides</a>
-                <a href="/contact" class="nav-cta">Support</a>
+                <a href="/all-tools">All Tools</a>
+                <a href="/media-hub">Media Hub</a>
+                <a href="/pdf-lab">PDF Lab</a>
+                <a href="/blogs">Blog</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-clean">
-        <h1>HEIC to JPG Converter</h1>
-        <p class="hero-subtitle">Convert Apple HEIC images to JPG instantly. No quality loss, no watermarks.</p>
-
-        <div class="trust-signals">
-            <div class="trust-badge">
-                <span>✓</span> 1M+ Conversions
-            </div>
-            <div class="trust-badge">
-                <span>✓</span> 100% Free
-            </div>
-            <div class="trust-badge">
-                <span>✓</span> No Signup
-            </div>
-            <div class="trust-badge">
-                <span>✓</span> Secure & Private
+    <header class="hero">
+        <div class="container">
+            <h1>HEIC to JPG Converter</h1>
+            <p>Convert Apple HEIC images to high-quality JPG format instantly.</p>
+            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
+                <a href="/all-tools" class="btn-premium"
+                    style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+                    All Tools</a>
             </div>
         </div>
-    </section>
+    </header>
 
     <!-- Tool Interface -->
-    <div class="tool-container">
-        <div class="tool-card">
-            <div class="tool-header">
-                <h2 class="tool-title">HEIC <span class="arrow">→</span> JPG</h2>
-            </div>
+    <main class="container">
+        <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+            <div class="bento-card">
+                <div class="shine-overlay"></div>
+                <h2 style="margin-bottom: 30px;">📱 HEIC to JPG Unifier</h2>
 
-            <!-- Upload Zone -->
-            <div class="upload-zone" id="upload-zone">
-                <div class="upload-icon">🖼️</div>
-                <p>Click to Upload HEIC File</p>
-                <small>or drag and drop your file here</small>
-                <input type="file" id="file-input" accept=".heic,.heif">
-            </div>
-
-            <!-- File Info (Hidden Initially) -->
-            <div class="file-info" id="file-info" style="display: none;">
-                <div class="file-details" id="file-details"></div>
-                <button class="action-btn" id="convert-btn">Convert to JPG</button>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
+                <!-- Upload Zone -->
+                <div class="upload-zone" id="upload-zone" style="margin-bottom: 24px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📸</div>
+                    <p style="font-size: 1.2rem; font-weight: 700;">Drop HEIC/HEIF Here</p>
+                    <p style="color: var(--text-secondary);">or click to select photo</p>
+                    <input type="file" id="file-input" accept=".heic,.heif" style="display: none;">
                 </div>
-                <div class="progress-info">
-                    <span class="progress-message" id="progress-message">Initializing...</span>
-                    <span class="progress-percent" id="progress-percent">0%</span>
+
+                <!-- File Info -->
+                <div id="file-info" style="display: none; text-align: center; margin-bottom: 24px;">
+                    <p id="file-details" style="font-weight: 700; color: var(--accent-primary); margin-bottom: 20px;">
+                    </p>
+                    <button class="btn-premium" id="convert-btn">Initialize Conversion</button>
+                    <button onclick="location.reload()"
+                        style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700;">CHANGE
+                        FILE</button>
                 </div>
-            </div>
 
-            <!-- Result Container -->
-            <div class="result-container" id="result-container">
-                <div class="result-icon">✅</div>
-                <h3 class="result-title">Conversion Complete!</h3>
-                <p class="result-subtitle">Your JPG file is ready to download</p>
-                <a href="#" id="download-link" class="download-btn" download>Download JPG</a>
+                <!-- Progress Area -->
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size: 0.85rem; margin-top: 10px;">
+                        <span id="progress-message">Decoding color space...</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                </div>
 
-                <div class="secondary-actions">
-                    <button class="secondary-btn" onclick="location.reload()">Convert Another</button>
-                    <button class="secondary-btn" onclick="copyLink()">📋 Copy Link</button>
+                <!-- Result Container -->
+                <div id="result-container"
+                    style="display: none; text-align: center; margin-top: 30px; animation: fadeIn 0.5s ease;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">✅</div>
+                    <h3 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 10px;">Conversion Complete</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 25px;">Image successfully optimized for
+                        universal display</p>
+
+                    <div style="display: flex; gap: 12px; justify-content: center;">
+                        <a href="#" id="download-link" class="btn-premium"
+                            style="text-decoration: none; width: auto; padding-inline: 40px;" download>Download JPG</a>
+                        <button class="btn-premium"
+                            style="background: rgba(255,255,255,0.1); color:#fff; border: 1px solid var(--border-subtle); width: auto; padding-inline: 40px;"
+                            onclick="location.reload()">New Conversion</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- SEO Content Section -->
     <section class="seo-content">
@@ -494,15 +491,23 @@
 
                     if (data.success) {
                         progressFill.style.width = '100%';
-                        progressPercent.textContent = '100%';
+                        progressPercent.textContent = 'Conversion Complete';
+                        progressPercent.style.color = '#38ef7d';
                         progressMessage.textContent = 'Complete!';
 
                         setTimeout(() => {
                             progressContainer.classList.remove('active');
-                            resultContainer.classList.add('active');
+                            resultContainer.style.display = 'block';
                             downloadLink.href = data.download_url;
-                            downloadLink.click(); // Auto-download
-                        }, 500);
+
+                            // Auto-download
+                            const link = document.createElement('a');
+                            link.href = data.download_url;
+                            link.setAttribute('download', '');
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        }, 800);
                     } else {
                         alert('Conversion failed: ' + (data.message || 'Unknown error'));
                         location.reload();

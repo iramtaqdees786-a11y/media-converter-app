@@ -477,8 +477,14 @@ body {
 
 /* --- Premium Page Reveal --- */
 body {
-    opacity: 0;
+    opacity: 1;
+    /* Default to visible to prevent blank pages */
     transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* If JS is active, we can still do a reveal if desired, but safely */
+body:not(.page-ready).high-perf-reveal {
+    opacity: 0;
 }
 
 body.page-ready {
