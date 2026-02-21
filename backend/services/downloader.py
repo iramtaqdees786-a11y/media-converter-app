@@ -379,8 +379,14 @@ async def download_video(
             return DownloadResult(success=False, message="Access denied by YouTube's security system. Try again later.")
         elif "connection" in error_msg.lower() or "timeout" in error_msg.lower():
              return DownloadResult(success=False, message="Network timeout. YouTube's servers are slow or blocking the request.")
+        elif "sign in" in error_msg.lower() or "cookies" in error_msg.lower():
+            return DownloadResult(success=False, message="Access Restricted: YouTube is requiring a browser session or cookies to verify your connection. Please try a different video.")
         else:
-            return DownloadResult(success=False, message=f"Platform Error: {error_msg.split(':')[-1].strip() if ':' in error_msg else error_msg[:60]}")
+            # Prevent raw wiki links from appearing in the UI
+            clean_msg = error_msg.split(':')[-1].strip() if ':' in error_msg else error_msg[:60]
+            if "github.com" in clean_msg:
+                 clean_msg = "Regional or access restriction detected by the platform provider."
+            return DownloadResult(success=False, message=f"Platform Error: {clean_msg}")
             
     except asyncio.TimeoutError:
         print("ASYNCIO TIMEOUT ERROR")
