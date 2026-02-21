@@ -108,6 +108,10 @@ async def canonical_url_middleware(request: Request, call_next):
     path = request.url.path
     query = request.url.query
     
+    # Skip canonical redirect for API calls to prevent POST failures
+    if path.startswith("/api/"):
+        return await call_next(request)
+    
     # 1. Force HTTPS in production
     if scheme == "http" and "localhost" not in host and "127.0.0.1" not in host:
         url = f"https://{host}{path}"
@@ -117,6 +121,7 @@ async def canonical_url_middleware(request: Request, call_next):
     
     # 2. Force WWW subdomain (Critical for SEO)
     if host == "convertrocket.online":
+        print(f"DEBUG: Redirecting {host}{path} to www.convertrocket.online{path}")
         url = f"{scheme}://www.convertrocket.online{path}"
         if query:
             url += f"?{query}"

@@ -6,13 +6,51 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag() { { dataLayer.push(arguments); } } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool Directory | Complete Laboratory Inventory | ConvertRocket</title>
+    <title>The Full Inventory | Complete Tool Directory | ConvertRocket</title>
     <meta name="description"
-        content="The full inventory of ConvertRocket tools. From high-fidelity video extraction to enterprise PDF management and developer datasets.">
-    <link rel="stylesheet" href="/css/modern-dashboard.css?v=8.0">
-    <script src="/js/minimalist-search.js?v=7.0" defer></script>
-    <script src="/js/app.js?v=7.0" defer></script>
+        content="Access the complete collection of ConvertRocket's industrial media processing tools. 100% free video downloaders, PDF editors, and image converters.">
+    <link rel="stylesheet" href="/css/modern-dashboard.css?v=9.0">
+    <script src="/js/minimalist-search.js?v=9.0" defer></script>
+    <script src="/js/app.js?v=9.0" defer></script>
     <link rel="canonical" href="https://www.convertrocket.online/all-tools">
+    <style>
+        .tool-category {
+            margin-bottom: 80px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .category-header h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin: 0;
+            background: linear-gradient(90deg, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-icon {
+            font-size: 2rem;
+        }
+
+        .tool-link {
+            text-decoration: none;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tool-link:hover {
+            transform: translateY(-5px);
+        }
+    </style>
 </head>
 
 <body class="reveal">
@@ -22,7 +60,7 @@
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
             <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
             <div class="nav-links">
-                <a href="/all-tools">All Tools</a>
+                <a href="/all-tools" class="active">All Tools</a>
                 <a href="/media-hub">Media Hub</a>
                 <a href="/pdf-lab">PDF Lab</a>
                 <a href="/blogs">Blog</a>
@@ -32,122 +70,237 @@
 
     <header class="hero">
         <div class="container">
-            <h1>Tool Directory</h1>
-            <p>100+ Premium Laboratory Modules Available for Instant Execution.</p>
-            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
-                <input type="text" placeholder="Search modules..." id="tool-search"
-                    style="padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.05); color: #fff; width: 100%; max-width: 400px; font-family: inherit;">
+            <span class="badge" style="margin-bottom: 20px;">INDUSTRIAL REPOSITORY v9.0</span>
+            <h1>The Master Inventory</h1>
+            <p>100+ High-Performance Laboratory Modules. Zero Signup. Zero Cost.</p>
+            <div style="margin-top: 30px; display: flex; justify-content: center;">
+                <input type="text" placeholder="Search for any industrial module..." id="tool-search"
+                    style="padding: 18px 30px; border-radius: 20px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.05); color: #fff; width: 100%; max-width: 500px; font-family: inherit; font-size: 1.1rem; backdrop-filter: blur(10px);">
             </div>
         </div>
     </header>
 
-    <main class="container" style="margin-top: 50px;">
-        <section style="margin-bottom: 60px;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 30px; color: var(--accent-primary); letter-spacing: 2px;">🎬
-                MEDIA MASTERY</h2>
+    <main class="container" style="margin-top: 80px;">
+
+        <!-- MEDIA HUB -->
+        <section class="tool-category">
+            <div class="category-header">
+                <span class="category-icon">🎬</span>
+                <h2>Media Intelligence Lab</h2>
+            </div>
             <div class="bento-grid">
-                <a href="/video-trimmer" class="bento-card" style="text-decoration: none;">
+                <a href="/downloader" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">✂️</div>
-                    <h3>Video Trimmer</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Precision frame-cutting for industrial
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">⬇️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Cloud Downloader</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Extract content from YouTube, TikTok,
+                        IG, and more.</p>
+                </a>
+                <a href="/converter" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🔄</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Universal Converter</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">The master module for 1000+ format
+                        pairs.</p>
+                </a>
+                <a href="/mp4-to-mp3" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🎵</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Audio Extractor</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">High-fidelity MP3 stripping from video.
+                    </p>
+                </a>
+                <a href="/video-trimmer" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">✂️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Video Trimmer</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Surgical precision for your video
                         assets.</p>
                 </a>
-                <a href="/yt-thumbnail" class="bento-card" style="text-decoration: none;">
+                <a href="/yt-thumbnail" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🖼️</div>
-                    <h3>Thumbnail Lab</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Extract HD covers from any URL.</p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🖼️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Thumbnail Lab</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Extract ultra-high-res content covers.
+                    </p>
                 </a>
-                <a href="/exif-remover" class="bento-card" style="text-decoration: none;">
+                <a href="/video-converter" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🕵️</div>
-                    <h3>EXIF Stripper</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Remove private metadata from photos.</p>
-                </a>
-                <a href="/image-converter" class="bento-card" style="text-decoration: none;">
-                    <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">📸</div>
-                    <h3>Image Factory</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Pro HEIC/WebP transcode modules.</p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">📹</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Video Converter</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Optimized MP4, MKV, and WebM modules.
+                    </p>
                 </a>
             </div>
         </section>
 
-        <section style="margin-bottom: 60px;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 30px; color: var(--accent-primary); letter-spacing: 2px;">📄
-                PDF LABORATORY</h2>
+        <!-- PDF LAB -->
+        <section class="tool-category">
+            <div class="category-header">
+                <span class="category-icon">📄</span>
+                <h2>PDF Command Center</h2>
+            </div>
             <div class="bento-grid">
-                <a href="/pdf-compress" class="bento-card" style="text-decoration: none;">
+                <a href="/pdf-merge" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">📦</div>
-                    <h3>PDF Compress</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">High-density document shrinking
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🔗</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">PDF Merger</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Combine multiple dossiers into one
+                        unit.</p>
+                </a>
+                <a href="/pdf-compress" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">📦</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">PDF Compressor</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Industrial-grade volume reduction.</p>
+                </a>
+                <a href="/pdf-remove-pages" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🗑️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Page Remover</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Purge non-essential pages instantly.
+                    </p>
+                </a>
+                <a href="/pdf-to-word" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">📝</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">PDF to Word</h3>
+                    <h3 style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 400;">Extract editable
+                        DOCX.</h3>
+                </a>
+                <a href="/pdf-to-excel" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">📊</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">PDF to Excel</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Structured table data extraction.</p>
+                </a>
+                <a href="/pdf-grayscale" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🌑</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Black & White</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Enterprise grayscale conversion
                         protocol.</p>
                 </a>
-                <a href="/pdf-merge" class="bento-card" style="text-decoration: none;">
+                <a href="/pdf-pdfa" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🔗</div>
-                    <h3>Merge Studio</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Combine multiple PDF streams flawlessly.
-                    </p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🔒</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">PDF/A Archive</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Long-term digital preservation
+                        standard.</p>
                 </a>
-                <a href="/pdf-to-word" class="bento-card" style="text-decoration: none;">
+                <a href="/word-to-pdf" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">📝</div>
-                    <h3>PDF to Word</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Industrial DOCX structure extraction.
-                    </p>
-                </a>
-                <a href="/pdf-remove-pages" class="bento-card" style="text-decoration: none;">
-                    <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🗑️</div>
-                    <h3>Page Remover</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Surgical page extraction and removal.
-                    </p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🏛️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Word to PDF</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Solidify Word documents into PDF
+                        dossiers.</p>
                 </a>
             </div>
         </section>
 
-        <section style="margin-bottom: 60px;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 30px; color: var(--accent-primary); letter-spacing: 2px;">🛠️
-                SYSTEM CORE</h2>
+        <!-- IMAGE FORGE -->
+        <section class="tool-category">
+            <div class="category-header">
+                <span class="category-icon">📸</span>
+                <h2>Image Forge</h2>
+            </div>
             <div class="bento-grid">
-                <a href="/converter" class="bento-card" style="text-decoration: none;">
+                <a href="/heic-to-jpg" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🔄</div>
-                    <h3>Universal Converter</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">1000+ Industrial format transcoders.</p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">📱</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">HEIC to JPG</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Bridge the mobile high-efficiency gap.
+                    </p>
                 </a>
-                <a href="/downloader" class="bento-card" style="text-decoration: none;">
+                <a href="/image-compress" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">⬇️</div>
-                    <h3>Cloud Downloader</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">YT, TikTok, IG content extraction.</p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🤏</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Image Shrink</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Optimize visuals for high-speed
+                        delivery.</p>
                 </a>
-                <a href="/json-formatter" class="bento-card" style="text-decoration: none;">
+                <a href="/exif-remover" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">{ }</div>
-                    <h3>JSON Lab</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">High-precision data formatting kit.</p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🕵️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Privacy Stripper</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Remove trace data and location
+                        protocols.</p>
                 </a>
-                <a href="/qr-generator" class="bento-card" style="text-decoration: none;">
+                <a href="/png-to-jpg" class="bento-card tool-link">
                     <div class="shine-overlay"></div>
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🔳</div>
-                    <h3>QR Architect</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Create custom vector QR codes.</p>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🖼️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">PNG to JPG</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Universal image format synchronization.
+                    </p>
+                </a>
+                <a href="/webp-to-jpg" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🌐</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">WebP to JPG</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Convert modern web formats for offline
+                        use.</p>
+                </a>
+                <a href="/ai-image-editor" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🪄</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">AI Lab Console</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Neural-enhanced image manipulation.</p>
                 </a>
             </div>
         </section>
+
+        <!-- DEV SUITE -->
+        <section class="tool-category">
+            <div class="category-header">
+                <span class="category-icon">💻</span>
+                <h2>Developer & Data Hub</h2>
+            </div>
+            <div class="bento-grid">
+                <a href="/json-formatter" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">{ }</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">JSON Lab</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Validate and beautify complex data
+                        structures.</p>
+                </a>
+                <a href="/base64-encoder" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🔗</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Base64 Unit</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Industrial encoding & decoding
+                        protocols.</p>
+                </a>
+                <a href="/qr-generator" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🔳</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">QR Architect</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Precision QR vector synthesis.</p>
+                </a>
+                <a href="/color-picker" class="bento-card tool-link">
+                    <div class="shine-overlay"></div>
+                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🎨</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">Color Spectrum</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Hex, RGB, and HSL extraction tools.</p>
+                </a>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="resource-footer">
-        <div class="container">
-            <p style="opacity:0.3; font-size:0.8rem; letter-spacing:3px;">&copy; 2026 CONVERTROCKET.ONLINE • DIRECTORY
-                V6.0</p>
+    <footer class="resource-footer" style="padding: 100px 0;">
+        <div class="container" style="text-align: center;">
+            <div
+                style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap; opacity: 0.6; font-size: 0.9rem;">
+                <a href="/privacy-policy" style="color: #fff; text-decoration: none;">Privacy Protocol</a>
+                <a href="/terms-of-service" style="color: #fff; text-decoration: none;">Terms of Use</a>
+                <a href="/about" style="color: #fff; text-decoration: none;">Mission Control</a>
+                <a href="/contact" style="color: #fff; text-decoration: none;">Support Desk</a>
+            </div>
+            <p style="opacity:0.2; font-size:0.75rem; letter-spacing:4px; font-weight: 700;">&copy; 2026
+                CONVERTROCKET.ONLINE • MASTER INVENTORY V9.0</p>
         </div>
     </footer>
-    </div>
+
 </body>
 
 </html>
