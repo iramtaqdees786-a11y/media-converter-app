@@ -109,8 +109,8 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "no_playlist": True,
         "geo_bypass": True,
         "noproxy": True,
-        # Advanced Bypass: Impersonate standard browser TLS fingerprint
-        "impersonate": "chrome-110:windows-10",
+        # Advanced Bypass: JS Runtime support (Node.js available on Windows)
+        "js_runtimes": {"node": {}},
         "extractor_args": {
             "youtube": {
                 # Focusing on mobile and TV clients which are less restrictive
@@ -314,8 +314,8 @@ async def download_video(
     
     def do_download(client_cycle_index=0):
         clients = [
-            ["mweb", "tv"],      # Primary: Web mobile & Big Screen
-            ["ios", "android"],  # Secondary: Mobile Apps
+            ["ios", "android"],  # Primary: Mobile Apps (Most resilient)
+            ["mweb", "tv"],      # Secondary: Web mobile & Big Screen
             ["tv", "web_creator"], 
             ["android", "mweb"]
         ]
@@ -396,7 +396,7 @@ async def download_video(
                         message="YouTube Access Restricted: This video requires an active session. I've attempted 4 different bypass protocols, but YouTube is currently mandating a browser-based cookie authentication for your IP."
                     )
                 
-                return DownloadResult(success=False, message=f"Download Error: {error_msg.split(':')[0]}")
+                return DownloadResult(success=False, message=error_msg.split(':')[0].replace("Download Error", "").strip())
     
     except asyncio.TimeoutError:
         return DownloadResult(success=False, message="The request timed out. Please try again.")
