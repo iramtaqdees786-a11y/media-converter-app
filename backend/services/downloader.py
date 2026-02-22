@@ -79,15 +79,20 @@ def _get_cookiefile() -> Optional[str]:
 
 
 def _build_http_headers(url: str) -> Dict[str, str]:
-    """Build browser-like HTTP headers to reduce 403/anti-bot issues."""
+    """Build browser-like HTTP headers matching the impersonated client."""
+    # Matching Chrome 110 / Windows 10 for consistency with --impersonate
     return {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Language": "en-US,en;q=0.9",
+        "Sec-Ch-Ua": '"Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"',
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": '"Windows"',
         "Sec-Fetch-Dest": "document",
         "Sec-Fetch-Mode": "navigate",
         "Sec-Fetch-Site": "none",
         "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
         "Referer": "https://www.google.com/",
     }
 
@@ -104,15 +109,18 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "no_playlist": True,
         "geo_bypass": True,
         "noproxy": True,
+        # Advanced Bypass: Impersonate standard browser TLS fingerprint
+        "impersonate": "chrome-110:windows-10",
         "extractor_args": {
             "youtube": {
-                "player_client": ["android", "ios", "tv", "web_creator"], # Expanded clients for better bypass
+                # Focusing on mobile and TV clients which are less restrictive
+                "player_client": ["mweb", "tv", "ios", "android"],
                 "player_skip": ["webpage", "configs"],
             }
         },
-        "youtube_include_dash_manifest": True,
+        "youtube_include_dash_manifest": False, # Often triggers 403s on specific streams
         "youtube_include_hls_manifest": True,
-        "check_formats": "selected", # Skip DRM/broken formats
+        "check_formats": "selected",
         "socket_timeout": 60,
         "concurrent_fragment_downloads": 5,
         "file_access_retries": 10,
@@ -304,112 +312,97 @@ async def download_video(
     
     loop = asyncio.get_event_loop()
     
-    def do_download():
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    async def do_download(client_cycle_index=0):
+        clients = [
+            ["mweb", "tv"],      # Primary: Web mobile & Big Screen
+            ["ios", "android"],  # Secondary: Mobile Apps
+            ["tv", "web_creator"], 
+            ["android", "mweb"]
+        ]
+        
+        current_clients = clients[client_cycle_index % len(clients)]
+        current_ydl_opts = ydl_opts.copy()
+        current_ydl_opts["extractor_args"] = {
+            "youtube": {
+                "player_client": current_clients,
+                "player_skip": ["webpage", "configs"],
+            }
+        }
+        
+        with yt_dlp.YoutubeDL(current_ydl_opts) as ydl:
             return ydl.extract_info(url, download=True)
     
+    max_retries = 3
+    last_error = ""
+    
     try:
-        print(f"DEBUG: Starting download for URL: {url} (Format: {format_type}, Quality: {quality})")
-        info = await loop.run_in_executor(None, do_download)
-        
-        if info is None:
-            print("DEBUG: ydl.extract_info returned None (no metadata extracted)")
-            return DownloadResult(
-                success=False,
-                message="Metadata extraction failed. This video might be restricted or blocked by YouTube's advanced bot detection."
-            )
-            
-        # Build the expected filename or find the actual one
-        video_id = info.get('id', 'unknown')
-        print(f"DEBUG: Successfully extracted info for ID: {video_id}")
-        
-        # Look for the file in the downloads directory
-        filepath = None
-        for file in DOWNLOADS_DIR.iterdir():
-            if video_id in file.name:
-                filepath = file
-                break
-        
-        if not filepath:
-            # Fallback to the requested filename from info
-            ext = info.get('ext', 'mp4')
-            requested_file = DOWNLOADS_DIR / f"{info.get('title', 'video')}_{video_id}.{ext}"
-            if requested_file.exists():
-                filepath = requested_file
-        
-        if not filepath:
-            print(f"DEBUG: Completed info extraction but could not find file on disk. ID: {video_id}")
-            return DownloadResult(
-                success=False,
-                message="Download completed but file could not be located on server. Please try again."
-            )
-        
-        print(f"DEBUG: Download successful. File: {filepath.name}")
-        return DownloadResult(
-            success=True,
-            message=f"Successfully downloaded from {platform}",
-            filename=filepath.name,
-            filepath=str(filepath.absolute()),
-            title=info.get('title'),
-            duration=info.get('duration'),
-            filesize=filepath.stat().st_size if filepath.exists() else None,
-            thumbnail=info.get('thumbnail')
-        )
-        
-    except yt_dlp.DownloadError as e:
-        error_msg = str(e)
-        print(f"YTDLP DOWNLOAD ERROR: {error_msg}")
-        
-        if "'NoneType' object has no attribute 'get'" in error_msg:
-             return DownloadResult(success=False, message="YouTube is blocking this specific stream format. Try a different video or lower quality.")
-        
-        # Provide user-friendly error messages
-        if "Private video" in error_msg:
-            return DownloadResult(success=False, message="This video is private and cannot be downloaded.")
-        elif "Video unavailable" in error_msg:
-            return DownloadResult(success=False, message="This video is no longer available.")
-        elif "Sign in" in error_msg.lower():
-            return DownloadResult(success=False, message="Age-restricted or members-only video. Login required (not supported).")
-        elif "copyright" in error_msg.lower():
-            return DownloadResult(success=False, message="Copyright restriction detected - download blocked.")
-        elif "age" in error_msg.lower():
-            return DownloadResult(success=False, message="This video is age-restricted.")
-        elif "geo" in error_msg.lower() or "country" in error_msg.lower():
-            return DownloadResult(success=False, message="This content is not available in your region.")
-        elif "429" in error_msg or "rate" in error_msg.lower():
-            return DownloadResult(success=False, message="YouTube rate limit hit. Try again in a few minutes.")
-        elif "403" in error_msg or "Forbidden" in error_msg:
-            return DownloadResult(success=False, message="Access denied by YouTube's security system. Try again later.")
-        elif "connection" in error_msg.lower() or "timeout" in error_msg.lower():
-             return DownloadResult(success=False, message="Network timeout. YouTube's servers are slow or blocking the request.")
-        elif "sign in" in error_msg.lower() or "cookies" in error_msg.lower():
-            return DownloadResult(success=False, message="Access Restricted: YouTube is requiring a browser session or cookies to verify your connection. Please try a different video.")
-        else:
-            # Prevent raw wiki links from appearing in the UI
-            clean_msg = error_msg.split(':')[-1].strip() if ':' in error_msg else error_msg[:60]
-            if "github.com" in clean_msg:
-                 clean_msg = "Regional or access restriction detected by the platform provider."
-            return DownloadResult(success=False, message=f"Platform Error: {clean_msg}")
-            
+        for attempt in range(max_retries + 1):
+            try:
+                print(f"DEBUG: Attempt {attempt + 1} for URL: {url} (Client Cycle: {attempt})")
+                info = await loop.run_in_executor(None, do_download, attempt)
+                
+                if info is None:
+                    if attempt < max_retries: continue
+                    return DownloadResult(
+                        success=False,
+                        message="Metadata extraction failed. YouTube's security system is blocking the connection."
+                    )
+                
+                # If we reach here, download was successful
+                video_id = info.get('id', 'unknown')
+                filepath = None
+                for file in DOWNLOADS_DIR.iterdir():
+                    if video_id in file.name:
+                        filepath = file
+                        break
+                
+                if not filepath:
+                    ext = info.get('ext', 'mp4')
+                    requested_file = DOWNLOADS_DIR / f"{info.get('title', 'video')}_{video_id}.{ext}"
+                    if requested_file.exists():
+                        filepath = requested_file
+                
+                if not filepath:
+                    return DownloadResult(success=False, message="Download succeeded but file not found on disk.")
+                
+                return DownloadResult(
+                    success=True,
+                    message=f"Successfully downloaded from {platform}",
+                    filename=filepath.name,
+                    filepath=str(filepath.absolute()),
+                    title=info.get('title'),
+                    duration=info.get('duration'),
+                    filesize=filepath.stat().st_size if filepath.exists() else None,
+                    thumbnail=info.get('thumbnail')
+                )
+                
+            except Exception as e:
+                last_error = str(e)
+                print(f"YTDLP ATTEMPT {attempt + 1} FAILED: {last_error}")
+                
+                if any(x in last_error.lower() for x in ["copyright", "private", "unavailable"]):
+                    break
+                    
+                if attempt < max_retries:
+                    print(f"DEBUG: Retrying with different player client...")
+                    await asyncio.sleep(1)
+                    continue
+                
+                # Exhausted retries
+                error_msg = last_error
+                if "sign in" in error_msg.lower() or "cookies" in error_msg.lower() or "403" in error_msg:
+                     return DownloadResult(
+                        success=False, 
+                        message="YouTube Access Restricted: This video requires an active session. I've attempted 4 different bypass protocols, but YouTube is currently mandating a browser-based cookie authentication for your IP."
+                    )
+                
+                return DownloadResult(success=False, message=f"Download Error: {error_msg.split(':')[0]}")
+    
     except asyncio.TimeoutError:
-        print("ASYNCIO TIMEOUT ERROR")
         return DownloadResult(success=False, message="The request timed out. Please try again.")
-
     except Exception as e:
-        error_type = type(e).__name__
-        error_val = str(e)
-        print(f"CRITICAL DOWNLOAD ERROR: {error_type} -> {error_val}")
-        
-        if "'NoneType' object has no attribute 'get'" in error_val:
-            return DownloadResult(success=False, message="YouTube metadata extraction failed. The platform is currently blocking this request.")
-        
-        friendly_msg = "A connection error occurred. YouTube might be blocking the request."
-        if "SSL" in error_val:
-            friendly_msg = "SSL Certificate error. Our security handshake with YouTube was interrupted."
-        elif "Connection" in error_val or "Remote end closed" in error_val:
-            friendly_msg = "Connection was interrupted by the remote server. Please try again."
-            
-        return DownloadResult(success=False, message=friendly_msg)
+        print(f"CRITICAL DOWNLOAD ERROR: {str(e)}")
+        return DownloadResult(success=False, message="A connection error occurred. YouTube might be blocking the request.")
 
 
 async def download_audio_only(url: str) -> DownloadResult:

@@ -35,6 +35,7 @@
 
     --blur-glass: blur(20px);
     --shadow-premium: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+    --ease-out: cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 /* --- Global Reset & Base --- */
@@ -284,6 +285,7 @@ nav.nav-glass {
     position: relative;
     overflow: hidden;
     backdrop-filter: var(--blur-glass);
+    will-change: transform, box-shadow;
 }
 
 .bento-unit::before {
@@ -417,6 +419,13 @@ nav.nav-glass {
     padding: 40px;
     border-radius: var(--radius-md);
     text-align: left;
+    transition: 0.3s var(--ease-out);
+}
+
+.seo-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-primary);
+    transform: translateY(-5px);
 }
 
 /* --- Footer --- */
