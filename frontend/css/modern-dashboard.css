@@ -60,6 +60,17 @@ body {
     min-height: 100vh;
 }
 
+/* --- Global Link Refinement --- */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: 0.3s var(--ease-out);
+}
+
+a:hover {
+    color: var(--accent-primary);
+}
+
 /* --- Dynamic Cosmos Background --- */
 .cosmos-bg {
     position: fixed;

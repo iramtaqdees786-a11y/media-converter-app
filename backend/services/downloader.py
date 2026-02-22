@@ -312,7 +312,7 @@ async def download_video(
     
     loop = asyncio.get_event_loop()
     
-    async def do_download(client_cycle_index=0):
+    def do_download(client_cycle_index=0):
         clients = [
             ["mweb", "tv"],      # Primary: Web mobile & Big Screen
             ["ios", "android"],  # Secondary: Mobile Apps
