@@ -136,16 +136,43 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
     return opts
 
 
+def normalize_url(url: str) -> str:
+    """
+    Format social media URLs for maximum compatibility with yt-dlp.
+    Converts Shorts, mobile, and alternative domain links to standard formats.
+    """
+    url = url.strip()
+    
+    # YouTube Shorts -> Standard Watch URL
+    # Format: youtube.com/shorts/VIDEO_ID
+    shorts_match = re.search(r'youtube\.com/shorts/([a-zA-Z0-9_-]+)', url)
+    if shorts_match:
+        video_id = shorts_match.group(1)
+        return f"https://www.youtube.com/watch?v={video_id}"
+    
+    # youtu.be/VIDEO_ID -> youtube.com/watch?v=VIDEO_ID
+    be_match = re.search(r'youtu\.be/([a-zA-Z0-9_-]+)', url)
+    if be_match:
+        video_id = be_match.group(1)
+        return f"https://www.youtube.com/watch?v={video_id}"
+    
+    # X.com -> Twitter.com (Some backend extractors still prefer the legacy domain)
+    if "x.com" in url.lower():
+        url = re.sub(r'x\.com', 'twitter.com', url, flags=re.IGNORECASE)
+        
+    # Instagram Reels -> Direct Post URL (Often bypassed cleaner)
+    if "instagram.com/reels/" in url.lower():
+        url = re.sub(r'/reels/', '/p/', url, flags=re.IGNORECASE)
+        
+    # TikTok mobile links - Ensure HTTPS
+    if "tiktok.com" in url.lower() and not url.lower().startswith("http"):
+        url = "https://" + url
+        
+    return url
+
+
 def detect_platform(url: str) -> Optional[str]:
-    """
-    Detect the platform from a URL.
-    
-    Args:
-        url: The URL to analyze
-    
-    Returns:
-        Platform name or None if not supported
-    """
+    """Detect the platform from a URL."""
     patterns = {
         'youtube': r'(youtube\.com|youtu\.be|youtube\.com/shorts)',
         'tiktok': r'(tiktok\.com|vm\.tiktok\.com)',
@@ -153,11 +180,9 @@ def detect_platform(url: str) -> Optional[str]:
         'twitter': r'(twitter\.com|x\.com)',
         'facebook': r'(facebook\.com|fb\.watch)'
     }
-    
     for platform, pattern in patterns.items():
         if re.search(pattern, url, re.IGNORECASE):
             return platform
-    
     return None
 
 
@@ -204,6 +229,7 @@ async def get_video_info(url: str) -> Dict[str, Any]:
     Returns:
         Dictionary with video information
     """
+    url = normalize_url(url)
     ydl_opts = _base_ydl_options(url)
     ydl_opts.update({
         'extract_flat': False,
@@ -248,7 +274,8 @@ async def download_video(
     Returns:
         DownloadResult with download status and file info
     """
-    # Validate URL
+    # Normalize and Validate URL
+    url = normalize_url(url)
     is_valid, result = validate_url(url)
     if not is_valid:
         return DownloadResult(success=False, message=result)
