@@ -216,18 +216,19 @@ body {
 .btn-premium {
     width: 100%;
     padding: 20px;
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-md);
     border: none;
-    font-weight: 800;
+    font-weight: 850;
     font-size: 1.1rem;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s;
-    background: #fff;
-    color: #000;
+    letter-spacing: 2px;
+    transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: #fff;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
 }
 
 .btn-premium::after {
