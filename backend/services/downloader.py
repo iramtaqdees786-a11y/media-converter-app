@@ -109,19 +109,16 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "no_playlist": True,
         "geo_bypass": True,
         "noproxy": True,
-        # Advanced Bypass: JS Runtime support
+        # Advanced Bypass: JS Runtime support (Node.js available on Windows)
         "js_runtimes": {"node": {}},
-        # NEW: Impersonate Chrome to bypass basic bot detection
-        "impersonate": "chrome-110",
         "extractor_args": {
             "youtube": {
-                # Expanded client list for ultra-resilience
-                "player_client": ["mweb", "tv", "ios", "android", "web", "android_vr", "web_embedded"],
+                # Focusing on mobile and TV clients which are less restrictive
+                "player_client": ["mweb", "tv", "ios", "android"],
                 "player_skip": ["webpage", "configs"],
-                "include_live_dash": False,
             }
         },
-        "youtube_include_dash_manifest": False, 
+        "youtube_include_dash_manifest": False, # Often triggers 403s on specific streams
         "youtube_include_hls_manifest": True,
         "check_formats": "selected",
         "socket_timeout": 60,
@@ -134,13 +131,7 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         print(f"DEBUG: Using cookie file at {cookiefile}")
         opts["cookiefile"] = cookiefile
     else:
-        # Fallback to browser cookies if running on localhost/Windows
-        # This is extremely effective for local environments
-        try:
-            opts["cookiesfrombrowser"] = ("chrome",)
-            print("DEBUG: No cookies.txt, using Chrome browser cookies fallback.")
-        except:
-            print("DEBUG: No cookies.txt and browser cookies fallback failed.")
+        print("DEBUG: No cookies.txt found. YouTube downloads may fail if IP is flagged.")
 
     return opts
 
