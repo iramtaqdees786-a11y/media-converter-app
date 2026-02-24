@@ -10,13 +10,32 @@
     <link rel="stylesheet" href="/css/seo-optimized.css?v=4.0">
 
     <style>
-        a { transition: all 0.3s ease; }
-        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
-        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
-        footer a { opacity: 0.7; text-decoration: none !important; }
-        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+        a {
+            transition: all 0.3s ease;
+        }
+
+        .seo-content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .seo-content a:hover {
+            border-bottom: 1px solid var(--accent-primary);
+            opacity: 0.8;
+        }
+
+        footer a {
+            opacity: 0.7;
+            text-decoration: none !important;
+        }
+
+        footer a:hover {
+            opacity: 1;
+            color: var(--accent-primary) !important;
+        }
     </style>
-    
+
 </head>
 
 <body>
@@ -34,7 +53,7 @@
     <header class="hero">
         <div class="container">
             <h1>Video Downloader</h1>
-            <p>Save high-resolution media from YouTube, TikTok, and more instantly.</p>
+            <p>Save high-resolution media from YouTube, YouTube Shorts, TikTok, and more instantly.</p>
         </div>
     </header>
 
@@ -43,7 +62,8 @@
             <div class="shine-overlay"></div>
             <h2>⬇️ Paste Stream Link</h2>
             <div class="input-group">
-                <input type="text" id="video-url" class="text-input" placeholder="https://youtube.com/watch?v=...">
+                <input type="text" id="video-url" class="text-input"
+                    placeholder="Paste link: youtube.com/watch?v=... or youtube.com/shorts/...">
             </div>
             <div class="select-flex">
                 <select id="dl-quality" class="select-premium">
@@ -69,7 +89,7 @@
         </div>
     </main>
 
-            <footer class="footer-clean">
+    <footer class="footer-clean">
         <div class="footer-links">
             <a href="/all-tools">All Tools</a>
             <a href="/media-hub">Media Hub</a>
@@ -123,7 +143,7 @@
                     resetDl();
                 }
             } catch (e) {
-                alert('Connection Error');
+                alert('Connection Error. Please check your internet connection and try again.');
                 resetDl();
             }
         };

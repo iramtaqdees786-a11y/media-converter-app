@@ -109,16 +109,17 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "no_playlist": True,
         "geo_bypass": True,
         "noproxy": True,
-        # Advanced Bypass: JS Runtime support (Node.js available on Windows)
-        "js_runtimes": {"node": {}},
+        # JavaScript runtime for YouTube challenge solving (required for yt-dlp 2026+)
+        "js_runtimes": {"node": {}, "deno": {}},
+        # Remote EJS components for YouTube n-parameter challenge solving
+        "remote_components": ["ejs:github"],
         "extractor_args": {
             "youtube": {
-                # Focusing on mobile and TV clients which are less restrictive
+                # Use multiple clients for maximum compatibility (Shorts + regular videos)
                 "player_client": ["mweb", "tv", "ios", "android"],
-                "player_skip": ["webpage", "configs"],
             }
         },
-        "youtube_include_dash_manifest": False, # Often triggers 403s on specific streams
+        "youtube_include_dash_manifest": False,  # Often triggers 403s on specific streams
         "youtube_include_hls_manifest": True,
         "check_formats": "selected",
         "socket_timeout": 60,
@@ -139,16 +140,17 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
 def normalize_url(url: str) -> str:
     """
     Format social media URLs for maximum compatibility with yt-dlp.
-    Converts Shorts, mobile, and alternative domain links to standard formats.
+    Normalizes mobile, short-link, and alternative domain links.
+    NOTE: YouTube Shorts URLs are kept as-is — yt-dlp handles them natively
+    and converting to watch?v= can cause 'Video unavailable' errors.
     """
     url = url.strip()
     
-    # YouTube Shorts -> Standard Watch URL
-    # Format: youtube.com/shorts/VIDEO_ID
-    shorts_match = re.search(r'youtube\.com/shorts/([a-zA-Z0-9_-]+)', url)
+    # YouTube Shorts — keep as native /shorts/ URL for yt-dlp
+    # Only strip tracking params like ?feature=share, ?si=xxx etc.
+    shorts_match = re.search(r'(https?://(?:www\.|m\.)?youtube\.com/shorts/[a-zA-Z0-9_-]+)', url)
     if shorts_match:
-        video_id = shorts_match.group(1)
-        return f"https://www.youtube.com/watch?v={video_id}"
+        return shorts_match.group(1)
     
     # youtu.be/VIDEO_ID -> youtube.com/watch?v=VIDEO_ID
     be_match = re.search(r'youtu\.be/([a-zA-Z0-9_-]+)', url)
@@ -341,10 +343,11 @@ async def download_video(
     
     def do_download(client_cycle_index=0):
         clients = [
-            ["ios", "android"],  # Primary: Mobile Apps (Most resilient)
-            ["mweb", "tv"],      # Secondary: Web mobile & Big Screen
+            ["ios", "android"],    # Primary: Mobile Apps (Most resilient)
+            ["mweb", "tv"],        # Secondary: Web mobile & Big Screen
             ["tv", "web_creator"], 
-            ["android", "mweb"]
+            ["android", "mweb"],
+            ["default"],           # Fallback: let yt-dlp choose
         ]
         
         current_clients = clients[client_cycle_index % len(clients)]
@@ -352,7 +355,6 @@ async def download_video(
         current_ydl_opts["extractor_args"] = {
             "youtube": {
                 "player_client": current_clients,
-                "player_skip": ["webpage", "configs"],
             }
         }
         
