@@ -341,14 +341,29 @@ async def download_video(
     
     loop = asyncio.get_event_loop()
     
-    def do_download(client_cycle_index=0):
-        clients = [
-            ["ios", "android"],    # Primary: Mobile Apps (Most resilient)
-            ["mweb", "tv"],        # Secondary: Web mobile & Big Screen
-            ["tv", "web_creator"], 
-            ["android", "mweb"],
-            ["default"],           # Fallback: let yt-dlp choose
-        ]
+    # Detect if this is a YouTube Shorts URL for optimized strategy
+    is_shorts = '/shorts/' in url
+    
+    def do_download(client_cycle_index=0, override_url=None):
+        download_url = override_url or url
+        
+        # Different client strategies for Shorts vs regular videos
+        if is_shorts and override_url is None:
+            clients = [
+                ["default"],             # Best for Shorts: lets yt-dlp auto-detect
+                ["mweb"],                # Mobile web: great for short-form content
+                ["android"],             # Android app client
+                ["ios"],                 # iOS app client
+                ["tv", "mweb"],          # TV + mobile fallback
+            ]
+        else:
+            clients = [
+                ["ios", "android"],      # Primary: Mobile Apps (Most resilient)
+                ["mweb", "tv"],          # Secondary: Web mobile & Big Screen
+                ["tv", "web_creator"],
+                ["android", "mweb"],
+                ["default"],             # Fallback: let yt-dlp choose
+            ]
         
         current_clients = clients[client_cycle_index % len(clients)]
         current_ydl_opts = ydl_opts.copy()
@@ -359,15 +374,32 @@ async def download_video(
         }
         
         with yt_dlp.YoutubeDL(current_ydl_opts) as ydl:
-            return ydl.extract_info(url, download=True)
+            return ydl.extract_info(download_url, download=True)
     
-    max_retries = 3
+    def _find_downloaded_file(info):
+        """Locate the downloaded file on disk."""
+        video_id = info.get('id', 'unknown')
+        filepath = None
+        for file in DOWNLOADS_DIR.iterdir():
+            if video_id in file.name:
+                filepath = file
+                break
+        
+        if not filepath:
+            ext = info.get('ext', 'mp4')
+            requested_file = DOWNLOADS_DIR / f"{info.get('title', 'video')}_{video_id}.{ext}"
+            if requested_file.exists():
+                filepath = requested_file
+        
+        return filepath
+    
+    max_retries = 4
     last_error = ""
     
     try:
         for attempt in range(max_retries + 1):
             try:
-                print(f"DEBUG: Attempt {attempt + 1} for URL: {url} (Client Cycle: {attempt})")
+                print(f"DEBUG: Attempt {attempt + 1} for URL: {url} (Client Cycle: {attempt}, is_shorts={is_shorts})")
                 info = await loop.run_in_executor(None, do_download, attempt)
                 
                 if info is None:
@@ -378,18 +410,7 @@ async def download_video(
                     )
                 
                 # If we reach here, download was successful
-                video_id = info.get('id', 'unknown')
-                filepath = None
-                for file in DOWNLOADS_DIR.iterdir():
-                    if video_id in file.name:
-                        filepath = file
-                        break
-                
-                if not filepath:
-                    ext = info.get('ext', 'mp4')
-                    requested_file = DOWNLOADS_DIR / f"{info.get('title', 'video')}_{video_id}.{ext}"
-                    if requested_file.exists():
-                        filepath = requested_file
+                filepath = _find_downloaded_file(info)
                 
                 if not filepath:
                     return DownloadResult(success=False, message="Download succeeded but file not found on disk.")
@@ -409,23 +430,58 @@ async def download_video(
                 last_error = str(e)
                 print(f"YTDLP ATTEMPT {attempt + 1} FAILED: {last_error}")
                 
-                if any(x in last_error.lower() for x in ["copyright", "private", "unavailable"]):
+                # Only bail immediately on truly permanent errors
+                if any(x in last_error.lower() for x in ["copyright", "private video"]):
                     break
                     
                 if attempt < max_retries:
                     print(f"DEBUG: Retrying with different player client...")
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(1 + attempt)  # Increasing backoff
                     continue
-                
-                # Exhausted retries
-                error_msg = last_error
-                if "sign in" in error_msg.lower() or "cookies" in error_msg.lower() or "403" in error_msg:
-                     return DownloadResult(
-                        success=False, 
-                        message="YouTube Access Restricted: This video requires an active session. I've attempted 4 different bypass protocols, but YouTube is currently mandating a browser-based cookie authentication for your IP."
+        
+        # All normal retries exhausted — try final Shorts fallback
+        # Convert /shorts/ID to /watch?v=ID as a last resort
+        if is_shorts:
+            try:
+                shorts_match = re.search(r'/shorts/([a-zA-Z0-9_-]+)', url)
+                if shorts_match:
+                    fallback_url = f"https://www.youtube.com/watch?v={shorts_match.group(1)}"
+                    print(f"DEBUG: Final fallback — trying watch URL: {fallback_url}")
+                    info = await loop.run_in_executor(
+                        None, lambda: do_download(0, override_url=fallback_url)
                     )
-                
-                return DownloadResult(success=False, message=error_msg.split(':')[0].replace("Download Error", "").strip())
+                    if info:
+                        filepath = _find_downloaded_file(info)
+                        if filepath:
+                            return DownloadResult(
+                                success=True,
+                                message=f"Successfully downloaded from {platform}",
+                                filename=filepath.name,
+                                filepath=str(filepath.absolute()),
+                                title=info.get('title'),
+                                duration=info.get('duration'),
+                                filesize=filepath.stat().st_size if filepath.exists() else None,
+                                thumbnail=info.get('thumbnail')
+                            )
+            except Exception as e:
+                print(f"YTDLP SHORTS FALLBACK FAILED: {str(e)}")
+                last_error = str(e)
+        
+        # Build final error message
+        error_msg = last_error
+        if "sign in" in error_msg.lower() or "cookies" in error_msg.lower() or "403" in error_msg:
+            return DownloadResult(
+                success=False,
+                message="YouTube is restricting this download. This may be due to regional restrictions or YouTube blocking automated access. Please try a different video or try again later."
+            )
+        
+        if "unavailable" in error_msg.lower():
+            return DownloadResult(
+                success=False,
+                message="This video is unavailable. It may have been removed, made private, or is not accessible in your region."
+            )
+        
+        return DownloadResult(success=False, message=error_msg.split(':')[0].replace("Download Error", "").strip())
     
     except asyncio.TimeoutError:
         return DownloadResult(success=False, message="The request timed out. Please try again.")

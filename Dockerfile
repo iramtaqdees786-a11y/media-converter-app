@@ -2,10 +2,15 @@
 # Python 3.11 Slim Image
 FROM python:3.11-slim
 
-# Install system dependencies including FFmpeg and Ghostscript
-# This is crucial for video/audio conversions and advanced PDF tools
+# Install system dependencies including FFmpeg, Ghostscript, and Node.js
+# FFmpeg: video/audio conversions
+# Ghostscript: advanced PDF tools  
+# Node.js: REQUIRED by yt-dlp 2026+ for YouTube JS challenge solving (Shorts + many videos)
+# curl + ca-certificates: needed to fetch NodeSource setup script
 RUN apt-get update && \
-    apt-get install -y ffmpeg ghostscript && \
+    apt-get install -y ffmpeg ghostscript curl ca-certificates && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
