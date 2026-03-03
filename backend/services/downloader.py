@@ -146,6 +146,10 @@ def normalize_url(url: str) -> str:
     """
     url = url.strip()
     
+    # Ensure URL has protocol to easily pass regex validation
+    if not url.lower().startswith("http"):
+        url = "https://" + url
+    
     # YouTube Shorts -> Standard Watch URL (MANDATORY for server compatibility)
     # Handles: youtube.com/shorts/ID, m.youtube.com/shorts/ID, www.youtube.com/shorts/ID
     # Also handles query params like ?feature=share, ?si=xxx
@@ -202,6 +206,9 @@ def validate_url(url: str) -> tuple[bool, str]:
     """
     if not url or not url.strip():
         return False, "URL cannot be empty"
+        
+    # Normalize before validation to ensure protocol exists
+    url = normalize_url(url)
     
     # Basic URL validation
     url_pattern = re.compile(
@@ -364,21 +371,27 @@ async def download_video(
             return ydl.extract_info(url, download=True)
     
     def _find_downloaded_file(info):
-        """Locate the downloaded file on disk."""
+        """Locate the downloaded file on disk accurately."""
         video_id = info.get('id', 'unknown')
-        filepath = None
+        requested_ext = info.get('ext')
+        if not requested_ext:
+            requested_ext = 'mp4' if format_type != 'audio' else 'mp3'
+            
+        matches = []
         for file in DOWNLOADS_DIR.iterdir():
-            if video_id in file.name:
-                filepath = file
-                break
+            if file.is_file() and video_id in file.name and file.name.endswith(requested_ext):
+                matches.append(file)
         
-        if not filepath:
-            ext = info.get('ext', 'mp4')
-            requested_file = DOWNLOADS_DIR / f"{info.get('title', 'video')}_{video_id}.{ext}"
-            if requested_file.exists():
-                filepath = requested_file
-        
-        return filepath
+        if not matches:
+            # Fallback for some yt-dlp edge cases or conversions
+            for file in DOWNLOADS_DIR.iterdir():
+                if file.is_file() and video_id in file.name:
+                    matches.append(file)
+                    
+        if matches:
+            # Return the most recently modified file
+            return max(matches, key=lambda p: p.stat().st_mtime)
+        return None
     
     max_retries = 4
     last_error = ""
