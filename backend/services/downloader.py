@@ -140,17 +140,19 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
 def normalize_url(url: str) -> str:
     """
     Format social media URLs for maximum compatibility with yt-dlp.
-    Normalizes mobile, short-link, and alternative domain links.
-    NOTE: YouTube Shorts URLs are kept as-is — yt-dlp handles them natively
-    and converting to watch?v= can cause 'Video unavailable' errors.
+    CRITICAL: YouTube Shorts are ALWAYS converted to standard watch?v= format
+    because the deployed server handles watch URLs reliably but /shorts/ URLs
+    trigger YouTube access restrictions.
     """
     url = url.strip()
     
-    # YouTube Shorts — keep as native /shorts/ URL for yt-dlp
-    # Only strip tracking params like ?feature=share, ?si=xxx etc.
-    shorts_match = re.search(r'(https?://(?:www\.|m\.)?youtube\.com/shorts/[a-zA-Z0-9_-]+)', url)
+    # YouTube Shorts -> Standard Watch URL (MANDATORY for server compatibility)
+    # Handles: youtube.com/shorts/ID, m.youtube.com/shorts/ID, www.youtube.com/shorts/ID
+    # Also handles query params like ?feature=share, ?si=xxx
+    shorts_match = re.search(r'(?:www\.|m\.)?youtube\.com/shorts/([a-zA-Z0-9_-]+)', url)
     if shorts_match:
-        return shorts_match.group(1)
+        video_id = shorts_match.group(1)
+        return f"https://www.youtube.com/watch?v={video_id}"
     
     # youtu.be/VIDEO_ID -> youtube.com/watch?v=VIDEO_ID
     be_match = re.search(r'youtu\.be/([a-zA-Z0-9_-]+)', url)
@@ -341,29 +343,14 @@ async def download_video(
     
     loop = asyncio.get_event_loop()
     
-    # Detect if this is a YouTube Shorts URL for optimized strategy
-    is_shorts = '/shorts/' in url
-    
-    def do_download(client_cycle_index=0, override_url=None):
-        download_url = override_url or url
-        
-        # Different client strategies for Shorts vs regular videos
-        if is_shorts and override_url is None:
-            clients = [
-                ["default"],             # Best for Shorts: lets yt-dlp auto-detect
-                ["mweb"],                # Mobile web: great for short-form content
-                ["android"],             # Android app client
-                ["ios"],                 # iOS app client
-                ["tv", "mweb"],          # TV + mobile fallback
-            ]
-        else:
-            clients = [
-                ["ios", "android"],      # Primary: Mobile Apps (Most resilient)
-                ["mweb", "tv"],          # Secondary: Web mobile & Big Screen
-                ["tv", "web_creator"],
-                ["android", "mweb"],
-                ["default"],             # Fallback: let yt-dlp choose
-            ]
+    def do_download(client_cycle_index=0):
+        clients = [
+            ["ios", "android"],      # Primary: Mobile Apps (Most resilient)
+            ["mweb", "tv"],          # Secondary: Web mobile & Big Screen
+            ["tv", "web_creator"],
+            ["android", "mweb"],
+            ["default"],             # Fallback: let yt-dlp choose
+        ]
         
         current_clients = clients[client_cycle_index % len(clients)]
         current_ydl_opts = ydl_opts.copy()
@@ -374,7 +361,7 @@ async def download_video(
         }
         
         with yt_dlp.YoutubeDL(current_ydl_opts) as ydl:
-            return ydl.extract_info(download_url, download=True)
+            return ydl.extract_info(url, download=True)
     
     def _find_downloaded_file(info):
         """Locate the downloaded file on disk."""
@@ -399,7 +386,7 @@ async def download_video(
     try:
         for attempt in range(max_retries + 1):
             try:
-                print(f"DEBUG: Attempt {attempt + 1} for URL: {url} (Client Cycle: {attempt}, is_shorts={is_shorts})")
+                print(f"DEBUG: Attempt {attempt + 1} for URL: {url} (Client Cycle: {attempt})")
                 info = await loop.run_in_executor(None, do_download, attempt)
                 
                 if info is None:
@@ -438,34 +425,6 @@ async def download_video(
                     print(f"DEBUG: Retrying with different player client...")
                     await asyncio.sleep(1 + attempt)  # Increasing backoff
                     continue
-        
-        # All normal retries exhausted — try final Shorts fallback
-        # Convert /shorts/ID to /watch?v=ID as a last resort
-        if is_shorts:
-            try:
-                shorts_match = re.search(r'/shorts/([a-zA-Z0-9_-]+)', url)
-                if shorts_match:
-                    fallback_url = f"https://www.youtube.com/watch?v={shorts_match.group(1)}"
-                    print(f"DEBUG: Final fallback — trying watch URL: {fallback_url}")
-                    info = await loop.run_in_executor(
-                        None, lambda: do_download(0, override_url=fallback_url)
-                    )
-                    if info:
-                        filepath = _find_downloaded_file(info)
-                        if filepath:
-                            return DownloadResult(
-                                success=True,
-                                message=f"Successfully downloaded from {platform}",
-                                filename=filepath.name,
-                                filepath=str(filepath.absolute()),
-                                title=info.get('title'),
-                                duration=info.get('duration'),
-                                filesize=filepath.stat().st_size if filepath.exists() else None,
-                                thumbnail=info.get('thumbnail')
-                            )
-            except Exception as e:
-                print(f"YTDLP SHORTS FALLBACK FAILED: {str(e)}")
-                last_error = str(e)
         
         # Build final error message
         error_msg = last_error
