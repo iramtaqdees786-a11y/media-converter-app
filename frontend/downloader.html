@@ -39,19 +39,21 @@
 
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "vqfspxq9e7");
     </script>
 </head>
 
 <body>
     <!-- Ko-fi Top Widget -->
-    <div style="display:flex; justify-content:center; margin-top: 10px; margin-bottom: 10px; z-index: 1000; position: relative;">
+    <div
+        style="display:flex; justify-content:center; margin-top: 10px; margin-bottom: 10px; z-index: 1000; position: relative;">
         <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-        <script type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#9a93f5', 'Q5Q81VCPM3');kofiwidget2.draw();</script>
+        <script
+            type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#9a93f5', 'Q5Q81VCPM3'); kofiwidget2.draw();</script>
     </div>
 
     <nav class="nav-premium">
@@ -120,6 +122,8 @@
 
     <script>
         const dlBtn = document.getElementById('download-btn');
+        let progressInterval;
+
         dlBtn.onclick = async () => {
             const url = document.getElementById('video-url').value.trim();
             if (!url) return;
@@ -131,8 +135,22 @@
             const fill = document.getElementById('dl-bar');
 
             if (status) status.innerText = 'Validating link...';
-            fill.style.width = '20%';
-            pct.innerText = '20%';
+
+            // Start smooth fake progress
+            let currentPct = 0;
+            fill.style.width = currentPct + '%';
+            if (pct) pct.innerText = currentPct + '%';
+
+            clearInterval(progressInterval);
+            progressInterval = setInterval(() => {
+                if (currentPct < 90) {
+                    // Slow down as it gets higher
+                    const increment = Math.random() * (90 - currentPct) * 0.1 + 0.5;
+                    currentPct = Math.min(90, currentPct + increment);
+                    fill.style.width = currentPct.toFixed(1) + '%';
+                    if (pct) pct.innerText = Math.floor(currentPct) + '%';
+                }
+            }, 300);
 
             try {
                 // Pre-validate the URL using our info endpoint so we can show friendly errors
@@ -143,6 +161,7 @@
                 });
 
                 const infoData = await infoRes.json();
+                clearInterval(progressInterval);
 
                 if (!infoData.success) {
                     alert('Download Error: ' + (infoData.detail || infoData.message || 'Video is unavailable or private.'));
@@ -152,7 +171,7 @@
 
                 if (status) status.innerText = 'Connecting stream...';
                 fill.style.width = '100%';
-                pct.innerText = '100%';
+                if (pct) pct.innerText = '100%';
 
                 // Build the streaming URL
                 const formatType = document.getElementById('dl-format').value;
@@ -176,30 +195,32 @@
                 }, 1000);
 
             } catch (e) {
+                clearInterval(progressInterval);
                 alert('Connection Error. Please check your internet connection and try again.');
                 resetDl();
             }
         };
 
         function resetDl() {
+            clearInterval(progressInterval);
             dlBtn.disabled = false;
             document.getElementById('dl-progress').classList.remove('active');
             document.getElementById('dl-bar').style.width = '0%';
         }
     </script>
 
-    
+
 
     <!-- Ko-fi Floating Widget -->
     <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
     <script>
-      kofiWidgetOverlay.draw('izyaan', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': 'Support me',
-        'floating-chat.donateButton.background-color': '#794bc4',
-        'floating-chat.donateButton.text-color': '#fff',
-        'floating-chat.donateButton.position': 'Right'
-      });
+        kofiWidgetOverlay.draw('izyaan', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#794bc4',
+            'floating-chat.donateButton.text-color': '#fff',
+            'floating-chat.donateButton.position': 'Right'
+        });
     </script>
 </body>
 
