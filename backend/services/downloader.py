@@ -125,6 +125,7 @@ def _base_ydl_options(url: str) -> Dict[str, Any]:
         "socket_timeout": 60,
         "concurrent_fragment_downloads": 5,
         "file_access_retries": 10,
+        "source_address": "0.0.0.0", # Force IPv4 to prevent YouTube IPv6 blocks
     }
 
     cookiefile = _get_cookiefile()

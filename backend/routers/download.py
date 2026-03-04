@@ -77,7 +77,7 @@ async def stream_download(
     except Exception as e:
         import traceback
         traceback.print_exc()
-        raise HTTPException(status_code=500, detail="An internal server error occurred.")
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 
 @router.post("/info")
