@@ -198,9 +198,15 @@ async def friendly_urls_middleware(request: Request, call_next):
         return RedirectResponse(url=new_path, status_code=308)
 
     if not path.endswith(".html") and not path.split("/")[-1].count(".") and path != "/" and not path.startswith("/api/"):
-        potential_file = FRONTEND_DIR / f"{path.strip('/')}.html"
+        # Handle blog sub-directory
+        if path.startswith("/blog/"):
+            potential_file = FRONTEND_DIR / "blog" / f"{path.split('/')[-1]}.html"
+        else:
+            potential_file = FRONTEND_DIR / f"{path.strip('/')}.html"
+            
         if potential_file.exists():
              return FileResponse(potential_file)
+             
     return await call_next(request)
 
 # Include routers
@@ -515,6 +521,6 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=8000,
-        reload=True,
+        reload=False,
         log_level="info"
     )

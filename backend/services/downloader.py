@@ -267,44 +267,36 @@ async def get_video_info(url: str) -> Dict[str, Any]:
         return {'error': str(e)}
 
 
-async def download_video(
+async def get_video_stream(
     url: str,
     format_type: str = "video",
-    quality: str = "best",
-    progress_callback: Optional[callable] = None
-) -> DownloadResult:
+    quality: str = "best"
+) -> Dict[str, Any]:
     """
-    Download a video from a supported platform.
-    
-    Args:
-        url: Video URL to download
-        format_type: Type of download - 'video' or 'audio'
-        quality: Quality setting - 'best', 'worst', or specific format
-        progress_callback: Optional callback for progress updates
+    Download a video to a temporary directory and prepare it for streaming.
     
     Returns:
-        DownloadResult with download status and file info
+        Dict containing success status, stream generator, and filename.
     """
-    # Normalize and Validate URL
+    import tempfile
+    import uuid
+    import shutil
+    
     url = normalize_url(url)
     is_valid, result = validate_url(url)
     if not is_valid:
-        return DownloadResult(success=False, message=result)
+        return {"success": False, "message": result}
     
-    platform = result
-    progress = DownloadProgress()
-    
-    # Configure yt-dlp options
-    output_template = str(DOWNLOADS_DIR / '%(title)s_%(id)s.%(ext)s')
+    uid = uuid.uuid4().hex[:8]
+    temp_dir = tempfile.gettempdir()
+    output_template = os.path.join(temp_dir, f"{uid}_%(title)s.%(ext)s")
     
     ydl_opts = _base_ydl_options(url)
     ydl_opts.update({
         'outtmpl': output_template,
-        'progress_hooks': [progress.update],
-        'restrictfilenames': True,  # Avoid special characters in filename
+        'restrictfilenames': True,
     })
     
-    # Set format based on type
     if format_type == "audio":
         ydl_opts.update({
             'format': 'bestaudio/best',
@@ -315,161 +307,103 @@ async def download_video(
             }],
         })
     else:
-        # Improved format selection for better YouTube compatibility
         if quality == "best":
-            ydl_opts['format'] = (
-                'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/'
-                'bestvideo[height<=1080]+bestaudio/'
-                'best[height<=1080]/best'
-            )
+            ydl_opts['format'] = 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[height<=1080]/best'
         elif quality == "1080p":
-            ydl_opts['format'] = (
-                'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/'
-                'bestvideo[height<=1080]+bestaudio/'
-                'best[height<=1080]/best'
-            )
+            ydl_opts['format'] = 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[height<=1080]/best'
         elif quality == "720p":
-            ydl_opts['format'] = (
-                'bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/'
-                'bestvideo[height<=720]+bestaudio/'
-                'best[height<=720]/best'
-            )
+            ydl_opts['format'] = 'bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[height<=720]/best'
         elif quality == "480p":
-            ydl_opts['format'] = (
-                'bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/'
-                'bestvideo[height<=480]+bestaudio/'
-                'best[height<=480]/best'
-            )
+            ydl_opts['format'] = 'bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/best[height<=480]/best'
         elif quality == "worst":
             ydl_opts['format'] = 'worstvideo+worstaudio/worst'
         else:
             ydl_opts['format'] = f'{quality}/best'
-        
-        # Ensure output is MP4
         ydl_opts['merge_output_format'] = 'mp4'
-    
+
     loop = asyncio.get_event_loop()
     
     def do_download(client_cycle_index=0):
         clients = [
-            ["ios", "android"],      # Primary: Mobile Apps (Most resilient)
-            ["mweb", "tv"],          # Secondary: Web mobile & Big Screen
+            ["ios", "android"],
+            ["mweb", "tv"],
             ["tv", "web_creator"],
             ["android", "mweb"],
-            ["default"],             # Fallback: let yt-dlp choose
+            ["default"],
         ]
-        
-        current_clients = clients[client_cycle_index % len(clients)]
         current_ydl_opts = ydl_opts.copy()
         current_ydl_opts["extractor_args"] = {
-            "youtube": {
-                "player_client": current_clients,
-            }
+            "youtube": {"player_client": clients[client_cycle_index % len(clients)]}
         }
-        
         with yt_dlp.YoutubeDL(current_ydl_opts) as ydl:
             return ydl.extract_info(url, download=True)
-    
-    def _find_downloaded_file(info):
-        """Locate the downloaded file on disk accurately."""
-        video_id = info.get('id', 'unknown')
-        requested_ext = info.get('ext')
-        if not requested_ext:
-            requested_ext = 'mp4' if format_type != 'audio' else 'mp3'
-            
-        matches = []
-        for file in DOWNLOADS_DIR.iterdir():
-            if file.is_file() and video_id in file.name and file.name.endswith(requested_ext):
-                matches.append(file)
-        
-        if not matches:
-            # Fallback for some yt-dlp edge cases or conversions
-            for file in DOWNLOADS_DIR.iterdir():
-                if file.is_file() and video_id in file.name:
-                    matches.append(file)
-                    
-        if matches:
-            # Return the most recently modified file
-            return max(matches, key=lambda p: p.stat().st_mtime)
-        return None
-    
+
     max_retries = 4
     last_error = ""
+    info = None
     
     try:
         for attempt in range(max_retries + 1):
             try:
-                print(f"DEBUG: Attempt {attempt + 1} for URL: {url} (Client Cycle: {attempt})")
+                print(f"DEBUG: Streaming Attempt {attempt + 1} for URL: {url}")
                 info = await loop.run_in_executor(None, do_download, attempt)
-                
-                if info is None:
-                    if attempt < max_retries: continue
-                    return DownloadResult(
-                        success=False,
-                        message="Metadata extraction failed. YouTube's security system is blocking the connection."
-                    )
-                
-                # If we reach here, download was successful
-                filepath = _find_downloaded_file(info)
-                
-                if not filepath:
-                    return DownloadResult(success=False, message="Download succeeded but file not found on disk.")
-                
-                return DownloadResult(
-                    success=True,
-                    message=f"Successfully downloaded from {platform}",
-                    filename=filepath.name,
-                    filepath=str(filepath.absolute()),
-                    title=info.get('title'),
-                    duration=info.get('duration'),
-                    filesize=filepath.stat().st_size if filepath.exists() else None,
-                    thumbnail=info.get('thumbnail')
-                )
-                
+                if info is not None:
+                    break
             except Exception as e:
                 last_error = str(e)
                 print(f"YTDLP ATTEMPT {attempt + 1} FAILED: {last_error}")
-                
-                # Only bail immediately on truly permanent errors
                 if any(x in last_error.lower() for x in ["copyright", "private video"]):
                     break
-                    
                 if attempt < max_retries:
-                    print(f"DEBUG: Retrying with different player client...")
-                    await asyncio.sleep(1 + attempt)  # Increasing backoff
+                    await asyncio.sleep(1 + attempt)
                     continue
-        
-        # Build final error message
-        error_msg = last_error
-        if "sign in" in error_msg.lower() or "cookies" in error_msg.lower() or "403" in error_msg:
-            return DownloadResult(
-                success=False,
-                message="YouTube is restricting this download. This may be due to regional restrictions or YouTube blocking automated access. Please try a different video or try again later."
-            )
-        
-        if "unavailable" in error_msg.lower():
-            return DownloadResult(
-                success=False,
-                message="This video is unavailable. It may have been removed, made private, or is not accessible in your region."
-            )
-        
-        return DownloadResult(success=False, message=error_msg.split(':')[0].replace("Download Error", "").strip())
-    
+
+        if not info:
+             error_msg = last_error
+             if "sign in" in error_msg.lower() or "cookies" in error_msg.lower() or "403" in error_msg:
+                 return {"success": False, "message": "YouTube is restricting this download. Try again later."}
+             if "unavailable" in error_msg.lower():
+                 return {"success": False, "message": "Video is unavailable or private."}
+             return {"success": False, "message": error_msg.split(':')[0].strip()}
+
+        # Find the downloaded file in temp_dir
+        actual_file_path = None
+        for f in os.listdir(temp_dir):
+            if f.startswith(f"{uid}_"):
+                actual_file_path = os.path.join(temp_dir, f)
+                break
+
+        if not actual_file_path or not os.path.exists(actual_file_path):
+            return {"success": False, "message": "Download succeeded but file not found on disk."}
+
+        filename = os.path.basename(actual_file_path)
+        # Remove the uid prefix for the user-facing filename
+        user_filename = filename.replace(f"{uid}_", "", 1)
+
+        def iterfile():
+            try:
+                with open(actual_file_path, "rb") as f:
+                    # Yield in 1MB chunks
+                    while chunk := f.read(1024 * 1024):
+                        yield chunk
+            finally:
+                # Cleanup the temp file when the generator is exhausted or closed
+                try:
+                    os.unlink(actual_file_path)
+                    print(f"DEBUG: Cleaned up temp file {actual_file_path}")
+                except Exception as e:
+                    print(f"WARNING: Failed to cleanup temp file {actual_file_path}: {e}")
+
+        return {
+            "success": True,
+            "stream_generator": iterfile,
+            "filename": user_filename,
+            "title": info.get('title')
+        }
+
     except asyncio.TimeoutError:
-        return DownloadResult(success=False, message="The request timed out. Please try again.")
+        return {"success": False, "message": "The request timed out. Please try again."}
     except Exception as e:
-        print(f"CRITICAL DOWNLOAD ERROR: {str(e)}")
-        return DownloadResult(success=False, message="A connection error occurred. YouTube might be blocking the request.")
-
-
-async def download_audio_only(url: str) -> DownloadResult:
-    """
-    Download only the audio track from a video.
-    
-    Args:
-        url: Video URL
-    
-    Returns:
-        DownloadResult with download status
-    """
-    return await download_video(url, format_type="audio")
+        import traceback
+        traceback.print_exc()
+        return {"success": False, "message": "A connection error occurred. YouTube might be blocking the request."}

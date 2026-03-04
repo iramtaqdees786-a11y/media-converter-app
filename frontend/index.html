@@ -14,13 +14,41 @@
     <link rel="stylesheet" href="/css/seo-optimized.css?v=4.0">
 
     <style>
-        a { transition: all 0.3s ease; }
-        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
-        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
-        footer a { opacity: 0.7; text-decoration: none !important; }
-        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+        a {
+            transition: all 0.3s ease;
+        }
+
+        .seo-content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .seo-content a:hover {
+            border-bottom: 1px solid var(--accent-primary);
+            opacity: 0.8;
+        }
+
+        footer a {
+            opacity: 0.7;
+            text-decoration: none !important;
+        }
+
+        footer a:hover {
+            opacity: 1;
+            color: var(--accent-primary) !important;
+        }
     </style>
-    
+
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vqfspxq9e7");
+    </script>
 </head>
 
 <body>
@@ -310,7 +338,7 @@
         </section>
     </main>
 
-            <footer class="footer-clean">
+    <footer class="footer-clean">
         <div class="footer-links">
             <a href="/all-tools">All Tools</a>
             <a href="/media-hub">Media Hub</a>
@@ -333,42 +361,57 @@
 
             dlBtn.disabled = true;
             document.getElementById('dl-progress').classList.add('active');
-            const fill = document.getElementById('dl-bar');
-            const pct = document.getElementById('dl-percent');
             const status = document.getElementById('dl-status');
+            const pct = document.getElementById('dl-percent');
+            const fill = document.getElementById('dl-bar');
 
-            let p = 0;
-            const inter = setInterval(() => {
-                p = Math.min(p + 1, 98);
-                fill.style.width = p + '%';
-                pct.innerText = p + '%';
-                status.innerText = 'Analyzing stream...';
-            }, 400);
+            status.innerText = 'Validating link...';
+            fill.style.width = '20%';
+            pct.innerText = '20%';
 
             try {
-                const res = await fetch('/api/download/start', {
+                // Pre-validate the URL using our info endpoint so we can show friendly errors
+                const infoRes = await fetch('/api/download/info', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        url: url,
-                        format_type: document.getElementById('dl-format').value,
-                        quality: document.getElementById('dl-quality').value
-                    })
+                    body: JSON.stringify({ url: url })
                 });
-                const data = await res.json();
-                clearInterval(inter);
 
-                if (data.success) {
-                    fill.style.width = '100%';
-                    pct.innerText = '100%';
-                    status.innerText = 'Complete!';
-                    window.location.href = data.download_url;
-                } else {
-                    alert('Download Error: ' + data.message);
+                const infoData = await infoRes.json();
+
+                if (!infoData.success) {
+                    alert('Download Error: ' + (infoData.detail || infoData.message || 'Video is unavailable or private.'));
                     resetDl();
+                    return;
                 }
+
+                status.innerText = 'Connecting stream...';
+                fill.style.width = '100%';
+                pct.innerText = '100%';
+
+                // Build the streaming URL
+                const formatType = document.getElementById('dl-format').value;
+                const quality = document.getElementById('dl-quality').value;
+                const streamUrl = `/api/download/stream?url=${encodeURIComponent(url)}&format_type=${formatType}&quality=${quality}`;
+
+                // Trigger native browser download directly
+                status.innerText = 'Downloading via browser...';
+
+                // Use an invisible anchor tag to trigger the stream (prevents the current page from unloading if errors occur on the stream)
+                const link = document.createElement('a');
+                link.href = streamUrl;
+                link.download = '';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                setTimeout(() => {
+                    status.innerText = 'Download started!';
+                    setTimeout(resetDl, 3000);
+                }, 1000);
+
             } catch (e) {
-                alert('Fatal Connection Error');
+                alert('Connection Error. Please try again.');
                 resetDl();
             }
         };
@@ -480,6 +523,19 @@
             document.getElementById('convert-bar').style.width = '0%';
         }
     </script>
+
+    <!-- Ko-fi Widgets -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('izyaan', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#794bc4',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+    <script type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#9a93f5', 'Q5Q81VCPM3');kofiwidget2.draw();</script>
 </body>
 
 </html>

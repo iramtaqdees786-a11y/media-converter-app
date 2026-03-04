@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: convertrocket
+    env: docker
+    region: ohio
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 10000

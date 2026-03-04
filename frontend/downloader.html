@@ -36,6 +36,15 @@
         }
     </style>
 
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vqfspxq9e7");
+    </script>
 </head>
 
 <body>
@@ -111,37 +120,55 @@
 
             dlBtn.disabled = true;
             document.getElementById('dl-progress').classList.add('active');
-            const fill = document.getElementById('dl-bar');
+            const status = document.getElementById('dl-status');
             const pct = document.getElementById('dl-percent');
+            const fill = document.getElementById('dl-bar');
 
-            let p = 0;
-            const inter = setInterval(() => {
-                p = Math.min(p + 1, 98);
-                fill.style.width = p + '%';
-                pct.innerText = p + '%';
-            }, 300);
+            if (status) status.innerText = 'Validating link...';
+            fill.style.width = '20%';
+            pct.innerText = '20%';
 
             try {
-                const res = await fetch('/api/download/start', {
+                // Pre-validate the URL using our info endpoint so we can show friendly errors
+                const infoRes = await fetch('/api/download/info', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        url: url,
-                        format_type: document.getElementById('dl-format').value,
-                        quality: document.getElementById('dl-quality').value
-                    })
+                    body: JSON.stringify({ url: url })
                 });
-                const data = await res.json();
-                clearInterval(inter);
 
-                if (data.success) {
-                    fill.style.width = '100%';
-                    pct.innerText = '100%';
-                    window.location.href = data.download_url;
-                } else {
-                    alert('Download Error: ' + data.message);
+                const infoData = await infoRes.json();
+
+                if (!infoData.success) {
+                    alert('Download Error: ' + (infoData.detail || infoData.message || 'Video is unavailable or private.'));
                     resetDl();
+                    return;
                 }
+
+                if (status) status.innerText = 'Connecting stream...';
+                fill.style.width = '100%';
+                pct.innerText = '100%';
+
+                // Build the streaming URL
+                const formatType = document.getElementById('dl-format').value;
+                const quality = document.getElementById('dl-quality').value;
+                const streamUrl = `/api/download/stream?url=${encodeURIComponent(url)}&format_type=${formatType}&quality=${quality}`;
+
+                // Trigger native browser download directly
+                if (status) status.innerText = 'Downloading via browser...';
+
+                // Use an invisible anchor tag to trigger the stream
+                const link = document.createElement('a');
+                link.href = streamUrl;
+                link.download = '';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                setTimeout(() => {
+                    if (status) status.innerText = 'Download started!';
+                    setTimeout(resetDl, 3000);
+                }, 1000);
+
             } catch (e) {
                 alert('Connection Error. Please check your internet connection and try again.');
                 resetDl();
@@ -154,6 +181,19 @@
             document.getElementById('dl-bar').style.width = '0%';
         }
     </script>
+
+    <!-- Ko-fi Widgets -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('izyaan', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#794bc4',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+    <script type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#9a93f5', 'Q5Q81VCPM3');kofiwidget2.draw();</script>
 </body>
 
 </html>
