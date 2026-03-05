@@ -5,29 +5,34 @@ import re
 frontend_dir = r'c:\Users\Lenovo-T470-0027\.gemini\antigravity\scratch\media-converter-app\frontend'
 html_files = glob.glob(os.path.join(frontend_dir, '**/*.html'), recursive=True)
 
-# Ko-fi Floating Widget with Custom Hover Content (Rocket Loader bypass)
+# Ko-fi Floating Widget with Interactive Context Box (Rocket Loader bypass)
 floating_widget_code = """
     <!-- Ko-fi Floating Widget -->
     <style>
-      /* Custom Hover Content Box for the Tip Widget */
+      /* Custom Interactive Box for the Tip Widget */
       .kofi-hover-box {
         position: fixed;
         bottom: 90px;
         right: 20px;
         background: #fff;
         color: #333;
-        padding: 12px 16px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
         font-family: 'Inter', sans-serif;
-        font-size: 0.85rem;
-        max-width: 200px;
+        font-size: 0.9rem;
+        max-width: 240px;
         z-index: 10000;
         opacity: 0;
         transform: translateY(10px);
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         pointer-events: none;
-        border: 1px solid rgba(121, 75, 196, 0.2);
+        border: 1px solid rgba(121, 75, 196, 0.15);
+      }
+      .kofi-hover-box.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
       }
       .kofi-hover-box::after {
         content: '';
@@ -38,11 +43,28 @@ floating_widget_code = """
         border-right: 8px solid transparent;
         border-top: 8px solid #fff;
       }
+      .kofi-hover-box strong { color: #794bc4; display: block; margin-bottom: 4px; }
+      .kofi-btn-mini {
+          display: inline-block;
+          margin-top: 10px;
+          background: #794bc4;
+          color: #fff !important;
+          padding: 6px 12px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 0.8rem;
+          transition: transform 0.2s;
+      }
+      .kofi-btn-mini:hover { transform: scale(1.05); }
+      
       /* Trigger hover on the Ko-fi container */
       .floatingchat-container:hover ~ .kofi-hover-box,
-      .kofichat-container:hover ~ .kofi-hover-box {
-        opacity: 1;
-        transform: translateY(0);
+      .kofichat-container:hover ~ .kofi-hover-box,
+      .kofi-hover-box:hover {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
       }
     </style>
     <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
@@ -57,13 +79,13 @@ floating_widget_code = """
             'floating-chat.donateButton.position': 'Right'
           });
           
-          // Add the hover box once drawn
+          // Add the interactive box once drawn
           const hb = document.createElement('div');
           hb.className = 'kofi-hover-box';
-          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong><br>Tips help keep our conversion servers fast and ad-free.';
+          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong>Tips help us stay ad-free and keep our high-speed conversion servers running for everyone. <br><a href="https://ko-fi.com/izyaan" target="_blank" class="kofi-btn-mini">Tip Now</a>';
           document.body.appendChild(hb);
         } else {
-          setTimeout(initKofi, 100);
+          setTimeout(initKofi, 150);
         }
       }
       if (document.readyState === 'complete') {
@@ -93,11 +115,15 @@ for file_path in html_files:
             r"(?s)<!-- Ko-fi Floating Widget -->.*?<!-- /Ko-fi Floating Widget -->",
             r"(?s)<!-- Ko-fi Floating Widget -->.*?</script>",
             r"(?s)<style>\s*/\* Custom Hover Content Box for the Tip Widget \*/.*?\.kofi-hover-box.*?</style>",
+            r"(?s)<style>\s*/\* Custom Interactive Box for the Tip Widget \*/.*?\.kofi-hover-box.*?</style>",
             r"(?s)<script data-cfasync=\"false\" src='https://storage\.ko-fi\.com/cdn/scripts/overlay-widget\.js'></script>",
             r"(?s)<script src='https://storage\.ko-fi\.com/cdn/scripts/overlay-widget\.js'></script>",
             r"(?s)<script type='text/javascript' src='https://storage\.ko-fi\.com/cdn/widget/Widget_2\.js'></script>",
             r"(?s)<script type='text/javascript'>\s*kofiwidget2\.init\(.*?\);\s*kofiwidget2\.draw\(.*?\);\s*</script>",
-            r"(?s)<!-- Blended Hero Support -->.*?</div>"
+            r"(?s)<script>\s*kofiWidgetOverlay\.draw\(.*?\);\s*</script>", # Catch rogue scripts
+            r"(?s)<!-- Blended Hero Support -->.*?</div>",
+            r"(?s)<!-- Protocol Foundation Support -->.*? Fuel the Chaos.*?/section>", # Catch main section (Tip Panel)
+            r"(?s)<section class=\"foundation-bridge\".*?Fuel the Chaos.*?/section>" # Catch main section
         ]
         for pattern in old_patterns:
             if re.search(pattern, content):
