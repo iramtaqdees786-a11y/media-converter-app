@@ -49,11 +49,14 @@ TEMPLATE = '''<!DOCTYPE html>
                 <div class="upload-icon">{icon}</div>
                 <p style="font-size: 1.4rem; font-weight: 800;">{action_text}</p>
                 <p style="opacity: 0.5;">{sub_text}</p>
-                <input type="file" id="file-input" {accept}>
+                {input_html}
             </div>
 
             <div id="tool-ui" style="display:none; margin-top:30px; text-align:left;">
-                <!-- Dynamic UI injected by tool-specific JS -->
+                <div id="file-info" style="margin-bottom:20px; padding:20px; background:rgba(255,255,255,0.05); border-radius:15px; border:1px solid rgba(255,255,255,0.1);">
+                    <div id="file-details" style="font-weight:700;"></div>
+                </div>
+                <button id="execute-btn" class="action-btn" style="width:100%; border:none; cursor:pointer;">Execute Laboratory Operation</button>
             </div>
 
             <div id="status-message" class="status-message"></div>
@@ -63,7 +66,6 @@ TEMPLATE = '''<!DOCTYPE html>
                 <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
                     <a href="#" id="download-link" class="action-btn" style="display:inline-block; text-decoration:none; width: 100%; text-align: center;" download>Save Result</a>
                     
-                    <!-- Result Actions (Bookmark/Copy) -->
                     <div style="display: flex; gap: 10px; width: 100%;">
                         <button onclick="copyResultLink()" class="btn-tool" style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
                             🔗 Copy Link
@@ -73,7 +75,6 @@ TEMPLATE = '''<!DOCTYPE html>
                         </button>
                     </div>
                 </div>
-                <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
             </div>
         </div>
 
@@ -90,25 +91,42 @@ TEMPLATE = '''<!DOCTYPE html>
     </div>
 
     <script>
-        // Basic integration for local tools
-        const fileInput = document.getElementById('file-input');
+        const inputEl = document.getElementById('file-input');
         const uploadZone = document.getElementById('upload-zone');
         const toolUi = document.getElementById('tool-ui');
         const status = document.getElementById('status-message');
         const result = document.getElementById('result-container');
+        const executeBtn = document.getElementById('execute-btn');
+        const fileDetails = document.getElementById('file-details');
 
-        uploadZone.onclick = () => fileInput.click();
-        
-        fileInput.onchange = (e) => {{
-            if (e.target.files.length > 0) {{
+        // Handle clicks if it's a file input container
+        if(inputEl.type === 'file') {{
+            uploadZone.onclick = (e) => {{
+                if(e.target !== inputEl) inputEl.click();
+            }};
+        }}
+
+        inputEl.oninput = inputEl.onchange = (e) => {{
+            const val = inputEl.type === 'file' ? e.target.files[0]?.name : e.target.value;
+            if (val) {{
                 uploadZone.style.display = 'none';
                 toolUi.style.display = 'block';
-                status.innerHTML = 'File loaded. Initializing {title}...';
-                // Mock success for UI demo - backend handles real logic
-                setTimeout(() => {{
-                   status.innerHTML = '✅ Ready to process';
-                }}, 1000);
+                fileDetails.innerHTML = inputEl.type === 'file' ? `<strong>File Ready:</strong> ${{val}}` : `<strong>Target URL:</strong> ${{val}}`;
+                status.innerHTML = '✅ Input validated. Ready for execution.';
             }}
+        }};
+
+        executeBtn.onclick = () => {{
+            executeBtn.disabled = true;
+            executeBtn.innerText = 'Processing...';
+            status.innerHTML = '⚙️ Executing high-speed laboratory algorithm...';
+            
+            // Simulation of processing
+            setTimeout(() => {{
+                status.innerHTML = '';
+                toolUi.style.display = 'none';
+                result.style.display = 'block';
+            }}, 2000);
         }};
 
         function toggleThisStar(el, url) {{
@@ -173,6 +191,12 @@ TOOLS = [
 # Create missing pages
 output_dir = 'frontend'
 for tool in TOOLS:
+    # Build input_html dynamically
+    if 'type="text"' in tool['accept']:
+        tool['input_html'] = f'<input type="text" id="file-input" class="search-input" placeholder="Paste link here..." style="width:100%; margin-top:20px; padding:15px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; font-family:inherit;">'
+    else:
+        tool['input_html'] = f'<input type="file" id="file-input" {tool["accept"]} style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">'
+
     file_path = os.path.join(output_dir, f"{tool['slug']}.html")
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(TEMPLATE.format(**tool))

@@ -14,14 +14,23 @@ def extract_meta(filepath):
     # Get Title (from <title> or <h1>)
     title_match = re.search(r'<title>(.*?)</title>', content, re.IGNORECASE)
     h1_match = re.search(r'<h1>(.*?)</h1>', content, re.IGNORECASE)
+    h1_alt_match = re.search(r'<h1[^>]*>(.*?)</h1>', content, re.IGNORECASE)
     
     title = ""
-    if title_match:
-        title = title_match.group(1).split('-')[0].strip()
-    elif h1_match:
-        title = re.sub(r'<[^>]+>', '', h1_match.group(1)).strip()
-        
-    if not title:
+    # Try to find the h1 inside the article first
+    article_h1 = re.search(r'<article.*?>\s*<header.*?>\s*<h1[^>]*>(.*?)</h1>', content, re.IGNORECASE | re.DOTALL)
+    if article_h1:
+        title = re.sub(r'<[^>]+>', '', article_h1.group(1)).strip()
+    
+    if not title or title.lower() == 'convertrocket':
+        if title_match:
+            title = title_match.group(1).split('-')[0].strip()
+        elif h1_match:
+            title = re.sub(r'<[^>]+>', '', h1_match.group(1)).strip()
+        elif h1_alt_match:
+            title = re.sub(r'<[^>]+>', '', h1_alt_match.group(1)).strip()
+            
+    if not title or title.lower() == 'convertrocket':
         title = os.path.basename(filepath).replace('.html', '').replace('-', ' ').title()
         
     # Get excerpt (from meta description or first p)
@@ -84,14 +93,17 @@ with open(blogs_html_path, 'r', encoding='utf-8') as f:
     content = f.read()
 
 # Replace everything from <div class="bento-grid"> to the next </main> tag minus the closing tag
-start_tag = '<div class="bento-grid">'
+start_marker = 'class="bento-grid"'
 end_tag = '</main>'
 
-if start_tag in content and end_tag in content:
-    start_idx = content.find(start_tag)
-    end_idx = content.find(end_tag, start_idx)
+if start_marker in content and end_tag in content:
+    # Find the start of the div containing bento-grid
+    start_idx = content.find(start_marker)
+    # Move back to the beginning of the <div tag
+    div_start = content.rfind('<div', 0, start_idx)
+    end_idx = content.find(end_tag, div_start)
     
-    new_content = content[:start_idx] + grid_html + "        " + content[end_idx:]
+    new_content = content[:div_start] + grid_html + "        " + content[end_idx:]
     
     with open(blogs_html_path, 'w', encoding='utf-8') as f:
         f.write(new_content)

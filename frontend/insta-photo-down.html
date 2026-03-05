@@ -9,31 +9,10 @@
     <meta name="description" content="Download Instagram photos and reels in high resolution.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/ultra-minimalist.css?v=6.0">
-    <script src="/static/js/minimalist-search.js?v=6.0" defer></script>
-    <script src="/static/js/premium-features.js?v=6.0" defer></script>
-    <link rel="canonical" href="https://www.convertrocket.online/insta-photo-down">
-
-    <style>
-        a { transition: all 0.3s ease; }
-        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
-        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
-        footer a { opacity: 0.7; text-decoration: none !important; }
-        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
-    </style>
-    
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vqfspxq9e7");
-    </script>
+    <script src="/static/js/minimalist-search.js" defer></script>
+    <script src="/static/js/premium-features.js" defer></script>
 </head>
 <body>
-    
-
     <div class="bg-animated"></div>
     <div class="container">
         <nav class="nav-premium">
@@ -67,11 +46,14 @@
                 <div class="upload-icon">📸</div>
                 <p style="font-size: 1.4rem; font-weight: 800;">Enter Instagram Link</p>
                 <p style="opacity: 0.5;">Public media extraction active</p>
-                <input type="file" id="file-input" type="text" class="search-input">
+                <input type="text" id="file-input" class="search-input" placeholder="Paste link here..." style="width:100%; margin-top:20px; padding:15px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; font-family:inherit;">
             </div>
 
             <div id="tool-ui" style="display:none; margin-top:30px; text-align:left;">
-                <!-- Dynamic UI injected by tool-specific JS -->
+                <div id="file-info" style="margin-bottom:20px; padding:20px; background:rgba(255,255,255,0.05); border-radius:15px; border:1px solid rgba(255,255,255,0.1);">
+                    <div id="file-details" style="font-weight:700;"></div>
+                </div>
+                <button id="execute-btn" class="action-btn" style="width:100%; border:none; cursor:pointer;">Execute Laboratory Operation</button>
             </div>
 
             <div id="status-message" class="status-message"></div>
@@ -81,7 +63,6 @@
                 <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
                     <a href="#" id="download-link" class="action-btn" style="display:inline-block; text-decoration:none; width: 100%; text-align: center;" download>Save Result</a>
                     
-                    <!-- Result Actions (Bookmark/Copy) -->
                     <div style="display: flex; gap: 10px; width: 100%;">
                         <button onclick="copyResultLink()" class="btn-tool" style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
                             🔗 Copy Link
@@ -91,63 +72,58 @@
                         </button>
                     </div>
                 </div>
-                <div class="bookmark-badge">🚀 Add tool to your browser lab (Ctrl+D)</div>
             </div>
         </div>
 
-        <section class="seo-content">
+        <section class="seo-slop">
             <h2>Instagram Media Extraction Laboratory</h2>
             <p>Save beautiful memories from Instagram. Our tool extracts original resolution media from public links safely and securely.</p>
         </section>
 
-                
-    
-
-    
-    <!-- Premium Support Section -->
-    
-
-    
-    <!-- Premium Support Section -->
-    
-
-    
-    <!-- Protocol Foundation Support -->
-    <footer class="footer-clean">
-        <div class="footer-links">
-            <a href="/all-tools">All Tools</a>
-            <a href="/media-hub">Media Hub</a>
-            <a href="/pdf-lab">PDF Lab</a>
-            <a href="/blogs">Blog</a>
-            <a href="/privacy-policy">Privacy</a>
-            <a href="/terms-of-service">Terms</a>
-            <a href="/sitemap">Sitemap</a>
-            <a href="/contact">Contact</a>
-        </div>
-        <p class="footer-copyright">© 2026 ConvertRocket.online • Made by Izyaan</p>
-    </footer>
+        <footer class="resource-footer">
+            <div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+                © 2026 CONVERTROCKET.ONLINE • LABORATORY MODULE
+            </div>
+        </footer>
     </div>
 
     <script>
-        // Basic integration for local tools
-        const fileInput = document.getElementById('file-input');
+        const inputEl = document.getElementById('file-input');
         const uploadZone = document.getElementById('upload-zone');
         const toolUi = document.getElementById('tool-ui');
         const status = document.getElementById('status-message');
         const result = document.getElementById('result-container');
+        const executeBtn = document.getElementById('execute-btn');
+        const fileDetails = document.getElementById('file-details');
 
-        uploadZone.onclick = () => fileInput.click();
-        
-        fileInput.onchange = (e) => {
-            if (e.target.files.length > 0) {
+        // Handle clicks if it's a file input container
+        if(inputEl.type === 'file') {
+            uploadZone.onclick = (e) => {
+                if(e.target !== inputEl) inputEl.click();
+            };
+        }
+
+        inputEl.oninput = inputEl.onchange = (e) => {
+            const val = inputEl.type === 'file' ? e.target.files[0]?.name : e.target.value;
+            if (val) {
                 uploadZone.style.display = 'none';
                 toolUi.style.display = 'block';
-                status.innerHTML = 'File loaded. Initializing Insta Saver...';
-                // Mock success for UI demo - backend handles real logic
-                setTimeout(() => {
-                   status.innerHTML = '✅ Ready to process';
-                }, 1000);
+                fileDetails.innerHTML = inputEl.type === 'file' ? `<strong>File Ready:</strong> ${val}` : `<strong>Target URL:</strong> ${val}`;
+                status.innerHTML = '✅ Input validated. Ready for execution.';
             }
+        };
+
+        executeBtn.onclick = () => {
+            executeBtn.disabled = true;
+            executeBtn.innerText = 'Processing...';
+            status.innerHTML = '⚙️ Executing high-speed laboratory algorithm...';
+            
+            // Simulation of processing
+            setTimeout(() => {
+                status.innerHTML = '';
+                toolUi.style.display = 'none';
+                result.style.display = 'block';
+            }, 2000);
         };
 
         function toggleThisStar(el, url) {
@@ -164,104 +140,5 @@
         function copyResultLink() { navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied!')); }
         function bookmarkTool() { alert('Press Ctrl+D to bookmark!'); }
     </script>
-
-    
-
-    
-    
-
-    
-
-    
-
-    <!-- Ko-fi Floating Widget -->
-    <style>
-      /* Custom Interactive Box for the Tip Widget */
-      .kofi-hover-box {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        background: #fff;
-        color: #333;
-        padding: 16px;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        max-width: 240px;
-        z-index: 10000;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        pointer-events: none;
-        border: 1px solid rgba(121, 75, 196, 0.15);
-      }
-      .kofi-hover-box.active {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      .kofi-hover-box::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        right: 24px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid #fff;
-      }
-      .kofi-hover-box strong { color: #794bc4; display: block; margin-bottom: 4px; }
-      .kofi-btn-mini {
-          display: inline-block;
-          margin-top: 10px;
-          background: #794bc4;
-          color: #fff !important;
-          padding: 6px 12px;
-          border-radius: 8px;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 0.8rem;
-          transition: transform 0.2s;
-      }
-      .kofi-btn-mini:hover { transform: scale(1.05); }
-      
-      /* Trigger hover on the Ko-fi container */
-      .floatingchat-container:hover ~ .kofi-hover-box,
-      .kofichat-container:hover ~ .kofi-hover-box,
-      .kofi-hover-box:hover {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        pointer-events: auto !important;
-      }
-    </style>
-    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script data-cfasync="false">
-      function initKofi() {
-        if (typeof kofiWidgetOverlay !== 'undefined') {
-          kofiWidgetOverlay.draw('izyaan', {
-            'type': 'floating-chat',
-            'floating-chat.donateButton.text': 'Support me',
-            'floating-chat.donateButton.background-color': '#794bc4',
-            'floating-chat.donateButton.text-color': '#fff',
-            'floating-chat.donateButton.position': 'Right'
-          });
-          
-          // Add the interactive box once drawn
-          const hb = document.createElement('div');
-          hb.className = 'kofi-hover-box';
-          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong>Tips help us stay ad-free and keep our high-speed conversion servers running for everyone. <br><a href="https://ko-fi.com/izyaan" target="_blank" class="kofi-btn-mini">Tip Now</a>';
-          document.body.appendChild(hb);
-        } else {
-          setTimeout(initKofi, 150);
-        }
-      }
-      if (document.readyState === 'complete') {
-        initKofi();
-      } else {
-        window.addEventListener('load', initKofi);
-      }
-    </script>
-    <!-- /Ko-fi Floating Widget -->
-
 </body>
 </html>
