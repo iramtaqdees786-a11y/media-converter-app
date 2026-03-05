@@ -30,6 +30,12 @@
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "vqfspxq9e7");
     </script>
+
+    <!-- Ko-fi Optimization -->
+    <link rel="preconnect" href="https://ko-fi.com">
+    <link rel="preconnect" href="https://storage.ko-fi.com">
+    <!-- /Ko-fi Optimization -->
+
 </head>
 
 <body class="reveal-init">
@@ -210,9 +216,10 @@
 
     
 
+    
+
     <!-- Ko-fi Floating Widget -->
     <style>
-      /* Custom Interactive Box for the Tip Widget */
       .kofi-hover-box {
         position: fixed;
         bottom: 90px;
@@ -233,9 +240,9 @@
         border: 1px solid rgba(121, 75, 196, 0.15);
       }
       .kofi-hover-box.active {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
       }
       .kofi-hover-box::after {
         content: '';
@@ -260,42 +267,57 @@
           transition: transform 0.2s;
       }
       .kofi-btn-mini:hover { transform: scale(1.05); }
-      
-      /* Trigger hover on the Ko-fi container */
-      .floatingchat-container:hover ~ .kofi-hover-box,
-      .kofichat-container:hover ~ .kofi-hover-box,
-      .kofi-hover-box:hover {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        pointer-events: auto !important;
-      }
     </style>
     <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
     <script data-cfasync="false">
-      function initKofi() {
-        if (typeof kofiWidgetOverlay !== 'undefined') {
-          kofiWidgetOverlay.draw('izyaan', {
-            'type': 'floating-chat',
-            'floating-chat.donateButton.text': 'Support me',
-            'floating-chat.donateButton.background-color': '#794bc4',
-            'floating-chat.donateButton.text-color': '#fff',
-            'floating-chat.donateButton.position': 'Right'
-          });
-          
-          // Add the interactive box once drawn
+      (function() {
+        let attempts = 0;
+        const maxAttempts = 50; 
+        
+        function initKofi() {
+          if (typeof kofiWidgetOverlay !== 'undefined' && kofiWidgetOverlay.draw) {
+            kofiWidgetOverlay.draw('izyaan', {
+              'type': 'floating-chat',
+              'floating-chat.donateButton.text': 'Support me',
+              'floating-chat.donateButton.background-color': '#794bc4',
+              'floating-chat.donateButton.text-color': '#fff',
+              'floating-chat.donateButton.position': 'Right'
+            });
+            setupHoverBox();
+          } else if (attempts < maxAttempts) {
+            attempts++;
+            setTimeout(initKofi, 150);
+          }
+        }
+
+        function setupHoverBox() {
+          if (document.querySelector('.kofi-hover-box')) return;
           const hb = document.createElement('div');
           hb.className = 'kofi-hover-box';
           hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong>Tips help us stay ad-free and keep our high-speed conversion servers running for everyone. <br><a href="https://ko-fi.com/izyaan" target="_blank" class="kofi-btn-mini">Tip Now</a>';
           document.body.appendChild(hb);
-        } else {
-          setTimeout(initKofi, 150);
+
+          const observer = new MutationObserver((mutations, obs) => {
+            const container = document.querySelector('.floatingchat-container') || 
+                              document.querySelector('.kofichat-container') ||
+                              document.querySelector('[id*="kofi-widget-overlay"]');
+            if (container) {
+              container.addEventListener('mouseenter', () => hb.classList.add('active'));
+              container.addEventListener('mouseleave', () => hb.classList.remove('active'));
+              hb.addEventListener('mouseenter', () => hb.classList.add('active'));
+              hb.addEventListener('mouseleave', () => hb.classList.remove('active'));
+              obs.disconnect();
+            }
+          });
+          observer.observe(document.body, { childList: true, subtree: true });
         }
-      }
-      if (document.readyState === 'complete') {
-        initKofi();
-      } else {
-        window.addEventListener('load', initKofi);
-      }
+
+        if (document.readyState === 'complete') {
+          initKofi();
+        } else {
+          window.addEventListener('load', initKofi);
+        }
+      })();
     </script>
     <!-- /Ko-fi Floating Widget -->
 
