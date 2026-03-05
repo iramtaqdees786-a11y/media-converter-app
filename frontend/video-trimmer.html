@@ -349,6 +349,8 @@
       });
     </script>
 
+    
+
     <!-- Ko-fi Floating Widget -->
     <style>
       /* Custom Hover Content Box for the Tip Widget */
@@ -387,22 +389,32 @@
         transform: translateY(0);
       }
     </style>
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script>
-      kofiWidgetOverlay.draw('izyaan', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': 'Support me',
-        'floating-chat.donateButton.background-color': '#794bc4',
-        'floating-chat.donateButton.text-color': '#fff',
-        'floating-chat.donateButton.position': 'Right'
-      });
-      // Add the hover box to the body
-      document.addEventListener('DOMContentLoaded', () => {
-        const hb = document.createElement('div');
-        hb.className = 'kofi-hover-box';
-        hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong><br>Tips help keep our conversion servers fast and ad-free.';
-        document.body.appendChild(hb);
-      });
+    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script data-cfasync="false">
+      function initKofi() {
+        if (typeof kofiWidgetOverlay !== 'undefined') {
+          kofiWidgetOverlay.draw('izyaan', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#794bc4',
+            'floating-chat.donateButton.text-color': '#fff',
+            'floating-chat.donateButton.position': 'Right'
+          });
+          
+          // Add the hover box once drawn
+          const hb = document.createElement('div');
+          hb.className = 'kofi-hover-box';
+          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong><br>Tips help keep our conversion servers fast and ad-free.';
+          document.body.appendChild(hb);
+        } else {
+          setTimeout(initKofi, 100);
+        }
+      }
+      if (document.readyState === 'complete') {
+        initKofi();
+      } else {
+        window.addEventListener('load', initKofi);
+      }
     </script>
     <!-- /Ko-fi Floating Widget -->
 

@@ -25,11 +25,7 @@
         <div class="container">
             <h1>Developer Suite</h1>
             <p>High-precision protocols for code and data architects.</p>
-                <!-- Blended Hero Support -->
-                <div style="margin-top: 20px; display: flex; justify-content: center; opacity: 0.9;">
-                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-                    <script type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#794bc4', 'Q5Q81VCPM3');kofiwidget2.draw();</script>
-                </div>
+                
 
             <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
                 <a href="/all-tools" class="btn-premium"
@@ -202,6 +198,8 @@
       });
     </script>
 
+    
+
     <!-- Ko-fi Floating Widget -->
     <style>
       /* Custom Hover Content Box for the Tip Widget */
@@ -240,22 +238,32 @@
         transform: translateY(0);
       }
     </style>
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script>
-      kofiWidgetOverlay.draw('izyaan', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': 'Support me',
-        'floating-chat.donateButton.background-color': '#794bc4',
-        'floating-chat.donateButton.text-color': '#fff',
-        'floating-chat.donateButton.position': 'Right'
-      });
-      // Add the hover box to the body
-      document.addEventListener('DOMContentLoaded', () => {
-        const hb = document.createElement('div');
-        hb.className = 'kofi-hover-box';
-        hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong><br>Tips help keep our conversion servers fast and ad-free.';
-        document.body.appendChild(hb);
-      });
+    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script data-cfasync="false">
+      function initKofi() {
+        if (typeof kofiWidgetOverlay !== 'undefined') {
+          kofiWidgetOverlay.draw('izyaan', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#794bc4',
+            'floating-chat.donateButton.text-color': '#fff',
+            'floating-chat.donateButton.position': 'Right'
+          });
+          
+          // Add the hover box once drawn
+          const hb = document.createElement('div');
+          hb.className = 'kofi-hover-box';
+          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong><br>Tips help keep our conversion servers fast and ad-free.';
+          document.body.appendChild(hb);
+        } else {
+          setTimeout(initKofi, 100);
+        }
+      }
+      if (document.readyState === 'complete') {
+        initKofi();
+      } else {
+        window.addEventListener('load', initKofi);
+      }
     </script>
     <!-- /Ko-fi Floating Widget -->
 

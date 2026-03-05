@@ -5,7 +5,7 @@ import re
 frontend_dir = r'c:\Users\Lenovo-T470-0027\.gemini\antigravity\scratch\media-converter-app\frontend'
 html_files = glob.glob(os.path.join(frontend_dir, '**/*.html'), recursive=True)
 
-# Ko-fi Floating Widget with Custom Hover Content
+# Ko-fi Floating Widget with Custom Hover Content (Rocket Loader bypass)
 floating_widget_code = """
     <!-- Ko-fi Floating Widget -->
     <style>
@@ -45,22 +45,32 @@ floating_widget_code = """
         transform: translateY(0);
       }
     </style>
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script>
-      kofiWidgetOverlay.draw('izyaan', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': 'Support me',
-        'floating-chat.donateButton.background-color': '#794bc4',
-        'floating-chat.donateButton.text-color': '#fff',
-        'floating-chat.donateButton.position': 'Right'
-      });
-      // Add the hover box to the body
-      document.addEventListener('DOMContentLoaded', () => {
-        const hb = document.createElement('div');
-        hb.className = 'kofi-hover-box';
-        hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong><br>Tips help keep our conversion servers fast and ad-free.';
-        document.body.appendChild(hb);
-      });
+    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script data-cfasync="false">
+      function initKofi() {
+        if (typeof kofiWidgetOverlay !== 'undefined') {
+          kofiWidgetOverlay.draw('izyaan', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#794bc4',
+            'floating-chat.donateButton.text-color': '#fff',
+            'floating-chat.donateButton.position': 'Right'
+          });
+          
+          // Add the hover box once drawn
+          const hb = document.createElement('div');
+          hb.className = 'kofi-hover-box';
+          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong><br>Tips help keep our conversion servers fast and ad-free.';
+          document.body.appendChild(hb);
+        } else {
+          setTimeout(initKofi, 100);
+        }
+      }
+      if (document.readyState === 'complete') {
+        initKofi();
+      } else {
+        window.addEventListener('load', initKofi);
+      }
     </script>
     <!-- /Ko-fi Floating Widget -->
 """
@@ -80,10 +90,14 @@ for file_path in html_files:
         old_patterns = [
             r"(?s)<!-- Ko-fi Widgets -->.*?kofiwidget2\.draw\(\);</script>",
             r"(?s)<!-- Ko-fi Top Widget -->.*?kofiwidget2\.draw\(\);</div>",
-            r"(?s)<!-- Ko-fi Floating Widget -->.*?<!-- /Ko-fi Floating Widget -->", # Catch tagged floating widget (if we use end tag)
-            r"(?s)<!-- Ko-fi Floating Widget -->.*?</script>", # Catch legacy floating widget
-            r"(?s)<style>\s*/\* Custom Hover Content Box for the Tip Widget \*/.*?\.kofi-hover-box.*?</style>", # Strict style scope
-            r"(?s)<script src='https://storage\.ko-fi\.com/cdn/scripts/overlay-widget\.js'></script>" # Catch library loader
+            r"(?s)<!-- Ko-fi Floating Widget -->.*?<!-- /Ko-fi Floating Widget -->",
+            r"(?s)<!-- Ko-fi Floating Widget -->.*?</script>",
+            r"(?s)<style>\s*/\* Custom Hover Content Box for the Tip Widget \*/.*?\.kofi-hover-box.*?</style>",
+            r"(?s)<script data-cfasync=\"false\" src='https://storage\.ko-fi\.com/cdn/scripts/overlay-widget\.js'></script>",
+            r"(?s)<script src='https://storage\.ko-fi\.com/cdn/scripts/overlay-widget\.js'></script>",
+            r"(?s)<script type='text/javascript' src='https://storage\.ko-fi\.com/cdn/widget/Widget_2\.js'></script>",
+            r"(?s)<script type='text/javascript'>\s*kofiwidget2\.init\(.*?\);\s*kofiwidget2\.draw\(.*?\);\s*</script>",
+            r"(?s)<!-- Blended Hero Support -->.*?</div>"
         ]
         for pattern in old_patterns:
             if re.search(pattern, content):
