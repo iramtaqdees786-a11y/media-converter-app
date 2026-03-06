@@ -25,7 +25,7 @@ tip_section_code = """
             ">
                 <iframe id='kofiframe' src='https://ko-fi.com/izyaan/?hidefeed=true&widget=true&embed=true' 
                     style='border:none; width:100%; border-radius: 14px; background: #ffffff;' 
-                    height='712' title='izyaan'></iframe>
+                    height='712' title='izyaan' loading="lazy"></iframe>
             </div>
             
             <div style="text-align: center; margin-top: 25px; opacity: 0.6; font-size: 0.85rem; color: var(--text-secondary);">

@@ -64,6 +64,14 @@ floating_widget_code = """
           transition: transform 0.2s;
       }
       .kofi-btn-mini:hover { transform: scale(1.05); }
+
+      /* Force Right Position for Ko-fi Container */
+      #kofi-widget-overlay, 
+      .floatingchat-container,
+      .floatingchat-container-wrap {
+          right: 20px !important;
+          left: auto !important;
+      }
     </style>
     <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
     <script data-cfasync="false">
@@ -78,7 +86,7 @@ floating_widget_code = """
               'floating-chat.donateButton.text': 'Support me',
               'floating-chat.donateButton.background-color': '#794bc4',
               'floating-chat.donateButton.text-color': '#fff',
-              'floating-chat.donateButton.position': 'Right'
+              'floating-chat.donateButton.position': 'right'
             });
             setupHoverBox();
           } else if (attempts < maxAttempts) {
