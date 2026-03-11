@@ -84,18 +84,17 @@ async def stream_download(
 async def get_info(request: VideoInfoRequest):
     """
     Get video information without downloading.
-    
-    Args:
-        request: VideoInfoRequest with URL
-    
-    Returns:
-        Video metadata including title, duration, thumbnail
+    Always returns JSON — never raises a 500.
     """
     try:
         info = await get_video_info(request.url)
         
         if 'error' in info:
-            raise HTTPException(status_code=400, detail=info['error'])
+            return {
+                "success": False,
+                "message": info['error'],
+                "platform": detect_platform(request.url)
+            }
         
         return {
             "success": True,
@@ -104,7 +103,13 @@ async def get_info(request: VideoInfoRequest):
         }
         
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        import traceback
+        traceback.print_exc()
+        return {
+            "success": False,
+            "message": str(e) or "Could not retrieve video information.",
+            "platform": detect_platform(request.url) if request and request.url else None
+        }
 
 
 @router.get("/file/{filename}")

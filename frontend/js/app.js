@@ -307,16 +307,18 @@ async function getVideoInfo() {
             body: JSON.stringify({ url })
         });
 
-        const data = await response.json();
+        let data;
+        try { data = await response.json(); } catch (_) { data = null; }
 
-        if (response.ok && data.success) {
+        if (data && data.success) {
             displayVideoInfo(data);
             hideStatus('download-status');
         } else {
-            throw new Error(data.detail || 'Failed to fetch video info');
+            const msg = (data && data.message) ? data.message : 'Could not fetch video info. You can still try downloading.';
+            showStatus('download-status', msg, 'error');
         }
     } catch (error) {
-        showStatus('download-status', error.message, 'error');
+        showStatus('download-status', 'Could not fetch video info. You can still try downloading.', 'error');
     }
 }
 

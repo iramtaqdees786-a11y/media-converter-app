@@ -234,38 +234,67 @@ def validate_url(url: str) -> tuple[bool, str]:
 async def get_video_info(url: str) -> Dict[str, Any]:
     """
     Get video information without downloading.
+    Uses lightweight options and retries with different player clients.
+    Always returns a dict — never raises an exception.
     
     Args:
         url: Video URL
     
     Returns:
-        Dictionary with video information
+        Dictionary with video information, or {'error': '...'} on failure.
     """
     url = normalize_url(url)
+
+    # Lighter options for info extraction (no check_formats, no concurrent fragments)
     ydl_opts = _base_ydl_options(url)
-    ydl_opts.update({
-        'extract_flat': False,
-    })
-    
+    ydl_opts.pop("check_formats", None)
+    ydl_opts.pop("concurrent_fragment_downloads", None)
+    ydl_opts["socket_timeout"] = 30  # shorter timeout for info
+    ydl_opts["retries"] = 5
+    ydl_opts["extract_flat"] = False
+
+    # Client rotation — same strategy as download but with fewer attempts
+    client_sets = [
+        ["mweb", "tv", "ios", "android"],
+        ["ios", "android"],
+        ["mweb", "tv"],
+        ["default"],
+    ]
+
     loop = asyncio.get_event_loop()
-    
-    def extract_info():
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            return ydl.extract_info(url, download=False)
-    
-    try:
-        info = await loop.run_in_executor(None, extract_info)
-        return {
-            'title': info.get('title', 'Unknown'),
-            'duration': info.get('duration', 0),
-            'thumbnail': info.get('thumbnail', ''),
-            'uploader': info.get('uploader', 'Unknown'),
-            'view_count': info.get('view_count', 0),
-            'description': info.get('description', '')[:200] if info.get('description') else '',
-            'formats': len(info.get('formats', [])),
-        }
-    except Exception as e:
-        return {'error': str(e)}
+    last_error = ""
+
+    for idx, clients in enumerate(client_sets):
+        def extract_info(client_list=clients):
+            opts = ydl_opts.copy()
+            opts["extractor_args"] = {
+                "youtube": {"player_client": client_list}
+            }
+            with yt_dlp.YoutubeDL(opts) as ydl:
+                return ydl.extract_info(url, download=False)
+
+        try:
+            print(f"DEBUG: Info extraction attempt {idx + 1} with clients {clients}")
+            info = await loop.run_in_executor(None, extract_info)
+            if info:
+                return {
+                    'title': info.get('title', 'Unknown'),
+                    'duration': info.get('duration', 0),
+                    'thumbnail': info.get('thumbnail', ''),
+                    'uploader': info.get('uploader', 'Unknown'),
+                    'view_count': info.get('view_count', 0),
+                    'description': info.get('description', '')[:200] if info.get('description') else '',
+                    'formats': len(info.get('formats', [])),
+                }
+        except Exception as e:
+            last_error = str(e)
+            print(f"DEBUG: Info attempt {idx + 1} failed: {last_error}")
+            # Don't retry on definitive failures
+            if any(x in last_error.lower() for x in ["copyright", "private video", "not exist"]):
+                return {'error': last_error}
+            await asyncio.sleep(0.5)
+
+    return {'error': last_error or 'Could not retrieve video information'}
 
 
 async def get_video_stream(
