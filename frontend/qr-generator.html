@@ -1,121 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator - ConvertRocket</title>
-    <meta name="description"
-        content="Free online QR code generator. Create QR codes instantly for URLs, text, contact info, and more. No signup required.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
-    <link rel="canonical" href="https://www.convertrocket.online/qr-generator">
+    <title>QR Code Generator - Premium Media Laboratory | ConvertRocket</title>
+    <meta name="description" content="Generate high-fidelity QR codes for URLs, text, and more. Professional-grade laboratory for digital asset generation. Fast, free, and secure.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/modern-ui.css?v=5.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=4.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        /* QR-specific optimizations */
-        #qr-canvas {
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .qr-input-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            backdrop-filter: var(--glass-blur);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
         }
 
-        #qr-canvas.appear {
-            animation: qrAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes qrAppear {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) rotateZ(-5deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1) rotateZ(0deg);
-            }
-        }
-
-        .color-preview {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .color-preview:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        }
-
-        .preset-colors {
+        .qr-stage {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
-        .preset-color {
+        @media (max-width: 768px) {
+            .qr-stage { grid-template-columns: 1fr; }
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .premium-input {
             width: 100%;
-            height: 50px;
-            border-radius: 10px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.3s;
         }
 
-        .preset-color:hover,
-        .preset-color.active {
-            border-color: var(--neon-cyan);
-            transform: scale(1.05);
+        .premium-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
         }
 
-        .download-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
+        .qr-display-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.02);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            padding: 30px;
+            min-height: 300px;
+            transition: all 0.3s;
         }
 
-        .download-btn {
-            padding: 12px 20px;
-            background: rgba(0, 242, 255, 0.1);
-            border: 1px solid var(--neon-cyan);
+        #qrcode {
+            background: #fff;
+            padding: 20px;
             border-radius: 12px;
-            color: var(--neon-cyan);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 24px;
         }
 
-        .download-btn:hover {
-            background: var(--neon-cyan);
-            color: #000;
-            transform: translateY(-2px);
+        #qrcode canvas, #qrcode img {
+            max-width: 100%;
+            height: auto !important;
+        }
+
+        .color-pickers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
     </style>
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vqfspxq9e7");
-    </script>
-
-    
-
-    <!-- Ko-fi Optimization -->
-    <link rel="preconnect" href="https://ko-fi.com">
-    <link rel="preconnect" href="https://storage.ko-fi.com">
-    <!-- /Ko-fi Optimization -->
-
 </head>
-
 <body>
-    
-
-    <div class="bg-animated"></div>
 
     <nav class="nav-premium">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
@@ -129,435 +112,147 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero animate-up">
         <div class="container">
-            <h1>QR Generator</h1>
-            <p>Create high-fidelity custom QR codes instantly.</p>
-                <!-- Blended Hero Support -->
-                <div style="margin-top: 20px; display: flex; justify-content: center; opacity: 0.9;">
-                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-                    <script type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#794bc4', 'Q5Q81VCPM3');kofiwidget2.draw();</script>
-                </div>
-
-                
-
-            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
-                <a href="/all-tools" class="btn-premium"
-                    style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
-                    All Tools</a>
-            </div>
+            <h1>QR Lab</h1>
+            <p>Generate high-fidelity, high-speed QR codes for URLs, text, and protocols. Optimized for industrial-scale scanning.</p>
         </div>
     </header>
 
-    <main class="container">
-        <div class="bento-grid" style="grid-template-columns: 1fr;">
-            <div class="bento-card">
-                <div class="shine-overlay"></div>
-                <h2 style="margin-bottom: 30px;">🔳 Protocol Matrix Generator</h2>
-
-                <div style="margin-bottom: 30px;">
-                    <label
-                        style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--accent-primary);">📝
-                        CONTENT STREAM</label>
-                    <textarea id="qr-input" class="text-input" placeholder="https://convertrocket.online or any text..."
-                        rows="3"></textarea>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-                    <div>
-                        <label style="display: block; margin-bottom: 12px; font-weight: 700;">🎨 FOREGROUND</label>
-                        <input type="color" id="qr-fg-color" value="#000000" class="color-preview"
-                            style="width: 100%; height: 50px;">
+    <main class="container animate-up" style="animation-delay: 0.1s;">
+        <div class="qr-input-panel">
+            <div class="qr-stage">
+                <div class="controls">
+                    <div class="input-group">
+                        <label>Target Content (URL, Text, etc.)</label>
+                        <input type="text" id="qr-text" class="premium-input" placeholder="https://convertrocket.online" value="https://convertrocket.online">
                     </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 12px; font-weight: 700;">🖌️ BACKGROUND</label>
-                        <input type="color" id="qr-bg-color" value="#ffffff" class="color-preview"
-                            style="width: 100%; height: 50px;">
+
+                    <div class="color-pickers">
+                        <div class="input-group">
+                            <label>Module Color</label>
+                            <input type="color" id="qr-color-dark" class="premium-input" style="height: 50px; padding: 5px;" value="#000000">
+                        </div>
+                        <div class="input-group">
+                            <label>Background</label>
+                            <input type="color" id="qr-color-light" class="premium-input" style="height: 50px; padding: 5px;" value="#ffffff">
+                        </div>
                     </div>
-                </div>
 
-                <div style="margin-bottom: 30px;">
-                    <label style="display: block; margin-bottom: 12px; font-weight: 700;">📏 RESOLUTION: <span
-                            id="size-value">300</span>px</label>
-                    <input type="range" id="qr-size" min="150" max="800" value="300" style="width: 100%;">
-                </div>
-
-                <button onclick="generateQR()" class="btn-premium" style="margin-bottom: 30px;">⚡ GENERATE
-                    MATRIX</button>
-
-                <!-- Result Area -->
-                <div id="qr-result"
-                    style="text-align: center; min-height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 20px; background: rgba(0, 0, 0, 0.2); padding: 20px; margin-bottom: 30px;">
-                    <p style="color: var(--text-dim); font-style: italic;">✨ Matrix will appear here instantly</p>
-                </div>
-
-                <!-- Download Options -->
-                <div id="download-section" style="display: none;">
-                    <div class="download-options">
-                        <button onclick="downloadQR('png')" class="btn-premium" style="font-size: 0.9rem;">💾
-                            PNG</button>
-                        <button onclick="downloadQR('jpg')" class="btn-premium" style="font-size: 0.9rem;">🖼️
-                            JPG</button>
-                        <button onclick="downloadQR('svg')" class="btn-premium" style="font-size: 0.9rem;">📐
-                            SVG</button>
+                    <div class="input-group">
+                        <label>Resolution Scale (px)</label>
+                        <select id="qr-size" class="premium-input">
+                            <option value="128">128 x 128 (Mobile Optimized)</option>
+                            <option value="256" selected>256 x 256 (Standard)</option>
+                            <option value="512">512 x 512 (High Fidelity)</option>
+                            <option value="1024">1024 x 1024 (Industrial)</option>
+                        </select>
                     </div>
+
+                    <button id="generate-btn" class="btn-primary" style="width: 100%; margin-top: 10px;">⚡ Generate Protocol</button>
+                    <button id="download-btn" class="btn-secondary" style="width: 100%; margin-top: 12px; display: none;">💾 Download Result</button>
+                </div>
+
+                <div class="qr-display-area" id="qr-area">
+                    <div id="qrcode"></div>
+                    <p id="placeholder-text" style="color: var(--text-dim); font-size: 0.9rem; text-align: center;">Resulting QR protocol will manifest here.</p>
                 </div>
             </div>
         </div>
+
+        <section class="seo-content" style="margin-top: 80px;">
+            <h2 class="section-title">The QR Protocol</h2>
+            <p class="section-subtitle">Our laboratory uses high-performance algorithms to ensure maximum scan accuracy across all hardware.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div class="interactive-card" style="padding: 24px;">
+                    <h3>High Fidelity</h3>
+                    <p>Generate codes up to 1024px for print-ready industrial applications.</p>
+                </div>
+                <div class="interactive-card" style="padding: 24px;">
+                    <h3>Zero Tracking</h3>
+                    <p>Clean protocols with no redirects or analytical overhead. Direct access only.</p>
+                </div>
+                <div class="interactive-card" style="padding: 24px;">
+                    <h3>Custom Modules</h3>
+                    <p>Configure colors to match your brand's digital signature perfectly.</p>
+                </div>
+            </div>
+        </section>
     </main>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <footer class="footer-clean">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/all-tools">All Tools</a>
+                <a href="/media-hub">Media Hub</a>
+                <a href="/pdf-lab">PDF Lab</a>
+                <a href="/blogs">Blog</a>
+                <a href="/privacy-policy">Privacy</a>
+                <a href="/terms-of-service">Terms</a>
+                <a href="/sitemap">Sitemap</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
+        </div>
+    </footer>
+
     <script>
-        let currentQRDataURL = null;
-        let currentQRSVG = null;
+        const qrContainer = document.getElementById("qrcode");
+        const qrText = document.getElementById("qr-text");
+        const qrSize = document.getElementById("qr-size");
+        const qrColorDark = document.getElementById("qr-color-dark");
+        const qrColorLight = document.getElementById("qr-color-light");
+        const generateBtn = document.getElementById("generate-btn");
+        const downloadBtn = document.getElementById("download-btn");
+        const placeholder = document.getElementById("placeholder-text");
 
-        // Auto-generate on input (debounced)
-        let generateTimeout;
-        const qrInput = document.getElementById('qr-input');
-        const sizeSlider = document.getElementById('qr-size');
-        const sizeValue = document.getElementById('size-value');
-
-        qrInput.addEventListener('input', () => {
-            clearTimeout(generateTimeout);
-            generateTimeout = setTimeout(() => {
-                if (qrInput.value.trim()) generateQR();
-            }, 500);
-        });
-
-        // Size slider real-time update
-        sizeSlider.addEventListener('input', (e) => {
-            sizeValue.textContent = e.target.value;
-            if (qrInput.value.trim()) {
-                clearTimeout(generateTimeout);
-                generateTimeout = setTimeout(generateQR, 300);
-            }
-        });
-
-        // Color pickers auto-generate
-        document.getElementById('qr-fg-color').addEventListener('input', () => {
-            clearTimeout(generateTimeout);
-            generateTimeout = setTimeout(() => {
-                if (qrInput.value.trim()) generateQR();
-            }, 200);
-        });
-
-        document.getElementById('qr-bg-color').addEventListener('input', () => {
-            clearTimeout(generateTimeout);
-            generateTimeout = setTimeout(() => {
-                if (qrInput.value.trim()) generateQR();
-            }, 200);
-        });
-
-        // Preset colors
-        document.querySelectorAll('.preset-color').forEach(preset => {
-            preset.addEventListener('click', function () {
-                const color = this.dataset.color;
-                const target = this.dataset.target;
-
-                if (target === 'fg') {
-                    document.getElementById('qr-fg-color').value = color;
-                } else {
-                    document.getElementById('qr-bg-color').value = color;
-                }
-
-                // Update active state
-                this.parentElement.querySelectorAll('.preset-color').forEach(p => p.classList.remove('active'));
-                this.classList.add('active');
-
-                if (qrInput.value.trim()) generateQR();
-            });
-        });
+        let qrcode = null;
 
         function generateQR() {
-            const text = qrInput.value.trim();
-            const size = parseInt(sizeSlider.value);
-            const fgColor = document.getElementById('qr-fg-color').value;
-            const bgColor = document.getElementById('qr-bg-color').value;
+            const text = qrText.value.trim();
+            if (!text) return alert("Please enter content for the QR code.");
 
-            if (!text) {
-                return;
-            }
+            qrContainer.innerHTML = "";
+            placeholder.style.display = "none";
+            
+            const size = parseInt(qrSize.value);
 
-            const resultDiv = document.getElementById('qr-result');
-            resultDiv.innerHTML = '<div class="spinner"></div>';
-
-            // Instant generation (no artificial delay)
-            QRCode.toCanvas(text, {
+            qrcode = new QRCode(qrContainer, {
+                text: text,
                 width: size,
-                margin: 2,
-                color: {
-                    dark: fgColor,
-                    light: bgColor === 'transparent' ? '#ffffff' : bgColor
-                },
-                errorCorrectionLevel: 'H'
-            }, function (error, canvas) {
-                if (error) {
-                    resultDiv.innerHTML = `<div class="status-text error">❌ Error: ${error.message}</div>`;
-                    return;
-                }
-
-                canvas.style.maxWidth = '100%';
-                canvas.style.height = 'auto';
-                canvas.style.borderRadius = '20px';
-                canvas.style.boxShadow = '0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0, 242, 255, 0.2)';
-                canvas.id = 'qr-canvas';
-                canvas.classList.add('appear');
-
-                resultDiv.innerHTML = '';
-                resultDiv.appendChild(canvas);
-
-                currentQRDataURL = canvas.toDataURL('image/png');
-
-                // Generate SVG version
-                QRCode.toString(text, {
-                    type: 'svg',
-                    color: {
-                        dark: fgColor,
-                        light: bgColor === 'transparent' ? '#ffffff' : bgColor
-                    }
-                }, function (err, svg) {
-                    if (!err) currentQRSVG = svg;
-                });
-
-                document.getElementById('download-section').style.display = 'block';
+                height: size,
+                colorDark: qrColorDark.value,
+                colorLight: qrColorLight.value,
+                correctLevel: QRCode.CorrectLevel.H
             });
-        }
 
-        function downloadQR(format) {
-            if (!currentQRDataURL) return;
-
-            const link = document.createElement('a');
-
-            if (format === 'svg' && currentQRSVG) {
-                const blob = new Blob([currentQRSVG], { type: 'image/svg+xml' });
-                link.href = URL.createObjectURL(blob);
-                link.download = 'convertrocket-qrcode.svg';
-            } else if (format === 'jpg') {
-                // Convert PNG to JPG
-                const canvas = document.getElementById('qr-canvas');
-                const ctx = canvas.getContext('2d');
-                const jpgCanvas = document.createElement('canvas');
-                jpgCanvas.width = canvas.width;
-                jpgCanvas.height = canvas.height;
-                const jpgCtx = jpgCanvas.getContext('2d');
-                jpgCtx.fillStyle = '#ffffff';
-                jpgCtx.fillRect(0, 0, jpgCanvas.width, jpgCanvas.height);
-                jpgCtx.drawImage(canvas, 0, 0);
-                link.href = jpgCanvas.toDataURL('image/jpeg', 0.95);
-                link.download = 'convertrocket-qrcode.jpg';
-            } else {
-                link.href = currentQRDataURL;
-                link.download = 'convertrocket-qrcode.png';
-            }
-
-            link.click();
-
-            // Success feedback
-            const btn = event.target;
-            const originalText = btn.textContent;
-            btn.textContent = '✅ Downloaded!';
-            btn.style.background = 'rgba(0, 255, 136, 0.2)';
-            btn.style.borderColor = 'var(--neon-green)';
-            btn.style.color = 'var(--neon-green)';
-
+            // Show download button after short delay to ensure rendering
             setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-            }, 2000);
+                downloadBtn.style.display = "inline-flex";
+            }, 500);
         }
 
-        // Generate on Enter key
-        qrInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                generateQR();
-            }
-        });
+        generateBtn.onclick = generateQR;
 
-        // Interactive orb follows mouse
-        let mouseX = 0, mouseY = 0;
-        let orbX = 0, orbY = 0;
-        const orb = document.getElementById('interactive-orb');
+        downloadBtn.onclick = () => {
+            const img = qrContainer.querySelector("img") || qrContainer.querySelector("canvas");
+            if (!img) return;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateOrb() {
-            orbX += (mouseX - orbX) * 0.05;
-            orbY += (mouseY - orbY) * 0.05;
-
-            orb.style.left = `${orbX - 150}px`;
-            orb.style.top = `${orbY - 150}px`;
-
-            requestAnimationFrame(animateOrb);
-        }
-
-        animateOrb();
-    </script>
-
-    
-
-    
-    
-
-    
-
-    <!-- Premium Support Section -->
-    
-
-    <!-- Premium Support Section -->
-    
-
-    <!-- Protocol Foundation Support -->
-    
-
-    
-
-    
-
-    <!-- Ko-fi Floating Widget -->
-    <style>
-      .kofi-hover-box {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        background: #fff;
-        color: #333;
-        padding: 16px;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        max-width: 240px;
-        z-index: 10000;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        pointer-events: none;
-        border: 1px solid rgba(121, 75, 196, 0.15);
-      }
-      .kofi-hover-box.active {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        pointer-events: auto !important;
-      }
-      .kofi-hover-box::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        right: 24px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid #fff;
-      }
-      .kofi-hover-box strong { color: #794bc4; display: block; margin-bottom: 4px; }
-      .kofi-btn-mini {
-          display: inline-block;
-          margin-top: 10px;
-          background: #794bc4;
-          color: #fff !important;
-          padding: 6px 12px;
-          border-radius: 8px;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 0.8rem;
-          transition: transform 0.2s;
-      }
-      .kofi-btn-mini:hover { transform: scale(1.05); }
-
-      /* Force Right Position for Ko-fi Container */
-      #kofi-widget-overlay, 
-      .floatingchat-container,
-      .floatingchat-container-wrap {
-          right: 20px !important;
-          left: auto !important;
-      }
-    </style>
-    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script data-cfasync="false">
-      (function() {
-        let attempts = 0;
-        const maxAttempts = 50; 
-        
-        function initKofi() {
-          if (typeof kofiWidgetOverlay !== 'undefined' && kofiWidgetOverlay.draw) {
-            kofiWidgetOverlay.draw('izyaan', {
-              'type': 'floating-chat',
-              'floating-chat.donateButton.text': 'Support me',
-              'floating-chat.donateButton.background-color': '#794bc4',
-              'floating-chat.donateButton.text-color': '#fff',
-              'floating-chat.donateButton.position': 'right'
-            });
-            setupHoverBox();
-          } else if (attempts < maxAttempts) {
-            attempts++;
-            setTimeout(initKofi, 150);
-          }
-        }
-
-        function setupHoverBox() {
-          if (document.querySelector('.kofi-hover-box')) return;
-          const hb = document.createElement('div');
-          hb.className = 'kofi-hover-box';
-          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong>Tips help us stay ad-free and keep our high-speed conversion servers running for everyone. <br><a href="https://ko-fi.com/izyaan" target="_blank" class="kofi-btn-mini">Tip Now</a>';
-          document.body.appendChild(hb);
-
-          const observer = new MutationObserver((mutations, obs) => {
-            const container = document.querySelector('.floatingchat-container') || 
-                              document.querySelector('.kofichat-container') ||
-                              document.querySelector('[id*="kofi-widget-overlay"]');
-            if (container) {
-              container.addEventListener('mouseenter', () => hb.classList.add('active'));
-              container.addEventListener('mouseleave', () => hb.classList.remove('active'));
-              hb.addEventListener('mouseenter', () => hb.classList.add('active'));
-              hb.addEventListener('mouseleave', () => hb.classList.remove('active'));
-              obs.disconnect();
-            }
-          });
-          observer.observe(document.body, { childList: true, subtree: true });
-        }
-
-        if (document.readyState === 'complete') {
-          initKofi();
-        } else {
-          window.addEventListener('load', initKofi);
-        }
-      })();
-    </script>
-    <!-- /Ko-fi Floating Widget -->
-
-
-    <!-- Premium Support Section -->
-    <section class="support-chaos" style="margin-top: 80px; margin-bottom: 40px; padding: 20px;">
-        <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="font-size: 2.5rem; background: linear-gradient(135deg, #9a93f5, #794bc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px;">Fuel the Chaos 🔥</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem;">Support the development of ConvertRocket's edge-case laboratory. Your contributions keep the servers running and the algorithms sharp.</p>
-            </div>
+            const link = document.createElement("a");
+            link.download = "convertrocket-qr-protocol.png";
             
-            <div class="glass-card" style="
-                background: white;
-                border-radius: 24px;
-                padding: 10px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(121, 75, 196, 0.1);
-                overflow: hidden;
-            ">
-                <iframe id='kofiframe' src='https://ko-fi.com/izyaan/?hidefeed=true&widget=true&embed=true' 
-                    style='border:none; width:100%; border-radius: 14px; background: #ffffff;' 
-                    height='712' title='izyaan' loading="lazy"></iframe>
-            </div>
+            if (img.tagName === "CANVAS") {
+                link.href = img.toDataURL("image/png");
+            } else {
+                link.href = img.src;
+            }
             
-            <div style="text-align: center; margin-top: 25px; opacity: 0.6; font-size: 0.85rem; color: var(--text-secondary);">
-                Securely processed via Ko-fi. No data is stored on ConvertRocket servers.
-            </div>
-        </div>
-    </section>
+            link.click();
+        };
 
+        // Initialize with default
+        window.onload = generateQR;
+    </script>
 </body>
-
 </html>

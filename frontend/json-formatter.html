@@ -1,48 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Formatter & Validator - ConvertRocket</title>
-    <meta name="description"
-        content="Free online JSON formatter, validator and beautifier. Format, validate and minify JSON instantly.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/css/seo-optimized.css?v=1.0">
-    <link rel="canonical" href="https://www.convertrocket.online/json-formatter">
-
+    <title>JSON Formatter & Validator - Premium Media Laboratory | ConvertRocket</title>
+    <meta name="description" content="Format, validate, and minify JSON with architectural precision. Professional-grade laboratory for digital asset optimization. Fast, free, and secure.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/modern-ui.css?v=5.0">
+    <link rel="stylesheet" href="/css/seo-optimized.css?v=4.0">
     <style>
-        a { transition: all 0.3s ease; }
-        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
-        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
-        footer a { opacity: 0.7; text-decoration: none !important; }
-        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+        .json-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            backdrop-filter: var(--glass-blur);
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cmd-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.2);
+            padding: 8px;
+            border-radius: var(--radius-full);
+            width: fit-content;
+        }
+
+        .cmd-tab {
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cmd-tab.active {
+            background: var(--accent-primary);
+            color: #000;
+            border-color: var(--accent-primary);
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .editor-box {
+            position: relative;
+        }
+
+        .editor-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-textarea {
+            width: 100%;
+            height: 300px;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transition: 0.3s;
+            resize: vertical;
+        }
+
+        .premium-textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
+        }
+
+        .status-badge {
+            margin-top: 15px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .status-success { background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.2); }
+        .status-error { background: rgba(255, 0, 122, 0.1); color: #ff007a; border: 1px solid rgba(255, 0, 122, 0.2); }
     </style>
-    
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vqfspxq9e7");
-    </script>
-
-    
-
-    <!-- Ko-fi Optimization -->
-    <link rel="preconnect" href="https://ko-fi.com">
-    <link rel="preconnect" href="https://storage.ko-fi.com">
-    <!-- /Ko-fi Optimization -->
-
 </head>
-
 <body>
-    
-
-    <div class="bg-animated"></div>
 
     <nav class="nav-premium">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
@@ -56,312 +121,143 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero animate-up">
         <div class="container">
             <h1>JSON Lab</h1>
-            <p>Format, validate, and minify JSON with architectural precision.</p>
-                <!-- Blended Hero Support -->
-                <div style="margin-top: 20px; display: flex; justify-content: center; opacity: 0.9;">
-                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-                    <script type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#794bc4', 'Q5Q81VCPM3');kofiwidget2.draw();</script>
-                </div>
-
-                
-
-            <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
-                <a href="/all-tools" class="btn-premium"
-                    style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
-                    All Tools</a>
-            </div>
+            <p>Format, validate, and minify JSON protocols with industrial-grade precision and zero latency.</p>
         </div>
     </header>
 
-    <main class="container" style="margin-top: 40px;">
-        <div class="bento-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
-            <div class="bento-card">
-                <div class="shine-overlay"></div>
+    <main class="container animate-up" style="animation-delay: 0.1s;">
+        <div class="json-panel">
+            <div class="cmd-tabs">
+                <button class="cmd-tab active" id="tab-format" onclick="switchMode('format', this)">✨ Format</button>
+                <button class="cmd-tab" id="tab-minify" onclick="switchMode('minify', this)">📦 Minify</button>
+                <button class="cmd-tab" id="tab-validate" onclick="switchMode('validate', this)">✅ Validate</button>
+            </div>
 
-                <div class="command-tabs" style="margin-bottom: 30px;">
-                    <button class="cmd-tab active" id="tab-format" onclick="switchTab('format', this)">✨
-                        Format</button>
-                    <button class="cmd-tab" id="tab-minify" onclick="switchTab('minify', this)">📦 Minify</button>
-                    <button class="cmd-tab" id="tab-validate" onclick="switchTab('validate', this)">✅
-                        Validate</button>
+            <div class="editor-container">
+                <div class="editor-box">
+                    <label class="editor-label">Laboratory Input</label>
+                    <textarea id="json-input" class="premium-textarea" placeholder='{"status": "ready", "module": "JSON_PROTOCOL"}'></textarea>
                 </div>
 
-                <div style="margin-bottom: 25px;">
-                    <label
-                        style="display: block; margin-bottom: 12px; font-weight: 700; color: var(--text-secondary); text-align: left;">Input
-                        JSON Protocol:</label>
-                    <textarea id="json-input" class="text-input"
-                        placeholder='{"name": "ConvertRocket", "features": ["fast", "free", "secure"]}' rows="8"
-                        style="font-family: monospace;"></textarea>
+                <div style="display: flex; gap: 12px;">
+                    <button onclick="processJSON()" class="btn-primary" style="flex: 2;">⚡ PROCESS PROTOCOL</button>
+                    <button onclick="clearAll()" class="btn-secondary" style="flex: 1;">🗑️ CLEAR</button>
                 </div>
 
-                <div style="display: flex; gap: 12px; margin-bottom: 30px; justify-content: center;">
-                    <button onclick="processJSON()" class="btn-premium" style="flex: 1;">⚡ Process</button>
-                    <button onclick="clearAll()" class="btn-premium"
-                        style="background: rgba(255,255,255,0.1); color:#fff; border: 1px solid var(--border-subtle); flex: 1;">🗑️
-                        Clear</button>
-                </div>
+                <div id="json-status" class="status-badge"></div>
 
-                <div id="json-status" style="margin-bottom: 20px;"></div>
-
-                <div style="margin-bottom: 10px;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <label style="font-weight: 700; color: var(--text-secondary);">Result Output:</label>
-                        <button onclick="copyResult()"
-                            style="background:none; border:none; color:var(--accent-primary); cursor:pointer; font-size:0.85rem; font-weight:700;">📋
-                            COPY RESULTS</button>
+                <div class="editor-box" style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label class="editor-label">Result Output</label>
+                        <button onclick="copyToClipboard()" style="background:none; border:none; color:var(--accent-primary); font-weight:700; font-size:0.75rem; cursor:pointer;">🔗 COPY RESULTS</button>
                     </div>
-                    <textarea id="json-output" class="text-input" placeholder="Processed output will appear here..."
-                        rows="8" readonly style="font-family: monospace; background: rgba(0,0,0,0.2);"></textarea>
+                    <textarea id="json-output" class="premium-textarea" style="background: rgba(0,0,0,0.6);" readonly placeholder="Resulting JSON stream..."></textarea>
                 </div>
             </div>
         </div>
+
+        <section class="seo-content" style="margin-top: 80px;">
+            <h2 class="section-title">The JSON Specification</h2>
+            <p class="section-subtitle">Our lab processes JSON in-memory using highly optimized V8 protocols for maximum data integrity.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div class="interactive-card" style="padding: 24px;">
+                    <h3>Beautifier</h3>
+                    <p>Transform messy data streams into perfectly indented, human-readable protocols instantly.</p>
+                </div>
+                <div class="interactive-card" style="padding: 24px;">
+                    <h3>Minification</h3>
+                    <p>Strip all unnecessary characters and white space to compress your JSON payloads for transit.</p>
+                </div>
+                <div class="interactive-card" style="padding: 24px;">
+                    <h3>Validation</h3>
+                    <p>Detect syntax errors and schema deviations with surgical precision and real-time feedback.</p>
+                </div>
+            </div>
+        </section>
     </main>
-    </div>
+
+    <footer class="footer-clean">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/all-tools">All Tools</a>
+                <a href="/media-hub">Media Hub</a>
+                <a href="/pdf-lab">PDF Lab</a>
+                <a href="/blogs">Blog</a>
+                <a href="/privacy-policy">Privacy</a>
+                <a href="/terms-of-service">Terms</a>
+                <a href="/sitemap">Sitemap</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
+        </div>
+    </footer>
 
     <script>
-        let currentMode = 'format';
+        let mode = 'format';
 
-        function switchTab(mode, el) {
-            currentMode = mode;
-            document.querySelectorAll('.cmd-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
+        function switchMode(newMode, el) {
+            mode = newMode;
+            document.querySelectorAll('.cmd-tab').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
-
-            const inputPlaceholder = {
-                'format': '{"name": "ConvertRocket", "features": ["fast", "free", "secure"]}',
-                'minify': '{\n  "name": "ConvertRocket",\n  "features": [\n    "fast"\n  ]\n}',
-                'validate': '{"valid": true, "data": [1, 2, 3]}'
+            
+            const p = {
+                'format': '{"status": "ready", "module": "JSON_PROTOCOL"}',
+                'minify': '{\n  "status": "ready",\n  "module": "JSON_PROTOCOL"\n}',
+                'validate': '{"valid": true}'
             };
-
-            document.getElementById('json-input').placeholder = inputPlaceholder[mode];
+            document.getElementById('json-input').placeholder = p[mode];
         }
 
         function processJSON() {
             const input = document.getElementById('json-input').value.trim();
-            const statusDiv = document.getElementById('json-status');
             const output = document.getElementById('json-output');
+            const status = document.getElementById('json-status');
 
-            if (!input) {
-                statusDiv.innerHTML = '<div class="status-text error">⚠️ Please enter JSON</div>';
-                return;
-            }
+            if (!input) return alert('Enter JSON data.');
 
-            statusDiv.innerHTML = '<div class="status-text loading">Processing...</div>';
+            try {
+                const parsed = JSON.parse(input);
+                status.style.display = 'block';
+                status.className = 'status-badge status-success';
+                status.innerHTML = '✅ Protocol Validated & Processed';
 
-            setTimeout(() => {
-                try {
-                    const parsed = JSON.parse(input);
-
-                    if (currentMode === 'format') {
-                        output.value = JSON.stringify(parsed, null, 2);
-                        statusDiv.innerHTML = '<div class="status-text success">✅ JSON formatted successfully!</div>';
-                    } else if (currentMode === 'minify') {
-                        output.value = JSON.stringify(parsed);
-                        statusDiv.innerHTML = '<div class="status-text success">✅ JSON minified successfully!</div>';
-                    } else if (currentMode === 'validate') {
-                        const stats = {
-                            valid: true,
-                            keys: Object.keys(parsed).length,
-                            type: Array.isArray(parsed) ? 'Array' : 'Object'
-                        };
-                        output.value = JSON.stringify(stats, null, 2);
-                        statusDiv.innerHTML = '<div class="status-text success">✅ Valid JSON!</div>';
-                    }
-                } catch (e) {
-                    output.value = '';
-                    statusDiv.innerHTML = `<div class="status-text error">❌ Invalid JSON: ${e.message}</div>`;
+                if (mode === 'format') {
+                    output.value = JSON.stringify(parsed, null, 2);
+                } else if (mode === 'minify') {
+                    output.value = JSON.stringify(parsed);
+                } else {
+                    output.value = JSON.stringify({
+                        valid: true,
+                        size: input.length,
+                        keys: Object.keys(parsed).length,
+                        type: Array.isArray(parsed) ? 'Array' : 'Object'
+                    }, null, 2);
                 }
-            }, 300);
+            } catch (e) {
+                status.style.display = 'block';
+                status.className = 'status-badge status-error';
+                status.innerHTML = '❌ Syntax Error: ' + e.message;
+                output.value = '';
+            }
         }
 
-        function copyResult() {
-            const output = document.getElementById('json-output');
-            if (!output.value) {
-                alert('Nothing to copy');
-                return;
-            }
-
-            output.select();
+        function copyToClipboard() {
+            const out = document.getElementById('json-output');
+            if (!out.value) return;
+            out.select();
             document.execCommand('copy');
-
-            const statusDiv = document.getElementById('json-status');
-            statusDiv.innerHTML = '<div class="status-text success">📋 Copied to clipboard!</div>';
-            setTimeout(() => {
-                statusDiv.innerHTML = '';
-            }, 2000);
+            alert('Protocol copied to clipboard.');
         }
 
         function clearAll() {
             document.getElementById('json-input').value = '';
             document.getElementById('json-output').value = '';
-            document.getElementById('json-status').innerHTML = '';
+            document.getElementById('json-status').style.display = 'none';
         }
     </script>
-
-    
-
-    
-    
-
-    
-
-    <!-- Premium Support Section -->
-    
-
-    <!-- Premium Support Section -->
-    
-
-    <!-- Protocol Foundation Support -->
-    
-
-    
-
-    
-
-    <!-- Ko-fi Floating Widget -->
-    <style>
-      .kofi-hover-box {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        background: #fff;
-        color: #333;
-        padding: 16px;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        max-width: 240px;
-        z-index: 10000;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        pointer-events: none;
-        border: 1px solid rgba(121, 75, 196, 0.15);
-      }
-      .kofi-hover-box.active {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        pointer-events: auto !important;
-      }
-      .kofi-hover-box::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        right: 24px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid #fff;
-      }
-      .kofi-hover-box strong { color: #794bc4; display: block; margin-bottom: 4px; }
-      .kofi-btn-mini {
-          display: inline-block;
-          margin-top: 10px;
-          background: #794bc4;
-          color: #fff !important;
-          padding: 6px 12px;
-          border-radius: 8px;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 0.8rem;
-          transition: transform 0.2s;
-      }
-      .kofi-btn-mini:hover { transform: scale(1.05); }
-
-      /* Force Right Position for Ko-fi Container */
-      #kofi-widget-overlay, 
-      .floatingchat-container,
-      .floatingchat-container-wrap {
-          right: 20px !important;
-          left: auto !important;
-      }
-    </style>
-    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script data-cfasync="false">
-      (function() {
-        let attempts = 0;
-        const maxAttempts = 50; 
-        
-        function initKofi() {
-          if (typeof kofiWidgetOverlay !== 'undefined' && kofiWidgetOverlay.draw) {
-            kofiWidgetOverlay.draw('izyaan', {
-              'type': 'floating-chat',
-              'floating-chat.donateButton.text': 'Support me',
-              'floating-chat.donateButton.background-color': '#794bc4',
-              'floating-chat.donateButton.text-color': '#fff',
-              'floating-chat.donateButton.position': 'right'
-            });
-            setupHoverBox();
-          } else if (attempts < maxAttempts) {
-            attempts++;
-            setTimeout(initKofi, 150);
-          }
-        }
-
-        function setupHoverBox() {
-          if (document.querySelector('.kofi-hover-box')) return;
-          const hb = document.createElement('div');
-          hb.className = 'kofi-hover-box';
-          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong>Tips help us stay ad-free and keep our high-speed conversion servers running for everyone. <br><a href="https://ko-fi.com/izyaan" target="_blank" class="kofi-btn-mini">Tip Now</a>';
-          document.body.appendChild(hb);
-
-          const observer = new MutationObserver((mutations, obs) => {
-            const container = document.querySelector('.floatingchat-container') || 
-                              document.querySelector('.kofichat-container') ||
-                              document.querySelector('[id*="kofi-widget-overlay"]');
-            if (container) {
-              container.addEventListener('mouseenter', () => hb.classList.add('active'));
-              container.addEventListener('mouseleave', () => hb.classList.remove('active'));
-              hb.addEventListener('mouseenter', () => hb.classList.add('active'));
-              hb.addEventListener('mouseleave', () => hb.classList.remove('active'));
-              obs.disconnect();
-            }
-          });
-          observer.observe(document.body, { childList: true, subtree: true });
-        }
-
-        if (document.readyState === 'complete') {
-          initKofi();
-        } else {
-          window.addEventListener('load', initKofi);
-        }
-      })();
-    </script>
-    <!-- /Ko-fi Floating Widget -->
-
-
-    <!-- Premium Support Section -->
-    <section class="support-chaos" style="margin-top: 80px; margin-bottom: 40px; padding: 20px;">
-        <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="font-size: 2.5rem; background: linear-gradient(135deg, #9a93f5, #794bc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px;">Fuel the Chaos 🔥</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem;">Support the development of ConvertRocket's edge-case laboratory. Your contributions keep the servers running and the algorithms sharp.</p>
-            </div>
-            
-            <div class="glass-card" style="
-                background: white;
-                border-radius: 24px;
-                padding: 10px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(121, 75, 196, 0.1);
-                overflow: hidden;
-            ">
-                <iframe id='kofiframe' src='https://ko-fi.com/izyaan/?hidefeed=true&widget=true&embed=true' 
-                    style='border:none; width:100%; border-radius: 14px; background: #ffffff;' 
-                    height='712' title='izyaan' loading="lazy"></iframe>
-            </div>
-            
-            <div style="text-align: center; margin-top: 25px; opacity: 0.6; font-size: 0.85rem; color: var(--text-secondary);">
-                Securely processed via Ko-fi. No data is stored on ConvertRocket servers.
-            </div>
-        </div>
-    </section>
-
 </body>
-
 </html>

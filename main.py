@@ -22,7 +22,7 @@ from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 import uvicorn
 from datetime import datetime, timedelta
 
-from backend.routers import download, convert, pdf_tools, media_tools
+from backend.routers import convert, pdf_tools, media_tools
 from backend.config import DOWNLOADS_DIR, UPLOADS_DIR, CONVERTED_DIR
 
 # Create FastAPI application
@@ -76,7 +76,6 @@ app = FastAPI(
         "url": "https://opensource.org/licenses/MIT"
     },
     openapi_tags=[
-        {"name": "download", "description": "Video download operations from social media platforms"},
         {"name": "convert", "description": "File format conversion operations"}
     ]
 )
@@ -210,7 +209,6 @@ async def friendly_urls_middleware(request: Request, call_next):
     return await call_next(request)
 
 # Include routers
-app.include_router(download.router)
 app.include_router(convert.router)
 app.include_router(pdf_tools.router)
 app.include_router(media_tools.router)
@@ -364,10 +362,6 @@ async def serve_dev_suite():
 async def serve_utilities():
     return FileResponse(FRONTEND_DIR / "utilities.html")
 
-@app.get("/downloader")
-async def serve_downloader():
-    return FileResponse(FRONTEND_DIR / "downloader.html")
-
 @app.get("/converter")
 async def serve_converter():
     return FileResponse(FRONTEND_DIR / "converter.html")
@@ -466,7 +460,6 @@ async def health_check():
         "status": "healthy",
         "version": "1.0.0",
         "directories": {
-            "downloads": str(DOWNLOADS_DIR),
             "uploads": str(UPLOADS_DIR),
             "converted": str(CONVERTED_DIR)
         }
@@ -484,7 +477,6 @@ async def get_stats():
         return {"count": len(files), "size": total_size}
     
     return {
-        "downloads": count_files(DOWNLOADS_DIR),
         "uploads": count_files(UPLOADS_DIR),
         "converted": count_files(CONVERTED_DIR)
     }

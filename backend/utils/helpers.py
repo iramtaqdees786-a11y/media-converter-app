@@ -88,6 +88,10 @@ def validate_conversion(source_ext: str, target_ext: str) -> Tuple[bool, str]:
         ("spreadsheet", "spreadsheet"): True,
         ("document", "spreadsheet"): True,  # PDF to Excel
         ("spreadsheet", "document"): True,  # Excel to PDF
+        ("document", "image"): True,        # PDF to JPG/PNG
+        ("image", "document"): True,        # JPG/PNG to PDF
+        ("audio", "video"): True,           # Audio with image to video (rare but possible depending on backend)
+        ("video", "image"): True            # Video to GIF/WebP
     }
     
     if (source_category, target_category) not in compatible_conversions:

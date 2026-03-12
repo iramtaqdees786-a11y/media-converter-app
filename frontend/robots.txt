@@ -1,11 +1,7 @@
-# ConvertRocket Robots.txt
-# Allow all crawlers
-
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /tmp/
+Disallow: /admin/
 
-# Sitemap
-Sitemap: https://www.convertrocket.online/sitemap.xml
-
-# Crawl-delay for polite bots
-Crawl-delay: 1
+Sitemap: https://convertrocket.online/sitemap.xml

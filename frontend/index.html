@@ -1,63 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConvertRocket | Premium Media Lab 2026</title>
-    <meta name="description"
-        content="Universal media converter and high-speed video downloader. 1000+ formats supported. YouTube, TikTok, Instagram downloads. Fast, free, and secure.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <title>ConvertRocket | Fast Universal Tools for Files, Images & Documents</title>
+    <meta name="description" content="ConvertRocket — fast universal tools for files, images, and documents. Compress images, format JSON, generate QR codes, convert videos and edit PDFs. Fast, free, and secure.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/modern-ui.css?v=5.0">
     <link rel="stylesheet" href="/css/seo-optimized.css?v=4.0">
-
-    <style>
-        a {
-            transition: all 0.3s ease;
-        }
-
-        .seo-content a {
-            color: var(--accent-primary);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-        }
-
-        .seo-content a:hover {
-            border-bottom: 1px solid var(--accent-primary);
-            opacity: 0.8;
-        }
-
-        footer a {
-            opacity: 0.7;
-            text-decoration: none !important;
-        }
-
-        footer a:hover {
-            opacity: 1;
-            color: var(--accent-primary) !important;
-        }
-    </style>
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function (c, l, a, r, i, t, y) {
-            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "vqfspxq9e7");
-    </script>
-
-
-
-    <!-- Ko-fi Optimization -->
-    <link rel="preconnect" href="https://ko-fi.com">
-    <link rel="preconnect" href="https://storage.ko-fi.com">
-    <!-- /Ko-fi Optimization -->
-
+    <!-- Load modern UI on top of seo-optimized to ensure graceful degradation -->
 </head>
-
 <body>
 
     <nav class="nav-premium">
@@ -72,434 +26,194 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero animate-up">
         <div class="container">
-            <h1>The Media Laboratory</h1>
-            <p>Download from any platform. Convert to any format. Professional tooling for the digital age.</p>
-            <!-- Blended Hero Support -->
-            <div style="margin-top: 20px; display: flex; justify-content: center; opacity: 0.9;">
-                <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-                <script
-                    type='text/javascript'>kofiwidget2.init('Fuel the Chaos 🔥', '#794bc4', 'Q5Q81VCPM3'); kofiwidget2.draw();</script>
+            <h1>ConvertRocket</h1>
+            <p>Fast universal tools for files, images, and documents. Professional utilities for developers, creators, and everyday heroes.</p>
+            
+            <div class="ad-placement" style="background: rgba(255,255,255,0.02)">
+                Ad Placement Area (Below Header)
             </div>
 
-
-
             <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                <a href="#downloader" class="btn-premium"
-                    style="text-decoration: none; width: auto; padding-inline: 40px;">Get Started</a>
-                <a href="/all-tools" class="btn-premium"
-                    style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
-                    All Tools</a>
-                <a href="#master-protocol" class="btn-premium"
-                    style="text-decoration: none; width: auto; padding-inline: 40px; background: none; color: var(--text-secondary); border: 1px solid transparent;">Protocol
-                    Intelligence</a>
+                <a href="#converter" class="btn-primary">Start Converting</a>
+                <a href="#tools" class="btn-secondary">Browse Popular Tools</a>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <div class="bento-grid">
-            <!-- Downloader: Visible side-by-side -->
-            <div class="bento-card">
-                <div class="shine-overlay"></div>
-                <h2>⬇️ Video Downloader</h2>
-                <div class="input-group">
-                    <input type="text" id="video-url" class="text-input"
-                        placeholder="Paste link: YouTube, TikTok, Instagram...">
-                </div>
-                <div class="select-flex">
-                    <select id="dl-quality" class="select-premium">
-                        <option value="best">Best Quality</option>
-                        <option value="1080p">1080p Full HD</option>
-                        <option value="720p">720p HD</option>
-                    </select>
-                    <select id="dl-format" class="select-premium">
-                        <option value="video">MP4 Video</option>
-                        <option value="audio">MP3 Audio</option>
-                    </select>
-                </div>
-                <button id="download-btn" class="btn-premium">Download Now</button>
-                <div class="progress-container" id="dl-progress">
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="dl-bar"></div>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; font-size: 0.85rem; margin-top: 10px;">
-                        <span id="dl-status">Awaiting connection...</span>
-                        <span id="dl-percent">0%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Converter: Visible side-by-side -->
-            <div class="bento-card">
-                <div class="shine-overlay"></div>
-                <h2>🔄 Universal Converter</h2>
-                <div style="text-align: center; margin-bottom: 24px;">
-                    <button class="btn-premium"
-                        style="background: rgba(255,255,255,0.05); color:#fff; border: 1px solid var(--border-subtle); width: auto; padding-inline: 40px;"
-                        onclick="document.getElementById('file-input').click()">
-                        Select Local File
-                    </button>
+        <!-- Universal Converter -->
+        <div class="converter-hero-panel animate-up" id="converter" style="animation-delay: 0.1s;">
+            <h2>🔄 Universal Converter</h2>
+            <div class="converter-controls">
+                <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">📤</div>
+                    <h3>Drag & Drop or Click to Upload</h3>
+                    <p>Supported: PDF, MP4, MP3, JPG, PNG, DOCX and 100+ more</p>
                     <input type="file" id="file-input" style="display:none">
-                    <p id="file-name"
-                        style="margin-top: 12px; font-size: 0.9rem; color: var(--accent-primary); font-weight: 700;">
-                    </p>
+                    <p id="file-name" style="margin-top: 12px; font-weight: 700; color: var(--accent-primary);"></p>
                 </div>
-                <div class="select-flex">
-                    <select id="to-format" class="select-premium">
+
+                <div style="display: flex; gap: 12px; margin-top: 10px;">
+                    <select id="to-format" class="select-premium" style="flex: 1; padding: 18px; border-radius: 12px; background: rgba(0,0,0,0.5); color: #fff; border: 1px solid var(--border-subtle);">
                         <option value="">Convert To...</option>
                         <optgroup label="Popular">
                             <option value="pdf">PDF File</option>
                             <option value="mp3">MP3 Audio</option>
                             <option value="png">PNG Image</option>
-                        </optgroup>
-                        <optgroup label="Video">
+                            <option value="jpg">JPG Image</option>
                             <option value="mp4">MP4 Video</option>
-                            <option value="mkv">MKV Video</option>
                         </optgroup>
                     </select>
                 </div>
-                <button id="convert-btn" class="btn-premium">Convert Protocol</button>
-                <div class="progress-container" id="convert-progress">
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="convert-bar"></div>
+                
+                <button id="convert-btn" class="btn-primary" style="width: 100%; font-size: 1.1rem; padding: 20px;">Initialize Conversion</button>
+                
+                <div class="progress-container" id="convert-progress" style="display: none; margin-top: 20px;">
+                    <div class="progress-bar-bg" style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                        <div class="progress-bar-fill" id="convert-bar" style="height: 100%; background: var(--accent-primary); width: 0%; transition: 0.4s;"></div>
                     </div>
                     <div style="display:flex; justify-content:space-between; font-size: 0.85rem; margin-top: 10px;">
-                        <span id="convert-status">Neutralizing...</span>
-                        <span id="convert-percent">0%</span>
+                        <span id="convert-status">Processing...</span>
+                        <span id="convert-percent" style="color: var(--accent-primary); font-weight: bold;">0%</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <section>
-            <h2 style="font-weight:900; letter-spacing:-1px; margin-bottom: 30px;">Featured Protocols</h2>
-            <div class="tool-grid">
-                <a href="/heic-to-jpg" class="tool-mini">
-                    <div style="font-size: 1.5rem; margin-bottom: 12px;">📸</div>
-                    <h3 style="font-size: 1.1rem; font-weight: 800;">HEIC to JPG</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Convert iPhone photos instantly.</p>
+        <div class="ad-placement" style="background: rgba(255,255,255,0.02)">
+            Ad Placement Area (Between Sections)
+        </div>
+
+        <!-- Featured New Tools Grid -->
+        <section id="tools" style="margin-top: 80px;" class="animate-up" style="animation-delay: 0.2s;">
+            <h2 class="section-title">Essential Web Tools</h2>
+            <p class="section-subtitle">Fast, secure, and privacy-focused utilities running directly in your browser or our high-speed edge nodes.</p>
+
+            <div class="tool-grid-large">
+                <!-- 5 NEW TOOLS (Requested by User) -->
+                
+                <!-- 1. Image Compressor -->
+                <a href="/image-compress" class="interactive-card">
+                    <div class="card-content">
+                        <div class="card-icon">🗜️</div>
+                        <h3 class="card-title">Image Compressor</h3>
+                        <p class="card-desc">Reduce the file size of your images (JPG, PNG, WebP) significantly without losing visible quality. Perfect for SEO.</p>
+                        <div class="card-action">Compress Now →</div>
+                    </div>
                 </a>
-                <a href="/pdf-merge" class="tool-mini">
-                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🔗</div>
-                    <h3 style="font-size: 1.1rem; font-weight: 800;">PDF Merger</h3>
-                    <h3 style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 400;">Combine files.
-                    </h3>
+
+                <!-- 2. QR Code Generator -->
+                <a href="/qr-generator" class="interactive-card">
+                    <div class="card-content">
+                        <div class="card-icon">🔳</div>
+                        <h3 class="card-title">QR Code Generator</h3>
+                        <p class="card-desc">Create high-quality, scannable QR codes for URLs, text, WiFi, and more instantly.</p>
+                        <div class="card-action">Generate QR →</div>
+                    </div>
                 </a>
-                <a href="/mp4-to-mp3" class="tool-mini">
-                    <div style="font-size: 1.5rem; margin-bottom: 12px;">🎵</div>
-                    <h3 style="font-size: 1.1rem; font-weight: 800;">Audio Extractor</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary);">High-fidelity MP3 stripping.</p>
+
+                <!-- 3. JSON Formatter -->
+                <a href="/json-formatter" class="interactive-card">
+                    <div class="card-content">
+                        <div class="card-icon">{" "}</div>
+                        <h3 class="card-title">JSON Formatter</h3>
+                        <p class="card-desc">Format, validate, and beautify your JSON data. A powerful development tool for engineers.</p>
+                        <div class="card-action">Format JSON →</div>
+                    </div>
                 </a>
-                <a href="/video-trimmer" class="tool-mini">
-                    <div style="font-size: 1.5rem; margin-bottom: 12px;">✂️</div>
-                    <h3 style="font-size: 1.1rem; font-weight: 800;">Video Trimmer</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Precision clip cutting.</p>
+
+                <!-- 4. SVG to PNG Converter -->
+                <a href="/svg-to-png" class="interactive-card">
+                    <div class="card-content">
+                        <div class="card-icon">🖌️</div>
+                        <h3 class="card-title">SVG to PNG</h3>
+                        <p class="card-desc">Convert scalable vector graphics (SVG) into high-resolution transparent PNG images.</p>
+                        <div class="card-action">Convert Vector →</div>
+                    </div>
                 </a>
+
+                <!-- 5. Background Remover -->
+                <a href="/bg-remover" class="interactive-card">
+                    <div class="card-content">
+                        <div class="card-icon">✂️</div>
+                        <h3 class="card-title">Background Remover</h3>
+                        <p class="card-desc">Instantly strip the background from your portraits and product photos using AI.</p>
+                        <div class="card-action">Remove Background →</div>
+                    </div>
+                </a>
+
+                <!-- Existing Featured Tool -->
+                <a href="/pdf-merge" class="interactive-card">
+                    <div class="card-content">
+                        <div class="card-icon">🔗</div>
+                        <h3 class="card-title">PDF Merger</h3>
+                        <p class="card-desc">Combine multiple PDF documents into a single fluid file securely.</p>
+                        <div class="card-action">Merge PDFs →</div>
+                    </div>
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="/all-tools" class="btn-secondary">View The Master Registry (40+ Tools)</a>
             </div>
         </section>
 
-        <section style="margin-top: 100px; padding-top: 60px; border-top: 1px solid var(--border-subtle);">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 10px;">The Master
-                    Registry</h2>
-                <p style="color: var(--text-secondary); font-weight: 500;">Every conversion protocol, organized for
-                    efficiency.</p>
-            </div>
-
-            <div class="tool-grid"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-                <!-- Video Tools -->
-                <div class="bento-card" style="padding: 30px;">
-                    <h3
-                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid var(--accent-primary); display: inline-block;">
-                        🎬 Video Studio</h3>
-                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
-                        <li><a href="/downloader"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">⚡ Pro
-                                Downloader</a></li>
-                        <li><a href="/video-trimmer"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">✂️
-                                Precision Trimmer</a></li>
-                        <li><a href="/video-converter"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔄 Format
-                                Shifter</a></li>
-                        <li><a href="/mp4-to-mp3"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🎶 Audio
-                                Stripper</a></li>
-                        <li><a href="/yt-thumbnail"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🖼️ Cover
-                                Extractor</a></li>
-                    </ul>
-                </div>
-
-                <!-- PDF Suite -->
-                <div class="bento-card" style="padding: 30px;">
-                    <h3
-                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid #00ff88; display: inline-block;">
-                        📄 Document Lab</h3>
-                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
-                        <li><a href="/pdf-merge"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔗
-                                Merge PDF Files</a></li>
-                        <li><a href="/pdf-compress"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📦 Volume
-                                Reducer</a></li>
-                        <li><a href="/pdf-to-word"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📝
-                                Editability Engine</a></li>
-                        <li><a href="/pdf-to-excel"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📊 Data
-                                Architect</a></li>
-                        <li><a href="/pdf-grayscale"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🌑
-                                Neutralizer</a></li>
-                    </ul>
-                </div>
-
-                <!-- Photo Factory -->
-                <div class="bento-card" style="padding: 30px;">
-                    <h3
-                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid #ff007a; display: inline-block;">
-                        📸 Photo Engine</h3>
-                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
-                        <li><a href="/heic-to-jpg"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">📱 Mobile
-                                Unifier</a></li>
-                        <li><a href="/png-to-jpg"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🖼️ Web
-                                Optimizer</a></li>
-                        <li><a href="/image-converter"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🎨 Batch
-                                Processor</a></li>
-                        <li><a href="/exif-remover"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🕵️
-                                Privacy Shield</a></li>
-                    </ul>
-                </div>
-
-                <!-- Developer Suite -->
-                <div class="bento-card" style="padding: 30px;">
-                    <h3
-                        style="margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid #ffaa00; display: inline-block;">
-                        💻 Dev Suite</h3>
-                    <ul style="list-style: none; line-height: 2.4; font-size: 0.95rem;">
-                        <li><a href="/json-formatter"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔤 Syntax
-                                Polisher</a></li>
-                        <li><a href="/base64-encoder"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔐 String
-                                Engine</a></li>
-                        <li><a href="/qr-generator"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🔳 Link
-                                Matrix</a></li>
-                        <li><a href="/color-picker"
-                                style="color: var(--text-secondary); text-decoration: none; transition: 0.2s;">🌈 Hue
-                                Architect</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Premium SEO & Informational Section -->
-        <section class="seo-content" id="master-protocol">
+        <!-- SEO Information Section -->
+        <section class="seo-content" style="margin-top: 100px;">
             <h2>The ConvertRocket Protocol</h2>
-            <p>ConvertRocket is an elite laboratory for digital architects and professionals. We provide high-fidelity
-                conversion tools engineered for speed, accuracy, and absolute data privacy.</p>
+            <p>ConvertRocket is an elite laboratory for digital architects. We provide high-fidelity conversion tools designed for speed, accuracy, and absolute data privacy.</p>
 
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px;">
-                <div class="bento-card" style="text-align: left;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div class="interactive-card" style="padding: 24px;">
                     <div style="font-size: 2rem; margin-bottom: 20px;">🛡️</div>
-                    <h3 style="margin-top: 0; font-size: 1.2rem; color: #fff;">Privacy Shield</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-secondary);">All conversions are processed using
-                        isolated cloud protocols and automatically purged from our system within 60 minutes.</p>
+                    <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 10px;">Privacy Shield</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Your files are processed using isolated protocols and purged from our servers within 60 minutes.</p>
                 </div>
-                <div class="bento-card" style="text-align: left;">
+                <div class="interactive-card" style="padding: 24px;">
                     <div style="font-size: 2rem; margin-bottom: 20px;">⚡</div>
-                    <h3 style="margin-top: 0; font-size: 1.2rem; color: #fff;">Neural Speed</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Our multi-threaded engine ensures that
-                        even complex document reconstructions and video extractions are handled in seconds.</p>
+                    <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 10px;">Neural Speed</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Our multi-threaded infrastructure ensures that even massive document conversions happen in seconds.</p>
                 </div>
-                <div class="bento-card" style="text-align: left;">
+                <div class="interactive-card" style="padding: 24px;">
                     <div style="font-size: 2rem; margin-bottom: 20px;">💎</div>
-                    <h3 style="margin-top: 0; font-size: 1.2rem; color: #fff;">Lossless Logic</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Preserve 100% of your metadata, layout
-                        fidelity, and resolution across all media and document transformations.</p>
-                </div>
-            </div>
-
-            <div class="faq-section">
-                <h2>Operational Intelligence (FAQ)</h2>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How do I access the Media Hub?</h3>
-                    <p class="faq-answer">Navigate to the 'Media Hub' link in the premium navigation bar to access
-                        specialized tools for video trimming, audio extraction, and cloud downloading.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Is the service truly free to use?</h3>
-                    <p class="faq-answer">Yes. ConvertRocket is an open laboratory. We provide unrestricted access to
-                        our core conversion engines without required registration or hidden costs.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How do I convert between formats?</h3>
-                    <p class="faq-answer">Simply select your source file in the Universal Converter, choose your target
-                        format from the intelligent dropdown, and initialize the protocol. Your file will auto-download
-                        upon completion.</p>
+                    <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 10px;">Lossless Logic</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">Preserve 100% of your metadata, layout fidelity, and image resolution.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Protocol Foundation Support -->
-
-    <!-- Premium Support Section -->
-    <section class="support-chaos" style="margin-top: 80px; margin-bottom: 40px; padding: 20px;">
-        <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h2
-                    style="font-size: 2.5rem; background: linear-gradient(135deg, #9a93f5, #794bc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px;">
-                    Fuel the Chaos 🔥</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem;">Support the development of ConvertRocket's
-                    edge-case laboratory. Your contributions keep the servers running and the algorithms sharp.</p>
-            </div>
-
-            <div class="glass-card" style="
-                background: white;
-                border-radius: 24px;
-                padding: 10px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(121, 75, 196, 0.1);
-                overflow: hidden;
-            ">
-                <iframe id='kofiframe' src='https://ko-fi.com/izyaan/?hidefeed=true&widget=true&embed=true'
-                    style='border:none; width:100%; border-radius: 14px; background: #ffffff;' height='712'
-                    title='izyaan' loading="lazy"></iframe>
-            </div>
-
-            <div
-                style="text-align: center; margin-top: 25px; opacity: 0.6; font-size: 0.85rem; color: var(--text-secondary);">
-                Securely processed via Ko-fi. No data is stored on ConvertRocket servers.
-            </div>
-        </div>
-    </section>
-
     <footer class="footer-clean">
-        <div class="footer-links">
-            <a href="/all-tools">All Tools</a>
-            <a href="/media-hub">Media Hub</a>
-            <a href="/pdf-lab">PDF Lab</a>
-            <a href="/blogs">Blog</a>
-            <a href="/privacy-policy">Privacy</a>
-            <a href="/terms-of-service">Terms</a>
-            <a href="/sitemap">Sitemap</a>
-            <a href="/contact">Contact</a>
+        <div class="container">
+            <div class="footer-links">
+                <a href="/all-tools">All Tools</a>
+                <a href="/media-hub">Media Hub</a>
+                <a href="/pdf-lab">PDF Lab</a>
+                <a href="/blogs">Blog</a>
+                <a href="/privacy-policy">Privacy</a>
+                <a href="/terms-of-service">Terms</a>
+                <a href="/sitemap">Sitemap</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
         </div>
-        <p class="footer-copyright">© 2026 ConvertRocket.online • Made by Izyaan</p>
     </footer>
 
     <script>
-        // --- 1. Downloader Logic ---
-        const dlBtn = document.getElementById('download-btn');
-        let progressInterval;
+        // Interactive Card Effect
+        document.querySelectorAll('.interactive-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
 
-        dlBtn.onclick = async () => {
-            const url = document.getElementById('video-url').value.trim();
-            if (!url) return alert('Input valid URL');
-
-            dlBtn.disabled = true;
-            document.getElementById('dl-progress').classList.add('active');
-            const status = document.getElementById('dl-status');
-            const pct = document.getElementById('dl-percent');
-            const fill = document.getElementById('dl-bar');
-
-            status.innerText = 'Validating link...';
-
-            // Start smooth fake progress
-            let currentPct = 0;
-            fill.style.width = currentPct + '%';
-            pct.innerText = currentPct + '%';
-
-            clearInterval(progressInterval);
-            progressInterval = setInterval(() => {
-                if (currentPct < 90) {
-                    // Slow down as it gets higher
-                    const increment = Math.random() * (90 - currentPct) * 0.1 + 0.5;
-                    currentPct = Math.min(90, currentPct + increment);
-                    fill.style.width = currentPct.toFixed(1) + '%';
-                    pct.innerText = Math.floor(currentPct) + '%';
-                }
-            }, 300);
-
-            try {
-                // Try to pre-validate, but don't block download if info fails
-                try {
-                    const infoRes = await fetch('/api/download/info', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ url: url })
-                    });
-                    let infoData;
-                    try { infoData = await infoRes.json(); } catch (_) { infoData = null; }
-
-                    if (infoData && !infoData.success) {
-                        const msg = (infoData.message || '').toLowerCase();
-                        // Only block on definitive failures
-                        if (msg.includes('private') || msg.includes('copyright') || msg.includes('not exist') || msg.includes('removed')) {
-                            alert('Download Error: ' + (infoData.message || 'Video is unavailable or private.'));
-                            resetDl();
-                            return;
-                        }
-                        console.warn('Info pre-check failed, proceeding to download:', infoData.message);
-                    }
-                } catch (infoErr) {
-                    console.warn('Info pre-check failed, proceeding to download:', infoErr);
-                }
-
-                clearInterval(progressInterval);
-                status.innerText = 'Connecting stream...';
-                fill.style.width = '100%';
-                pct.innerText = '100%';
-
-                // Build the streaming URL
-                const formatType = document.getElementById('dl-format').value;
-                const quality = document.getElementById('dl-quality').value;
-                const streamUrl = `/api/download/stream?url=${encodeURIComponent(url)}&format_type=${formatType}&quality=${quality}`;
-
-                // Trigger native browser download directly
-                status.innerText = 'Downloading via browser...';
-
-                // Use an invisible anchor tag to trigger the stream (prevents the current page from unloading if errors occur on the stream)
-                const link = document.createElement('a');
-                link.href = streamUrl;
-                link.download = '';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-
-                setTimeout(() => {
-                    status.innerText = 'Download started!';
-                    setTimeout(resetDl, 3000);
-                }, 1000);
-
-            } catch (e) {
-                clearInterval(progressInterval);
-                alert('Connection Error. Please try again.');
-                resetDl();
-            }
-        };
-
-        function resetDl() {
-            clearInterval(progressInterval);
-            dlBtn.disabled = false;
-            document.getElementById('dl-progress').classList.remove('active');
-            document.getElementById('dl-bar').style.width = '0%';
-        }
-
-        // --- 2. Dynamic Converter Logic ---
+        // Converter Logic
         const fileInput = document.getElementById('file-input');
         const formatSelect = document.getElementById('to-format');
         const convertBtn = document.getElementById('convert-btn');
@@ -527,7 +241,7 @@
             const ext = file.name.split('.').pop().toLowerCase();
             const cat = extToCat[ext];
 
-            fileNameDisplay.innerText = 'File Selected: ' + file.name;
+            fileNameDisplay.innerText = file.name;
 
             // Clear and populate dropdown
             formatSelect.innerHTML = '<option value="">Convert To...</option>';
@@ -541,7 +255,6 @@
                     }
                 });
             } else {
-                // Fallback options
                 ['pdf', 'mp4', 'mp3', 'jpg'].forEach(f => {
                     const opt = document.createElement('option');
                     opt.value = f;
@@ -557,7 +270,7 @@
             if (!target) return alert('Select target format');
 
             convertBtn.disabled = true;
-            document.getElementById('convert-progress').classList.add('active');
+            document.getElementById('convert-progress').style.display = 'block';
             const fill = document.getElementById('convert-bar');
             const pct = document.getElementById('convert-percent');
 
@@ -596,144 +309,9 @@
 
         function resetConv() {
             convertBtn.disabled = false;
-            document.getElementById('convert-progress').classList.remove('active');
+            document.getElementById('convert-progress').style.display = 'none';
             document.getElementById('convert-bar').style.width = '0%';
         }
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Ko-fi Floating Widget -->
-    <style>
-        .kofi-hover-box {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            background: #fff;
-            color: #333;
-            padding: 16px;
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            max-width: 240px;
-            z-index: 10000;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            pointer-events: none;
-            border: 1px solid rgba(121, 75, 196, 0.15);
-        }
-
-        .kofi-hover-box.active {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            pointer-events: auto !important;
-        }
-
-        .kofi-hover-box::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 24px;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 8px solid #fff;
-        }
-
-        .kofi-hover-box strong {
-            color: #794bc4;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .kofi-btn-mini {
-            display: inline-block;
-            margin-top: 10px;
-            background: #794bc4;
-            color: #fff !important;
-            padding: 6px 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: transform 0.2s;
-        }
-
-        .kofi-btn-mini:hover {
-            transform: scale(1.05);
-        }
-
-        /* Force Right Position for Ko-fi Container */
-        #kofi-widget-overlay,
-        .floatingchat-container,
-        .floatingchat-container-wrap {
-            right: 20px !important;
-            left: auto !important;
-        }
-    </style>
-    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script data-cfasync="false">
-        (function () {
-            let attempts = 0;
-            const maxAttempts = 50;
-
-            function initKofi() {
-                if (typeof kofiWidgetOverlay !== 'undefined' && kofiWidgetOverlay.draw) {
-                    kofiWidgetOverlay.draw('izyaan', {
-                        'type': 'floating-chat',
-                        'floating-chat.donateButton.text': 'Support me',
-                        'floating-chat.donateButton.background-color': '#794bc4',
-                        'floating-chat.donateButton.text-color': '#fff',
-                        'floating-chat.donateButton.position': 'right'
-                    });
-                    setupHoverBox();
-                } else if (attempts < maxAttempts) {
-                    attempts++;
-                    setTimeout(initKofi, 150);
-                }
-            }
-
-            function setupHoverBox() {
-                if (document.querySelector('.kofi-hover-box')) return;
-                const hb = document.createElement('div');
-                hb.className = 'kofi-hover-box';
-                hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong>Tips help us stay ad-free and keep our high-speed conversion servers running for everyone. <br><a href="https://ko-fi.com/izyaan" target="_blank" class="kofi-btn-mini">Tip Now</a>';
-                document.body.appendChild(hb);
-
-                const observer = new MutationObserver((mutations, obs) => {
-                    const container = document.querySelector('.floatingchat-container') ||
-                        document.querySelector('.kofichat-container') ||
-                        document.querySelector('[id*="kofi-widget-overlay"]');
-                    if (container) {
-                        container.addEventListener('mouseenter', () => hb.classList.add('active'));
-                        container.addEventListener('mouseleave', () => hb.classList.remove('active'));
-                        hb.addEventListener('mouseenter', () => hb.classList.add('active'));
-                        hb.addEventListener('mouseleave', () => hb.classList.remove('active'));
-                        obs.disconnect();
-                    }
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
-            }
-
-            if (document.readyState === 'complete') {
-                initKofi();
-            } else {
-                window.addEventListener('load', initKofi);
-            }
-        })();
-    </script>
-    <!-- /Ko-fi Floating Widget -->
-
 </body>
-
 </html>
