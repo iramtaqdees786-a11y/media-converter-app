@@ -24,8 +24,8 @@ from datetime import datetime, timedelta
 
 from backend.routers import convert, pdf_tools, media_tools
 from backend.config import DOWNLOADS_DIR, UPLOADS_DIR, CONVERTED_DIR
-from backend.seo_config import SEO_METADATA, DEFAULT_METADATA, get_software_schema
-import json
+from backend.seo_config import SEO_METADATA, DEFAULT_METADATA, get_software_schema, get_faq_schema, FAQ_DATA
+import re
 
 # Create FastAPI application
 app = FastAPI(
@@ -205,9 +205,6 @@ async def seo_and_performance_middleware(request: Request, call_next):
             else:
                 content = response.body.decode("utf-8", errors="ignore")
             
-            from backend.seo_config import get_faq_schema, FAQ_DATA
-            import re
-
             # - Time Injection [YEAR]
             current_year = "2026"
             content = content.replace("[YEAR]", current_year)
@@ -225,7 +222,6 @@ async def seo_and_performance_middleware(request: Request, call_next):
             title = tool_meta['title'].replace("[YEAR]", current_year)
             description = tool_meta.get('description', '').replace("[YEAR]", current_year)
             
-            # Use count=1 and ensure we replace the first occurrence
             content = re.sub(r'<title>.*?</title>', f"<title>{title}</title>", content, flags=re.IGNORECASE, count=1)
             content = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{description}">', content, flags=re.IGNORECASE, count=1)
             content = re.sub(r'<meta name="keywords" content=".*?">', f'<meta name="keywords" content="{tool_meta["keywords"]}">', content, flags=re.IGNORECASE, count=1)
@@ -240,9 +236,8 @@ async def seo_and_performance_middleware(request: Request, call_next):
             for s in schemas:
                 schema_html += f'\n    <script type="application/ld+json" data-seo="true">\n    {json.dumps(s, indent=4)}\n    </script>'
             
-            # Only inject if not already injected by us
             if 'data-seo="true"' not in content:
-                content = re.sub(r'</head>', f'{schema_html}\n</head>', content, flags=re.IGNORECASE, count=1)
+                content = content.replace("</head>", f'{schema_html}\n</head>')
 
             # - Quick Guide Injection
             if "quick_guide" in tool_meta and "<!-- SEO_QUICK_GUIDE -->" not in content:
@@ -256,13 +251,8 @@ async def seo_and_performance_middleware(request: Request, call_next):
                 </section>
                 <!-- SEO_QUICK_GUIDE -->
                 '''
-                # Try multiple injection points in order of preference
-                if re.search(r'</main>', content, flags=re.IGNORECASE):
-                    content = re.sub(r'</main>', f"{guide_html}\n</main>", content, flags=re.IGNORECASE, count=1)
-                elif re.search(r'<footer', content, flags=re.IGNORECASE):
-                    content = re.sub(r'<footer', f"{guide_html}\n<footer", content, flags=re.IGNORECASE, count=1)
-                elif re.search(r'</body', content, flags=re.IGNORECASE):
-                    content = re.sub(r'</body', f"{guide_html}\n</body", content, flags=re.IGNORECASE, count=1)
+                if "</body>" in content:
+                    content = content.replace("</body>", f"{guide_html}\n</body>")
 
             # - Competitor Comparison
             if "<!-- SEO_COMPETITOR_SECTION -->" not in content:
@@ -275,10 +265,8 @@ async def seo_and_performance_middleware(request: Request, call_next):
                 </div>
                 <!-- SEO_COMPETITOR_SECTION -->
                 '''
-                if re.search(r'<footer[^>]*>', content, flags=re.IGNORECASE):
-                    content = re.sub(r'(<footer[^>]*>)', r'\1' + comp_html, content, flags=re.IGNORECASE, count=1)
-                elif re.search(r'</body', content, flags=re.IGNORECASE):
-                    content = re.sub(r'</body', f"{comp_html}\n</body", content, flags=re.IGNORECASE, count=1)
+                if "</body>" in content:
+                    content = content.replace("</body>", f"{comp_html}\n</body>")
 
             # - LCP Skeleton Loader Injection
             skeleton_css = """
@@ -293,10 +281,9 @@ async def seo_and_performance_middleware(request: Request, call_next):
             </style>
             """
             if "seo-skeleton-loader" not in content:
-                content = re.sub(r'</head>', f"{skeleton_css}\n</head>", content, flags=re.IGNORECASE, count=1)
+                content = content.replace("</head>", f"{skeleton_css}\n</head>")
 
             # Return new response with modified content
-            print(f"SEO Middleware: Successfully processed {path}")
             new_response = Response(content=content, media_type="text/html", headers=dict(response.headers))
             if "content-length" in new_response.headers:
                 del new_response.headers["content-length"]
