@@ -224,8 +224,7 @@
         </div>
     </footer>
 
-    <!-- Using @imgly/background-removal via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal/dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal/dist/background-removal.js"></script>
     <script>
         const zone = document.getElementById('drop-zone');
         const input = document.getElementById('file-input');
@@ -271,7 +270,6 @@
             statusMsg.innerText = 'Neural Extraction in Progress...';
 
             try {
-                // The library is exposed as imglyRemoveBackground
                 const config = {
                     progress: (key, current, total) => {
                         if(key === 'compute') {
@@ -282,6 +280,7 @@
                     }
                 };
 
+                // UMD Version exposes imglyRemoveBackground global
                 const blob = await imglyRemoveBackground(currentFile, config);
                 resultBlob = blob;
                 
@@ -304,7 +303,6 @@
             a.download = `convertrocket_isolated_${currentFile.name.split('.')[0]}.png`;
             a.click();
         };
-
     </script>
 
     <!-- Ko-fi Floating Widget -->

@@ -69,12 +69,31 @@ SEO_METADATA = {
         "description": "Generate high-quality QR codes for URLs and text in [YEAR]. Customizable and free to use.",
         "keywords": "qr code generator, create qr code, free qr code, qr generator online",
         "h1": "QR Code Generator",
-        "quick_guide": [
-            "Enter the URL or text you want to encode.",
-            "Customize the color and design if needed.",
-            "The QR code generates instantly as you type.",
-            "Download the high-resolution QR code image."
-        ]
+        "quick_guide": ["Enter text or URL", "Customize style", "Download QR code"]
+    },
+    "/pdf-merge": {
+        "title": "Merge PDF Files Online [YEAR] | Combined PDF Free & Fast",
+        "description": "Combine multiple PDF documents into one in [YEAR]. High-speed, secure PDF merging tool.",
+        "keywords": "merge pdf, combine pdf files, join pdf, free pdf joiner",
+        "h1": "Merge PDF Documents"
+    },
+    "/pdf-compress": {
+        "title": "Compress PDF Online [YEAR] | Reduce PDF File Size High Quality",
+        "description": "Shrink PDF file size without losing quality in [YEAR]. Smallest PDF compression tool online.",
+        "keywords": "compress pdf, reduce pdf size, shrink pdf, smallpdf alternative",
+        "h1": "Compress PDF Files"
+    },
+    "/heic-to-jpg": {
+        "title": "HEIC to JPG Converter Online [YEAR] | Convert iPhone Photos Free",
+        "description": "Convert HEIC images to high-quality JPG in [YEAR]. Fast bulk conversion for iPhone HEIF photos.",
+        "keywords": "heic to jpg, convert heic to jpg, iphone photo converter, heic to jpeg",
+        "h1": "HEIC to JPG Converter"
+    },
+    "/bg-remover": {
+        "title": "AI Background Remover [YEAR] | Remove Image BG Instantly Free",
+        "description": "Transparent background maker using AI. Professional edge isolation in [YEAR]. Best free alternative to Adobe Express.",
+        "keywords": "background remover, remove bg, transparent background, ai bg remover",
+        "h1": "AI Background Remover"
     }
 }
 
@@ -89,17 +108,17 @@ FAQ_DATA = {
         {"q": "Can I convert large video files?", "a": "Yes, our high-speed edge nodes can handle large video files efficiently without quality loss."},
         {"q": "Do I need to install any software?", "a": "No, ConvertRocket is a browser-based tool that works on any device without installation."}
     ],
-    "/json-formatter": [
-        {"q": "Does this tool validate JSON syntax?", "a": "Yes, it automatically validates your JSON as you format it and highlights any errors."},
-        {"q": "Is my JSON data kept private?", "a": "Yes, all processing happens locally in your browser when possible or on encrypted volatile memory."},
-        {"q": "Can I minify JSON as well?", "a": "Yes, the tool offers both beautify and minify options for your data."}
+    "/bg-remover": [
+        {"q": "Is the background removal actually free?", "a": "Yes, our AI background remover is 100% free with no watermarks or registrations required."},
+        {"q": "How accurate is the AI isolation?", "a": "Our models are trained on millions of images to provide hair-level precision for complex subjects."},
+        {"q": "Where are my images processed?", "a": "Processing happens entirely in your browser using WebAssembly. Your photos never leave your computer."}
     ]
 }
 
 DEFAULT_METADATA = {
     "title": "ConvertRocket | Ultimate Free Online File Converter [YEAR]",
     "description": "The fastest way to download videos & convert files online in [YEAR]. 100% Free! Supports PDF, Video, Audio, Images, and more.",
-    "keywords": "file converter, video downloader, pdf converter, mp3 converter, online tools",
+    "keywords": "file converter, video downloader, pdf converter, mp3 converter, online tools, free converter 2026",
     "h1": "Fastest Online File Converter"
 }
 

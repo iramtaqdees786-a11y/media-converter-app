@@ -10,602 +10,208 @@ various file formats including video, audio, images, documents, and spreadsheets
 import os
 import sys
 from pathlib import Path
-
-# Add the project root to path for imports
-PROJECT_ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(PROJECT_ROOT))
-
-from fastapi import FastAPI, Request, Response
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
-import uvicorn
+import re
+import json
+import csv
+import io
 from datetime import datetime, timedelta
 
+# --- Directory Constants (Defined Early for Middleware) ---
+PROJECT_ROOT = Path(__file__).resolve().parent
+FRONTEND_DIR = PROJECT_ROOT / "frontend"
+UPLOADS_DIR = PROJECT_ROOT / "backend" / "uploads"
+DOWNLOADS_DIR = PROJECT_ROOT / "backend" / "downloads"
+CONVERTED_DIR = PROJECT_ROOT / "backend" / "converted"
+
+# Ensure directories exist
+for d in [UPLOADS_DIR, DOWNLOADS_DIR, CONVERTED_DIR]:
+    d.mkdir(parents=True, exist_ok=True)
+
+# Add the project root to path for imports
+sys.path.insert(0, str(PROJECT_ROOT))
+
+# FastAPI Imports
+from fastapi import FastAPI, Request, Response, BackgroundTasks, HTTPException, Depends
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
+import uvicorn
+
 from backend.routers import convert, pdf_tools, media_tools
-from backend.config import DOWNLOADS_DIR, UPLOADS_DIR, CONVERTED_DIR
 from backend.seo_config import SEO_METADATA, DEFAULT_METADATA, get_software_schema, get_faq_schema, FAQ_DATA
-import re
+from backend.database import save_lead, get_all_leads
 
 # Create FastAPI application
 app = FastAPI(
     title="ConvertRocket API",
-    description="""
-    # ConvertRocket - The Fastest Video Downloader & File Converter
-    
-    **Domain:** [convertrocket.online](https://convertrocket.online)
-    
-    Free online video downloader and file converter. Download from YouTube, TikTok, Instagram, Twitter, Facebook. Convert any file format instantly.
-    
-    ## 🚀 Features
-    
-    ### Video Download
-    - Download videos from **YouTube**, **TikTok**, **Instagram**, **Twitter**, **Facebook**
-    - Extract audio from any video (YouTube to MP3)
-    - Get video information before downloading
-    - Support for HD quality downloads
-    
-    ### File Conversion
-    - **Video**: MP4, MKV, WebM, AVI, MOV
-    - **Audio**: MP3, WAV, AAC, OGG, FLAC
-    - **Images**: JPG, JPEG, PNG, WebP, GIF, BMP
-    - **Documents**: PDF, DOCX, TXT
-    - **Spreadsheets**: XLSX, XLS, CSV
-    
-    ## 🔒 Security
-    - Files are processed securely
-    - No permanent storage of user files
-    - HTTPS encryption
-    
-    ## 🌍 Global
-    - Available in 17+ languages
-    - Works worldwide
-    - No signup required
-    
-    ---
-    **Keywords:** youtube downloader, tiktok downloader, instagram video download, mp4 to mp3, file converter, online converter, free video download
-    """,
+    description="Free online video downloader and file converter.",
     version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
-    contact={
-        "name": "ConvertRocket Support",
-        "url": "https://convertrocket.online",
-        "email": "support@convertrocket.online"
-    },
-    license_info={
-        "name": "MIT License",
-        "url": "https://opensource.org/licenses/MIT"
-    },
-    openapi_tags=[
-        {"name": "convert", "description": "File format conversion operations"}
-    ]
 )
 
-# Configure CORS to allow Vercel frontend and custom domain
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://convertrocket.online",
-        "https://www.convertrocket.online",
-        "http://localhost:8000",
-        "http://127.0.0.1:8000"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# WWW Redirect & Canonical URL Middleware (CRITICAL FOR SEO)
-# WWW Redirect & Canonical URL Middleware (CRITICAL FOR SEO)
+# WWW Redirect & Canonical URL Middleware
 @app.middleware("http")
 async def canonical_url_middleware(request: Request, call_next):
-    """
-    Ensures all traffic goes to www.convertrocket.online with proper redirects.
-    Fixes Google Search Console indexing issues.
-    """
     host = request.headers.get("host", "")
     scheme = request.url.scheme
     path = request.url.path
     query = request.url.query
     
-    # Skip canonical redirect for API calls to prevent POST failures
-    if path.startswith("/api/"):
-        return await call_next(request)
-    
-    # 1. Force HTTPS in production
+    if path.startswith("/api/"): return await call_next(request)
     if scheme == "http" and "localhost" not in host and "127.0.0.1" not in host:
-        url = f"https://{host}{path}"
-        if query:
-            url += f"?{query}"
-        return RedirectResponse(url=url, status_code=308) # use 308 for permanent redirect preserving method
-    
-    # 2. Force WWW subdomain (Critical for SEO)
+        url = f"https://{host}{path}"; return RedirectResponse(url=url, status_code=308)
     if host == "convertrocket.online":
-        print(f"DEBUG: Redirecting {host}{path} to www.convertrocket.online{path}")
-        url = f"{scheme}://www.convertrocket.online{path}"
-        if query:
-            url += f"?{query}"
-        return RedirectResponse(url=url, status_code=308)
-    
-    # 3. Remove trailing slashes for consistency (except root)
+        url = f"{scheme}://www.convertrocket.online{path}"; return RedirectResponse(url=url, status_code=308)
     if path != "/" and path.endswith("/") and not path.startswith("/api/"):
-        new_path = path.rstrip("/")
-        url = f"{scheme}://{host}{new_path}"
-        if query:
-            url += f"?{query}"
-        return RedirectResponse(url=url, status_code=308)
-    
-    # 4. Redirect index.html to root
-    if path == "/index.html":
-        url = f"{scheme}://{host}/"
-        if query:
-            url += f"?{query}"
-        return RedirectResponse(url=url, status_code=308)
-    
+        url = f"{scheme}://{host}{path.rstrip('/')}"; return RedirectResponse(url=url, status_code=308)
     return await call_next(request)
 
 # Static routes for trust files
 @app.get("/ads.txt")
 async def ads_txt():
     ads_file = FRONTEND_DIR / "ads.txt"
-    if ads_file.exists():
-        return FileResponse(ads_file)
+    if ads_file.exists(): return FileResponse(ads_file)
     return Response(content="google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0", media_type="text/plain")
 
-# Extensionless URL Support (Friendly Links)
+# Main Application Middleware (SEO, Performance, Friendly URLs, Workspace)
 @app.middleware("http")
-async def friendly_urls_middleware(request: Request, call_next):
+async def main_application_middleware(request: Request, call_next):
     path = request.url.path
-    
-    # Redirect .html to clean URL
     if path.endswith(".html") and not path.startswith("/api/"):
-        new_path = path[:-5]
-        return RedirectResponse(url=new_path, status_code=308)
+        return RedirectResponse(url=path[:-5], status_code=308)
 
+    response = None
     if not path.endswith(".html") and not path.split("/")[-1].count(".") and path != "/" and not path.startswith("/api/"):
-        # Handle blog sub-directory
         if path.startswith("/blog/"):
             potential_file = FRONTEND_DIR / "blog" / f"{path.split('/')[-1]}.html"
         else:
             potential_file = FRONTEND_DIR / f"{path.strip('/')}.html"
-            
-        if potential_file.exists():
-             return FileResponse(potential_file)
-             
-    return await call_next(request)
+        if potential_file.exists(): response = FileResponse(potential_file)
 
-# Custom Middleware for SEO & Performance
-@app.middleware("http")
-async def seo_and_performance_middleware(request: Request, call_next):
-    # Process request
-    response = await call_next(request)
+    if response is None: response = await call_next(request)
     
-    path = request.url.path
-    
-    # 1. Add Cache-Control & Expires for Assets
-    if any(path.startswith(pre) for pre in ["/static/", "/css/", "/js/", "/img/", "/assets/"]) or \
-       any(path.endswith(ext) for ext in [".js", ".css", ".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico", ".woff", ".woff2"]):
-        # Cache for 1 year for static assets (standard practice)
+    # Cache Control
+    if any(path.startswith(pre) for pre in ["/css/", "/js/", "/img/"]) or any(path.endswith(ext) for ext in [".js", ".css", ".png", ".jpg", ".webp"]):
         response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
-        expires_date = (datetime.utcnow() + timedelta(days=365)).strftime("%a, %d %b %Y %H:%M:%S GMT")
-        response.headers["Expires"] = expires_date
         return response
 
-    # 2. Dynamic SEO Injection (Canonical, Metadata, Schema)
     content_type = response.headers.get("content-type", "").lower()
     is_html_file = isinstance(response, FileResponse) and str(getattr(response, "path", "")).lower().endswith(".html")
     
     if "text/html" in content_type or is_html_file:
         try:
-            # Get content from either Response or FileResponse
             if isinstance(response, FileResponse):
-                with open(response.path, "r", encoding="utf-8", errors="ignore") as f:
-                    content = f.read()
+                with open(response.path, "r", encoding="utf-8", errors="ignore") as f: content = f.read()
             else:
                 content = response.body.decode("utf-8", errors="ignore")
             
-            # - Time Injection [YEAR]
+            # -- SEO Injections --
             current_year = "2026"
             content = content.replace("[YEAR]", current_year)
-            content = content.replace("[MONTH_YEAR]", datetime.now().strftime("%B %Y"))
-
-            # - Canonical URL (CRITICAL)
+            
+            # Canonical
             canonical_url = f"https://www.convertrocket.online{path}"
-            if '<link rel="canonical"' in content:
-                content = re.sub(r'<link rel="canonical" [^>]*>', f'<link rel="canonical" href="{canonical_url}">', content)
-            else:
-                content = content.replace("</head>", f'    <link rel="canonical" href="{canonical_url}">\n</head>')
+            if '</head>' in content:
+                content = content.replace('</head>', f'    <link rel="canonical" href="{canonical_url}">\n</head>')
 
-            # - Tool Specific Metadata
+            # Metadata
             tool_meta = SEO_METADATA.get(path, DEFAULT_METADATA)
             title = tool_meta['title'].replace("[YEAR]", current_year)
-            description = tool_meta.get('description', '').replace("[YEAR]", current_year)
+            content = re.sub(r'<title>.*?</title>', f"<title>{title}</title>", content, flags=re.I, count=1)
             
-            content = re.sub(r'<title>.*?</title>', f"<title>{title}</title>", content, flags=re.IGNORECASE, count=1)
-            content = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{description}">', content, flags=re.IGNORECASE, count=1)
-            content = re.sub(r'<meta name="keywords" content=".*?">', f'<meta name="keywords" content="{tool_meta["keywords"]}">', content, flags=re.IGNORECASE, count=1)
-            
-            # - Schema Injection (Software + FAQ)
+            # Schema
             schemas = [get_software_schema(path, tool_meta)]
             faq_schema = get_faq_schema(path)
-            if faq_schema:
-                schemas.append(faq_schema)
-            
-            schema_html = ""
-            for s in schemas:
-                schema_html += f'\n    <script type="application/ld+json" data-seo="true">\n    {json.dumps(s, indent=4)}\n    </script>'
-            
-            if 'data-seo="true"' not in content:
-                content = content.replace("</head>", f'{schema_html}\n</head>')
+            if faq_schema: schemas.append(faq_schema)
+            schema_html = "".join([f'\n    <script type="application/ld+json">\n    {json.dumps(s)}\n    </script>' for s in schemas])
+            if '</head>' in content:
+                content = content.replace('</head>', f'{schema_html}\n</head>')
 
-            # - Quick Guide Injection
+            # Quick Guide
             if "quick_guide" in tool_meta and "<!-- SEO_QUICK_GUIDE -->" not in content:
                 guide_steps = "".join([f"<li>{step}</li>" for step in tool_meta["quick_guide"]])
-                guide_html = f'''
-                <section class="seo-quick-guide" style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">
-                    <h2 style="font-size: 1.4rem; margin-bottom: 20px; color: var(--accent-primary);">Quick Guide: How to use this tool</h2>
-                    <ol style="line-height: 1.8; color: var(--text-secondary);">
-                        {guide_steps}
-                    </ol>
-                </section>
-                <!-- SEO_QUICK_GUIDE -->
-                '''
-                if "</body>" in content:
-                    content = content.replace("</body>", f"{guide_html}\n</body>")
+                guide_html = f'<section class="seo-quick-guide" style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;"><h3>Quick Guide</h3><ol>{guide_steps}</ol></section><!-- SEO_QUICK_GUIDE -->'
+                content = content.replace('</body>', f"{guide_html}\n</body>")
 
-            # - Competitor Comparison
-            if "<!-- SEO_COMPETITOR_SECTION -->" not in content:
-                comp_html = f'''
-                <div class="competitor-comparison" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
-                    <h3 style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 15px;">Why ConvertRocket?</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-                        ConvertRocket is a <strong>Free Alternative to SmallPDF and Adobe</strong>. We provide unlimited, industrial-grade processing without the restrictive subscriptions or watermarks found in competing modules.
-                    </p>
-                </div>
-                <!-- SEO_COMPETITOR_SECTION -->
-                '''
-                if "</body>" in content:
-                    content = content.replace("</body>", f"{comp_html}\n</body>")
+            # Trending Tools & Workspace
+            if "<!-- SEO_TRENDING_CLOUD -->" not in content:
+                seo_block = '<div class="seo-internal-links" style="margin-top: 60px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;"><h4>Trending Tools [YEAR]</h4><a href="/pdf-to-excel" style="margin-right:15px;">PDF to Excel</a> <a href="/bg-remover">Background Remover</a></div><!-- SEO_TRENDING_CLOUD -->'
+                content = content.replace('</body>', f"{seo_block}\n</body>")
 
-            # - LCP Skeleton Loader Injection
-            skeleton_css = """
-            <style id="seo-skeleton-loader">
-            .skeleton-loading { position: relative; overflow: hidden; }
-            .skeleton-loading::after {
-                content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-                animation: skeleton-shimmer 1.5s infinite;
-            }
-            @keyframes skeleton-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-            </style>
-            """
-            if "seo-skeleton-loader" not in content:
-                content = content.replace("</head>", f"{skeleton_css}\n</head>")
+            if 'src="/js/workspace-share.js"' not in content:
+                content = content.replace('</body>', '<script src="/js/workspace-share.js"></script>\n</body>')
 
-            # Return new response with modified content
             new_response = Response(content=content, media_type="text/html", headers=dict(response.headers))
-            if "content-length" in new_response.headers:
-                del new_response.headers["content-length"]
+            if "content-length" in new_response.headers: del new_response.headers["content-length"]
             return new_response
         except Exception as e:
-            print(f"SEO Middleware Error serving {path}: {e}")
+            print(f"[Middleware] Error: {e}")
             
     return response
 
-# Include routers
+# Routes
 app.include_router(convert.router)
 app.include_router(pdf_tools.router)
 app.include_router(media_tools.router)
 
-# Mount static files for frontend (only if they exist)
-FRONTEND_DIR = PROJECT_ROOT / "frontend"
-if FRONTEND_DIR.exists():
-    # CSS
-    css_dir = FRONTEND_DIR / "css"
-    if css_dir.exists():
-        app.mount("/css", StaticFiles(directory=str(css_dir)), name="css")
-        # Legacy support
-        app.mount("/static/css", StaticFiles(directory=str(css_dir)), name="static_css")
-    
-    # JS
-    js_dir = FRONTEND_DIR / "js"
-    if js_dir.exists():
-        app.mount("/js", StaticFiles(directory=str(js_dir)), name="js")
-        # Legacy support
-        app.mount("/static/js", StaticFiles(directory=str(js_dir)), name="static_js")
-    
-    # Images
-    img_dir = FRONTEND_DIR / "img"
-    if not img_dir.exists():
-        img_dir.mkdir(parents=True, exist_ok=True)
-    app.mount("/img", StaticFiles(directory=str(img_dir)), name="img")
-    app.mount("/static/img", StaticFiles(directory=str(img_dir)), name="static_img")
-    
-    # Serve root static files (fallback)
-    app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
-
-    # Mount Generated Content Directories
-    if not CONVERTED_DIR.exists():
-        CONVERTED_DIR.mkdir(parents=True, exist_ok=True)
-    app.mount("/converted", StaticFiles(directory=str(CONVERTED_DIR)), name="converted")
-    
-    if not DOWNLOADS_DIR.exists():
-        DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
-    app.mount("/downloads", StaticFiles(directory=str(DOWNLOADS_DIR)), name="downloads")
-
-
-
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    return Response(status_code=204)
-
-
-@app.get("/")
-async def serve_frontend():
-    """Serve the frontend application."""
-    index_path = FRONTEND_DIR / "index.html"
-    if index_path.exists():
-        return FileResponse(index_path)
-    return JSONResponse({
-        "message": "Media Converter API",
-        "docs": "/docs",
-        "version": "1.0.0"
-    })
-
-
-@app.get("/pdf-to-excel")
-@app.get("/pdf-to-excel.html")
-async def serve_pdf_to_excel():
-    return FileResponse(FRONTEND_DIR / "pdf-to-excel.html")
-
-@app.get("/video-converter")
-@app.get("/video-converter.html")
-async def serve_video_converter():
-    return FileResponse(FRONTEND_DIR / "video-converter.html")
-
-@app.get("/mp3-converter")
-@app.get("/mp3-converter.html")
-async def serve_mp3_converter():
-    return FileResponse(FRONTEND_DIR / "mp3-converter.html")
-
-# Redirect old mp4-converter URL to mp3-converter for backward compatibility
-@app.get("/mp4-converter")
-@app.get("/mp4-converter.html")
-async def redirect_mp4_converter():
-    from fastapi.responses import RedirectResponse
-    return RedirectResponse(url="/mp3-converter.html", status_code=301)
-
-@app.get("/image-converter")
-@app.get("/image-converter.html")
-async def serve_image_converter():
-    return FileResponse(FRONTEND_DIR / "image-converter.html")
-@app.get("/pdf-merge")
-async def serve_pdf_merge(): return FileResponse(FRONTEND_DIR / "pdf-merge.html")
-
-@app.get("/pdf-compress")
-async def serve_pdf_compress(): return FileResponse(FRONTEND_DIR / "pdf-compress.html")
-
-@app.get("/pdf-remove-pages")
-async def serve_pdf_remove(): return FileResponse(FRONTEND_DIR / "pdf-remove-pages.html")
-
-@app.get("/pdf-grayscale")
-async def serve_pdf_grayscale(): return FileResponse(FRONTEND_DIR / "pdf-grayscale.html")
-
-@app.get("/pdf-pdfa")
-async def serve_pdf_pdfa(): return FileResponse(FRONTEND_DIR / "pdf-pdfa.html")
-
-@app.get("/pdf-to-word")
-async def serve_pdf_to_word(): return FileResponse(FRONTEND_DIR / "pdf-to-word.html")
-
-@app.get("/heic-to-jpg")
-async def serve_heic_to_jpg(): return FileResponse(FRONTEND_DIR / "heic-to-jpg.html")
-
-@app.get("/png-to-jpg")
-async def serve_png_to_jpg(): return FileResponse(FRONTEND_DIR / "png-to-jpg.html")
-
-@app.get("/webp-to-jpg")
-async def serve_webp_to_jpg(): return FileResponse(FRONTEND_DIR / "webp-to-jpg.html")
-
-@app.get("/mp4-to-mp3")
-async def serve_mp4_to_mp3(): return FileResponse(FRONTEND_DIR / "mp4-to-mp3.html")
-
-@app.get("/image-compress")
-async def serve_image_compress(): return FileResponse(FRONTEND_DIR / "image-compress.html")
-
-@app.get("/yt-thumbnail")
-async def serve_yt_thumbnail(): return FileResponse(FRONTEND_DIR / "yt-thumbnail.html")
-
-@app.get("/video-trimmer")
-async def serve_video_trimmer(): return FileResponse(FRONTEND_DIR / "video-trimmer.html")
-
-@app.get("/exif-remover")
-@app.get("/exif-remover.html")
-async def serve_exif_remover(): return FileResponse(FRONTEND_DIR / "exif-remover.html")
-
-@app.get("/all-tools")
-async def serve_all_tools():
-    return FileResponse(FRONTEND_DIR / "all-tools.html")
-
-@app.get("/ai-lab")
-async def serve_ai_lab():
-    return FileResponse(FRONTEND_DIR / "ai-lab.html")
-
-@app.get("/media-hub")
-async def serve_media_hub():
-    return FileResponse(FRONTEND_DIR / "media-hub.html")
-
-@app.get("/pdf-lab")
-async def serve_pdf_lab():
-    return FileResponse(FRONTEND_DIR / "pdf-lab.html")
-
-@app.get("/dev-suite")
-async def serve_dev_suite():
-    return FileResponse(FRONTEND_DIR / "dev-suite.html")
-
-@app.get("/utilities")
-async def serve_utilities():
-    return FileResponse(FRONTEND_DIR / "utilities.html")
-
-@app.get("/converter")
-async def serve_converter():
-    return FileResponse(FRONTEND_DIR / "converter.html")
-
-@app.get("/json-formatter")
-async def serve_json_formatter():
-    return FileResponse(FRONTEND_DIR / "json-formatter.html")
-
-@app.get("/base64-encoder")
-async def serve_base64_encoder():
-    return FileResponse(FRONTEND_DIR / "base64-encoder.html")
-
-@app.get("/qr-generator")
-async def serve_qr_generator():
-    return FileResponse(FRONTEND_DIR / "qr-generator.html")
-
-@app.get("/color-picker")
-async def serve_color_picker():
-    return FileResponse(FRONTEND_DIR / "color-picker.html")
-
-@app.get("/blogs")
-@app.get("/blogs.html")
-async def serve_blogs():
-    if (FRONTEND_DIR / "blogs.html").exists():
-        return FileResponse(FRONTEND_DIR / "blogs.html")
-    return JSONResponse(status_code=404, content={"message": "Blogs page not found"})
-
+@app.get("/workspace")
+async def workspace(): return FileResponse(FRONTEND_DIR / "workspace.html")
 
 @app.get("/blog/{slug}")
 async def serve_blog_post(slug: str):
-    """Serve individual blog posts."""
-    # Ensure secure filename access
     slug = Path(slug).name
-    if not slug.endswith(".html"):
-        slug += ".html"
-    
+    if not slug.endswith(".html"): slug += ".html"
     post_path = FRONTEND_DIR / "blog" / slug
-    if post_path.exists():
-        return FileResponse(post_path)
+    if post_path.exists(): return FileResponse(post_path)
+    error_page = FRONTEND_DIR / "error.html"
+    if error_page.exists():
+        with open(error_page, "r", encoding="utf-8") as f: content = f.read()
+        return Response(content=content.replace("{{ ERROR_MESSAGE }}", "Blog post not found."), media_type="text/html", status_code=404)
     return JSONResponse(status_code=404, content={"message": "Blog post not found"})
 
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon(): return Response(status_code=204)
 
-@app.get("/sitemap.xml")
-async def serve_sitemap():
-    if (FRONTEND_DIR / "sitemap.xml").exists():
-        return FileResponse(FRONTEND_DIR / "sitemap.xml", media_type="application/xml")
-    return JSONResponse(status_code=404, content={"message": "Sitemap not found"})
+@app.get("/{path:path}")
+async def catch_all_tools(path: str):
+    if not path or path == "/": return FileResponse(FRONTEND_DIR / "index.html")
+    clean_path = path.rstrip("/")
+    if clean_path.endswith(".html"): clean_path = clean_path[:-5]
+    potential_file = FRONTEND_DIR / f"{clean_path}.html"
+    if potential_file.exists(): return FileResponse(potential_file)
+    raise HTTPException(status_code=404, detail="Page not found")
 
-@app.get("/robots.txt")
-async def serve_robots():
-    if (FRONTEND_DIR / "robots.txt").exists():
-        return FileResponse(FRONTEND_DIR / "robots.txt", media_type="text/plain")
-    return JSONResponse(status_code=404, content={"message": "Robots.txt not found"})
+class ShareRequest(BaseModel):
+    sender_email: str
+    recipient_email: str
+    tool: str = None
+    file_name: str = None
 
-@app.get("/ads.txt")
-async def serve_ads_txt():
-    if (FRONTEND_DIR / "ads.txt").exists():
-        return FileResponse(FRONTEND_DIR / "ads.txt", media_type="text/plain")
-    return JSONResponse(status_code=404, content={"message": "ads.txt not found"})
-
-@app.get("/llms.txt")
-async def serve_llms_txt():
-    if (FRONTEND_DIR / "llms.txt").exists():
-        return FileResponse(FRONTEND_DIR / "llms.txt", media_type="text/plain")
-    return JSONResponse(status_code=404, content={"message": "llms.txt not found"})
-
-@app.get("/privacy-policy")
-@app.get("/privacy-policy.html")
-async def serve_privacy():
-    return FileResponse(FRONTEND_DIR / "privacy-policy.html")
-
-@app.get("/terms-of-service")
-@app.get("/terms-of-service.html")
-async def serve_terms():
-    return FileResponse(FRONTEND_DIR / "terms-of-service.html")
-
-@app.get("/about")
-@app.get("/about.html")
-async def serve_about():
-    return FileResponse(FRONTEND_DIR / "about.html")
-
-@app.get("/contact")
-@app.get("/contact.html")
-async def serve_contact():
-    return FileResponse(FRONTEND_DIR / "contact.html")
-
-@app.get("/sitemap")
-@app.get("/sitemap.html")
-async def serve_sitemap():
-    return FileResponse(FRONTEND_DIR / "sitemap.html")
-
-@app.get("/api/health")
-async def health_check():
-    """Health check endpoint."""
-    return {
-        "status": "healthy",
-        "version": "1.0.0",
-        "directories": {
-            "uploads": str(UPLOADS_DIR),
-            "converted": str(CONVERTED_DIR)
-        }
-    }
-
-
-@app.get("/api/stats")
-async def get_stats():
-    """Get application statistics."""
-    def count_files(directory: Path) -> dict:
-        if not directory.exists():
-            return {"count": 0, "size": 0}
-        files = list(directory.iterdir())
-        total_size = sum(f.stat().st_size for f in files if f.is_file())
-        return {"count": len(files), "size": total_size}
-    
-    return {
-        "uploads": count_files(UPLOADS_DIR),
-        "converted": count_files(CONVERTED_DIR)
-    }
-
+@app.post("/api/share-file")
+async def share_file(request: ShareRequest):
+    try:
+        save_lead(request.sender_email, "active_user", request.tool)
+        save_lead(request.recipient_email, "referral", request.tool)
+        return {"success": True}
+    except Exception as e: return {"success": False, "message": str(e)}
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    """Global exception handler for unhandled errors. Returns 200 with error page."""
-    print(f"GLOBAL ERROR: {exc}")
     error_page = FRONTEND_DIR / "error.html"
     if error_page.exists():
-        with open(error_page, "r", encoding="utf-8") as f:
-            content = f.read()
-        content = content.replace("{{ ERROR_MESSAGE }}", str(exc))
-        return Response(content=content, media_type="text/html", status_code=200) # Serve as 200 for crawlability or 404
-    
-    return JSONResponse(
-        status_code=404, # Return 404 instead of 500 for better SEO health
-        content={
-            "success": False,
-            "message": "Resource could not be processed gracefully",
-            "detail": "Our engine encountered a logic leak. Don't worry, it's crawlable."
-        }
-    )
-
+        with open(error_page, "r", encoding="utf-8") as f: content = f.read()
+        msg = str(exc.detail) if hasattr(exc, "detail") else str(exc)
+        return Response(content=content.replace("{{ ERROR_MESSAGE }}", msg), media_type="text/html", status_code=200)
+    return JSONResponse(status_code=404, content={"message": "Not found"})
 
 if __name__ == "__main__":
-    print("""
-    ================================================================
-                  ConvertRocket - convertrocket.online          
-                                                                 
-       Starting server at http://localhost:8000                    
-       API Documentation: http://localhost:8000/docs               
-                                                                 
-       Downloads: YouTube, TikTok, Instagram, Twitter, Facebook    
-       Converts: Video, Audio, Images, Documents, Spreadsheets     
-       Languages: 17+ supported languages                          
-    ================================================================
-    """)
-    
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=False,
-        log_level="info"
-    )
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
