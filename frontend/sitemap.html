@@ -26,6 +26,8 @@
 
     
 
+    
+
     <!-- Ko-fi Optimization -->
     <link rel="preconnect" href="https://ko-fi.com">
     <link rel="preconnect" href="https://storage.ko-fi.com">
@@ -87,6 +89,24 @@
     </section>
 
     <footer class="footer-clean">
+        
+        <div class="footer-links-cloud" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <h4 style="color: #fff; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Professional Utility Hub</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; font-size: 0.85rem;">
+                <a href="/pdf-to-excel" style="color: var(--text-secondary);">Convert PDF to Excel</a>
+                <a href="/video-converter" style="color: var(--text-secondary);">Video Converter</a>
+                <a href="/json-formatter" style="color: var(--text-secondary);">JSON Formatter</a>
+                <a href="/image-converter" style="color: var(--text-secondary);">Image Converter</a>
+                <a href="/mp3-converter" style="color: var(--text-secondary);">MP3 Converter</a>
+                <a href="/qr-generator" style="color: var(--text-secondary);">QR Generator</a>
+                <a href="/pdf-merge" style="color: var(--text-secondary);">Merge PDF</a>
+                <a href="/pdf-compress" style="color: var(--text-secondary);">Compress PDF</a>
+                <a href="/image-compress" style="color: var(--text-secondary);">Compress Image</a>
+                <a href="/svg-to-png" style="color: var(--text-secondary);">SVG to PNG</a>
+                <a href="/bg-remover" style="color: var(--text-secondary);">AI Background Remover</a>
+            </div>
+        </div>
+
         <div class="footer-links">
             <a href="/all-tools">All Tools</a>
             <a href="/media-hub">Media Hub</a>
@@ -111,6 +131,8 @@
     
 
     
+    
+
     
 
     
@@ -171,11 +193,13 @@
       }
       .kofi-btn-mini:hover { transform: scale(1.05); }
 
-      /* Force Right Position for Ko-fi Container */
+      /* Forced Right Position for Ko-fi Overlay & Container */
       #kofi-widget-overlay, 
       .floatingchat-container,
       .floatingchat-container-wrap {
           right: 20px !important;
+          left: auto !important;
+          margin-left: 0 !important;
           left: auto !important;
       }
     </style>

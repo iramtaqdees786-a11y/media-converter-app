@@ -1,7 +1,14 @@
+# ConvertRocket Robots.txt
+# Optimized for maximum organic reach & engine cleanliness
+
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /tmp/
-Disallow: /admin/
+Disallow: /admin
+Disallow: /api/internal
+Disallow: /api/stats
 
-Sitemap: https://convertrocket.online/sitemap.xml
+# Sitemap
+Sitemap: https://www.convertrocket.online/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1

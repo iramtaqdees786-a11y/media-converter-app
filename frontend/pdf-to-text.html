@@ -14,6 +14,8 @@
 
     
 
+    
+
     <!-- Ko-fi Optimization -->
     <link rel="preconnect" href="https://ko-fi.com">
     <link rel="preconnect" href="https://storage.ko-fi.com">
@@ -46,11 +48,11 @@
 
         <div class="converter-box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <h2 style="font-weight: 950; font-size: 2.2rem; margin:0;">PDF to <span style='color:var(--neon-purple)'>Text</span></h2>
+                <h2 style="font-weight: 950; font-size: 2.2rem; margin:0;">PDF to <span style='color:var(--neon-purple)'>Text</span></h1>
                 <div class="card-star" style="font-size:2rem; cursor:pointer;" onclick="toggleThisStar(this, '/pdf-to-text')">☆</div>
             </div>
 
-            <div class="upload-zone" id="upload-zone">
+            <div class="upload-zone skeleton-loading" id="upload-zone">
                 <div class="upload-icon">📄</div>
                 <p style="font-size: 1.4rem; font-weight: 800;">Select PDF for Extraction</p>
                 <p style="opacity: 0.5;">Tesseract OCR engine active</p>
@@ -84,7 +86,7 @@
         </div>
 
         <section class="seo-slop">
-            <h2>PDF Text Extraction Laboratory</h2>
+            <h1>PDF Text Extraction Laboratory</h2>
             <p>Convert un-selectable PDF data into plain text instantly. Perfect for research, data entry, and archiving.</p>
         </section>
 
@@ -178,6 +180,8 @@
 
     
 
+    
+
     <!-- Ko-fi Floating Widget -->
     <style>
       .kofi-hover-box {
@@ -228,11 +232,13 @@
       }
       .kofi-btn-mini:hover { transform: scale(1.05); }
 
-      /* Force Right Position for Ko-fi Container */
+      /* Forced Right Position for Ko-fi Overlay & Container */
       #kofi-widget-overlay, 
       .floatingchat-container,
       .floatingchat-container-wrap {
           right: 20px !important;
+          left: auto !important;
+          margin-left: 0 !important;
           left: auto !important;
       }
     </style>

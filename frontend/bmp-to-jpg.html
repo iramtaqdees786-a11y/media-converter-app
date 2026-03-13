@@ -34,6 +34,8 @@
 
     
 
+    
+
     <!-- Ko-fi Optimization -->
     <link rel="preconnect" href="https://ko-fi.com">
     <link rel="preconnect" href="https://storage.ko-fi.com">
@@ -70,11 +72,11 @@
         <div class="dashboard-grid">
             <div class="dashboard-card" style="margin: 0 auto; max-width: 600px; width: 100%;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                    <h2 style="font-weight: 950; font-size: 1.6rem; margin:0;">BMP <span style="color:var(--neon-cyan)">→</span> JPG</h2>
+                    <h2 style="font-weight: 950; font-size: 1.6rem; margin:0;">BMP <span style="color:var(--neon-cyan)">→</span> JPG</h1>
                     <div class="card-star active" style="font-size:1.5rem; cursor:pointer;" onclick="toggleThisStar(this, '/bmp-to-jpg')">☆</div>
                 </div>
 
-                <div class="upload-zone" id="upload-zone" style="position:relative;">
+                <div class="upload-zone skeleton-loading" id="upload-zone" style="position:relative;">
                     <div class="upload-icon">🖼️</div>
                     <p style="font-size: 1.2rem; font-weight: 800;">Select BMP File</p>
                     <input type="file" id="file-input" accept=".bmp" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
@@ -118,7 +120,7 @@
         </div>
 
         <section class="seo-content">
-            <h2>Detailed Guide for BMP to JPG</h2>
+            <h1>Detailed Guide for BMP to JPG</h2>
             <p>Our professional <strong>bmp to jpg converter</strong> is designed for users who demand the highest possible fidelity. When you convert BMP files in our lab, we use a hybrid processing model that combines browser-side execution for privacy and high-performance server-side engines for complex operations.</p>
             
             <h3>How to convert BMP effectively?</h3>
@@ -177,6 +179,24 @@
     </section>
 
     <footer class="footer-clean">
+        
+        <div class="footer-links-cloud" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <h4 style="color: #fff; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Professional Utility Hub</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; font-size: 0.85rem;">
+                <a href="/pdf-to-excel" style="color: var(--text-secondary);">Convert PDF to Excel</a>
+                <a href="/video-converter" style="color: var(--text-secondary);">Video Converter</a>
+                <a href="/json-formatter" style="color: var(--text-secondary);">JSON Formatter</a>
+                <a href="/image-converter" style="color: var(--text-secondary);">Image Converter</a>
+                <a href="/mp3-converter" style="color: var(--text-secondary);">MP3 Converter</a>
+                <a href="/qr-generator" style="color: var(--text-secondary);">QR Generator</a>
+                <a href="/pdf-merge" style="color: var(--text-secondary);">Merge PDF</a>
+                <a href="/pdf-compress" style="color: var(--text-secondary);">Compress PDF</a>
+                <a href="/image-compress" style="color: var(--text-secondary);">Compress Image</a>
+                <a href="/svg-to-png" style="color: var(--text-secondary);">SVG to PNG</a>
+                <a href="/bg-remover" style="color: var(--text-secondary);">AI Background Remover</a>
+            </div>
+        </div>
+
         <div class="footer-links">
             <a href="/all-tools">All Tools</a>
             <a href="/media-hub">Media Hub</a>
@@ -302,6 +322,8 @@
 
     
 
+    
+
     <!-- Ko-fi Floating Widget -->
     <style>
       .kofi-hover-box {
@@ -352,11 +374,13 @@
       }
       .kofi-btn-mini:hover { transform: scale(1.05); }
 
-      /* Force Right Position for Ko-fi Container */
+      /* Forced Right Position for Ko-fi Overlay & Container */
       #kofi-widget-overlay, 
       .floatingchat-container,
       .floatingchat-container-wrap {
           right: 20px !important;
+          left: auto !important;
+          margin-left: 0 !important;
           left: auto !important;
       }
     </style>

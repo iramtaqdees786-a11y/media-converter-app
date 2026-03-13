@@ -33,6 +33,8 @@
 
     
 
+    
+
     <!-- Ko-fi Optimization -->
     <link rel="preconnect" href="https://ko-fi.com">
     <link rel="preconnect" href="https://storage.ko-fi.com">
@@ -69,7 +71,7 @@
         </section>
 
         <div class="tool-dashboard">
-            <div id="upload-zone" class="upload-zone"
+            <div id="upload-zone" class="upload-zone skeleton-loading"
                 style="border: 2px dashed rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 80px 40px; text-align: center; cursor: pointer; transition: var(--transition-base); background: rgba(255,255,255,0.02);">
                 <div style="font-size: 4rem; margin-bottom: 20px;">📂</div>
                 <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 12px;">Drop File
@@ -115,7 +117,7 @@
         </div>
 
         <section class="seo-section">
-            <h2>Industrial-Grade Conversion Engine</h2>
+            <h1>Industrial-Grade Conversion Engine</h1>
             <p>Our universal conversion laboratory is powered by modern WebAssembly protocols, allowing for
                 high-performance data transformation without ever leaving your machine. We support over 1000+
                 combinations including video (MP4, MKV), audio (MP3, WAV), imagery (HEIC, RAW), and document structures.
@@ -167,7 +169,25 @@
                 <span class="badge-text">Engineered for the Elite</span>
                 <div class="badge-brand">MADE BY IZYAAN</div>
             </div>
-            <div class="footer-links">
+            
+        <div class="footer-links-cloud" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <h4 style="color: #fff; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Professional Utility Hub</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; font-size: 0.85rem;">
+                <a href="/pdf-to-excel" style="color: var(--text-secondary);">Convert PDF to Excel</a>
+                <a href="/video-converter" style="color: var(--text-secondary);">Video Converter</a>
+                <a href="/json-formatter" style="color: var(--text-secondary);">JSON Formatter</a>
+                <a href="/image-converter" style="color: var(--text-secondary);">Image Converter</a>
+                <a href="/mp3-converter" style="color: var(--text-secondary);">MP3 Converter</a>
+                <a href="/qr-generator" style="color: var(--text-secondary);">QR Generator</a>
+                <a href="/pdf-merge" style="color: var(--text-secondary);">Merge PDF</a>
+                <a href="/pdf-compress" style="color: var(--text-secondary);">Compress PDF</a>
+                <a href="/image-compress" style="color: var(--text-secondary);">Compress Image</a>
+                <a href="/svg-to-png" style="color: var(--text-secondary);">SVG to PNG</a>
+                <a href="/bg-remover" style="color: var(--text-secondary);">AI Background Remover</a>
+            </div>
+        </div>
+
+        <div class="footer-links">
                 <a href="/blogs">Archives</a>
                 <a href="/privacy-policy">Privacy</a>
                 <a href="/terms-of-service">ToS</a>
@@ -181,6 +201,8 @@
     
 
     
+    
+
     
 
     
@@ -241,11 +263,13 @@
       }
       .kofi-btn-mini:hover { transform: scale(1.05); }
 
-      /* Force Right Position for Ko-fi Container */
+      /* Forced Right Position for Ko-fi Overlay & Container */
       #kofi-widget-overlay, 
       .floatingchat-container,
       .floatingchat-container-wrap {
           right: 20px !important;
+          left: auto !important;
+          margin-left: 0 !important;
           left: auto !important;
       }
     </style>

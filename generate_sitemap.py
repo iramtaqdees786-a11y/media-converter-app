@@ -167,10 +167,13 @@ def save_sitemap(xml, output_path="frontend/sitemap.xml"):
 def generate_robots_txt():
     """Generate robots.txt"""
     robots = f"""# ConvertRocket Robots.txt
-# Allow all crawlers
+# Optimized for maximum organic reach & engine cleanliness
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/internal
+Disallow: /api/stats
 
 # Sitemap
 Sitemap: {BASE_URL}/sitemap.xml
@@ -187,28 +190,28 @@ def save_robots_txt(robots, output_path="frontend/robots.txt"):
 
 def main():
     """Generate sitemap and robots.txt"""
-    print("🗺️  Generating XML Sitemap...")
+    print("Generating XML Sitemap...")
     print("=" * 60)
     
     # Generate sitemap
     xml, page_count = generate_sitemap()
     save_sitemap(xml)
     
-    print(f"✅ Sitemap generated: frontend/sitemap.xml")
-    print(f"   Total pages: {page_count}")
-    print(f"   URL: {BASE_URL}/sitemap.xml")
+    print(f"Sitemap generated: frontend/sitemap.xml")
+    print(f"Total pages: {page_count}")
+    print(f"URL: {BASE_URL}/sitemap.xml")
     print()
     
     # Generate robots.txt
     robots = generate_robots_txt()
     save_robots_txt(robots)
     
-    print(f"✅ Robots.txt generated: frontend/robots.txt")
-    print(f"   URL: {BASE_URL}/robots.txt")
+    print(f"Robots.txt generated: frontend/robots.txt")
+    print(f"URL: {BASE_URL}/robots.txt")
     print()
     
     print("=" * 60)
-    print("✨ Sitemap generation complete!")
+    print("Sitemap generation complete!")
     print()
     print("Next Steps:")
     print("1. Verify sitemap at: https://www.xml-sitemaps.com/validate-xml-sitemap.html")
@@ -218,7 +221,7 @@ def main():
     print("   - Submit sitemap: /sitemap.xml")
     print("3. Monitor indexing status in Search Console")
     print()
-    print("📊 Page Breakdown:")
+    print("Page Breakdown:")
     
     # Count pages by priority
     priorities = {}

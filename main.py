@@ -24,6 +24,8 @@ from datetime import datetime, timedelta
 
 from backend.routers import convert, pdf_tools, media_tools
 from backend.config import DOWNLOADS_DIR, UPLOADS_DIR, CONVERTED_DIR
+from backend.seo_config import SEO_METADATA, DEFAULT_METADATA, get_software_schema
+import json
 
 # Create FastAPI application
 app = FastAPI(
@@ -143,48 +145,13 @@ async def canonical_url_middleware(request: Request, call_next):
     
     return await call_next(request)
 
-# Custom Middleware for SEO & Performance
-@app.middleware("http")
-async def seo_and_performance_middleware(request: Request, call_next):
-    # Process request
-    response = await call_next(request)
-    
-    path = request.url.path
-    
-    # 1. Add Cache-Control & Expires for Assets
-    if any(path.startswith(pre) for pre in ["/static/", "/css/", "/js/", "/img/", "/assets/"]) or \
-       any(path.endswith(ext) for ext in [".js", ".css", ".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico", ".woff", ".woff2"]):
-        # Cache for 1 year for static assets (standard practice)
-        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
-        expires_date = (datetime.utcnow() + timedelta(days=365)).strftime("%a, %d %b %Y %H:%M:%S GMT")
-        response.headers["Expires"] = expires_date
-        return response
-
-    # 2. Dynamic SEO Placeholder Replacement [MONTH_YEAR]
-    content_type = response.headers.get("content-type", "")
-    if "text/html" in content_type:
-        try:
-            # Safer way to handle FileResponse or regular Response
-            if isinstance(response, FileResponse):
-                # We skip replacement for binary or very large files if they were somehow served as text/html
-                if response.path.endswith(".html"):
-                    with open(response.path, "r", encoding="utf-8", errors="ignore") as f:
-                        content = f.read()
-                    
-                    current_date = datetime.now().strftime("%B %Y")
-                    if "[MONTH_YEAR]" in content:
-                        content = content.replace("[MONTH_YEAR]", current_date)
-                        # We return a new Response with the modified content
-                        new_response = Response(content=content, media_type="text/html", headers=dict(response.headers))
-                        # Remove content-length as it changed
-                        if "content-length" in new_response.headers:
-                            del new_response.headers["content-length"]
-                        return new_response
-        except Exception as e:
-            # LOG ERROR INSTEAD OF CRASHING
-            print(f"SEO Middleware Error serving {path}: {e}")
-            
-    return response
+# Static routes for trust files
+@app.get("/ads.txt")
+async def ads_txt():
+    ads_file = FRONTEND_DIR / "ads.txt"
+    if ads_file.exists():
+        return FileResponse(ads_file)
+    return Response(content="google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0", media_type="text/plain")
 
 # Extensionless URL Support (Friendly Links)
 @app.middleware("http")
@@ -207,6 +174,137 @@ async def friendly_urls_middleware(request: Request, call_next):
              return FileResponse(potential_file)
              
     return await call_next(request)
+
+# Custom Middleware for SEO & Performance
+@app.middleware("http")
+async def seo_and_performance_middleware(request: Request, call_next):
+    # Process request
+    response = await call_next(request)
+    
+    path = request.url.path
+    
+    # 1. Add Cache-Control & Expires for Assets
+    if any(path.startswith(pre) for pre in ["/static/", "/css/", "/js/", "/img/", "/assets/"]) or \
+       any(path.endswith(ext) for ext in [".js", ".css", ".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico", ".woff", ".woff2"]):
+        # Cache for 1 year for static assets (standard practice)
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        expires_date = (datetime.utcnow() + timedelta(days=365)).strftime("%a, %d %b %Y %H:%M:%S GMT")
+        response.headers["Expires"] = expires_date
+        return response
+
+    # 2. Dynamic SEO Injection (Canonical, Metadata, Schema)
+    content_type = response.headers.get("content-type", "").lower()
+    is_html_file = isinstance(response, FileResponse) and str(getattr(response, "path", "")).lower().endswith(".html")
+    
+    if "text/html" in content_type or is_html_file:
+        try:
+            # Get content from either Response or FileResponse
+            if isinstance(response, FileResponse):
+                with open(response.path, "r", encoding="utf-8", errors="ignore") as f:
+                    content = f.read()
+            else:
+                content = response.body.decode("utf-8", errors="ignore")
+            
+            from backend.seo_config import get_faq_schema, FAQ_DATA
+            import re
+
+            # - Time Injection [YEAR]
+            current_year = "2026"
+            content = content.replace("[YEAR]", current_year)
+            content = content.replace("[MONTH_YEAR]", datetime.now().strftime("%B %Y"))
+
+            # - Canonical URL (CRITICAL)
+            canonical_url = f"https://www.convertrocket.online{path}"
+            if '<link rel="canonical"' in content:
+                content = re.sub(r'<link rel="canonical" [^>]*>', f'<link rel="canonical" href="{canonical_url}">', content)
+            else:
+                content = content.replace("</head>", f'    <link rel="canonical" href="{canonical_url}">\n</head>')
+
+            # - Tool Specific Metadata
+            tool_meta = SEO_METADATA.get(path, DEFAULT_METADATA)
+            title = tool_meta['title'].replace("[YEAR]", current_year)
+            description = tool_meta.get('description', '').replace("[YEAR]", current_year)
+            
+            # Use count=1 and ensure we replace the first occurrence
+            content = re.sub(r'<title>.*?</title>', f"<title>{title}</title>", content, flags=re.IGNORECASE, count=1)
+            content = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{description}">', content, flags=re.IGNORECASE, count=1)
+            content = re.sub(r'<meta name="keywords" content=".*?">', f'<meta name="keywords" content="{tool_meta["keywords"]}">', content, flags=re.IGNORECASE, count=1)
+            
+            # - Schema Injection (Software + FAQ)
+            schemas = [get_software_schema(path, tool_meta)]
+            faq_schema = get_faq_schema(path)
+            if faq_schema:
+                schemas.append(faq_schema)
+            
+            schema_html = ""
+            for s in schemas:
+                schema_html += f'\n    <script type="application/ld+json" data-seo="true">\n    {json.dumps(s, indent=4)}\n    </script>'
+            
+            # Only inject if not already injected by us
+            if 'data-seo="true"' not in content:
+                content = re.sub(r'</head>', f'{schema_html}\n</head>', content, flags=re.IGNORECASE, count=1)
+
+            # - Quick Guide Injection
+            if "quick_guide" in tool_meta and "<!-- SEO_QUICK_GUIDE -->" not in content:
+                guide_steps = "".join([f"<li>{step}</li>" for step in tool_meta["quick_guide"]])
+                guide_html = f'''
+                <section class="seo-quick-guide" style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">
+                    <h2 style="font-size: 1.4rem; margin-bottom: 20px; color: var(--accent-primary);">Quick Guide: How to use this tool</h2>
+                    <ol style="line-height: 1.8; color: var(--text-secondary);">
+                        {guide_steps}
+                    </ol>
+                </section>
+                <!-- SEO_QUICK_GUIDE -->
+                '''
+                # Try multiple injection points in order of preference
+                if re.search(r'</main>', content, flags=re.IGNORECASE):
+                    content = re.sub(r'</main>', f"{guide_html}\n</main>", content, flags=re.IGNORECASE, count=1)
+                elif re.search(r'<footer', content, flags=re.IGNORECASE):
+                    content = re.sub(r'<footer', f"{guide_html}\n<footer", content, flags=re.IGNORECASE, count=1)
+                elif re.search(r'</body', content, flags=re.IGNORECASE):
+                    content = re.sub(r'</body', f"{guide_html}\n</body", content, flags=re.IGNORECASE, count=1)
+
+            # - Competitor Comparison
+            if "<!-- SEO_COMPETITOR_SECTION -->" not in content:
+                comp_html = f'''
+                <div class="competitor-comparison" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+                    <h3 style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 15px;">Why ConvertRocket?</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                        ConvertRocket is a <strong>Free Alternative to SmallPDF and Adobe</strong>. We provide unlimited, industrial-grade processing without the restrictive subscriptions or watermarks found in competing modules.
+                    </p>
+                </div>
+                <!-- SEO_COMPETITOR_SECTION -->
+                '''
+                if re.search(r'<footer[^>]*>', content, flags=re.IGNORECASE):
+                    content = re.sub(r'(<footer[^>]*>)', r'\1' + comp_html, content, flags=re.IGNORECASE, count=1)
+                elif re.search(r'</body', content, flags=re.IGNORECASE):
+                    content = re.sub(r'</body', f"{comp_html}\n</body", content, flags=re.IGNORECASE, count=1)
+
+            # - LCP Skeleton Loader Injection
+            skeleton_css = """
+            <style id="seo-skeleton-loader">
+            .skeleton-loading { position: relative; overflow: hidden; }
+            .skeleton-loading::after {
+                content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+                animation: skeleton-shimmer 1.5s infinite;
+            }
+            @keyframes skeleton-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+            </style>
+            """
+            if "seo-skeleton-loader" not in content:
+                content = re.sub(r'</head>', f"{skeleton_css}\n</head>", content, flags=re.IGNORECASE, count=1)
+
+            # Return new response with modified content
+            print(f"SEO Middleware: Successfully processed {path}")
+            new_response = Response(content=content, media_type="text/html", headers=dict(response.headers))
+            if "content-length" in new_response.headers:
+                del new_response.headers["content-length"]
+            return new_response
+        except Exception as e:
+            print(f"SEO Middleware Error serving {path}: {e}")
+            
+    return response
 
 # Include routers
 app.include_router(convert.router)
@@ -484,13 +582,21 @@ async def get_stats():
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    """Global exception handler for unhandled errors."""
+    """Global exception handler for unhandled errors. Returns 200 with error page."""
+    print(f"GLOBAL ERROR: {exc}")
+    error_page = FRONTEND_DIR / "error.html"
+    if error_page.exists():
+        with open(error_page, "r", encoding="utf-8") as f:
+            content = f.read()
+        content = content.replace("{{ ERROR_MESSAGE }}", str(exc))
+        return Response(content=content, media_type="text/html", status_code=200) # Serve as 200 for crawlability or 404
+    
     return JSONResponse(
-        status_code=500,
+        status_code=404, # Return 404 instead of 500 for better SEO health
         content={
             "success": False,
-            "message": "An unexpected error occurred",
-            "detail": str(exc)
+            "message": "Resource could not be processed gracefully",
+            "detail": "Our engine encountered a logic leak. Don't worry, it's crawlable."
         }
     )
 
