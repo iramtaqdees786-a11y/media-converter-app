@@ -183,6 +183,7 @@ async def main_application_middleware(request: Request, call_next):
                 <a href="/all-tools">All Tools</a>
                 <a href="/media-hub">Media Hub</a>
                 <a href="/pdf-lab">PDF Lab</a>
+                <a href="/workspace">Workspace</a>
                 <a href="/blogs">Blog</a>
             </div>
         </div>
@@ -231,15 +232,6 @@ async def serve_blog_post(slug: str):
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon(): return Response(status_code=204)
 
-@app.get("/{path:path}")
-async def catch_all_tools(path: str):
-    if not path or path == "/": return FileResponse(FRONTEND_DIR / "index.html")
-    clean_path = path.rstrip("/")
-    if clean_path.endswith(".html"): clean_path = clean_path[:-5]
-    potential_file = FRONTEND_DIR / f"{clean_path}.html"
-    if potential_file.exists(): return FileResponse(potential_file)
-    raise HTTPException(status_code=404, detail="Page not found")
-
 class ShareRequest(BaseModel):
     sender_email: str
     recipient_email: str
@@ -253,6 +245,30 @@ async def share_file(request: ShareRequest):
         save_lead(request.recipient_email, "referral", request.tool)
         return {"success": True}
     except Exception as e: return {"success": False, "message": str(e)}
+
+@app.get("/internal/export-leads")
+async def export_leads(key: str = None):
+    # Simple security key check
+    if key != "rocket_leads_2026":
+        raise HTTPException(status_code=403, detail="Unauthorized access")
+    
+    leads = get_all_leads()
+    output = "email,role,tool,timestamp\n"
+    for lead in leads:
+        output += f"{lead[0]},{lead[1]},{lead[2]},{lead[3]}\n"
+    
+    return Response(content=output, media_type="text/csv", headers={
+        "Content-Disposition": "attachment; filename=convertrocket_leads.csv"
+    })
+
+@app.get("/{path:path}")
+async def catch_all_tools(path: str):
+    if not path or path == "/": return FileResponse(FRONTEND_DIR / "index.html")
+    clean_path = path.rstrip("/")
+    if clean_path.endswith(".html"): clean_path = clean_path[:-5]
+    potential_file = FRONTEND_DIR / f"{clean_path}.html"
+    if potential_file.exists(): return FileResponse(potential_file)
+    raise HTTPException(status_code=404, detail="Page not found")
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):

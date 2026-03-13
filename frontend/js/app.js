@@ -441,12 +441,17 @@ function displayDownloadResult(data) {
             </div>
             ` : ''}
         </div>
-        <div style="display: flex; gap: 12px; margin-top: 15px;">
-            <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" style="flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
-                ⬇️ ${downloadText}
-            </a>
-            <button class="btn btn-secondary" onclick="location.reload()" style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid var(--border-subtle); color: white; border-radius: 12px; cursor: pointer;">
-                🔄 Download Again
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            <div style="display: flex; gap: 12px;">
+                <a href="${data.download_url}" id="download-link" class="btn btn-success btn-block btn-lg" style="flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
+                    ⬇️ ${downloadText}
+                </a>
+                <button class="btn btn-secondary" onclick="location.reload()" style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid var(--border-subtle); color: white; border-radius: 12px; cursor: pointer;">
+                    🔄 New
+                </button>
+            </div>
+            <button onclick="window.openShareModal('${data.filename || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 12px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
+                📧 Email this File (Team Share)
             </button>
         </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
@@ -709,12 +714,17 @@ function displayConvertResult(data) {
                 <div class="result-info-value">${data.converted_size || 'N/A'}</div>
             </div>
         </div>
-        <div style="display: flex; gap: 12px; margin-top: 15px;">
-            <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" style="flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
-                ⬇️ ${downloadText}
-            </a>
-            <button class="btn btn-secondary" onclick="location.reload()" style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid var(--border-subtle); color: white; border-radius: 12px; cursor: pointer;">
-                🔄 Convert Again
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            <div style="display: flex; gap: 12px;">
+                <a href="${data.download_url}" id="download-link" class="btn btn-success btn-block btn-lg" style="flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
+                    ⬇️ ${downloadText}
+                </a>
+                <button class="btn btn-secondary" onclick="location.reload()" style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid var(--border-subtle); color: white; border-radius: 12px; cursor: pointer;">
+                    🔄 New
+                </button>
+            </div>
+            <button onclick="window.openShareModal('${data.converted_file || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 12px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
+                📧 Email this File (Team Share)
             </button>
         </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
