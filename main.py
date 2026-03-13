@@ -49,6 +49,12 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Static Resource Mounting
+app.mount("/css", StaticFiles(directory=FRONTEND_DIR / "css"), name="css")
+app.mount("/js", StaticFiles(directory=FRONTEND_DIR / "js"), name="js")
+app.mount("/img", StaticFiles(directory=FRONTEND_DIR / "img"), name="img")
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
@@ -114,6 +120,19 @@ async def main_application_middleware(request: Request, call_next):
             else:
                 content = response.body.decode("utf-8", errors="ignore")
             
+            # -- AdSense Auto Ads Injection --
+            ads_txt_path = FRONTEND_DIR / "ads.txt"
+            pub_id = "pub-0000000000000000"
+            if ads_txt_path.exists():
+                with open(ads_txt_path, "r") as f:
+                    ads_text = f.read()
+                    match = re.search(r"pub-\d+", ads_text)
+                    if match: pub_id = match.group(0)
+            
+            if f"ca-{pub_id}" not in content and '</head>' in content:
+                adsense_script = f'\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{pub_id}" crossorigin="anonymous"></script>'
+                content = content.replace('</head>', f'{adsense_script}\n</head>')
+
             # -- SEO Injections --
             current_year = "2026"
             content = content.replace("[YEAR]", current_year)
@@ -149,6 +168,37 @@ async def main_application_middleware(request: Request, call_next):
 
             if 'src="/js/workspace-share.js"' not in content:
                 content = content.replace('</body>', '<script src="/js/workspace-share.js"></script>\n</body>')
+
+            # -- Blog Premium Injection --
+            if path.startswith("/blog") or path == "/blogs":
+                if 'blog-premium.css' not in content:
+                    content = content.replace('</head>', '    <link rel="stylesheet" href="/css/blog-premium.css">\n</head>')
+                if 'class="nav-premium"' not in content and '<body>' in content:
+                    nav_html = """
+    <div class="reading-progress" id="reading-progress"></div>
+    <nav class="nav-premium">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+            <div class="nav-links">
+                <a href="/all-tools">All Tools</a>
+                <a href="/media-hub">Media Hub</a>
+                <a href="/pdf-lab">PDF Lab</a>
+                <a href="/blogs">Blog</a>
+            </div>
+        </div>
+    </nav>"""
+                    content = content.replace('<body>', f'<body>{nav_html}')
+                    progress_script = """
+<script>
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        let pr = document.getElementById("reading-progress");
+        if(pr) pr.style.width = scrolled + "%";
+    };
+</script>"""
+                    content = content.replace('</body>', f'{progress_script}\n</body>')
 
             new_response = Response(content=content, media_type="text/html", headers=dict(response.headers))
             if "content-length" in new_response.headers: del new_response.headers["content-length"]

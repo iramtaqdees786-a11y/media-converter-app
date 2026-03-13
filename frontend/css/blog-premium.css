@@ -1,0 +1,150 @@
+/* ========================================
+   BLOG PREMIUM STYLES FOR CONVERTROCKET
+   Glass-Bento Aesthetic & Enhanced Typography
+   ======================================== */
+
+:root {
+    --blog-max-width: 900px;
+    --accent-glow: rgba(0, 242, 255, 0.4);
+}
+
+/* Glass Container for Article */
+.blog-post-content {
+    background: var(--bg-surface) !important;
+    backdrop-filter: var(--glass-blur) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 60px !important;
+    margin: 40px auto 80px !important;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6) !important;
+    position: relative;
+    z-index: 1;
+    color: var(--text-primary) !important;
+    max-width: var(--blog-max-width) !important;
+}
+
+/* Link Styling */
+.blog-main-content a {
+    color: var(--accent-primary) !important;
+    text-decoration: underline;
+    transition: all 0.3s;
+}
+
+.blog-main-content a:hover {
+    color: var(--accent-secondary) !important;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Image Styling */
+.blog-main-content img {
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    margin: 30px 0;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Reading Progress Bar */
+.reading-progress {
+    position: fixed;
+    top: 80px; /* Below nav */
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    z-index: 1001;
+    box-shadow: 0 0 15px var(--accent-primary);
+    transition: width 0.1s ease-out;
+}
+
+/* Typography Enhancements */
+.blog-main-content h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 50px 0 25px;
+    background: linear-gradient(135deg, #fff, var(--text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-left: 4px solid var(--accent-primary);
+    padding-left: 20px;
+}
+
+.blog-main-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.blog-main-content strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Call to Action in Blog */
+.blog-cta {
+    background: linear-gradient(135deg, rgba(112, 0, 255, 0.1), rgba(0, 242, 255, 0.05));
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--accent-glow), transparent 70%);
+    opacity: 0.1;
+}
+
+.blog-cta h3 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Hero Section Adjustment */
+.hero-minimal {
+    padding: 100px 0 60px;
+    background: radial-gradient(circle at top center, rgba(112, 0, 255, 0.1), transparent 70%);
+}
+
+.hero-minimal h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -2px !important;
+    line-height: 1.1 !important;
+}
+
+/* Article List (on /blogs page) */
+.bento-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bento-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Animation for the Blog Content */
+.blog-post-content {
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@media (max-width: 768px) {
+    .blog-post-content {
+        padding: 30px 20px;
+        margin: 20px 10px 60px !important;
+    }
+    
+    .blog-main-content h2 {
+        font-size: 1.8rem;
+    }
+}

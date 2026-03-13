@@ -83,27 +83,12 @@
             </div>
 
             <div class="console-body">
-                <!-- Remote Extraction -->
-                <div style="margin-bottom: 40px; display: flex; gap: 12px;">
-                    <input type="text" id="url-input" class="search-orb" style="flex: 1; padding: 16px 24px;"
-                        placeholder="Paste Source URL for Cloud Extraction...">
-                    <button id="get-info-btn" class="btn-launch" style="width: auto; padding-inline: 40px;">Deep
-                        Scan</button>
-                </div>
-
-                <div id="video-preview" style="display: none; margin-bottom: 30px; animation: reveal-up 0.4s forwards;">
-                </div>
-
-                <div style="margin-bottom: 40px; text-align: center;">
-                    <span style="font-weight: 950; opacity: 0.1; letter-spacing: 8px;">LOCAL_FILE_UPLINK</span>
-                </div>
-
-                <!-- Local Upload -->
+                <!-- Local Upload Only -->
                 <div class="upload-arena" id="upload-zone" onclick="document.getElementById('file-input').click()">
                     <div style="font-size: 4rem; margin-bottom: 20px;">🎶</div>
-                    <h2 style="margin-bottom: 10px;">Select Media Input</h2>
-                    <p style="opacity: 0.5;">WAV, FLAC, M4A, AAC, MP4 Supported</p>
-                    <input type="file" id="file-input" style="display: none;">
+                    <h2 style="margin-bottom: 10px;">Select Media for MP3 Extraction</h2>
+                    <p style="opacity: 0.5;">WAV, FLAC, M4A, AAC, MP4, MKV Supported</p>
+                    <input type="file" id="file-input" style="display: none;" accept="video/*,audio/*">
                     <input type="hidden" id="target-format" value="mp3">
                 </div>
 
@@ -111,40 +96,26 @@
                     style="display: none; text-align: center; margin-top: 30px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: var(--radius-md);">
                 </div>
 
-                <div id="download-controls" style="display: none; margin-top: 30px; text-align: center;">
-                    <input type="hidden" id="format-type" value="audio">
-                    <input type="hidden" id="quality-select" value="best">
-                    <button id="download-btn" class="btn-launch">Execute MP3 Extraction</button>
-                </div>
-
-                <div id="convert-btn-container" style="display:none; margin-top: 30px; text-align: center;">
-                    <button id="convert-btn" class="btn-launch">Execute Transcoding</button>
+                <div id="convert-controls" style="display:none; margin-top: 30px; text-align: center;">
+                    <button id="convert-btn" class="btn-launch">Convert to MP3</button>
+                    <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-dim);">Proper Studio-Grade 320kbps Export</p>
                 </div>
 
                 <!-- Progress Area -->
-                <div id="download-progress" style="display: none; margin-top: 40px;">
-                    <div
-                        style="height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-bottom: 15px;">
-                        <div class="progress-bar-fill"
-                            style="height: 100%; background: var(--accent-gradient); width: 0%; transition: width 0.3s; box-shadow: 0 0 20px var(--accent-primary);">
-                        </div>
-                    </div>
-                </div>
                 <div id="convert-progress" style="display: none; margin-top: 40px;">
                     <div
                         style="height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-bottom: 15px;">
-                        <div class="progress-bar-fill"
+                        <div id="convert-bar" class="progress-fill"
                             style="height: 100%; background: var(--accent-gradient); width: 0%; transition: width 0.3s; box-shadow: 0 0 20px var(--accent-primary);">
                         </div>
                     </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 800;">
+                        <span id="convert-status" style="color: var(--accent-primary);">PROCESSING_AUDIO</span>
+                        <span class="progress-percent">0%</span>
+                    </div>
                 </div>
 
-                <div id="download-result" style="display: none; text-align: center; margin-top: 30px;"></div>
                 <div id="convert-result" style="display: none; text-align: center; margin-top: 30px;"></div>
-                <div id="download-status"
-                    style="margin-top: 30px; text-align: center; font-weight: 700; color: var(--accent-primary);"></div>
-                <div id="convert-status"
-                    style="margin-top: 30px; text-align: center; font-weight: 700; color: var(--accent-primary);"></div>
 
                 <button onclick="location.reload()"
                     style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-weight:800; letter-spacing:1px; font-size: 0.7rem; width: 100%; margin-top: 30px; display:block;">RESET_MODULE</button>

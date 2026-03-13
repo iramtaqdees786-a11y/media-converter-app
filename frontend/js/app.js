@@ -566,8 +566,9 @@ function handleFileSelect(file) {
 
 function updateTargetFormats(category, currentExt) {
     const select = elements.targetFormat;
-    const formats = getFormatsForCategory(category);
+    if (!select || select.tagName !== 'SELECT') return; // Skip if hidden input or non-select
 
+    const formats = getFormatsForCategory(category);
     select.innerHTML = formats
         .filter(fmt => fmt !== currentExt)
         .map(fmt => `<option value="${fmt}">${fmt.toUpperCase()}</option>`)
