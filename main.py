@@ -166,12 +166,14 @@ async def main_application_middleware(request: Request, call_next):
                 seo_block = '<div class="seo-internal-links" style="margin-top: 60px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;"><h4>Trending Tools [YEAR]</h4><a href="/pdf-to-excel" style="margin-right:15px;">PDF to Excel</a> <a href="/bg-remover">Background Remover</a></div><!-- SEO_TRENDING_CLOUD -->'
                 content = content.replace('</body>', f"{seo_block}\n</body>")
 
-            if 'workspace-share.js' not in content:
-                script_html = '<script src="/static/js/workspace-share.js?v=2.0"></script>'
+            # Force versioned script
+            script_html = '<script src="/static/js/workspace-share.js?v=3.0"></script>'
+            if 'workspace-share.js' in content:
+                # More robust regex for single/double quotes and attributes
+                content = re.sub(r'<script[^>]*src=["\'][^"\']*workspace-share\.js[^"\']*["\'][^>]*></script>', script_html, content, flags=re.I)
+            else:
                 if '</body>' in content:
                     content = content.replace('</body>', f'{script_html}\n</body>')
-                elif '</html>' in content:
-                    content = content.replace('</html>', f'{script_html}\n</html>')
                 else:
                     content += script_html
 
@@ -224,25 +226,30 @@ async def workspace(): return FileResponse(FRONTEND_DIR / "workspace.html")
 
 @app.get("/blog/{slug}")
 async def serve_blog_post(slug: str):
-    # Mapping for SEO slugs with different filenames
-    slug_map = {
-        "is-convertrocket-safe": "safety-guide",
-        "convertrocket-security": "safety-guide",
-        "best-converters": "best-video-converters-2025"
-    }
-    
-    clean_slug = slug_map.get(slug, slug)
-    clean_slug = Path(clean_slug).name
+    clean_slug = Path(slug).name
     if not clean_slug.endswith(".html"): clean_slug += ".html"
     
     post_path = FRONTEND_DIR / "blog" / clean_slug
-    if post_path.exists(): return FileResponse(post_path)
+    if post_path.exists(): 
+        return FileResponse(post_path)
     
+    # Fallback to check if a mapped version exists
+    slug_map = {
+        "is-convertrocket-safe": "is-convertrocket-safe", # Already renamed
+        "safety-guide": "is-convertrocket-safe",
+        "convertrocket-security": "is-convertrocket-safe",
+        "best-converters": "best-video-converters-2025"
+    }
+    alt_slug = slug_map.get(slug)
+    if alt_slug:
+        alt_path = FRONTEND_DIR / "blog" / f"{alt_slug}.html"
+        if alt_path.exists(): return FileResponse(alt_path)
+
     error_page = FRONTEND_DIR / "error.html"
     if error_page.exists():
         with open(error_page, "r", encoding="utf-8") as f: content = f.read()
-        return Response(content=content.replace("{{ ERROR_MESSAGE }}", "Blog post not found."), media_type="text/html", status_code=404)
-    return JSONResponse(status_code=404, content={"message": "Blog post not found"})
+        return Response(content=content.replace("{{ ERROR_MESSAGE }}", f"Blog post '{slug}' not found."), media_type="text/html", status_code=404)
+    return JSONResponse(status_code=404, content={"message": f"Blog post '{slug}' not found"})
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon(): return Response(status_code=204)
