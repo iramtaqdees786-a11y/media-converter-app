@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTabs();
     initDownloadSection();
     initConvertSection();
-    initShareButton();
+    initQuickConverters();
     initQuickConverters();
     initSpecialTabs();
     loadSupportedFormats();
@@ -450,9 +450,8 @@ function displayDownloadResult(data) {
                     🔄 New
                 </button>
             </div>
-            <button onclick="window.openShareModal('${data.filename || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 12px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
-                📧 Email this File (Team Share)
-            </button>
+                </button>
+            </div>
         </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
             ⭐ Bookmark this tool – you'll need it again
@@ -723,9 +722,8 @@ function displayConvertResult(data) {
                     🔄 New
                 </button>
             </div>
-            <button onclick="window.openShareModal('${data.converted_file || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 12px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
-                📧 Email this File (Team Share)
-            </button>
+                </button>
+            </div>
         </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
             ⭐ Bookmark this tool – you'll need it again
@@ -865,34 +863,6 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Share Button functionality
-function initShareButton() {
-    const shareBtn = document.getElementById('share-btn');
-    if (shareBtn) {
-        shareBtn.addEventListener('click', async () => {
-            const url = 'convertrocket.online';
-            try {
-                await navigator.clipboard.writeText(url);
-                shareBtn.innerHTML = '✅ <span>Copied!</span>';
-                setTimeout(() => {
-                    shareBtn.innerHTML = '📤 <span>Share</span>';
-                }, 2000);
-            } catch (err) {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = url;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                shareBtn.innerHTML = '✅ <span>Copied!</span>';
-                setTimeout(() => {
-                    shareBtn.innerHTML = '📤 <span>Share</span>';
-                }, 2000);
-            }
-        });
-    }
-}
 
 // Quick Converters
 function initQuickConverters() {
@@ -1025,22 +995,10 @@ async function handleSpecialConversion(file, targetFormat, zone) {
                             <a href="${data.download_url}" id="download-link" class="btn btn-success btn-block btn-lg" style="text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
                                 ⬇️ Download ${targetFormat.toUpperCase()}
                             </a>
-                            <button onclick="window.openShareModal('${data.converted_file || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 12px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
-                                📧 Email this File (Team Share)
-                            </button>
-                        </div>
-                        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 8px 12px; background: rgba(0, 234, 255, 0.05); border: 1px solid rgba(0, 234, 255, 0.1); border-radius: 8px; font-size: 0.8rem; width: 100%; justify-content: center;">
-                            ⭐ Added to your Workspace
                         </div>
                     </div>
                 `;
 
-                // Direct registration with Workspace
-                if (window.WorkspaceController && typeof window.WorkspaceController.saveItem === 'function') {
-                    window.WorkspaceController.saveItem(data.converted_file);
-                } else {
-                    console.warn("⚠️ WorkspaceController not found! Falling back to observer.");
-                }
 
                 // Auto-download logic
                 setTimeout(() => {

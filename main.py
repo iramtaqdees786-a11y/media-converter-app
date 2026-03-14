@@ -142,12 +142,10 @@ async def main_application_middleware(request: Request, call_next):
             if '</head>' in content:
                 content = content.replace('</head>', f'    <link rel="canonical" href="{canonical_url}">\n</head>')
 
-            # AdSense injection (Subtle)
-            ads_txt_path = FRONTEND_DIR / "ads.txt"
-            pub_id = "pub-2380223202941211" # Default to verified pub ID
-            if '</head>' in content and f"ca-{pub_id}" not in content:
-                adsense_script = f'\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{pub_id}" crossorigin="anonymous"></script>'
-                content = content.replace('</head>', f'{adsense_script}\n</head>')
+            # AdSense injection (User Specific)
+            ads_script = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211" crossorigin="anonymous"></script>'
+            if '</head>' in content and 'ca-pub-2380223202941211' not in content:
+                content = content.replace('</head>', f'    {ads_script}\n</head>')
 
             return Response(content=content, media_type="text/html", headers=dict(response.headers))
         except Exception as e:
