@@ -166,14 +166,20 @@ async def main_application_middleware(request: Request, call_next):
                 seo_block = '<div class="seo-internal-links" style="margin-top: 60px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;"><h4>Trending Tools [YEAR]</h4><a href="/pdf-to-excel" style="margin-right:15px;">PDF to Excel</a> <a href="/bg-remover">Background Remover</a></div><!-- SEO_TRENDING_CLOUD -->'
                 content = content.replace('</body>', f"{seo_block}\n</body>")
 
-            if 'src="/js/workspace-share.js"' not in content:
-                content = content.replace('</body>', '<script src="/js/workspace-share.js"></script>\n</body>')
+            if 'workspace-share.js' not in content:
+                script_html = '<script src="/static/js/workspace-share.js?v=2.0"></script>'
+                if '</body>' in content:
+                    content = content.replace('</body>', f'{script_html}\n</body>')
+                elif '</html>' in content:
+                    content = content.replace('</html>', f'{script_html}\n</html>')
+                else:
+                    content += script_html
 
             # -- Blog Premium Injection --
             if path.startswith("/blog") or path == "/blogs":
                 if 'blog-premium.css' not in content:
                     content = content.replace('</head>', '    <link rel="stylesheet" href="/css/blog-premium.css">\n</head>')
-                if 'class="nav-premium"' not in content and '<body>' in content:
+                if 'class="nav-premium"' not in content:
                     nav_html = """
     <div class="reading-progress" id="reading-progress"></div>
     <nav class="nav-premium">
@@ -181,14 +187,13 @@ async def main_application_middleware(request: Request, call_next):
             <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
             <div class="nav-links">
                 <a href="/all-tools">All Tools</a>
-                <a href="/media-hub">Media Hub</a>
-                <a href="/pdf-lab">PDF Lab</a>
                 <a href="/workspace">Workspace</a>
-                <a href="/blogs">Blog</a>
+                <a href="/blogs">Library</a>
             </div>
         </div>
     </nav>"""
-                    content = content.replace('<body>', f'<body>{nav_html}')
+                    # Robust injection after body tag
+                    content = re.sub(r'(<body[^>]*>)', r'\1' + nav_html, content, flags=re.I)
                     progress_script = """
 <script>
     window.onscroll = function() {
@@ -219,10 +224,20 @@ async def workspace(): return FileResponse(FRONTEND_DIR / "workspace.html")
 
 @app.get("/blog/{slug}")
 async def serve_blog_post(slug: str):
-    slug = Path(slug).name
-    if not slug.endswith(".html"): slug += ".html"
-    post_path = FRONTEND_DIR / "blog" / slug
+    # Mapping for SEO slugs with different filenames
+    slug_map = {
+        "is-convertrocket-safe": "safety-guide",
+        "convertrocket-security": "safety-guide",
+        "best-converters": "best-video-converters-2025"
+    }
+    
+    clean_slug = slug_map.get(slug, slug)
+    clean_slug = Path(clean_slug).name
+    if not clean_slug.endswith(".html"): clean_slug += ".html"
+    
+    post_path = FRONTEND_DIR / "blog" / clean_slug
     if post_path.exists(): return FileResponse(post_path)
+    
     error_page = FRONTEND_DIR / "error.html"
     if error_page.exists():
         with open(error_page, "r", encoding="utf-8") as f: content = f.read()

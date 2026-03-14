@@ -1016,14 +1016,19 @@ async function handleSpecialConversion(file, targetFormat, zone) {
                     <div class="result-card active">
                         <div class="result-header">
                             <div class="result-icon">✅</div>
-                            <div>
+                            <div style="overflow: hidden;">
                                 <strong>Conversion Complete!</strong>
-                                <div class="text-muted">${escapeHtml(data.converted_file)}</div>
+                                <div class="text-muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(data.converted_file)}</div>
                             </div>
                         </div>
-                        <a href="${data.download_url}" class="btn btn-success btn-block btn-lg" download>
-                            ⬇️ Download ${targetFormat.toUpperCase()}
-                        </a>
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                            <a href="${data.download_url}" id="download-link" class="btn btn-success btn-block" style="text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
+                                ⬇️ Download ${targetFormat.toUpperCase()}
+                            </a>
+                            <button onclick="window.openShareModal('${data.converted_file || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; width: 100%; cursor: pointer; font-size: 0.9rem;">
+                                📧 Email this File (Team Share)
+                            </button>
+                        </div>
                     </div>
                 `;
                 // Auto-download logic

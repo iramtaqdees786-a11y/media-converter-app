@@ -165,7 +165,14 @@
                         <img id="output-preview" src="">
                     </div>
                 </div>
-                <button id="download-btn" class="btn-secondary" style="width: 100%;">💾 SAVE MASKED PROTOCOL (PNG)</button>
+                <div class="result-actions" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+                    <button id="download-btn" class="btn btn-success btn-block" style="padding: 15px; font-size: 1.1rem; border-radius: 12px;">
+                        ⬇️ Download Isolated Image (PNG)
+                    </button>
+                    <button onclick="window.openShareModalFromTool()" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 15px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
+                        📧 Email this File (Team Share)
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -190,41 +197,8 @@
         </section>
     </main>
 
-    <footer class="footer-clean">
-        <div class="container">
-            
-        <div class="footer-links-cloud" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);">
-            <h4 style="color: #fff; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Professional Utility Hub</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; font-size: 0.85rem;">
-                <a href="/pdf-to-excel" style="color: var(--text-secondary);">Convert PDF to Excel</a>
-                <a href="/video-converter" style="color: var(--text-secondary);">Video Converter</a>
-                <a href="/json-formatter" style="color: var(--text-secondary);">JSON Formatter</a>
-                <a href="/image-converter" style="color: var(--text-secondary);">Image Converter</a>
-                <a href="/mp3-converter" style="color: var(--text-secondary);">MP3 Converter</a>
-                <a href="/qr-generator" style="color: var(--text-secondary);">QR Generator</a>
-                <a href="/pdf-merge" style="color: var(--text-secondary);">Merge PDF</a>
-                <a href="/pdf-compress" style="color: var(--text-secondary);">Compress PDF</a>
-                <a href="/image-compress" style="color: var(--text-secondary);">Compress Image</a>
-                <a href="/svg-to-png" style="color: var(--text-secondary);">SVG to PNG</a>
-                <a href="/bg-remover" style="color: var(--text-secondary);">AI Background Remover</a>
-            </div>
-        </div>
-
-        <div class="footer-links">
-                <a href="/all-tools">All Tools</a>
-                <a href="/media-hub">Media Hub</a>
-                <a href="/pdf-lab">PDF Lab</a>
-                <a href="/blogs">Blog</a>
-                <a href="/privacy-policy">Privacy</a>
-                <a href="/terms-of-service">Terms</a>
-                <a href="/sitemap">Sitemap</a>
-                <a href="/contact">Contact</a>
-            </div>
-            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal/dist/background-removal.js"></script>
+    <script src="/static/js/app.js?v=6.0"></script>
+    <script src="https://unpkg.com/@imgly/background-removal@1.5.5/dist/bundle.js" crossorigin="anonymous"></script>
     <script>
         const zone = document.getElementById('drop-zone');
         const input = document.getElementById('file-input');
@@ -266,6 +240,13 @@
 
         executeBtn.onclick = async () => {
             if(!currentFile) return;
+            
+            // Check if library is loaded
+            if (typeof imglyRemoveBackground === 'undefined') {
+                alert('Neural Engine failed to initialize. Please check your internet connection or use a modern browser.');
+                return;
+            }
+
             overlay.style.display = 'flex';
             statusMsg.innerText = 'Neural Extraction in Progress...';
 
@@ -280,7 +261,6 @@
                     }
                 };
 
-                // UMD Version exposes imglyRemoveBackground global
                 const blob = await imglyRemoveBackground(currentFile, config);
                 resultBlob = blob;
                 
@@ -302,6 +282,15 @@
             a.href = URL.createObjectURL(resultBlob);
             a.download = `convertrocket_isolated_${currentFile.name.split('.')[0]}.png`;
             a.click();
+        };
+
+        // Sharing Functionality
+        window.openShareModalFromTool = () => {
+             if (window.openShareModal && currentFile) {
+                 window.openShareModal(`isolated_${currentFile.name}`);
+             } else {
+                 alert('Workspace script not ready. Please try again in a moment.');
+             }
         };
     </script>
 

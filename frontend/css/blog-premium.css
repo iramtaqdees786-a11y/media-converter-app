@@ -1,150 +1,168 @@
-/* ========================================
-   BLOG PREMIUM STYLES FOR CONVERTROCKET
-   Glass-Bento Aesthetic & Enhanced Typography
-   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-    --blog-max-width: 900px;
-    --accent-glow: rgba(0, 242, 255, 0.4);
+    --blog-max-width: 960px;
+    --accent-primary: #00eaff;
+    --accent-secondary: #7000ff;
+    --accent-glow: rgba(0, 234, 255, 0.25);
+    --bg-deep: #050505;
+    --glass-surface: rgba(15, 15, 15, 0.7);
+    --border-glass: rgba(255, 255, 255, 0.08);
 }
 
-/* Glass Container for Article */
+/* Base Body Adjustments */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-deep) !important;
+}
+
+/* Glass Article Container */
 .blog-post-content {
-    background: var(--bg-surface) !important;
-    backdrop-filter: var(--glass-blur) !important;
-    border: 1px solid var(--border-subtle) !important;
-    border-radius: var(--radius-xl) !important;
-    padding: 60px !important;
-    margin: 40px auto 80px !important;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6) !important;
-    position: relative;
-    z-index: 1;
-    color: var(--text-primary) !important;
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border: 1px solid var(--border-glass) !important;
+    border-radius: 32px !important;
+    padding: 80px 100px !important;
+    margin: 60px auto 100px !important;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 234, 255, 0.03) !important;
     max-width: var(--blog-max-width) !important;
-}
-
-/* Link Styling */
-.blog-main-content a {
-    color: var(--accent-primary) !important;
-    text-decoration: underline;
-    transition: all 0.3s;
-}
-
-.blog-main-content a:hover {
-    color: var(--accent-secondary) !important;
-    text-shadow: 0 0 10px var(--accent-glow);
-}
-
-/* Image Styling */
-.blog-main-content img {
-    max-width: 100%;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-subtle);
-    margin: 30px 0;
-    box-shadow: var(--shadow-lg);
-}
-
-/* Reading Progress Bar */
-.reading-progress {
-    position: fixed;
-    top: 80px; /* Below nav */
-    left: 0;
-    width: 0%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    z-index: 1001;
-    box-shadow: 0 0 15px var(--accent-primary);
-    transition: width 0.1s ease-out;
-}
-
-/* Typography Enhancements */
-.blog-main-content h2 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin: 50px 0 25px;
-    background: linear-gradient(135deg, #fff, var(--text-secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    border-left: 4px solid var(--accent-primary);
-    padding-left: 20px;
-}
-
-.blog-main-content p {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
-}
-
-.blog-main-content strong {
-    color: #fff;
-    font-weight: 700;
-}
-
-/* Call to Action in Blog */
-.blog-cta {
-    background: linear-gradient(135deg, rgba(112, 0, 255, 0.1), rgba(0, 242, 255, 0.05));
-    border: 1px solid var(--border-glow);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    text-align: center;
-    margin-top: 60px;
     position: relative;
     overflow: hidden;
 }
 
-.blog-cta::before {
+.blog-post-content::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, var(--accent-glow), transparent 70%);
-    opacity: 0.1;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0.5;
 }
 
-.blog-cta h3 {
-    font-size: 1.8rem;
-    font-weight: 900;
-    margin-bottom: 15px;
-    color: #fff;
+/* Typography Overhaul */
+.blog-main-content {
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 1.25rem !important;
+    line-height: 1.9 !important;
 }
 
-/* Hero Section Adjustment */
-.hero-minimal {
-    padding: 100px 0 60px;
-    background: radial-gradient(circle at top center, rgba(112, 0, 255, 0.1), transparent 70%);
+.blog-main-content h1, 
+.blog-main-content h2, 
+.blog-main-content h3 {
+    font-family: 'Outfit', sans-serif;
+    color: #fff !important;
+    letter-spacing: -0.03em !important;
 }
 
-.hero-minimal h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem) !important;
-    font-weight: 900 !important;
-    letter-spacing: -2px !important;
-    line-height: 1.1 !important;
+.blog-main-content h2 {
+    font-size: 2.8rem !important;
+    font-weight: 800 !important;
+    margin: 70px 0 35px !important;
+    line-height: 1.2 !important;
+    background: linear-gradient(to bottom right, #fff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* Article List (on /blogs page) */
+.blog-main-content p {
+    margin-bottom: 35px !important;
+}
+
+/* Images & Media */
+.blog-main-content img {
+    border-radius: 24px;
+    border: 1px solid var(--border-glass);
+    margin: 50px auto;
+    display: block;
+    width: 100%;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.blog-main-content img:hover {
+    transform: scale(1.02);
+}
+
+/* Links */
+.blog-main-content a {
+    color: var(--accent-primary) !important;
+    text-decoration: none !important;
+    background: linear-gradient(transparent 90%, var(--accent-primary) 90%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-weight: 600;
+}
+
+.blog-main-content a:hover {
+    background-size: 100% 100%;
+    color: #fff !important;
+}
+
+/* Reading Progress Line */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    z-index: 9999;
+    box-shadow: 0 0 15px var(--accent-primary);
+}
+
+/* Responsive Polishing */
+@media (max-width: 900px) {
+    .blog-post-content {
+        padding: 60px 40px !important;
+        margin: 40px 15px !important;
+        border-radius: 24px !important;
+    }
+    .blog-main-content h2 {
+        font-size: 2.2rem !important;
+    }
+}
+
+/* Bento Card Overhaul for Blogs Listing */
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
 .bento-card {
+    background: var(--glass-surface);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 30px;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-decoration: none;
+    color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 15px;
 }
 
 .bento-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-12px) scale(1.03);
+    border-color: var(--accent-primary);
+    box-shadow: 0 30px 60px rgba(0, 234, 255, 0.1);
 }
 
-/* Animation for the Blog Content */
-.blog-post-content {
-    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+.bento-card .tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    letter-spacing: 0.1em;
 }
 
-@media (max-width: 768px) {
-    .blog-post-content {
-        padding: 30px 20px;
-        margin: 20px 10px 60px !important;
-    }
-    
-    .blog-main-content h2 {
-        font-size: 1.8rem;
-    }
+.bento-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.3;
 }
