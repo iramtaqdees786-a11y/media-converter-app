@@ -52,40 +52,41 @@ const WorkspaceController = {
     },
 
     setupHistoryTracking() {
-        // Broadly watch for any new result elements being injected
+        // Watch for any new result elements being injected (backup for legacy tools)
         const observer = new MutationObserver((mutations) => {
-            // Check for both the standard 'download-link' and generic result action buttons
             const dl = document.getElementById('download-link');
             if (dl && !dl.dataset.tracked) {
                 dl.dataset.tracked = "true";
-                console.log("📍 Tracking new conversion result:", dl.getAttribute('download'));
-                
                 dl.addEventListener('click', () => {
-                    this.saveToHistory({
-                        fileName: dl.getAttribute('download') || dl.getAttribute('href')?.split('/').pop() || "Converted File",
-                        type: this.detectType(),
-                        timestamp: new Date().toISOString(),
-                        toolLink: window.location.pathname
-                    });
+                    this.saveItem(dl.getAttribute('download') || dl.getAttribute('href')?.split('/').pop() || "Converted File");
                 });
             }
         });
         observer.observe(document.body, { childList: true, subtree: true });
-        
-        // Immediate check on load in case result already exists
-        const existingDl = document.getElementById('download-link');
-        if (existingDl) existingDl.click(); // This is just a thought, maybe not click, but track.
     },
 
-    saveToHistory(item) {
-        let history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
-        // Avoid duplicates if clicked multiple times
-        if (history.length > 0 && history[history.length-1].fileName === item.fileName) return;
+    saveItem(fileName) {
+        if (!fileName) return;
+        const item = {
+            fileName: fileName,
+            type: this.detectType(),
+            timestamp: new Date().toISOString(),
+            toolLink: window.location.pathname
+        };
         
-        history.push(item);
-        if (history.length > 50) history.shift(); // Max 50 items
+        let history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
+        if (history.length > 0 && history[0].fileName === item.fileName) return; // Simple duplicate check
+        
+        history.unshift(item); // Add to top
+        if (history.length > 50) history.pop();
         localStorage.setItem('conversionHistory', JSON.stringify(history));
-        console.log("✅ Conversion saved to workspace");
+        console.log("✅ Conversion saved to workspace:", fileName);
+        
+        // Show subtle notification
+        const resMsg = document.getElementById('convert-status');
+        if (resMsg) {
+            resMsg.innerHTML += '<div style="color: #00eaff; font-size: 0.8rem; margin-top: 5px;">⭐ Added to Workspace</div>';
+        }
     },
 
     detectType() {

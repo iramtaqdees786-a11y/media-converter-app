@@ -1034,6 +1034,14 @@ async function handleSpecialConversion(file, targetFormat, zone) {
                         </div>
                     </div>
                 `;
+
+                // Direct registration with Workspace
+                if (window.WorkspaceController && typeof window.WorkspaceController.saveItem === 'function') {
+                    window.WorkspaceController.saveItem(data.converted_file);
+                } else {
+                    console.warn("⚠️ WorkspaceController not found! Falling back to observer.");
+                }
+
                 // Auto-download logic
                 setTimeout(() => {
                     const link = document.createElement('a');

@@ -142,75 +142,14 @@ async def main_application_middleware(request: Request, call_next):
             if '</head>' in content:
                 content = content.replace('</head>', f'    <link rel="canonical" href="{canonical_url}">\n</head>')
 
-            # Metadata
-            tool_meta = SEO_METADATA.get(path, DEFAULT_METADATA)
-            title = tool_meta['title'].replace("[YEAR]", current_year)
-            content = re.sub(r'<title>.*?</title>', f"<title>{title}</title>", content, flags=re.I, count=1)
-            
-            # Schema
-            schemas = [get_software_schema(path, tool_meta)]
-            faq_schema = get_faq_schema(path)
-            if faq_schema: schemas.append(faq_schema)
-            schema_html = "".join([f'\n    <script type="application/ld+json">\n    {json.dumps(s)}\n    </script>' for s in schemas])
-            if '</head>' in content:
-                content = content.replace('</head>', f'{schema_html}\n</head>')
+            # AdSense injection (Subtle)
+            ads_txt_path = FRONTEND_DIR / "ads.txt"
+            pub_id = "pub-2380223202941211" # Default to verified pub ID
+            if '</head>' in content and f"ca-{pub_id}" not in content:
+                adsense_script = f'\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-{pub_id}" crossorigin="anonymous"></script>'
+                content = content.replace('</head>', f'{adsense_script}\n</head>')
 
-            # Quick Guide
-            if "quick_guide" in tool_meta and "<!-- SEO_QUICK_GUIDE -->" not in content:
-                guide_steps = "".join([f"<li>{step}</li>" for step in tool_meta["quick_guide"]])
-                guide_html = f'<section class="seo-quick-guide" style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;"><h3>Quick Guide</h3><ol>{guide_steps}</ol></section><!-- SEO_QUICK_GUIDE -->'
-                content = content.replace('</body>', f"{guide_html}\n</body>")
-
-            # Trending Tools & Workspace
-            if "<!-- SEO_TRENDING_CLOUD -->" not in content:
-                seo_block = '<div class="seo-internal-links" style="margin-top: 60px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;"><h4>Trending Tools [YEAR]</h4><a href="/pdf-to-excel" style="margin-right:15px;">PDF to Excel</a> <a href="/bg-remover">Background Remover</a></div><!-- SEO_TRENDING_CLOUD -->'
-                content = content.replace('</body>', f"{seo_block}\n</body>")
-
-            # Force versioned script
-            script_html = '<script src="/static/js/workspace-share.js?v=3.0"></script>'
-            if 'workspace-share.js' in content:
-                # More robust regex for single/double quotes and attributes
-                content = re.sub(r'<script[^>]*src=["\'][^"\']*workspace-share\.js[^"\']*["\'][^>]*></script>', script_html, content, flags=re.I)
-            else:
-                if '</body>' in content:
-                    content = content.replace('</body>', f'{script_html}\n</body>')
-                else:
-                    content += script_html
-
-            # -- Blog Premium Injection --
-            if path.startswith("/blog") or path == "/blogs":
-                if 'blog-premium.css' not in content:
-                    content = content.replace('</head>', '    <link rel="stylesheet" href="/css/blog-premium.css">\n</head>')
-                if 'class="nav-premium"' not in content:
-                    nav_html = """
-    <div class="reading-progress" id="reading-progress"></div>
-    <nav class="nav-premium">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
-            <div class="nav-links">
-                <a href="/all-tools">All Tools</a>
-                <a href="/workspace">Workspace</a>
-                <a href="/blogs">Library</a>
-            </div>
-        </div>
-    </nav>"""
-                    # Robust injection after body tag
-                    content = re.sub(r'(<body[^>]*>)', r'\1' + nav_html, content, flags=re.I)
-                    progress_script = """
-<script>
-    window.onscroll = function() {
-        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        let pr = document.getElementById("reading-progress");
-        if(pr) pr.style.width = scrolled + "%";
-    };
-</script>"""
-                    content = content.replace('</body>', f'{progress_script}\n</body>')
-
-            new_response = Response(content=content, media_type="text/html", headers=dict(response.headers))
-            if "content-length" in new_response.headers: del new_response.headers["content-length"]
-            return new_response
+            return Response(content=content, media_type="text/html", headers=dict(response.headers))
         except Exception as e:
             print(f"[Middleware] Error: {e}")
             
