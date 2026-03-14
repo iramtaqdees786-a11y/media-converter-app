@@ -166,9 +166,9 @@
                     </div>
                 </div>
                 <div class="result-actions" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-                    <button id="download-btn" class="btn btn-success btn-block" style="padding: 15px; font-size: 1.1rem; border-radius: 12px;">
+                    <a id="download-link" class="btn btn-success btn-block" style="padding: 15px; font-size: 1.1rem; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
                         ⬇️ Download Isolated Image (PNG)
-                    </button>
+                    </a>
                     <button onclick="window.openShareModalFromTool()" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 15px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
                         📧 Email this File (Team Share)
                     </button>
@@ -203,7 +203,7 @@
         const zone = document.getElementById('drop-zone');
         const input = document.getElementById('file-input');
         const executeBtn = document.getElementById('execute-btn');
-        const downloadBtn = document.getElementById('download-btn');
+        const downloadLink = document.getElementById('download-link');
         const previewContainer = document.getElementById('preview-container');
         const inputPreview = document.getElementById('input-preview');
         const outputPreview = document.getElementById('output-preview');
@@ -252,6 +252,7 @@
 
             try {
                 const config = {
+                    publicPath: "https://staticimgly.com/@imgly/background-removal-data/1.4.5/dist/", // Robust CDN asset path
                     progress: (key, current, total) => {
                         if(key === 'compute') {
                             statusMsg.innerText = `Processing Neural Map: ${Math.round(current/total * 100)}%`;
@@ -267,6 +268,10 @@
                 const url = URL.createObjectURL(blob);
                 outputPreview.src = url;
                 previewContainer.style.display = 'flex';
+                
+                // Set up standard download link for tracking
+                downloadLink.href = url;
+                downloadLink.setAttribute('download', `convertrocket_isolated_${currentFile.name.split('.')[0]}.png`);
                 
                 overlay.style.display = 'none';
             } catch (e) {

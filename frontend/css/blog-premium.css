@@ -145,6 +145,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin: auto;
 }
 
 .bento-card:hover {
@@ -165,4 +166,13 @@ body {
     font-family: 'Outfit', sans-serif;
     font-size: 1.6rem;
     line-height: 1.3;
+}
+.bento-card.wide {
+    grid-column: span 2;
+}
+
+@media (max-width: 800px) {
+    .bento-card.wide {
+        grid-column: span 1;
+    }
 }

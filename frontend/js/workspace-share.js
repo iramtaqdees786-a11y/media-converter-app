@@ -52,15 +52,17 @@ const WorkspaceController = {
     },
 
     setupHistoryTracking() {
-        // Intercept download clicks or completion events
-        // In this app, many tools use a shared 'download-link' ID
+        // Broadly watch for any new result elements being injected
         const observer = new MutationObserver((mutations) => {
+            // Check for both the standard 'download-link' and generic result action buttons
             const dl = document.getElementById('download-link');
             if (dl && !dl.dataset.tracked) {
                 dl.dataset.tracked = "true";
+                console.log("📍 Tracking new conversion result:", dl.getAttribute('download'));
+                
                 dl.addEventListener('click', () => {
                     this.saveToHistory({
-                        fileName: dl.getAttribute('download') || "Converted File",
+                        fileName: dl.getAttribute('download') || dl.getAttribute('href')?.split('/').pop() || "Converted File",
                         type: this.detectType(),
                         timestamp: new Date().toISOString(),
                         toolLink: window.location.pathname
@@ -69,6 +71,10 @@ const WorkspaceController = {
             }
         });
         observer.observe(document.body, { childList: true, subtree: true });
+        
+        // Immediate check on load in case result already exists
+        const existingDl = document.getElementById('download-link');
+        if (existingDl) existingDl.click(); // This is just a thought, maybe not click, but track.
     },
 
     saveToHistory(item) {

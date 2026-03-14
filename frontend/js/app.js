@@ -1022,12 +1022,15 @@ async function handleSpecialConversion(file, targetFormat, zone) {
                             </div>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-                            <a href="${data.download_url}" id="download-link" class="btn btn-success btn-block" style="text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
+                            <a href="${data.download_url}" id="download-link" class="btn btn-success btn-block btn-lg" style="text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
                                 ⬇️ Download ${targetFormat.toUpperCase()}
                             </a>
-                            <button onclick="window.openShareModal('${data.converted_file || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; width: 100%; cursor: pointer; font-size: 0.9rem;">
+                            <button onclick="window.openShareModal('${data.converted_file || 'your file'}')" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 12px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
                                 📧 Email this File (Team Share)
                             </button>
+                        </div>
+                        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 8px 12px; background: rgba(0, 234, 255, 0.05); border: 1px solid rgba(0, 234, 255, 0.1); border-radius: 8px; font-size: 0.8rem; width: 100%; justify-content: center;">
+                            ⭐ Added to your Workspace
                         </div>
                     </div>
                 `;

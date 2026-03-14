@@ -60,58 +60,60 @@
         </div>
     </nav>
 
-    <div class="container">
-        <section class="hero-modern" style="padding: 60px 0 40px;">
-            <div class="status-bar">
-                <span class="status-indicator"></span>
-                <span>WASM Engine: Active</span>
+        <section class="hero-modern" style="padding: 120px 0 60px; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; width: 100%;">
+            <div class="container" style="display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important;">
+                <div class="status-bar" style="margin: 0 auto 20px;">
+                    <span class="status-indicator"></span>
+                    <span>Neural Engine: Standby</span>
+                </div>
+                <h1 style="font-size: 4.5rem !important; font-family: 'Outfit', sans-serif !important; font-weight: 900 !important; background: linear-gradient(135deg, #fff, #888) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; text-align: center !important; margin: 0 auto !important; line-height: 1.1 !important; display: block !important;">Universal Converter</h1>
+                <p style="font-size: 1.3rem !important; color: var(--text-secondary) !important; max-width: 650px !important; margin: 25px auto 0 !important; text-align: center !important; line-height: 1.6 !important; opacity: 0.8 !important;">Initiate industrial-grade file conversion protocols directly in your browser. Pixel-perfect accuracy guaranteed.</p>
             </div>
-            <h1 style="font-size: 3.5rem;">Universal Converter</h1>
-            <p>Select your file to initiate the industrial conversion protocol.</p>
         </section>
 
-        <div class="tool-dashboard">
-            <div id="upload-zone" class="upload-zone skeleton-loading"
-                style="border: 2px dashed rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 80px 40px; text-align: center; cursor: pointer; transition: var(--transition-base); background: rgba(255,255,255,0.02);">
-                <div style="font-size: 4rem; margin-bottom: 20px;">📂</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 12px;">Drop File
-                    Architect</h3>
-                <p style="color: var(--text-secondary);">or click to browse local laboratory. Max: 2GB per session.</p>
+        <div class="tool-dashboard" style="max-width: 800px; margin: 0 auto; background: rgba(15, 15, 20, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 32px; padding: 60px; box-shadow: 0 40px 100px rgba(0,0,0,0.5);">
+            <div id="upload-zone" class="upload-zone"
+                style="border: 2px dashed rgba(255,255,255,0.1); border-radius: 24px; padding: 100px 40px; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(255,255,255,0.01);">
+                <div style="font-size: 5rem; margin-bottom: 25px;">🚀</div>
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 12px; color: #fff;">Drop File Architect</h3>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">or click to browse local laboratory. Support for 100+ formats.</p>
                 <input type="file" id="file-input" style="display: none;">
             </div>
 
-            <!-- Pre-conversion Controls (Hidden by default) -->
+            <!-- Pre-conversion Controls -->
             <div id="convert-controls" style="display: none; margin-top: 40px; text-align: center;">
                 <div id="selected-file-info"
-                    style="background: var(--bg-elevated); padding: 20px; border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--glass-border); display: inline-block; min-width: 300px;">
+                    style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 20px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); display: inline-block; min-width: 400px; text-align: left;">
                     <!-- Dynamically filled -->
                 </div>
 
-                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <span style="font-weight: 700; color: var(--text-secondary);">Target Protocol:</span>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span style="font-weight: 700; color: #fff; font-size: 1.1rem;">Target Protocol:</span>
                         <select id="target-format"
-                            style="background: var(--bg-surface); color: white; border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: var(--radius-full); font-weight: 600; outline: none;">
+                            style="background: #1a1a20; color: #fff; border: 1px solid rgba(255,255,255,0.15); padding: 14px 28px; border-radius: 12px; font-weight: 600; outline: none; font-size: 1rem; cursor: pointer;">
                             <!-- Dynamically filled -->
                         </select>
                     </div>
                     <button id="convert-btn"
-                        style="background: white; color: black; padding: 14px 40px; border-radius: var(--radius-full); font-weight: 800; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">Initiate
-                        Conversion</button>
+                        style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; padding: 18px 60px; border-radius: 14px; font-weight: 800; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s;">
+                        Initiate Conversion
+                    </button>
                 </div>
             </div>
 
-            <div id="convert-status" class="status-message" style="margin-top: 20px; text-align: center;"></div>
+            <div id="convert-status" class="status-message" style="margin-top: 30px; text-align: center;"></div>
 
             <div id="convert-progress" class="progress-bar"
-                style="display: none; height: 8px; background: var(--bg-elevated); border-radius: 4px; margin-top: 30px; overflow: hidden;">
+                style="display: none; height: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 40px; overflow: hidden; position: relative;">
                 <div class="progress-fill"
-                    style="width: 0%; height: 100%; background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); transition: width 0.3s;">
+                    style="width: 0%; height: 100%; background: linear-gradient(90deg, #00eaff, #0077ff); box-shadow: 0 0 20px rgba(0, 234, 255, 0.4); transition: width 0.3s;">
                 </div>
+                <div class="progress-percent" style="position: absolute; right: 10px; top: -25px; font-size: 0.8rem; color: #00eaff; font-weight: 700;">0%</div>
             </div>
 
             <div id="convert-result"
-                style="display: none; margin-top: 40px; padding: 30px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: var(--radius-lg); text-align: center;">
+                style="display: none; margin-top: 40px; padding: 40px; background: rgba(56, 239, 125, 0.05); border: 1px solid #10b981; border-radius: 24px; text-align: center;">
                 <!-- Result content -->
             </div>
         </div>
