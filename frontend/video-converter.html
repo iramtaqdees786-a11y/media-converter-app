@@ -35,10 +35,7 @@
 
     
 
-    <!-- Ko-fi Optimization -->
-    <link rel="preconnect" href="https://ko-fi.com">
-    <link rel="preconnect" href="https://storage.ko-fi.com">
-    <!-- /Ko-fi Optimization -->
+    
 
 </head>
 
@@ -168,41 +165,7 @@
     
 
     
-    <!-- Premium Support Section -->
     
-
-    
-    <!-- Premium Support Section -->
-    
-
-    
-    <!-- Protocol Foundation Support -->
-    
-    <!-- Premium Support Section -->
-    <section class="support-chaos" style="margin-top: 80px; margin-bottom: 40px; padding: 20px;">
-        <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="font-size: 2.5rem; background: linear-gradient(135deg, #9a93f5, #794bc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px;">Fuel the Chaos 🔥</h2>
-                <p style="color: var(--text-secondary); font-size: 1.1rem;">Support the development of ConvertRocket's edge-case laboratory. Your contributions keep the servers running and the algorithms sharp.</p>
-            </div>
-            
-            <div class="glass-card" style="
-                background: white;
-                border-radius: 24px;
-                padding: 10px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(121, 75, 196, 0.1);
-                overflow: hidden;
-            ">
-                <iframe id='kofiframe' src='https://ko-fi.com/izyaan/?hidefeed=true&widget=true&embed=true' 
-                    style='border:none; width:100%; border-radius: 14px; background: #ffffff;' 
-                    height='712' title='izyaan' loading="lazy"></iframe>
-            </div>
-            
-            <div style="text-align: center; margin-top: 25px; opacity: 0.6; font-size: 0.85rem; color: var(--text-secondary);">
-                Securely processed via Ko-fi. No data is stored on ConvertRocket servers.
-            </div>
-        </div>
-    </section>
 
     <footer class="footer-clean">
         
@@ -253,118 +216,7 @@
 
     
 
-    <!-- Ko-fi Floating Widget -->
-    <style>
-      .kofi-hover-box {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        background: #fff;
-        color: #333;
-        padding: 16px;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        max-width: 240px;
-        z-index: 10000;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        pointer-events: none;
-        border: 1px solid rgba(121, 75, 196, 0.15);
-      }
-      .kofi-hover-box.active {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        pointer-events: auto !important;
-      }
-      .kofi-hover-box::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        right: 24px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid #fff;
-      }
-      .kofi-hover-box strong { color: #794bc4; display: block; margin-bottom: 4px; }
-      .kofi-btn-mini {
-          display: inline-block;
-          margin-top: 10px;
-          background: #794bc4;
-          color: #fff !important;
-          padding: 6px 12px;
-          border-radius: 8px;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 0.8rem;
-          transition: transform 0.2s;
-      }
-      .kofi-btn-mini:hover { transform: scale(1.05); }
-
-      /* Forced Right Position for Ko-fi Overlay & Container */
-      #kofi-widget-overlay, 
-      .floatingchat-container,
-      .floatingchat-container-wrap {
-          right: 20px !important;
-          left: auto !important;
-          margin-left: 0 !important;
-          left: auto !important;
-      }
-    </style>
-    <script data-cfasync="false" src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script data-cfasync="false">
-      (function() {
-        let attempts = 0;
-        const maxAttempts = 50; 
-        
-        function initKofi() {
-          if (typeof kofiWidgetOverlay !== 'undefined' && kofiWidgetOverlay.draw) {
-            kofiWidgetOverlay.draw('izyaan', {
-              'type': 'floating-chat',
-              'floating-chat.donateButton.text': 'Support me',
-              'floating-chat.donateButton.background-color': '#794bc4',
-              'floating-chat.donateButton.text-color': '#fff',
-              'floating-chat.donateButton.position': 'right'
-            });
-            setupHoverBox();
-          } else if (attempts < maxAttempts) {
-            attempts++;
-            setTimeout(initKofi, 150);
-          }
-        }
-
-        function setupHoverBox() {
-          if (document.querySelector('.kofi-hover-box')) return;
-          const hb = document.createElement('div');
-          hb.className = 'kofi-hover-box';
-          hb.innerHTML = '<strong>Fuel the Lab! 🚀</strong>Tips help us stay ad-free and keep our high-speed conversion servers running for everyone. <br><a href="https://ko-fi.com/izyaan" target="_blank" class="kofi-btn-mini">Tip Now</a>';
-          document.body.appendChild(hb);
-
-          const observer = new MutationObserver((mutations, obs) => {
-            const container = document.querySelector('.floatingchat-container') || 
-                              document.querySelector('.kofichat-container') ||
-                              document.querySelector('[id*="kofi-widget-overlay"]');
-            if (container) {
-              container.addEventListener('mouseenter', () => hb.classList.add('active'));
-              container.addEventListener('mouseleave', () => hb.classList.remove('active'));
-              hb.addEventListener('mouseenter', () => hb.classList.add('active'));
-              hb.addEventListener('mouseleave', () => hb.classList.remove('active'));
-              obs.disconnect();
-            }
-          });
-          observer.observe(document.body, { childList: true, subtree: true });
-        }
-
-        if (document.readyState === 'complete') {
-          initKofi();
-        } else {
-          window.addEventListener('load', initKofi);
-        }
-      })();
-    </script>
-    <!-- /Ko-fi Floating Widget -->
+    
 
 </body>
 
