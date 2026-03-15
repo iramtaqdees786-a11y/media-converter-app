@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
@@ -6,19 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ConvertRocket | Fast Universal Tools for Files, Images & Documents</title>
-    <meta name="description" content="ConvertRocket — fast universal tools for files, images, and documents. Compress images, format JSON, generate QR codes, convert videos and edit PDFs. Fast, free, and secure.">
+    <meta name="description" content="ConvertRocket â€” fast universal tools for files, images, and documents. Compress images, format JSON, generate QR codes, convert videos and edit PDFs. Fast, free, and secure.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/modern-ui.css?v=5.0">
     <link rel="stylesheet" href="/css/seo-optimized.css?v=4.0">
     <!-- Load modern UI on top of seo-optimized to ensure graceful degradation -->
 
 
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 <body>
 
     <nav class="nav-premium">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+            <a href="/" class="brand">ðŸš€ <span>ConvertRocket</span></a>
             <div class="nav-links">
                 <a href="/all-tools">All Tools</a>
                 <a href="/blogs">Blog</a>
@@ -35,20 +36,34 @@
                 Ad Placement Area (Below Header)
             </div>
 
-            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; align-items: center;">
                 <a href="#converter" class="btn-primary">Start Converting</a>
                 <a href="#tools" class="btn-secondary">Browse Popular Tools</a>
+                <div id="paypal-container-XZCUNAEHQ3XCA" style="margin-top: 5px;"></div>
             </div>
+            <script>
+                window.addEventListener('load', function() {
+                    if (window.paypal) {
+                        try {
+                            paypal.HostedButtons({
+                                hostedButtonId: "XZCUNAEHQ3XCA",
+                            }).render("#paypal-container-XZCUNAEHQ3XCA");
+                        } catch (e) {
+                            console.error('PayPal Hero Render Error:', e);
+                        }
+                    }
+                });
+            </script>
         </div>
     </header>
 
     <main class="container">
         <!-- Universal Converter -->
         <div class="converter-hero-panel animate-up" id="converter" style="animation-delay: 0.1s;">
-            <h2>🔄 Universal Converter</h2>
+            <h2>ðŸ”„ Universal Converter</h2>
             <div class="converter-controls">
                 <div class="upload-zone skeleton-loading" onclick="document.getElementById('file-input').click()">
-                    <div style="font-size: 2.5rem; margin-bottom: 10px;">📤</div>
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">ðŸ“¤</div>
                     <h3>Drag & Drop or Click to Upload</h3>
                     <p>Supported: PDF, MP4, MP3, JPG, PNG, DOCX and 100+ more</p>
                     <input type="file" id="file-input" style="display:none">
@@ -97,20 +112,20 @@
                 <!-- 1. Image Compressor -->
                 <a href="/image-compress" class="interactive-card">
                     <div class="card-content">
-                        <div class="card-icon" alt="ConvertRocket utility icon">🗜️</div>
+                        <div class="card-icon" alt="ConvertRocket utility icon">ðŸ—œï¸</div>
                         <h3 class="card-title">Image Compressor</h3>
                         <p class="card-desc">Reduce the file size of your images (JPG, PNG, WebP) significantly without losing visible quality. Perfect for SEO.</p>
-                        <div class="card-action">Compress Now →</div>
+                        <div class="card-action">Compress Now â†’</div>
                     </div>
                 </a>
 
                 <!-- 2. QR Code Generator -->
                 <a href="/qr-generator" class="interactive-card">
                     <div class="card-content">
-                        <div class="card-icon" alt="ConvertRocket utility icon">🔳</div>
+                        <div class="card-icon" alt="ConvertRocket utility icon">ðŸ”³</div>
                         <h3 class="card-title">QR Code Generator</h3>
                         <p class="card-desc">Create high-quality, scannable QR codes for URLs, text, WiFi, and more instantly.</p>
-                        <div class="card-action">Generate QR →</div>
+                        <div class="card-action">Generate QR â†’</div>
                     </div>
                 </a>
 
@@ -120,37 +135,37 @@
                         <div class="card-icon" alt="ConvertRocket utility icon">{" "}</div>
                         <h3 class="card-title">JSON Formatter</h3>
                         <p class="card-desc">Format, validate, and beautify your JSON data. A powerful development tool for engineers.</p>
-                        <div class="card-action">Format JSON →</div>
+                        <div class="card-action">Format JSON â†’</div>
                     </div>
                 </a>
 
                 <!-- 4. SVG to PNG Converter -->
                 <a href="/svg-to-png" class="interactive-card">
                     <div class="card-content">
-                        <div class="card-icon" alt="ConvertRocket utility icon">🖌️</div>
+                        <div class="card-icon" alt="ConvertRocket utility icon">ðŸ–Œï¸</div>
                         <h3 class="card-title">SVG to PNG</h3>
                         <p class="card-desc">Convert scalable vector graphics (SVG) into high-resolution transparent PNG images.</p>
-                        <div class="card-action">Convert Vector →</div>
+                        <div class="card-action">Convert Vector â†’</div>
                     </div>
                 </a>
 
                 <!-- 5. Background Remover -->
                 <a href="/bg-remover" class="interactive-card">
                     <div class="card-content">
-                        <div class="card-icon" alt="ConvertRocket utility icon">✂️</div>
+                        <div class="card-icon" alt="ConvertRocket utility icon">âœ‚ï¸</div>
                         <h3 class="card-title">Background Remover</h3>
                         <p class="card-desc">Instantly strip the background from your portraits and product photos using AI.</p>
-                        <div class="card-action">Remove Background →</div>
+                        <div class="card-action">Remove Background â†’</div>
                     </div>
                 </a>
 
                 <!-- Existing Featured Tool -->
                 <a href="/pdf-merge" class="interactive-card">
                     <div class="card-content">
-                        <div class="card-icon" alt="ConvertRocket utility icon">🔗</div>
+                        <div class="card-icon" alt="ConvertRocket utility icon">ðŸ”—</div>
                         <h3 class="card-title">PDF Merger</h3>
                         <p class="card-desc">Combine multiple PDF documents into a single fluid file securely.</p>
-                        <div class="card-action">Merge PDFs →</div>
+                        <div class="card-action">Merge PDFs â†’</div>
                     </div>
                 </a>
             </div>
@@ -167,17 +182,17 @@
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
                 <div class="interactive-card" style="padding: 24px;">
-                    <div style="font-size: 2rem; margin-bottom: 20px;">🛡️</div>
+                    <div style="font-size: 2rem; margin-bottom: 20px;">ðŸ›¡ï¸</div>
                     <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 10px;">Privacy Shield</h3>
                     <p style="font-size: 0.95rem; color: var(--text-secondary);">Your files are processed using isolated protocols and purged from our servers within 60 minutes.</p>
                 </div>
                 <div class="interactive-card" style="padding: 24px;">
-                    <div style="font-size: 2rem; margin-bottom: 20px;">⚡</div>
+                    <div style="font-size: 2rem; margin-bottom: 20px;">âš¡</div>
                     <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 10px;">Neural Speed</h3>
                     <p style="font-size: 0.95rem; color: var(--text-secondary);">Our multi-threaded infrastructure ensures that even massive document conversions happen in seconds.</p>
                 </div>
                 <div class="interactive-card" style="padding: 24px;">
-                    <div style="font-size: 2rem; margin-bottom: 20px;">💎</div>
+                    <div style="font-size: 2rem; margin-bottom: 20px;">ðŸ’Ž</div>
                     <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 10px;">Lossless Logic</h3>
                     <p style="font-size: 0.95rem; color: var(--text-secondary);">Preserve 100% of your metadata, layout fidelity, and image resolution.</p>
                 </div>
@@ -215,10 +230,28 @@
                 <a href="/sitemap">Sitemap</a>
                 <a href="/contact">Contact</a>
             </div>
-            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
+            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">Â© 2026 CONVERTROCKET.ONLINE</p>
             <div style="font-size: 0.6rem; opacity: 0.4; margin-top: 5px; letter-spacing: 1px;">v2</div>
         </div>
-    </footer>
+    
+    <!-- Global "Stacked" PayPal Support Section -->
+    <section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
+        <div class="container" style="max-width: 600px; margin: 0 auto;">
+            <h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory ðŸ§ª</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">Support the development of ConvertRocket's high-speed media processing units.</p>
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    <style>.pp-XZCUNAEHQ3XCA{text-align:center;border:none;border-radius:0.5rem;min-width:12rem;padding:0 2rem;height:3rem;font-weight:900;background-color:#FFD140;color:#000000;font-family:'Inter', sans-serif;font-size:1.1rem;cursor:pointer;transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(255, 209, 64, 0.4);} .pp-XZCUNAEHQ3XCA:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 209, 64, 0.6); }</style>
+                    <form action="https://www.paypal.com/ncp/payment/XZCUNAEHQ3XCA" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:1rem;">
+                        <input class="pp-XZCUNAEHQ3XCA" type="submit" value="Leave A Tip! â¤ï¸" />
+                        <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" style="height: 26px;" />
+                        <section style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
 
     <script>
         // Interactive Card Effect

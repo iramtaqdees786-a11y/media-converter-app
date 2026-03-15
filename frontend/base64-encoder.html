@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -36,6 +36,7 @@
 
     
 
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 
 <body>
@@ -45,7 +46,7 @@
 
     <nav class="nav-premium">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
+            <a href="/" class="brand">ðŸš€ <span>ConvertRocket</span></a>
             <div class="nav-links">
                 <a href="/all-tools">All Tools</a>
                 <a href="/media-hub">Media Hub</a>
@@ -81,10 +82,10 @@
                 <div class="shine-overlay"></div>
 
                 <div class="command-tabs" style="margin-bottom: 30px;">
-                    <button class="cmd-tab active" id="tab-encode" onclick="switchMode('encode', this)">🔐
+                    <button class="cmd-tab active" id="tab-encode" onclick="switchMode('encode', this)">ðŸ”
                         Encode</button>
-                    <button class="cmd-tab" id="tab-decode" onclick="switchMode('decode', this)">🔓 Decode</button>
-                    <button class="cmd-tab" onclick="swap()">🔄 Swap Contents</button>
+                    <button class="cmd-tab" id="tab-decode" onclick="switchMode('decode', this)">ðŸ”“ Decode</button>
+                    <button class="cmd-tab" onclick="swap()">ðŸ”„ Swap Contents</button>
                 </div>
 
                 <div style="margin-bottom: 25px;">
@@ -96,7 +97,7 @@
                 </div>
 
                 <div style="display: flex; gap: 12px; margin-bottom: 30px; justify-content: center;">
-                    <button onclick="processBase64()" class="btn-premium" style="flex: 1;">⚡ Execute
+                    <button onclick="processBase64()" class="btn-premium" style="flex: 1;">âš¡ Execute
                         Protocol</button>
                 </div>
 
@@ -107,7 +108,7 @@
                         style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <label style="font-weight: 700; color: var(--text-secondary);">Result Output:</label>
                         <button onclick="copyOutput()"
-                            style="background:none; border:none; color:var(--accent-primary); cursor:pointer; font-size:0.85rem; font-weight:700;">📋
+                            style="background:none; border:none; color:var(--accent-primary); cursor:pointer; font-size:0.85rem; font-weight:700;">ðŸ“‹
                             COPY RESULTS</button>
                     </div>
                     <textarea id="base64-output" class="text-input" placeholder="Processed output will appear here..."
@@ -140,7 +141,7 @@
             const output = document.getElementById('base64-output');
 
             if (!input.trim()) {
-                statusDiv.innerHTML = '<div class="status-text error">⚠️ Please enter text</div>';
+                statusDiv.innerHTML = '<div class="status-text error">âš ï¸ Please enter text</div>';
                 return;
             }
 
@@ -150,14 +151,14 @@
                 try {
                     if (currentMode === 'encode') {
                         output.value = btoa(unescape(encodeURIComponent(input)));
-                        statusDiv.innerHTML = '<div class="status-text success">✅ Encoded successfully!</div>';
+                        statusDiv.innerHTML = '<div class="status-text success">âœ… Encoded successfully!</div>';
                     } else {
                         output.value = decodeURIComponent(escape(atob(input)));
-                        statusDiv.innerHTML = '<div class="status-text success">✅ Decoded successfully!</div>';
+                        statusDiv.innerHTML = '<div class="status-text success">âœ… Decoded successfully!</div>';
                     }
                 } catch (e) {
                     output.value = '';
-                    statusDiv.innerHTML = `<div class="status-text error">❌ Error: ${e.message}</div>`;
+                    statusDiv.innerHTML = `<div class="status-text error">âŒ Error: ${e.message}</div>`;
                 }
             }, 200);
         }
@@ -173,7 +174,7 @@
             document.execCommand('copy');
 
             document.getElementById('base64-status').innerHTML =
-                '<div class="status-text success">📋 Copied!</div>';
+                '<div class="status-text success">ðŸ“‹ Copied!</div>';
         }
 
         function swap() {
@@ -203,3 +204,4 @@
 </body>
 
 </html>
+

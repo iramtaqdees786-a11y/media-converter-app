@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -82,6 +82,7 @@
 
     
 
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 
 <body class="reveal-init">
@@ -92,7 +93,7 @@
     <nav class="nav-glass">
         <div class="nav-container">
             <a href="/" class="logo-wrap">
-                <div class="logo-box">🚀</div>
+                <div class="logo-box">ðŸš€</div>
                 <div class="logo-text">ConvertRocket</div>
             </a>
             <div class="nav-menu">
@@ -123,12 +124,12 @@
                         style="margin-left: 20px; font-weight: 800; opacity: 0.4; font-size: 0.7rem; letter-spacing: 2px;">NEURAL_ENGINE_ACTIVE</span>
                 </div>
                 <div class="card-star" style="font-size:1.5rem; cursor:pointer;"
-                    onclick="toggleThisStar(this, '/ai-image-editor')">☆</div>
+                    onclick="toggleThisStar(this, '/ai-image-editor')">â˜†</div>
             </div>
 
             <div class="console-body">
                 <div class="upload-arena" id="upload-zone">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🪄</div>
+                    <div style="font-size: 4rem; margin-bottom: 20px;">ðŸª„</div>
                     <h2 style="margin-bottom: 10px;">Initialize Neural Uplink</h2>
                     <p style="opacity: 0.5;">Select asset for deep-layer processing</p>
                     <input type="file" id="file-input" accept="image/*" style="display: none;">
@@ -141,16 +142,16 @@
 
                     <div class="ai-toolbar" id="ai-tools">
                         <button class="ai-op-btn" data-tool="remove-bg" id="op-remove-bg">
-                            <span class="icon">🪄</span> Remove BG
+                            <span class="icon">ðŸª„</span> Remove BG
                         </button>
                         <button class="ai-op-btn" data-tool="blur-faces" id="op-blur-face">
-                            <span class="icon">👤</span> Face Blur
+                            <span class="icon">ðŸ‘¤</span> Face Blur
                         </button>
                         <button class="ai-op-btn" data-tool="grayscale" id="op-grayscale">
-                            <span class="icon">🌑</span> Grayscale
+                            <span class="icon">ðŸŒ‘</span> Grayscale
                         </button>
                         <button class="ai-op-btn" data-tool="enhance" id="op-enhance">
-                            <span class="icon">✨</span> Enhance
+                            <span class="icon">âœ¨</span> Enhance
                         </button>
                     </div>
 
@@ -234,8 +235,26 @@
             <a href="/sitemap">Sitemap</a>
             <a href="/contact">Contact</a>
         </div>
-        <p class="footer-copyright">© 2026 ConvertRocket.online • Made by Izyaan</p>
-    </footer>
+        <p class="footer-copyright">Â© 2026 ConvertRocket.online â€¢ Made by Izyaan</p>
+    
+    <!-- Global "Stacked" PayPal Support Section -->
+    <section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
+        <div class="container" style="max-width: 600px; margin: 0 auto;">
+            <h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory ðŸ§ª</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">Support the development of ConvertRocket's high-speed media processing units.</p>
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    <style>.pp-XZCUNAEHQ3XCA{text-align:center;border:none;border-radius:0.5rem;min-width:12rem;padding:0 2rem;height:3rem;font-weight:900;background-color:#FFD140;color:#000000;font-family:'Inter', sans-serif;font-size:1.1rem;cursor:pointer;transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(255, 209, 64, 0.4);} .pp-XZCUNAEHQ3XCA:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 209, 64, 0.6); }</style>
+                    <form action="https://www.paypal.com/ncp/payment/XZCUNAEHQ3XCA" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:1rem;">
+                        <input class="pp-XZCUNAEHQ3XCA" type="submit" value="Leave A Tip! â¤ï¸" />
+                        <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" style="height: 26px;" />
+                        <section style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
 
     <!-- AI Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
@@ -253,10 +272,10 @@
         function toggleThisStar(el, url) {
             let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
             if (el.classList.contains('active')) {
-                el.classList.remove('active'); el.textContent = '☆';
+                el.classList.remove('active'); el.textContent = 'â˜†';
                 starred = starred.filter(u => u !== url);
             } else {
-                el.classList.add('active'); el.textContent = '⭐';
+                el.classList.add('active'); el.textContent = 'â­';
                 if (!starred.includes(url)) starred.push(url);
             }
             localStorage.setItem('starredTools', JSON.stringify(starred));
@@ -283,3 +302,4 @@
 </body>
 
 </html>
+

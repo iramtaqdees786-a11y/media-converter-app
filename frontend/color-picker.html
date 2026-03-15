@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,6 +39,7 @@
 
     
 
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 
 <body>
@@ -53,13 +54,13 @@
     <div class="container">
         <nav class="nav-premium">
             <div class="brand-premium" style="font-weight: 950; font-size: 1.5rem;">
-                <a href="/" style="text-decoration:none; color:inherit;">🚀 ConvertRocket</a>
+                <a href="/" style="text-decoration:none; color:inherit;">ðŸš€ ConvertRocket</a>
             </div>
         </nav>
 
         <section class="hero-minimal" style="padding: 40px 0 20px;">
             <h1 class="ion-title" style="font-size: 3rem;">Color Picker</h1>
-            <p class="hero-tagline">Pick colors • Generate palettes • Get codes</p>
+            <p class="hero-tagline">Pick colors â€¢ Generate palettes â€¢ Get codes</p>
         </section>
 
         <div class="command-center glass-panel-3d">
@@ -76,7 +77,7 @@
 
                 <div style="margin-top: 40px;">
                     <h3 style="color: var(--neon-cyan); margin-bottom: 20px; font-size: 1.2rem;">
-                        🎨 Color Palette
+                        ðŸŽ¨ Color Palette
                     </h3>
                     <div id="palette"
                         style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px;">
@@ -129,17 +130,17 @@
                 <div class="glass-panel-3d" style="padding: 20px; border-radius: 20px; text-align: center;">
                     <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 8px;">HEX</div>
                     <div style="font-size: 1.5rem; font-weight: 900; font-family: monospace; color: var(--neon-cyan);">${hex.toUpperCase()}</div>
-                    <button onclick="copy('${hex}')" style="margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: #fff; cursor: pointer; font-size: 0.8rem;">📋 Copy</button>
+                    <button onclick="copy('${hex}')" style="margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: #fff; cursor: pointer; font-size: 0.8rem;">ðŸ“‹ Copy</button>
                 </div>
                 <div class="glass-panel-3d" style="padding: 20px; border-radius: 20px; text-align: center;">
                     <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 8px;">RGB</div>
                     <div style="font-size: 1.2rem; font-weight: 800; font-family: monospace; color: #fff;">${rgb.r}, ${rgb.g}, ${rgb.b}</div>
-                    <button onclick="copy('rgb(${rgb.r}, ${rgb.g}, ${rgb.b})')" style="margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: #fff; cursor: pointer; font-size: 0.8rem;">📋 Copy</button>
+                    <button onclick="copy('rgb(${rgb.r}, ${rgb.g}, ${rgb.b})')" style="margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: #fff; cursor: pointer; font-size: 0.8rem;">ðŸ“‹ Copy</button>
                 </div>
                 <div class="glass-panel-3d" style="padding: 20px; border-radius: 20px; text-align: center;">
                     <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 8px;">HSL</div>
-                    <div style="font-size: 1.2rem; font-weight: 800; font-family: monospace; color: #fff;">${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
-                    <button onclick="copy('hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)')" style="margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: #fff; cursor: pointer; font-size: 0.8rem;">📋 Copy</button>
+                    <div style="font-size: 1.2rem; font-weight: 800; font-family: monospace; color: #fff;">${hsl.h}Â°, ${hsl.s}%, ${hsl.l}%</div>
+                    <button onclick="copy('hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)')" style="margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; color: #fff; cursor: pointer; font-size: 0.8rem;">ðŸ“‹ Copy</button>
                 </div>
             `;
 
@@ -213,3 +214,4 @@
 </body>
 
 </html>
+
