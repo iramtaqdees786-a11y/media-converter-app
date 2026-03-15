@@ -128,17 +128,18 @@ body {
 /* Bento Card Overhaul for Blogs Listing */
 .blogs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-auto-rows: 280px;
+    gap: 40px;
+    margin-top: 80px;
 }
 
 .bento-card {
     background: var(--glass-surface);
     backdrop-filter: blur(15px);
     border: 1px solid var(--border-glass);
-    border-radius: 24px;
-    padding: 30px;
+    border-radius: 32px;
+    padding: 45px;
     transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     text-decoration: none;
     color: #fff;
@@ -164,8 +165,9 @@ body {
 
 .bento-card h3 {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.6rem;
-    line-height: 1.3;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-top: 5px;
 }
 .bento-card.wide {
     grid-column: span 2;
