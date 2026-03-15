@@ -10,6 +10,7 @@ from typing import Optional, List
 from pathlib import Path
 import shutil
 import aiofiles
+from PIL import Image
 
 from backend.services.converter import convert_file, ConversionResult
 from backend.config import UPLOADS_DIR, CONVERTED_DIR, SUPPORTED_FORMATS
@@ -248,3 +249,87 @@ async def get_formats_by_category(category: str):
         "category": category,
         "formats": SUPPORTED_FORMATS[category]
     }
+
+
+@router.post("/bulk", response_model=ConversionResponse)
+async def bulk_convert_to_pdf(
+    files: List[UploadFile] = File(...),
+    target_format: str = Form(...)
+):
+    """
+    Upload multiple images and combine them into a single PDF.
+    """
+    if not files:
+        raise HTTPException(status_code=400, detail="No files provided")
+    
+    if target_format.lower().lstrip('.') != 'pdf':
+        raise HTTPException(status_code=400, detail="Bulk conversion currently only supports PDF output.")
+
+    # Save uploaded files temporarily and prepare for PDF
+    image_paths = []
+    temp_filenames = []
+    
+    try:
+        for file in files:
+            ext = get_file_extension(file.filename)
+            if ext not in ['jpg', 'jpeg', 'png', 'webp']:
+                continue
+                
+            temp_name = generate_unique_filename(file.filename)
+            temp_path = UPLOADS_DIR / temp_name
+            
+            async with aiofiles.open(temp_path, 'wb') as out_file:
+                content = await file.read()
+                await out_file.write(content)
+            
+            image_paths.append(temp_path)
+            temp_filenames.append(temp_name)
+
+        if not image_paths:
+            return ConversionResponse(success=False, message="No valid images found in batch.")
+
+        # Perform Bulk Conversion using Pillow
+        output_filename = generate_unique_filename("rocket_batch.pdf", "pdf")
+        output_path = CONVERTED_DIR / output_filename
+
+        def combine_images_to_pdf(paths, out_path):
+            images = []
+            for p in paths:
+                img = Image.open(p)
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                images.append(img)
+            
+            if images:
+                images[0].save(out_path, "PDF", save_all=True, append_images=images[1:])
+                for img in images:
+                    img.close()
+
+        import asyncio
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(None, combine_images_to_pdf, image_paths, output_path)
+
+        # Cleanup temp uploads
+        for p in image_paths:
+            try: p.unlink()
+            except: pass
+
+        return ConversionResponse(
+            success=True,
+            message=f"✅ Bulk Protocol Success: {len(image_paths)} units merged.",
+            original_file="batch_upload",
+            converted_file=output_filename,
+            download_url=f"/api/convert/file/{output_filename}",
+            original_size="Multiple Files",
+            converted_size=format_file_size(output_path.stat().st_size)
+        )
+
+    except Exception as e:
+        print(f"Bulk conversion error: {str(e)}")
+        for p in image_paths:
+            try: p.unlink()
+            except: pass
+        return ConversionResponse(
+            success=False,
+            message="Laboratory Fault: Batch processing failed. Ensure all files are valid images."
+        )
