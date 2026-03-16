@@ -364,8 +364,9 @@ body {
     animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-/* Ad Placement Area */
+/* Ad Placement Area - Optimized for Cleanliness */
 .ad-placement {
+    display: none; /* Hide until manual verification of AdSense delivery */
     background: rgba(255, 255, 255, 0.02);
     border: 1px dashed var(--border-subtle);
     border-radius: var(--radius-md);
@@ -376,7 +377,6 @@ body {
     margin: 40px auto;
     max-width: 728px;
     min-height: 90px;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
