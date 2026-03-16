@@ -116,7 +116,7 @@
 
     <nav class="nav-premium">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">ðŸš€ <span>ConvertRocket</span></a>
+            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
             <div class="nav-links">
                 <a href="/all-tools">All Tools</a>
                 <a href="/media-hub">Media Hub</a>
@@ -136,9 +136,9 @@
     <main class="container animate-up" style="animation-delay: 0.1s;">
         <div class="json-panel">
             <div class="cmd-tabs">
-                <button class="cmd-tab active" id="tab-format" onclick="switchMode('format', this)">âœ¨ Format</button>
-                <button class="cmd-tab" id="tab-minify" onclick="switchMode('minify', this)">ðŸ“¦ Minify</button>
-                <button class="cmd-tab" id="tab-validate" onclick="switchMode('validate', this)">âœ… Validate</button>
+                <button class="cmd-tab active" id="tab-format" onclick="switchMode('format', this)">✨ Format</button>
+                <button class="cmd-tab" id="tab-minify" onclick="switchMode('minify', this)">📦 Minify</button>
+                <button class="cmd-tab" id="tab-validate" onclick="switchMode('validate', this)">✅ Validate</button>
             </div>
 
             <div class="editor-container">
@@ -148,7 +148,7 @@
                 </div>
 
                 <div style="display: flex; gap: 12px;">
-                    <button onclick="processJSON()" class="btn-primary" style="flex: 2;">âš¡ PROCESS PROTOCOL</button>
+                    <button onclick="processJSON()" class="btn-primary" style="flex: 2;">⚡ PROCESS PROTOCOL</button>
                     <button onclick="clearAll()" class="btn-secondary" style="flex: 1;">ðŸ—‘ï¸ CLEAR</button>
                 </div>
 
@@ -157,7 +157,7 @@
                 <div class="editor-box" style="margin-top: 20px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <label class="editor-label">Result Output</label>
-                        <button onclick="copyToClipboard()" style="background:none; border:none; color:var(--accent-primary); font-weight:700; font-size:0.75rem; cursor:pointer;">ðŸ”— COPY RESULTS</button>
+                        <button onclick="copyToClipboard()" style="background:none; border:none; color:var(--accent-primary); font-weight:700; font-size:0.75rem; cursor:pointer;">🔗 COPY RESULTS</button>
                     </div>
                     <textarea id="json-output" class="premium-textarea" style="background: rgba(0,0,0,0.6);" readonly placeholder="Resulting JSON stream..."></textarea>
                 </div>
@@ -215,13 +215,13 @@
                 <a href="/sitemap">Sitemap</a>
                 <a href="/contact">Contact</a>
             </div>
-            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">Â© 2026 CONVERTROCKET.ONLINE</p>
+            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
         </div>
     
     <!-- Global "Stacked" PayPal Support Section -->
     <section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
         <div class="container" style="max-width: 600px; margin: 0 auto;">
-            <h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory ðŸ§ª</h3>
+            <h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory 🧪</h3>
             <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">Support the development of ConvertRocket's high-speed media processing units.</p>
             <div style="display: flex; justify-content: center;">
                 <div>
@@ -264,7 +264,7 @@
                 const parsed = JSON.parse(input);
                 status.style.display = 'block';
                 status.className = 'status-badge status-success';
-                status.innerHTML = 'âœ… Protocol Validated & Processed';
+                status.innerHTML = '✅ Protocol Validated & Processed';
 
                 if (mode === 'format') {
                     output.value = JSON.stringify(parsed, null, 2);

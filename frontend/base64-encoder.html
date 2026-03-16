@@ -47,7 +47,7 @@
 
     <nav class="nav-premium">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">ðŸš€ <span>ConvertRocket</span></a>
+            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
             <div class="nav-links">
                 <a href="/all-tools">All Tools</a>
                 <a href="/media-hub">Media Hub</a>
@@ -98,7 +98,7 @@
                 </div>
 
                 <div style="display: flex; gap: 12px; margin-bottom: 30px; justify-content: center;">
-                    <button onclick="processBase64()" class="btn-premium" style="flex: 1;">âš¡ Execute
+                    <button onclick="processBase64()" class="btn-premium" style="flex: 1;">⚡ Execute
                         Protocol</button>
                 </div>
 
@@ -152,10 +152,10 @@
                 try {
                     if (currentMode === 'encode') {
                         output.value = btoa(unescape(encodeURIComponent(input)));
-                        statusDiv.innerHTML = '<div class="status-text success">âœ… Encoded successfully!</div>';
+                        statusDiv.innerHTML = '<div class="status-text success">✅ Encoded successfully!</div>';
                     } else {
                         output.value = decodeURIComponent(escape(atob(input)));
-                        statusDiv.innerHTML = '<div class="status-text success">âœ… Decoded successfully!</div>';
+                        statusDiv.innerHTML = '<div class="status-text success">✅ Decoded successfully!</div>';
                     }
                 } catch (e) {
                     output.value = '';
