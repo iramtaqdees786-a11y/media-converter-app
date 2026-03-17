@@ -23,4 +23,4 @@ jobs:
           --retry 3 \
           --retry-delay 10 \
           --connect-timeout 15 \
-          -I "https://convertrocket.online"
+          -I "https://convertrocket.onrender.com"
