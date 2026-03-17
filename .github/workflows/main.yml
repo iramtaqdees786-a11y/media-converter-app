@@ -1,25 +1,27 @@
 name: ConvertRocket Keep-Alive
-run-name: Direct Render Ping by ${{ github.actor }}
+run-name: Deep Wake Ping by ${{ github.actor }}
 
 on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
-concurrency:
-  group: keep-alive-group
-  cancel-in-progress: true
-
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Hit Render with GET
+      - name: Force Render Wake-up
         run: |
-          # We use -o /dev/null to hide the HTML and just check the connection
-          curl -f -s -L \
+          # Use a timestamp to ensure the request is never cached
+          TIMESTAMP=$(date +%s)
+          URL="https://convertrocket.onrender.com/?nocache=$TIMESTAMP"
+          
+          curl -f -L -s \
+          -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
           --retry 3 \
           --retry-delay 10 \
           --connect-timeout 15 \
           -o /dev/null \
-          "https://convertrocket.onrender.com"
+          "$URL"
+          
+          echo "Successfully pinged $URL"
