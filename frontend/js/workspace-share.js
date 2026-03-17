@@ -5,7 +5,7 @@
 
 const WorkspaceController = {
     init() {
-        console.log("🚀 Workspace Controller Initialized");
+        console.log(" Workspace Controller Initialized");
         this.injectModalStyles();
         this.setupHistoryTracking();
         this.setupShareButtons();
@@ -85,7 +85,7 @@ const WorkspaceController = {
         // Show subtle notification
         const resMsg = document.getElementById('convert-status');
         if (resMsg) {
-            resMsg.innerHTML += '<div style="color: #00eaff; font-size: 0.8rem; margin-top: 5px;">⭐ Added to Workspace</div>';
+            resMsg.innerHTML ⭐= '<div style="color: #00eaff; font-size: 0.8rem; margin-top: 5px;">⭐ Added to Workspace</div>';
         }
     },
 
@@ -171,7 +171,7 @@ const WorkspaceController = {
                         status.innerHTML = '<span style="color: #38ef7d;">Success! File shared and emails logged.</span>';
                         setTimeout(() => overlay.classList.remove('active'), 2000);
                     } else {
-                        status.innerHTML = '<span style="color: #ff007a;">Error: ' + res.message + '</span>';
+                        status.innerHTML = '<span style="color: #ff007a;">Error: ' ⭐ res.message ⭐ '</span>';
                     }
                 } catch (err) {
                     status.innerHTML = '<span style="color: #ff007a;">Connection error.</span>';

@@ -1,245 +1,255 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Workspace | ConvertRocket 🚀</title>
-    <meta name="description" content="View your recent conversion history and quickly access your processed files.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/modern-ui.css?v=5.0">
-    <style>
-        .workspace-container {
-            margin-top: 40px;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .history-list {
-            display: grid;
-            gap: 16px;
-            margin-top: 30px;
-        }
-
-        .history-item {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: 0.3s;
-            backdrop-filter: var(--glass-blur);
-        }
-
-        .history-item:hover {
-            background: var(--bg-elevated);
-            border-color: rgba(255,255,255,0.15);
-            transform: scale(1.01);
-        }
-
-        .history-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .file-icon {
-            font-size: 1.8rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-        }
-
-        .file-details h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .file-details p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .history-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-mini {
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .btn-mini-primary {
-            background: var(--accent-primary);
-            color: #000;
-        }
-
-        .btn-mini-danger {
-            background: rgba(255, 0, 122, 0.1);
-            color: #ff007a;
-            border: 1px solid rgba(255, 0, 122, 0.2);
-        }
-
-        .btn-mini-danger:hover {
-            background: rgba(255, 0, 122, 0.2);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 80px 20px;
-            opacity: 0.6;
-        }
-
-        .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Workspace | ConvertRocket </title>
+<meta content="View your recent conversion history and quickly access your processed files." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="/css/modern-ui.css?v=5.0" rel="stylesheet"/>
+<style>
+        .workspace-container {
+            margin-top: 40px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .history-list {
+            display: grid;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .history-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .history-item:hover {
+            background: var(--bg-elevated);
+            border-color: rgba(255,255,255,0.15);
+            transform: scale(1.01);
+        }
+
+        .history-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .file-icon {
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+        }
+
+        .file-details h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .file-details p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-mini {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-mini-primary {
+            background: var(--accent-primary);
+            color: #000;
+        }
+
+        .btn-mini-danger {
+            background: rgba(255, 0, 122, 0.1);
+            color: #ff007a;
+            border: 1px solid rgba(255, 0, 122, 0.2);
+        }
+
+        .btn-mini-danger:hover {
+            background: rgba(255, 0, 122, 0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            opacity: 0.6;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211" crossorigin="anonymous"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
 </head>
 <body>
+<nav class="nav-premium">
+<div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+<a class="brand" href="/"> <span>ConvertRocket</span></a>
+<div class="nav-links">
+<a href="/all-tools">All Tools</a>
+<a href="/workspace" style="color: var(--accent-primary);">Workspace</a>
+<a href="/blogs">Blog</a>
+</div>
+</div>
+</nav>
+<header class="hero animate-up" style="padding-bottom: 40px;">
+<div class="container">
+<h1>Conversion Workspace</h1>
+<p>Your localized lab for recent conversions. Everything stays in your browser for maximum privacy.</p>
+</div>
+</header>
+<main class="container workspace-container">
+<div id="history-content">
+<!-- Content populated by JS -->
+<div class="empty-state">
+<div class="empty-state-icon">ðŸ§Š</div>
+<h3>Your workspace is empty</h3>
+<p>Start converting files to see them here.</p>
+<a class="btn-primary" href="/all-tools" style="margin-top: 20px;">Browse Tools</a>
+</div>
+</div>
 
-    <nav class="nav-premium">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
-            <div class="nav-links">
-                <a href="/all-tools">All Tools</a>
-                <a href="/workspace" style="color: var(--accent-primary);">Workspace</a>
-                <a href="/blogs">Blog</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero animate-up" style="padding-bottom: 40px;">
-        <div class="container">
-            <h1>Conversion Workspace</h1>
-            <p>Your localized lab for recent conversions. Everything stays in your browser for maximum privacy.</p>
-        </div>
-    </header>
-
-    <main class="container workspace-container">
-        <div id="history-content">
-            <!-- Content populated by JS -->
-            <div class="empty-state">
-                <div class="empty-state-icon">ðŸ§Š</div>
-                <h3>Your workspace is empty</h3>
-                <p>Start converting files to see them here.</p>
-                <a href="/all-tools" class="btn-primary" style="margin-top: 20px;">Browse Tools</a>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer-clean">
-        <p class="footer-copyright">© 2026 ConvertRocket.online • Privacy-First Utility Hub</p>
-    
-    <!-- Global "Stacked" PayPal Support Section -->
-    <section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
-        <div class="container" style="max-width: 600px; margin: 0 auto;">
-            <h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory 🧪</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">Support the development of ConvertRocket's high-speed media processing units.</p>
-            <div style="display: flex; justify-content: center;">
-                <div>
-                    <style>.pp-XZCUNAEHQ3XCA{text-align:center;border:none;border-radius:0.5rem;min-width:12rem;padding:0 2rem;height:3rem;font-weight:900;background-color:#FFD140;color:#000000;font-family:'Inter', sans-serif;font-size:1.1rem;cursor:pointer;transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(255, 209, 64, 0.4);} .pp-XZCUNAEHQ3XCA:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 209, 64, 0.6); }</style>
-                    <form action="https://www.paypal.com/ncp/payment/XZCUNAEHQ3XCA" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:1rem;">
-                        <input class="pp-XZCUNAEHQ3XCA" type="submit" value="Leave A Tip! â¤ï¸" />
-                        <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" style="height: 26px;" />
-                        <section style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="seo-depth-block" style="margin-top: 80px; padding: 60px 40px; background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05);">
+<div class="container" style="max-width: 900px; margin: 0 auto; color: #94a3b8; line-height: 1.8;">
+<h2 style="color: #fff; margin-bottom: 25px;">Industrial-Grade Protocol Logic</h2>
+<p>Our laboratory utilizes high-performance multi-threaded algorithms to analyze and transform your digital assets. Every conversion process is executed within an isolated, volatile RAM buffer to ensure 100% data privacy and zero-persistence data handling. We support over 1000+ formats with bit-perfect fidelity preservation.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+<div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 10px;">Security Standard</h3>
+<p style="font-size: 0.9rem;">Compliant with professional intelligence standards. Zero tracking, zero storage, and automatic cryptographic vaporization of assets upon completion.</p>
+</div>
+<div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 10px;">Transformation Quality</h3>
+<p style="font-size: 0.9rem;">Proprietary extraction logic preserves 100% of metadata, original sample rates, and color profile alignment for professionals.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer-clean">
+<p class="footer-copyright">© 2026 ConvertRocket.online • Privacy-First Utility Hub</p>
+<!-- Global "Stacked" PayPal Support Section -->
+<section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
+<div class="container" style="max-width: 600px; margin: 0 auto;">
+<h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory 🧪</h3>
+<p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">Support the development of ConvertRocket's high-speed media processing units.</p>
+<div style="display: flex; justify-content: center;">
+<div>
+<style>.pp-XZCUNAEHQ3XCA{text-align:center;border:none;border-radius:0.5rem;min-width:12rem;padding:0 2rem;height:3rem;font-weight:900;background-color:#FFD140;color:#000000;font-family:'Inter', sans-serif;font-size:1.1rem;cursor:pointer;transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(255, 209, 64, 0.4);} .pp-XZCUNAEHQ3XCA:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 209, 64, 0.6); }</style>
+<form action="https://www.paypal.com/ncp/payment/XZCUNAEHQ3XCA" method="post" style="display:inline-grid;justify-items:center;align-content:start;gap:1rem;" target="_blank">
+<input class="pp-XZCUNAEHQ3XCA" type="submit" value="Leave A Tip! â¤ï¸"/>
+<img alt="cards" src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" style="height: 26px;"/>
+<section style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Powered by <img alt="paypal" src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" style="height:0.875rem;vertical-align:middle;"/></section>
+</form>
+</div>
+</div>
+</div>
+</section>
 </footer>
-
-    <script>
-        function loadHistory() {
-            const history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
-            const container = document.getElementById('history-content');
-
-            if (history.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">ðŸ§Š</div>
-                        <h3>Your workspace is empty</h3>
-                        <p>Start converting files to see them here.</p>
-                        <a href="/all-tools" class="btn-primary" style="margin-top: 20px;">Browse Tools</a>
-                    </div>
-                `;
-                return;
-            }
-
-            let html = '<div class="history-list">';
-            history.reverse().forEach((item, index) => {
-                const date = new Date(item.timestamp).toLocaleString();
-                html += `
-                    <div class="history-item" id="item-${index}">
-                        <div class="history-info">
-                            <div class="file-icon">${getFileIcon(item.type)}</div>
-                            <div class="file-details">
-                                <h3>${item.fileName}</h3>
-                                <p>${item.type.toUpperCase()} • ${date}</p>
-                            </div>
-                        </div>
-                        <div class="history-actions">
-                            <a href="${item.toolLink}" class="btn-mini btn-mini-primary">Convert Again</a>
-                            <button onclick="deleteItem(${index})" class="btn-mini btn-mini-danger">Delete</button>
-                        </div>
-                    </div>
-                `;
-            });
-            html += '</div>';
-            html += '<div style="text-align:center; margin-top: 40px;"><button onclick="clearAll()" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 20px;">Clear All History</button></div>';
-            container.innerHTML = html;
-        }
-
-        function getFileIcon(type) {
-            const icons = {
-                'pdf': 'ðŸ“„',
-                'video': 'ðŸŽ¬',
-                'audio': '🎵',
-                'image': 'ðŸ–¼ï¸',
-                'json': '{}',
-                'qr': 'ðŸ“±'
-            };
-            return icons[type] || 'ðŸ“';
-        }
-
-        function deleteItem(originalIndex) {
-            let history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
-            // Since we reversed for display, the index is different
-            const actualIndex = history.length - 1 - originalIndex;
-            history.splice(actualIndex, 1);
-            localStorage.setItem('conversionHistory', JSON.stringify(history));
-            loadHistory();
-        }
-
-        function clearAll() {
-            if (confirm('Are you sure you want to clear all history?')) {
-                localStorage.removeItem('conversionHistory');
-                loadHistory();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', loadHistory);
+<script>
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
+            const container = document.getElementById('history-content');
+
+            if (history.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">ðŸ§Š</div>
+                        <h3>Your workspace is empty</h3>
+                        <p>Start converting files to see them here.</p>
+                        <a href="/all-tools" class="btn-primary" style="margin-top: 20px;">Browse Tools</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '<div class="history-list">';
+            history.reverse().forEach((item, index) => {
+                const date = new Date(item.timestamp).toLocaleString();
+                html ⭐= `
+                    <div class="history-item" id="item-${index}">
+                        <div class="history-info">
+                            <div class="file-icon">${getFileIcon(item.type)}</div>
+                            <div class="file-details">
+                                <h3>${item.fileName}</h3>
+                                <p>${item.type.toUpperCase()} • ${date}</p>
+                            </div>
+                        </div>
+                        <div class="history-actions">
+                            <a href="${item.toolLink}" class="btn-mini btn-mini-primary">Convert Again</a>
+                            <button onclick="deleteItem(${index})" class="btn-mini btn-mini-danger">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+            html ⭐= '</div>';
+            html ⭐= '<div style="text-align:center; margin-top: 40px;"><button onclick="clearAll()" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 20px;">Clear All History</button></div>';
+            container.innerHTML = html;
+        }
+
+        function getFileIcon(type) {
+            const icons = {
+                'pdf': 'ðŸ“„',
+                'video': 'ðŸŽ¬',
+                'audio': '🎵',
+                'image': 'ðŸ–¼ï¸',
+                'json': '{}',
+                'qr': 'ðŸ“±'
+            };
+            return icons[type] || 'ðŸ“';
+        }
+
+        function deleteItem(originalIndex) {
+            let history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
+            // Since we reversed for display, the index is different
+            const actualIndex = history.length - 1 - originalIndex;
+            history.splice(actualIndex, 1);
+            localStorage.setItem('conversionHistory', JSON.stringify(history));
+            loadHistory();
+        }
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all history?')) {
+                localStorage.removeItem('conversionHistory');
+                loadHistory();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadHistory);
     </script>
 </body>
 </html>
-
-

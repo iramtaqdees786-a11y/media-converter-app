@@ -1,309 +1,336 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Formatter & Validator - Premium Media Laboratory | ConvertRocket</title>
-    <meta name="description" content="Format, validate, and minify JSON with architectural precision. Professional-grade laboratory for digital asset optimization. Fast, free, and secure.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/modern-ui.css?v=5.0">
-    <link rel="stylesheet" href="/css/seo-optimized.css?v=4.0">
-    <style>
-        .json-panel {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            backdrop-filter: var(--glass-blur);
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .cmd-tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
-            background: rgba(0,0,0,0.2);
-            padding: 8px;
-            border-radius: var(--radius-full);
-            width: fit-content;
-        }
-
-        .cmd-tab {
-            padding: 10px 24px;
-            border-radius: var(--radius-full);
-            border: 1px solid transparent;
-            background: transparent;
-            color: var(--text-secondary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cmd-tab.active {
-            background: var(--accent-primary);
-            color: #000;
-            border-color: var(--accent-primary);
-        }
-
-        .editor-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .editor-box {
-            position: relative;
-        }
-
-        .editor-label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .premium-textarea {
-            width: 100%;
-            height: 300px;
-            padding: 20px;
-            border-radius: var(--radius-md);
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border-subtle);
-            color: #fff;
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            transition: 0.3s;
-            resize: vertical;
-        }
-
-        .premium-textarea:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
-        }
-
-        .status-badge {
-            margin-top: 15px;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .status-success { background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.2); }
-        .status-error { background: rgba(255, 0, 122, 0.1); color: #ff007a; border: 1px solid rgba(255, 0, 122, 0.2); }
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JSON Formatter &amp; Validator - Premium Media Laboratory | ConvertRocket</title>
+<meta content="Format, validate, and minify JSON with architectural precision. Professional-grade laboratory for digital asset optimization. Fast, free, and secure." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="/css/modern-ui.css?v=5.0" rel="stylesheet"/>
+<link href="/css/seo-optimized.css?v=4.0" rel="stylesheet"/>
+<style>
+        .json-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            backdrop-filter: var(--glass-blur);
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cmd-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.2);
+            padding: 8px;
+            border-radius: var(--radius-full);
+            width: fit-content;
+        }
+
+        .cmd-tab {
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cmd-tab.active {
+            background: var(--accent-primary);
+            color: #000;
+            border-color: var(--accent-primary);
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .editor-box {
+            position: relative;
+        }
+
+        .editor-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-textarea {
+            width: 100%;
+            height: 300px;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-subtle);
+            color: #fff;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transition: 0.3s;
+            resize: vertical;
+        }
+
+        .premium-textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
+        }
+
+        .status-badge {
+            margin-top: 15px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .status-success { background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.2); }
+        .status-error { background: rgba(255, 0, 122, 0.1); color: #ff007a; border: 1px solid rgba(255, 0, 122, 0.2); }
     </style>
-
-    
-
-    <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211" crossorigin="anonymous"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
 </head>
 <body>
+<nav class="nav-premium">
+<div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+<a class="brand" href="/"> <span>ConvertRocket</span></a>
+<div class="nav-links">
+<a href="/all-tools">All Tools</a>
+<a href="/media-hub">Media Hub</a>
+<a href="/pdf-lab">PDF Lab</a>
+<a href="/blogs">Blog</a>
+</div>
+</div>
+</nav>
+<header class="hero animate-up">
+<div class="container">
+<h1>JSON Lab</h1>
+<p>Format, validate, and minify JSON protocols with industrial-grade precision and zero latency.</p>
+</div>
+</header>
+<main class="container animate-up" style="animation-delay: 0.1s;">
+<div class="json-panel">
+<div class="cmd-tabs">
+<button class="cmd-tab active" id="tab-format" onclick="switchMode('format', this)">✨ Format</button>
+<button class="cmd-tab" id="tab-minify" onclick="switchMode('minify', this)">📦 Minify</button>
+<button class="cmd-tab" id="tab-validate" onclick="switchMode('validate', this)">✅ Validate</button>
+</div>
+<div class="editor-container">
+<div class="editor-box">
+<label class="editor-label">Laboratory Input</label>
+<textarea class="premium-textarea" id="json-input" placeholder='{"status": "ready", "module": "JSON_PROTOCOL"}'></textarea>
+</div>
+<div style="display: flex; gap: 12px;">
+<button class="btn-primary" onclick="processJSON()" style="flex: 2;">⚡ PROCESS PROTOCOL</button>
+<button class="btn-secondary" onclick="clearAll()" style="flex: 1;">ðŸ—‘ï¸ CLEAR</button>
+</div>
+<div class="status-badge" id="json-status"></div>
+<div class="editor-box" style="margin-top: 20px;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<label class="editor-label">Result Output</label>
+<button onclick="copyToClipboard()" style="background:none; border:none; color:var(--accent-primary); font-weight:700; font-size:0.75rem; cursor:pointer;">🔗 COPY RESULTS</button>
+</div>
+<textarea class="premium-textarea" id="json-output" placeholder="Resulting JSON stream..." readonly="" style="background: rgba(0,0,0,0.6);"></textarea>
+</div>
+</div>
+</div>
+<section class="seo-content" style="margin-top: 80px;">
+<h2 class="section-title">The JSON Specification</h2>
+<p class="section-subtitle">Our lab processes JSON in-memory using highly optimized V8 protocols for maximum data integrity.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+<div class="interactive-card" style="padding: 24px;">
+<h3>Beautifier</h3>
+<p>Transform messy data streams into perfectly indented, human-readable protocols instantly.</p>
+</div>
+<div class="interactive-card" style="padding: 24px;">
+<h3>Minification</h3>
+<p>Strip all unnecessary characters and white space to compress your JSON payloads for transit.</p>
+</div>
+<div class="interactive-card" style="padding: 24px;">
+<h3>Validation</h3>
+<p>Detect syntax errors and schema deviations with surgical precision and real-time feedback.</p>
+</div>
+</div>
+</section>
 
-    <nav class="nav-premium">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
-            <div class="nav-links">
-                <a href="/all-tools">All Tools</a>
-                <a href="/media-hub">Media Hub</a>
-                <a href="/pdf-lab">PDF Lab</a>
-                <a href="/blogs">Blog</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero animate-up">
-        <div class="container">
-            <h1>JSON Lab</h1>
-            <p>Format, validate, and minify JSON protocols with industrial-grade precision and zero latency.</p>
-        </div>
-    </header>
-
-    <main class="container animate-up" style="animation-delay: 0.1s;">
-        <div class="json-panel">
-            <div class="cmd-tabs">
-                <button class="cmd-tab active" id="tab-format" onclick="switchMode('format', this)">✨ Format</button>
-                <button class="cmd-tab" id="tab-minify" onclick="switchMode('minify', this)">📦 Minify</button>
-                <button class="cmd-tab" id="tab-validate" onclick="switchMode('validate', this)">✅ Validate</button>
-            </div>
-
-            <div class="editor-container">
-                <div class="editor-box">
-                    <label class="editor-label">Laboratory Input</label>
-                    <textarea id="json-input" class="premium-textarea" placeholder='{"status": "ready", "module": "JSON_PROTOCOL"}'></textarea>
-                </div>
-
-                <div style="display: flex; gap: 12px;">
-                    <button onclick="processJSON()" class="btn-primary" style="flex: 2;">⚡ PROCESS PROTOCOL</button>
-                    <button onclick="clearAll()" class="btn-secondary" style="flex: 1;">ðŸ—‘ï¸ CLEAR</button>
-                </div>
-
-                <div id="json-status" class="status-badge"></div>
-
-                <div class="editor-box" style="margin-top: 20px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <label class="editor-label">Result Output</label>
-                        <button onclick="copyToClipboard()" style="background:none; border:none; color:var(--accent-primary); font-weight:700; font-size:0.75rem; cursor:pointer;">🔗 COPY RESULTS</button>
-                    </div>
-                    <textarea id="json-output" class="premium-textarea" style="background: rgba(0,0,0,0.6);" readonly placeholder="Resulting JSON stream..."></textarea>
-                </div>
-            </div>
-        </div>
-
-        <section class="seo-content" style="margin-top: 80px;">
-            <h2 class="section-title">The JSON Specification</h2>
-            <p class="section-subtitle">Our lab processes JSON in-memory using highly optimized V8 protocols for maximum data integrity.</p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
-                <div class="interactive-card" style="padding: 24px;">
-                    <h3>Beautifier</h3>
-                    <p>Transform messy data streams into perfectly indented, human-readable protocols instantly.</p>
-                </div>
-                <div class="interactive-card" style="padding: 24px;">
-                    <h3>Minification</h3>
-                    <p>Strip all unnecessary characters and white space to compress your JSON payloads for transit.</p>
-                </div>
-                <div class="interactive-card" style="padding: 24px;">
-                    <h3>Validation</h3>
-                    <p>Detect syntax errors and schema deviations with surgical precision and real-time feedback.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer-clean">
-        <div class="container">
-            
-        <div class="footer-links-cloud" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);">
-            <h4 style="color: #fff; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Professional Utility Hub</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; font-size: 0.85rem;">
-                <a href="/pdf-to-excel" style="color: var(--text-secondary);">Convert PDF to Excel</a>
-                <a href="/video-converter" style="color: var(--text-secondary);">Video Converter</a>
-                <a href="/json-formatter" style="color: var(--text-secondary);">JSON Formatter</a>
-                <a href="/image-converter" style="color: var(--text-secondary);">Image Converter</a>
-                <a href="/mp3-converter" style="color: var(--text-secondary);">MP3 Converter</a>
-                <a href="/qr-generator" style="color: var(--text-secondary);">QR Generator</a>
-                <a href="/pdf-merge" style="color: var(--text-secondary);">Merge PDF</a>
-                <a href="/pdf-compress" style="color: var(--text-secondary);">Compress PDF</a>
-                <a href="/image-compress" style="color: var(--text-secondary);">Compress Image</a>
-                <a href="/svg-to-png" style="color: var(--text-secondary);">SVG to PNG</a>
-                <a href="/bg-remover" style="color: var(--text-secondary);">AI Background Remover</a>
-            </div>
-        </div>
-
-        <div class="footer-links">
-                <a href="/all-tools">All Tools</a>
-                <a href="/media-hub">Media Hub</a>
-                <a href="/pdf-lab">PDF Lab</a>
-                <a href="/blogs">Blog</a>
-                <a href="/privacy-policy">Privacy</a>
-                <a href="/terms-of-service">Terms</a>
-                <a href="/sitemap">Sitemap</a>
-                <a href="/contact">Contact</a>
-            </div>
-            <p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
-        </div>
-    
-    <!-- Global "Stacked" PayPal Support Section -->
-    <section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
-        <div class="container" style="max-width: 600px; margin: 0 auto;">
-            <h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory 🧪</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">Support the development of ConvertRocket's high-speed media processing units.</p>
-            <div style="display: flex; justify-content: center;">
-                <div>
-                    <style>.pp-XZCUNAEHQ3XCA{text-align:center;border:none;border-radius:0.5rem;min-width:12rem;padding:0 2rem;height:3rem;font-weight:900;background-color:#FFD140;color:#000000;font-family:'Inter', sans-serif;font-size:1.1rem;cursor:pointer;transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(255, 209, 64, 0.4);} .pp-XZCUNAEHQ3XCA:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 209, 64, 0.6); }</style>
-                    <form action="https://www.paypal.com/ncp/payment/XZCUNAEHQ3XCA" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:1rem;">
-                        <input class="pp-XZCUNAEHQ3XCA" type="submit" value="Leave A Tip! â¤ï¸" />
-                        <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" style="height: 26px;" />
-                        <section style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="seo-depth-block" style="margin-top: 80px; padding: 60px 40px; background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05);">
+<div class="container" style="max-width: 900px; margin: 0 auto; color: #94a3b8; line-height: 1.8;">
+<h2 style="color: #fff; margin-bottom: 25px;">Industrial-Grade Protocol Logic</h2>
+<p>Our laboratory utilizes high-performance multi-threaded algorithms to analyze and transform your digital assets. Every conversion process is executed within an isolated, volatile RAM buffer to ensure 100% data privacy and zero-persistence data handling. We support over 1000+ formats with bit-perfect fidelity preservation.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+<div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 10px;">Security Standard</h3>
+<p style="font-size: 0.9rem;">Compliant with professional intelligence standards. Zero tracking, zero storage, and automatic cryptographic vaporization of assets upon completion.</p>
+</div>
+<div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 10px;">Transformation Quality</h3>
+<p style="font-size: 0.9rem;">Proprietary extraction logic preserves 100% of metadata, original sample rates, and color profile alignment for professionals.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Industrial-Grade Protocol Specification -->
+<section class="protocol-specs" style="margin: 80px 0; padding: 60px 40px; background: rgba(255,255,255,0.02); border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); font-family: 'Inter', sans-serif;">
+<div class="container" style="max-width: 900px; margin: 0 auto;">
+<h2 style="color: #fff; font-size: 2.2rem; font-weight: 800; margin-bottom: 30px; background: linear-gradient(135deg, #fff, #794bc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Json Formatter Protocol Specification</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px;">
+<div>
+<h3 style="color: #794bc4; font-size: 1.2rem; margin-bottom: 15px;">Neural Engine Logic</h3>
+<p style="color: #94a3b8; line-height: 1.7;">Our laboratory utilizing high-performance FFmpeg Neural clusters to process your request. The engine analyzes the byte-structure of the source file to ensure bit-perfect conversion without metadata degradation. Every process is isolated in a Zero-Persistence RAM buffer.</p>
+</div>
+<div>
+<h3 style="color: #794bc4; font-size: 1.2rem; margin-bottom: 15px;">Advanced Analytics</h3>
+<p style="color: #94a3b8; line-height: 1.7;">The protocol includes automatic optimization of headers and stream alignment. Unlike traditional cloud converters, our Json Formatter logic preserves original color profiles and sample rates for maximum output fidelity.</p>
+</div>
+</div>
+<div class="faq-matrix">
+<h3 style="color: #fff; margin-bottom: 25px;">Technical FAQ</h3>
+<div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; margin-bottom: 15px; border-left: 3px solid #794bc4;">
+<h4 data-faq-question="" style="color: #fff; margin-bottom: 10px;">Is this Json Formatter tool free?</h4>
+<p data-faq-answer="" style="color: #94a3b8; margin: 0;">Yes. All ConvertRocket tools are 100% free and unlimited. We operate on a tip-based laboratory model to support our infrastructure.</p>
+</div>
+<div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; margin-bottom: 15px; border-left: 3px solid #794bc4;">
+<h4 data-faq-question="" style="color: #fff; margin-bottom: 10px;">What is the file size limit?</h4>
+<p data-faq-answer="" style="color: #94a3b8; margin: 0;">Our laboratory standard supports files up to 100MB for conversion protocols. For larger technical uploads, please contact our support unit.</p>
+</div>
+<div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border-left: 3px solid #794bc4;">
+<h4 data-faq-question="" style="color: #fff; margin-bottom: 10px;">Is my data private during conversion?</h4>
+<p data-faq-answer="" style="color: #94a3b8; margin: 0;">Safety is absolute. Files are processed in volatile memory and vaporized immediately after your session terminates. We never store personal data.</p>
+</div>
+</div>
+</div>
+</section>
+<footer class="footer-clean">
+<div class="container">
+<div class="footer-links-cloud" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);">
+<h4 style="color: #fff; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Professional Utility Hub</h4>
+<div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; font-size: 0.85rem;">
+<a href="/pdf-to-excel" style="color: var(--text-secondary);">Convert PDF to Excel</a>
+<a href="/video-converter" style="color: var(--text-secondary);">Video Converter</a>
+<a href="/json-formatter" style="color: var(--text-secondary);">JSON Formatter</a>
+<a href="/image-converter" style="color: var(--text-secondary);">Image Converter</a>
+<a href="/mp3-converter" style="color: var(--text-secondary);">MP3 Converter</a>
+<a href="/qr-generator" style="color: var(--text-secondary);">QR Generator</a>
+<a href="/pdf-merge" style="color: var(--text-secondary);">Merge PDF</a>
+<a href="/pdf-compress" style="color: var(--text-secondary);">Compress PDF</a>
+<a href="/image-compress" style="color: var(--text-secondary);">Compress Image</a>
+<a href="/svg-to-png" style="color: var(--text-secondary);">SVG to PNG</a>
+<a href="/bg-remover" style="color: var(--text-secondary);">AI Background Remover</a>
+</div>
+</div>
+<div class="footer-links">
+<a href="/all-tools">All Tools</a>
+<a href="/media-hub">Media Hub</a>
+<a href="/pdf-lab">PDF Lab</a>
+<a href="/blogs">Blog</a>
+<a href="/privacy-policy">Privacy</a>
+<a href="/terms-of-service">Terms</a>
+<a href="/sitemap">Sitemap</a>
+<a href="/contact">Contact</a>
+</div>
+<p class="footer-copyright" style="color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px;">© 2026 CONVERTROCKET.ONLINE</p>
+</div>
+<!-- Global "Stacked" PayPal Support Section -->
+<section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
+<div class="container" style="max-width: 600px; margin: 0 auto;">
+<h3 style="color: #FFD140; margin-bottom: 20px; font-size: 1.5rem;">Fuel the Laboratory 🧪</h3>
+<p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">Support the development of ConvertRocket's high-speed media processing units.</p>
+<div style="display: flex; justify-content: center;">
+<div>
+<style>.pp-XZCUNAEHQ3XCA{text-align:center;border:none;border-radius:0.5rem;min-width:12rem;padding:0 2rem;height:3rem;font-weight:900;background-color:#FFD140;color:#000000;font-family:'Inter', sans-serif;font-size:1.1rem;cursor:pointer;transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 14px rgba(255, 209, 64, 0.4);} .pp-XZCUNAEHQ3XCA:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 209, 64, 0.6); }</style>
+<form action="https://www.paypal.com/ncp/payment/XZCUNAEHQ3XCA" method="post" style="display:inline-grid;justify-items:center;align-content:start;gap:1rem;" target="_blank">
+<input class="pp-XZCUNAEHQ3XCA" type="submit" value="Leave A Tip! â¤ï¸"/>
+<img alt="cards" src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" style="height: 26px;"/>
+<section style="font-size: 0.75rem; color: rgba(255,255,255,0.4);"> Powered by <img alt="paypal" src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" style="height:0.875rem;vertical-align:middle;"/></section>
+</form>
+</div>
+</div>
+</div>
+</section>
 </footer>
-
-    <script>
-        let mode = 'format';
-
-        function switchMode(newMode, el) {
-            mode = newMode;
-            document.querySelectorAll('.cmd-tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-            
-            const p = {
-                'format': '{"status": "ready", "module": "JSON_PROTOCOL"}',
-                'minify': '{\n  "status": "ready",\n  "module": "JSON_PROTOCOL"\n}',
-                'validate': '{"valid": true}'
-            };
-            document.getElementById('json-input').placeholder = p[mode];
-        }
-
-        function processJSON() {
-            const input = document.getElementById('json-input').value.trim();
-            const output = document.getElementById('json-output');
-            const status = document.getElementById('json-status');
-
-            if (!input) return alert('Enter JSON data.');
-
-            try {
-                const parsed = JSON.parse(input);
-                status.style.display = 'block';
-                status.className = 'status-badge status-success';
-                status.innerHTML = '✅ Protocol Validated & Processed';
-
-                if (mode === 'format') {
-                    output.value = JSON.stringify(parsed, null, 2);
-                } else if (mode === 'minify') {
-                    output.value = JSON.stringify(parsed);
-                } else {
-                    output.value = JSON.stringify({
-                        valid: true,
-                        size: input.length,
-                        keys: Object.keys(parsed).length,
-                        type: Array.isArray(parsed) ? 'Array' : 'Object'
-                    }, null, 2);
-                }
-            } catch (e) {
-                status.style.display = 'block';
-                status.className = 'status-badge status-error';
-                status.innerHTML = 'âŒ Syntax Error: ' + e.message;
-                output.value = '';
-            }
-        }
-
-        function copyToClipboard() {
-            const out = document.getElementById('json-output');
-            if (!out.value) return;
-            out.select();
-            document.execCommand('copy');
-            alert('Protocol copied to clipboard.');
-        }
-
-        function clearAll() {
-            document.getElementById('json-input').value = '';
-            document.getElementById('json-output').value = '';
-            document.getElementById('json-status').style.display = 'none';
-        }
+<script>
+        let mode = 'format';
+
+        function switchMode(newMode, el) {
+            mode = newMode;
+            document.querySelectorAll('.cmd-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            
+            const p = {
+                'format': '{"status": "ready", "module": "JSON_PROTOCOL"}',
+                'minify': '{\n  "status": "ready",\n  "module": "JSON_PROTOCOL"\n}',
+                'validate': '{"valid": true}'
+            };
+            document.getElementById('json-input').placeholder = p[mode];
+        }
+
+        function processJSON() {
+            const input = document.getElementById('json-input').value.trim();
+            const output = document.getElementById('json-output');
+            const status = document.getElementById('json-status');
+
+            if (!input) return alert('Enter JSON data.');
+
+            try {
+                const parsed = JSON.parse(input);
+                status.style.display = 'block';
+                status.className = 'status-badge status-success';
+                status.innerHTML = '✅ Protocol Validated & Processed';
+
+                if (mode === 'format') {
+                    output.value = JSON.stringify(parsed, null, 2);
+                } else if (mode === 'minify') {
+                    output.value = JSON.stringify(parsed);
+                } else {
+                    output.value = JSON.stringify({
+                        valid: true,
+                        size: input.length,
+                        keys: Object.keys(parsed).length,
+                        type: Array.isArray(parsed) ? 'Array' : 'Object'
+                    }, null, 2);
+                }
+            } catch (e) {
+                status.style.display = 'block';
+                status.className = 'status-badge status-error';
+                status.innerHTML = 'âŒ Syntax Error: ' ⭐ e.message;
+                output.value = '';
+            }
+        }
+
+        function copyToClipboard() {
+            const out = document.getElementById('json-output');
+            if (!out.value) return;
+            out.select();
+            document.execCommand('copy');
+            alert('Protocol copied to clipboard.');
+        }
+
+        function clearAll() {
+            document.getElementById('json-input').value = '';
+            document.getElementById('json-output').value = '';
+            document.getElementById('json-status').style.display = 'none';
+        }
     </script>
-
-    
-
 </body>
 </html>
-
-

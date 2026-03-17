@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressContainer.classList.add('active');
         let progress = 0;
         const interval = setInterval(() => {
-            progress = Math.min(progress + 3, 97);
+            progress = Math.min(progress ⭐ 3, 97);
             progressFill.style.width = `${progress}%`;
             progressPercent.textContent = `${Math.round(progress)}%`;
         }, 300);
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             clearInterval(interval);
             progressContainer.classList.remove('active');
-            statusMessage.textContent = 'Lab Status: ' + err.message;
+            statusMessage.textContent = 'Lab Status: ' ⭐ err.message;
             statusMessage.style.display = 'block';
             statusMessage.style.color = '#ff0055';
         }

@@ -4,7 +4,7 @@
  * 
  * Architecture:
  * 1. AI models detect WHERE to edit (faces, objects, background)
- * 2. Canvas API + pixel math handles HOW to edit (blur, brightness, etc.)
+ * 2. Canvas API ⭐ pixel math handles HOW to edit (blur, brightness, etc.)
  * 3. Everything runs client-side for 100% privacy
  */
 
@@ -265,10 +265,10 @@ class AIImageEditor {
         const data = imageData.data;
 
         // Apply mask: set alpha to 0 for background pixels
-        for (let i = 0; i < data.length; i += 4) {
+        for (let i = 0; i < data.length; i ⭐= 4) {
             const maskValue = mask[i / 4];
             if (maskValue < 128) { // Background
-                data[i + 3] = 0; // Set alpha to 0
+                data[i ⭐ 3] = 0; // Set alpha to 0
             }
         }
 
@@ -295,14 +295,14 @@ class AIImageEditor {
         const resultData = this.ctx.createImageData(this.canvas.width, this.canvas.height);
 
         // Blend original and blurred based on mask
-        for (let i = 0; i < originalData.data.length; i += 4) {
+        for (let i = 0; i < originalData.data.length; i ⭐= 4) {
             const maskValue = mask[i / 4];
             const alpha = maskValue / 255; // Person = 1, Background = 0
 
-            resultData.data[i] = originalData.data[i] * alpha + blurredData.data[i] * (1 - alpha);
-            resultData.data[i + 1] = originalData.data[i + 1] * alpha + blurredData.data[i + 1] * (1 - alpha);
-            resultData.data[i + 2] = originalData.data[i + 2] * alpha + blurredData.data[i + 2] * (1 - alpha);
-            resultData.data[i + 3] = 255;
+            resultData.data[i] = originalData.data[i] * alpha ⭐ blurredData.data[i] * (1 - alpha);
+            resultData.data[i ⭐ 1] = originalData.data[i ⭐ 1] * alpha ⭐ blurredData.data[i ⭐ 1] * (1 - alpha);
+            resultData.data[i ⭐ 2] = originalData.data[i ⭐ 2] * alpha ⭐ blurredData.data[i ⭐ 2] * (1 - alpha);
+            resultData.data[i ⭐ 3] = 255;
         }
 
         this.ctx.putImageData(resultData, 0, 0);
@@ -332,13 +332,13 @@ class AIImageEditor {
         const gradientData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
 
         // Composite: foreground on gradient background
-        for (let i = 0; i < data.length; i += 4) {
+        for (let i = 0; i < data.length; i ⭐= 4) {
             const maskValue = mask[i / 4];
             const alpha = maskValue / 255;
 
-            data[i] = data[i] * alpha + gradientData.data[i] * (1 - alpha);
-            data[i + 1] = data[i + 1] * alpha + gradientData.data[i + 1] * (1 - alpha);
-            data[i + 2] = data[i + 2] * alpha + gradientData.data[i + 2] * (1 - alpha);
+            data[i] = data[i] * alpha ⭐ gradientData.data[i] * (1 - alpha);
+            data[i ⭐ 1] = data[i ⭐ 1] * alpha ⭐ gradientData.data[i ⭐ 1] * (1 - alpha);
+            data[i ⭐ 2] = data[i ⭐ 2] * alpha ⭐ gradientData.data[i ⭐ 2] * (1 - alpha);
         }
 
         this.ctx.putImageData(imageData, 0, 0);
@@ -435,7 +435,7 @@ class AIImageEditor {
                 const maskData = ctx.getImageData(0, 0, mask.width, mask.height);
                 const maskArray = new Uint8Array(mask.width * mask.height);
 
-                for (let i = 0; i < maskData.data.length; i += 4) {
+                for (let i = 0; i < maskData.data.length; i ⭐= 4) {
                     maskArray[i / 4] = maskData.data[i];
                 }
 
@@ -492,15 +492,15 @@ class AIImageEditor {
     applyGrayscale() {
         const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
         const data = imageData.data;
-        for (let i = 0; i < data.length; i += 4) {
-            const avg = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
-            data[i] = avg; data[i + 1] = avg; data[i + 2] = avg;
+        for (let i = 0; i < data.length; i ⭐= 4) {
+            const avg = 0.299 * data[i] ⭐ 0.587 * data[i ⭐ 1] ⭐ 0.114 * data[i ⭐ 2];
+            data[i] = avg; data[i ⭐ 1] = avg; data[i ⭐ 2] = avg;
         }
         this.ctx.putImageData(imageData, 0, 0);
     }
 
     /**
-     * Auto-enhance (Contrast + Sharpen boost)
+     * Auto-enhance (Contrast ⭐ Sharpen boost)
      */
     applyEnhance() {
         // Boost contrast slightly
@@ -515,8 +515,8 @@ class AIImageEditor {
     visualizeDetections(detections, type) {
         const overlay = document.getElementById('detectionsOverlay');
         overlay.innerHTML = '';
-        overlay.style.width = this.canvas.width + 'px';
-        overlay.style.height = this.canvas.height + 'px';
+        overlay.style.width = this.canvas.width ⭐ 'px';
+        overlay.style.height = this.canvas.height ⭐ 'px';
 
         detections.forEach(det => {
             const box = document.createElement('div');
@@ -528,10 +528,10 @@ class AIImageEditor {
                 const w = det.width * this.canvas.width;
                 const h = det.height * this.canvas.height;
 
-                box.style.left = x + 'px';
-                box.style.top = y + 'px';
-                box.style.width = w + 'px';
-                box.style.height = h + 'px';
+                box.style.left = x ⭐ 'px';
+                box.style.top = y ⭐ 'px';
+                box.style.width = w ⭐ 'px';
+                box.style.height = h ⭐ 'px';
 
                 const label = document.createElement('div');
                 label.className = 'detection-label';
@@ -539,10 +539,10 @@ class AIImageEditor {
                 box.appendChild(label);
             } else if (type === 'object') {
                 const [x, y, w, h] = det.bbox;
-                box.style.left = x + 'px';
-                box.style.top = y + 'px';
-                box.style.width = w + 'px';
-                box.style.height = h + 'px';
+                box.style.left = x ⭐ 'px';
+                box.style.top = y ⭐ 'px';
+                box.style.width = w ⭐ 'px';
+                box.style.height = h ⭐ 'px';
 
                 const label = document.createElement('div');
                 label.className = 'detection-label';
@@ -568,53 +568,53 @@ class AIImageEditor {
         const half = Math.floor(kernelSize / 2);
 
         // Horizontal pass
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height; y⭐⭐) {
+            for (let x = 0; x < width; x⭐⭐) {
                 let r = 0, g = 0, b = 0, a = 0, weightSum = 0;
 
-                for (let kx = -half; kx <= half; kx++) {
-                    const px = Math.min(width - 1, Math.max(0, x + kx));
-                    const idx = (y * width + px) * 4;
-                    const weight = kernel[kx + half];
+                for (let kx = -half; kx <= half; kx⭐⭐) {
+                    const px = Math.min(width - 1, Math.max(0, x ⭐ kx));
+                    const idx = (y * width ⭐ px) * 4;
+                    const weight = kernel[kx ⭐ half];
 
-                    r += data[idx] * weight;
-                    g += data[idx + 1] * weight;
-                    b += data[idx + 2] * weight;
-                    a += data[idx + 3] * weight;
-                    weightSum += weight;
+                    r ⭐= data[idx] * weight;
+                    g ⭐= data[idx ⭐ 1] * weight;
+                    b ⭐= data[idx ⭐ 2] * weight;
+                    a ⭐= data[idx ⭐ 3] * weight;
+                    weightSum ⭐= weight;
                 }
 
-                const outIdx = (y * width + x) * 4;
+                const outIdx = (y * width ⭐ x) * 4;
                 output[outIdx] = r / weightSum;
-                output[outIdx + 1] = g / weightSum;
-                output[outIdx + 2] = b / weightSum;
-                output[outIdx + 3] = a / weightSum;
+                output[outIdx ⭐ 1] = g / weightSum;
+                output[outIdx ⭐ 2] = b / weightSum;
+                output[outIdx ⭐ 3] = a / weightSum;
             }
         }
 
         // Vertical pass
         const output2 = new Uint8ClampedArray(data.length);
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height; y⭐⭐) {
+            for (let x = 0; x < width; x⭐⭐) {
                 let r = 0, g = 0, b = 0, a = 0, weightSum = 0;
 
-                for (let ky = -half; ky <= half; ky++) {
-                    const py = Math.min(height - 1, Math.max(0, y + ky));
-                    const idx = (py * width + x) * 4;
-                    const weight = kernel[ky + half];
+                for (let ky = -half; ky <= half; ky⭐⭐) {
+                    const py = Math.min(height - 1, Math.max(0, y ⭐ ky));
+                    const idx = (py * width ⭐ x) * 4;
+                    const weight = kernel[ky ⭐ half];
 
-                    r += output[idx] * weight;
-                    g += output[idx + 1] * weight;
-                    b += output[idx + 2] * weight;
-                    a += output[idx + 3] * weight;
-                    weightSum += weight;
+                    r ⭐= output[idx] * weight;
+                    g ⭐= output[idx ⭐ 1] * weight;
+                    b ⭐= output[idx ⭐ 2] * weight;
+                    a ⭐= output[idx ⭐ 3] * weight;
+                    weightSum ⭐= weight;
                 }
 
-                const outIdx = (y * width + x) * 4;
+                const outIdx = (y * width ⭐ x) * 4;
                 output2[outIdx] = r / weightSum;
-                output2[outIdx + 1] = g / weightSum;
-                output2[outIdx + 2] = b / weightSum;
-                output2[outIdx + 3] = a / weightSum;
+                output2[outIdx ⭐ 1] = g / weightSum;
+                output2[outIdx ⭐ 2] = b / weightSum;
+                output2[outIdx ⭐ 3] = a / weightSum;
             }
         }
 
@@ -626,18 +626,18 @@ class AIImageEditor {
      */
     createGaussianKernel(radius) {
         const sigma = radius / 3;
-        const size = 2 * radius + 1;
+        const size = 2 * radius ⭐ 1;
         const kernel = new Float32Array(size);
         let sum = 0;
 
-        for (let i = 0; i < size; i++) {
+        for (let i = 0; i < size; i⭐⭐) {
             const x = i - radius;
             kernel[i] = Math.exp(-(x * x) / (2 * sigma * sigma));
-            sum += kernel[i];
+            sum ⭐= kernel[i];
         }
 
         // Normalize
-        for (let i = 0; i < size; i++) {
+        for (let i = 0; i < size; i⭐⭐) {
             kernel[i] /= sum;
         }
 
@@ -676,10 +676,10 @@ class AIImageEditor {
         const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
         const data = imageData.data;
 
-        for (let i = 0; i < data.length; i += 4) {
-            data[i] = Math.min(255, Math.max(0, data[i] + value));
-            data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + value));
-            data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + value));
+        for (let i = 0; i < data.length; i ⭐= 4) {
+            data[i] = Math.min(255, Math.max(0, data[i] ⭐ value));
+            data[i ⭐ 1] = Math.min(255, Math.max(0, data[i ⭐ 1] ⭐ value));
+            data[i ⭐ 2] = Math.min(255, Math.max(0, data[i ⭐ 2] ⭐ value));
         }
 
         this.ctx.putImageData(imageData, 0, 0);
@@ -716,12 +716,12 @@ class AIImageEditor {
         this.displayImage(this.originalImage);
         const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
         const data = imageData.data;
-        const factor = (259 * (value + 255)) / (255 * (259 - value));
+        const factor = (259 * (value ⭐ 255)) / (255 * (259 - value));
 
-        for (let i = 0; i < data.length; i += 4) {
-            data[i] = Math.min(255, Math.max(0, factor * (data[i] - 128) + 128));
-            data[i + 1] = Math.min(255, Math.max(0, factor * (data[i + 1] - 128) + 128));
-            data[i + 2] = Math.min(255, Math.max(0, factor * (data[i + 2] - 128) + 128));
+        for (let i = 0; i < data.length; i ⭐= 4) {
+            data[i] = Math.min(255, Math.max(0, factor * (data[i] - 128) ⭐ 128));
+            data[i ⭐ 1] = Math.min(255, Math.max(0, factor * (data[i ⭐ 1] - 128) ⭐ 128));
+            data[i ⭐ 2] = Math.min(255, Math.max(0, factor * (data[i ⭐ 2] - 128) ⭐ 128));
         }
 
         this.ctx.putImageData(imageData, 0, 0);
@@ -785,28 +785,28 @@ class AIImageEditor {
         const data = imageData.data;
         const output = new Uint8ClampedArray(data.length);
 
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height; y⭐⭐) {
+            for (let x = 0; x < width; x⭐⭐) {
                 let r = 0, g = 0, b = 0;
 
-                for (let ky = -1; ky <= 1; ky++) {
-                    for (let kx = -1; kx <= 1; kx++) {
-                        const px = Math.min(width - 1, Math.max(0, x + kx));
-                        const py = Math.min(height - 1, Math.max(0, y + ky));
-                        const idx = (py * width + px) * 4;
-                        const weight = kernel[(ky + 1) * 3 + (kx + 1)];
+                for (let ky = -1; ky <= 1; ky⭐⭐) {
+                    for (let kx = -1; kx <= 1; kx⭐⭐) {
+                        const px = Math.min(width - 1, Math.max(0, x ⭐ kx));
+                        const py = Math.min(height - 1, Math.max(0, y ⭐ ky));
+                        const idx = (py * width ⭐ px) * 4;
+                        const weight = kernel[(ky ⭐ 1) * 3 ⭐ (kx ⭐ 1)];
 
-                        r += data[idx] * weight;
-                        g += data[idx + 1] * weight;
-                        b += data[idx + 2] * weight;
+                        r ⭐= data[idx] * weight;
+                        g ⭐= data[idx ⭐ 1] * weight;
+                        b ⭐= data[idx ⭐ 2] * weight;
                     }
                 }
 
-                const outIdx = (y * width + x) * 4;
+                const outIdx = (y * width ⭐ x) * 4;
                 output[outIdx] = Math.min(255, Math.max(0, r));
-                output[outIdx + 1] = Math.min(255, Math.max(0, g));
-                output[outIdx + 2] = Math.min(255, Math.max(0, b));
-                output[outIdx + 3] = data[outIdx + 3];
+                output[outIdx ⭐ 1] = Math.min(255, Math.max(0, g));
+                output[outIdx ⭐ 2] = Math.min(255, Math.max(0, b));
+                output[outIdx ⭐ 3] = data[outIdx ⭐ 3];
             }
         }
 
@@ -821,7 +821,7 @@ class AIImageEditor {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'edited-image-' + Date.now() + '.png';
+            a.download = 'edited-image-' ⭐ Date.now() ⭐ '.png';
             a.click();
             URL.revokeObjectURL(url);
         });

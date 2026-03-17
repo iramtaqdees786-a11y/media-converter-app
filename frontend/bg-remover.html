@@ -1,304 +1,336 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Background Remover - Premium Media Laboratory | ConvertRocket</title>
-    <meta name="description" content="Remove image backgrounds instantly using high-performance AI. Secure, private, and professional-grade laboratory for digital asset isolation. Fast, free, and secure.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/modern-ui.css?v=9.0">
-    <link rel="stylesheet" href="/css/seo-optimized.css?v=9.0">
-    <style>
-        .tool-panel {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            backdrop-filter: var(--glass-blur);
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .drop-zone {
-            border: 2px dashed var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 60px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-        }
-
-        .drop-zone:hover, .drop-zone.dragover {
-            border-color: var(--accent-primary);
-            background: rgba(0, 234, 255, 0.05);
-        }
-
-        .progress-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            border-radius: var(--radius-lg);
-        }
-
-        .processing-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255,255,255,0.1);
-            border-top-color: var(--accent-primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .preview-container {
-            margin-top: 30px;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .comparison-stage {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 100%;
-        }
-
-        @media (max-width: 600px) {
-            .comparison-stage { grid-template-columns: 1fr; }
-        }
-
-        .preview-box {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .preview-box img {
-            max-width: 100%;
-            border-radius: 8px;
-            height: auto;
-            background-image: linear-gradient(45deg, #222 25%, transparent 25%), linear-gradient(-45deg, #222 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #222 75%), linear-gradient(-45deg, transparent 75%, #222 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-        }
-
-        .status-text {
-            color: var(--accent-primary);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZBZSYT7DRY"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-ZBZSYT7DRY');</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Background Remover - Premium Media Laboratory | ConvertRocket</title>
+<meta content="Remove image backgrounds instantly using high-performance AI. Secure, private, and professional-grade laboratory for digital asset isolation. Fast, free, and secure." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="/css/modern-ui.css?v=9.0" rel="stylesheet"/>
+<link href="/css/seo-optimized.css?v=9.0" rel="stylesheet"/>
+<style>
+        .tool-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            backdrop-filter: var(--glass-blur);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .drop-zone:hover, .drop-zone.dragover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 234, 255, 0.05);
+        }
+
+        .progress-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            border-radius: var(--radius-lg);
+        }
+
+        .processing-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .preview-container {
+            margin-top: 30px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .comparison-stage {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .comparison-stage { grid-template-columns: 1fr; }
+        }
+
+        .preview-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .preview-box img {
+            max-width: 100%;
+            border-radius: 8px;
+            height: auto;
+            background-image: linear-gradient(45deg, #222 25%, transparent 25%), linear-gradient(-45deg, #222 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #222 75%), linear-gradient(-45deg, transparent 75%, #222 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .status-text {
+            color: var(--accent-primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
     </style>
-
-
-    <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211" crossorigin="anonymous"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
 </head>
 <body>
-
-    <nav class="nav-premium">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
-            <a href="/" class="brand">🚀 <span>ConvertRocket</span></a>
-            <div class="nav-links">
-                <a href="/all-tools">All Tools</a>
-                <a href="/blogs">Library</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero animate-up">
-        <div class="container">
-            <h1>AI Isolation Lab</h1>
-            <p>Surgical background removal using industrial-grade neural networks. Pixel-perfect edge detection directly in your browser.</p>
-        </div>
-    </header>
-
-    <main class="container animate-up" style="animation-delay: 0.1s;">
-        <div class="tool-panel">
-            <div id="loading-overlay" class="progress-overlay">
-                <div class="processing-spinner"></div>
-                <div class="status-text" id="status-msg">Neural Engine Warming Up...</div>
-                <p style="margin-top: 10px; opacity: 0.6; font-size: 0.8rem;">Initial boot: 20MB of AI logic is being prepared.</p>
-            </div>
-
-            <div class="drop-zone" id="drop-zone">
-                <div style="font-size: 3.5rem; margin-bottom: 20px;">🪄</div>
-                <h3 id="drop-text">Initialize Subject Input</h3>
-                <p>Drag & drop image or click to browse (JPG, PNG, WebP)</p>
-                <input type="file" id="file-input" accept="image/*" style="display:none">
-            </div>
-
-            <button id="execute-btn" class="btn-primary" style="width: 100%; font-size: 1.1rem;" disabled>⚡ EXECUTE ISOLATION</button>
-
-            <div id="preview-container" class="preview-container">
-                <div class="comparison-stage">
-                    <div class="preview-box">
-                        <label class="status-text" style="font-size: 0.7rem; margin-bottom: 8px; display: block;">Raw Input</label>
-                        <img id="input-preview" src="">
-                    </div>
-                    <div class="preview-box">
-                        <label class="status-text" style="font-size: 0.7rem; margin-bottom: 8px; display: block;">Neural Output</label>
-                        <img id="output-preview" src="">
-                    </div>
-                </div>
-                <div class="result-actions" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-                    <a id="download-link" class="btn btn-success btn-block" style="padding: 15px; font-size: 1.1rem; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center;" download>
-                        â¬‡ï¸ Download Isolated Image (PNG)
+<nav class="nav-premium">
+<div class="container" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+<a class="brand" href="/"> <span>ConvertRocket</span></a>
+<div class="nav-links">
+<a href="/all-tools">All Tools</a>
+<a href="/blogs">Library</a>
+</div>
+</div>
+</nav>
+<header class="hero animate-up">
+<div class="container">
+<h1>AI Isolation Lab</h1>
+<p>Surgical background removal using industrial-grade neural networks. Pixel-perfect edge detection directly in your browser.</p>
+</div>
+</header>
+<main class="container animate-up" style="animation-delay: 0.1s;">
+<div class="tool-panel">
+<div class="progress-overlay" id="loading-overlay">
+<div class="processing-spinner"></div>
+<div class="status-text" id="status-msg">Neural Engine Warming Up...</div>
+<p style="margin-top: 10px; opacity: 0.6; font-size: 0.8rem;">Initial boot: 20MB of AI logic is being prepared.</p>
+</div>
+<div class="drop-zone" id="drop-zone">
+<div style="font-size: 3.5rem; margin-bottom: 20px;">🪄</div>
+<h3 id="drop-text">Initialize Subject Input</h3>
+<p>Drag &amp; drop image or click to browse (JPG, PNG, WebP)</p>
+<input accept="image/*" id="file-input" style="display:none" type="file"/>
+</div>
+<button class="btn-primary" disabled="" id="execute-btn" style="width: 100%; font-size: 1.1rem;">⚡ EXECUTE ISOLATION</button>
+<div class="preview-container" id="preview-container">
+<div class="comparison-stage">
+<div class="preview-box">
+<label class="status-text" style="font-size: 0.7rem; margin-bottom: 8px; display: block;">Raw Input</label>
+<img id="input-preview" src=""/>
+</div>
+<div class="preview-box">
+<label class="status-text" style="font-size: 0.7rem; margin-bottom: 8px; display: block;">Neural Output</label>
+<img id="output-preview" src=""/>
+</div>
+</div>
+<div class="result-actions" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+<a class="btn btn-success btn-block" download="" id="download-link" style="padding: 15px; font-size: 1.1rem; border-radius: 12px; text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                        â¬‡ï¸ Download Isolated Image (PNG)
                     </a>
-                    <button onclick="window.openShareModalFromTool()" class="btn-launch" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 15px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
-                        ðŸ“§ Email this File (Team Share)
+<button class="btn-launch" onclick="window.openShareModalFromTool()" style="background: linear-gradient(135deg, #00eaff, #0077ff); color: #000; border: none; padding: 15px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
+                        ðŸ“§ Email this File (Team Share)
                     </button>
-                </div>
-            </div>
-        </div>
+</div>
+</div>
+</div>
+<section class="seo-content" style="margin-top: 80px;">
+<h2 class="section-title">The Neural Protocol</h2>
+<p class="section-subtitle">Our laboratory utilizes state-of-the-art inference engines to achieve high-frequency background extraction.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+<div class="interactive-card" style="padding: 24px;">
+<h3>In-Memory Inference</h3>
+<p>AI processing happens entirely in your local RAM. Your images never persist on any external server.</p>
+</div>
+<div class="interactive-card" style="padding: 24px;">
+<h3>Hair-Level Precision</h3>
+<p>Advanced segmentation models handle complex edges, fine details, and semi-transparent subjects.</p>
+</div>
+<div class="interactive-card" style="padding: 24px;">
+<h3>Instant Manifestation</h3>
+<p>Once the model is cached, extraction happens in seconds. No queues, no waiting, no credits.</p>
+</div>
+</div>
+</section>
 
-        <section class="seo-content" style="margin-top: 80px;">
-            <h2 class="section-title">The Neural Protocol</h2>
-            <p class="section-subtitle">Our laboratory utilizes state-of-the-art inference engines to achieve high-frequency background extraction.</p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
-                <div class="interactive-card" style="padding: 24px;">
-                    <h3>In-Memory Inference</h3>
-                    <p>AI processing happens entirely in your local RAM. Your images never persist on any external server.</p>
-                </div>
-                <div class="interactive-card" style="padding: 24px;">
-                    <h3>Hair-Level Precision</h3>
-                    <p>Advanced segmentation models handle complex edges, fine details, and semi-transparent subjects.</p>
-                </div>
-                <div class="interactive-card" style="padding: 24px;">
-                    <h3>Instant Manifestation</h3>
-                    <p>Once the model is cached, extraction happens in seconds. No queues, no waiting, no credits.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script src="/static/js/app.js?v=6.0"></script>
-    <script src="/static/js/libs/background-removal.js"></script>
-    <script>
-        const zone = document.getElementById('drop-zone');
-        const input = document.getElementById('file-input');
-        const executeBtn = document.getElementById('execute-btn');
-        const downloadLink = document.getElementById('download-link');
-        const previewContainer = document.getElementById('preview-container');
-        const inputPreview = document.getElementById('input-preview');
-        const outputPreview = document.getElementById('output-preview');
-        const overlay = document.getElementById('loading-overlay');
-        const statusMsg = document.getElementById('status-msg');
-        const dropText = document.getElementById('drop-text');
-
-        let currentFile = null;
-        let resultBlob = null;
-
-        zone.onclick = () => input.click();
-        zone.ondragover = (e) => { e.preventDefault(); zone.classList.add('dragover'); };
-        zone.ondragleave = () => zone.classList.remove('dragover');
-        zone.ondrop = (e) => {
-            e.preventDefault();
-            zone.classList.remove('dragover');
-            if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-        };
-
-        input.onchange = (e) => {
-            if(e.target.files[0]) handleFile(e.target.files[0]);
-        };
-
-        function handleFile(file) {
-            if(!file.type.startsWith('image/')) return alert('Please upload an image.');
-            currentFile = file;
-            dropText.innerText = `Subject Identified: ${file.name}`;
-            executeBtn.disabled = false;
-            
-            const url = URL.createObjectURL(file);
-            inputPreview.src = url;
-            previewContainer.style.display = 'none';
-        }
-
-        executeBtn.onclick = async () => {
-            if(!currentFile) return;
-            
-            // Check if library is loaded
-            if (typeof imglyRemoveBackground === 'undefined') {
-                alert('Neural Engine failed to initialize. Please check your internet connection or use a modern browser.');
-                return;
-            }
-
-            overlay.style.display = 'flex';
-            statusMsg.innerText = 'Neural Extraction in Progress...';
-
-            try {
-                const config = {
-                    publicPath: "https://staticimgly.com/@imgly/background-removal-data/1.4.5/dist/", // Robust CDN asset path
-                    progress: (key, current, total) => {
-                        if(key === 'compute') {
-                            statusMsg.innerText = `Processing Neural Map: ${Math.round(current/total * 100)}%`;
-                        } else {
-                            statusMsg.innerText = `Loading Engine: ${Math.round(current/total * 100)}%`;
-                        }
-                    }
-                };
-
-                const blob = await imglyRemoveBackground(currentFile, config);
-                resultBlob = blob;
-                
-                const url = URL.createObjectURL(blob);
-                outputPreview.src = url;
-                previewContainer.style.display = 'flex';
-                
-                // Set up standard download link for tracking
-                downloadLink.href = url;
-                downloadLink.setAttribute('download', `convertrocket_isolated_${currentFile.name.split('.')[0]}.png`);
-                
-                overlay.style.display = 'none';
-            } catch (e) {
-                console.error(e);
-                alert('Neural failure. Ensure you are using a modern browser (Chrome/Edge recommended). Error: ' + e.message);
-                overlay.style.display = 'none';
-            }
-        };
-
-        downloadBtn.onclick = () => {
-            if(!resultBlob) return;
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(resultBlob);
-            a.download = `convertrocket_isolated_${currentFile.name.split('.')[0]}.png`;
-            a.click();
-        };
-
-        // Sharing Functionality
-        window.openShareModalFromTool = () => {
-             if (window.openShareModal && currentFile) {
-                 window.openShareModal(`isolated_${currentFile.name}`);
-             } else {
-                 alert('Workspace script not ready. Please try again in a moment.');
-             }
-        };
+<section class="seo-depth-block" style="margin-top: 80px; padding: 60px 40px; background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05);">
+<div class="container" style="max-width: 900px; margin: 0 auto; color: #94a3b8; line-height: 1.8;">
+<h2 style="color: #fff; margin-bottom: 25px;">Industrial-Grade Protocol Logic</h2>
+<p>Our laboratory utilizes high-performance multi-threaded algorithms to analyze and transform your digital assets. Every conversion process is executed within an isolated, volatile RAM buffer to ensure 100% data privacy and zero-persistence data handling. We support over 1000+ formats with bit-perfect fidelity preservation.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+<div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 10px;">Security Standard</h3>
+<p style="font-size: 0.9rem;">Compliant with professional intelligence standards. Zero tracking, zero storage, and automatic cryptographic vaporization of assets upon completion.</p>
+</div>
+<div>
+<h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 10px;">Transformation Quality</h3>
+<p style="font-size: 0.9rem;">Proprietary extraction logic preserves 100% of metadata, original sample rates, and color profile alignment for professionals.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script src="/static/js/app.js?v=6.0"></script>
+<script src="/static/js/libs/background-removal.js"></script>
+<script>
+        const zone = document.getElementById('drop-zone');
+        const input = document.getElementById('file-input');
+        const executeBtn = document.getElementById('execute-btn');
+        const downloadLink = document.getElementById('download-link');
+        const previewContainer = document.getElementById('preview-container');
+        const inputPreview = document.getElementById('input-preview');
+        const outputPreview = document.getElementById('output-preview');
+        const overlay = document.getElementById('loading-overlay');
+        const statusMsg = document.getElementById('status-msg');
+        const dropText = document.getElementById('drop-text');
+
+        let currentFile = null;
+        let resultBlob = null;
+
+        zone.onclick = () => input.click();
+        zone.ondragover = (e) => { e.preventDefault(); zone.classList.add('dragover'); };
+        zone.ondragleave = () => zone.classList.remove('dragover');
+        zone.ondrop = (e) => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+            if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+        };
+
+        input.onchange = (e) => {
+            if(e.target.files[0]) handleFile(e.target.files[0]);
+        };
+
+        function handleFile(file) {
+            if(!file.type.startsWith('image/')) return alert('Please upload an image.');
+            currentFile = file;
+            dropText.innerText = `Subject Identified: ${file.name}`;
+            executeBtn.disabled = false;
+            
+            const url = URL.createObjectURL(file);
+            inputPreview.src = url;
+            previewContainer.style.display = 'none';
+        }
+
+        executeBtn.onclick = async () => {
+            if(!currentFile) return;
+            
+            // Check if library is loaded
+            if (typeof imglyRemoveBackground === 'undefined') {
+                alert('Neural Engine failed to initialize. Please check your internet connection or use a modern browser.');
+                return;
+            }
+
+            overlay.style.display = 'flex';
+            statusMsg.innerText = 'Neural Extraction in Progress...';
+
+            try {
+                const config = {
+                    publicPath: "https://staticimgly.com/@imgly/background-removal-data/1.4.5/dist/", // Robust CDN asset path
+                    progress: (key, current, total) => {
+                        if(key === 'compute') {
+                            statusMsg.innerText = `Processing Neural Map: ${Math.round(current/total * 100)}%`;
+                        } else {
+                            statusMsg.innerText = `Loading Engine: ${Math.round(current/total * 100)}%`;
+                        }
+                    }
+                };
+
+                const blob = await imglyRemoveBackground(currentFile, config);
+                resultBlob = blob;
+                
+                const url = URL.createObjectURL(blob);
+                outputPreview.src = url;
+                previewContainer.style.display = 'flex';
+                
+                // Set up standard download link for tracking
+                downloadLink.href = url;
+                downloadLink.setAttribute('download', `convertrocket_isolated_${currentFile.name.split('.')[0]}.png`);
+                
+                overlay.style.display = 'none';
+            } catch (e) {
+                console.error(e);
+                alert('Neural failure. Ensure you are using a modern browser (Chrome/Edge recommended). Error: ' ⭐ e.message);
+                overlay.style.display = 'none';
+            }
+        };
+
+        downloadBtn.onclick = () => {
+            if(!resultBlob) return;
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(resultBlob);
+            a.download = `convertrocket_isolated_${currentFile.name.split('.')[0]}.png`;
+            a.click();
+        };
+
+        // Sharing Functionality
+        window.openShareModalFromTool = () => {
+             if (window.openShareModal && currentFile) {
+                 window.openShareModal(`isolated_${currentFile.name}`);
+             } else {
+                 alert('Workspace script not ready. Please try again in a moment.');
+             }
+        };
     </script>
-
-    
-
+<!-- Industrial-Grade Protocol Specification -->
+<section class="protocol-specs" style="margin: 80px 0; padding: 60px 40px; background: rgba(255,255,255,0.02); border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); font-family: 'Inter', sans-serif;">
+<div class="container" style="max-width: 900px; margin: 0 auto;">
+<h2 style="color: #fff; font-size: 2.2rem; font-weight: 800; margin-bottom: 30px; background: linear-gradient(135deg, #fff, #794bc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Bg Remover Protocol Specification</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px;">
+<div>
+<h3 style="color: #794bc4; font-size: 1.2rem; margin-bottom: 15px;">Neural Engine Logic</h3>
+<p style="color: #94a3b8; line-height: 1.7;">Our laboratory utilizing high-performance FFmpeg Neural clusters to process your request. The engine analyzes the byte-structure of the source file to ensure bit-perfect conversion without metadata degradation. Every process is isolated in a Zero-Persistence RAM buffer.</p>
+</div>
+<div>
+<h3 style="color: #794bc4; font-size: 1.2rem; margin-bottom: 15px;">Advanced Analytics</h3>
+<p style="color: #94a3b8; line-height: 1.7;">The protocol includes automatic optimization of headers and stream alignment. Unlike traditional cloud converters, our Bg Remover logic preserves original color profiles and sample rates for maximum output fidelity.</p>
+</div>
+</div>
+<div class="faq-matrix">
+<h3 style="color: #fff; margin-bottom: 25px;">Technical FAQ</h3>
+<div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; margin-bottom: 15px; border-left: 3px solid #794bc4;">
+<h4 data-faq-question="" style="color: #fff; margin-bottom: 10px;">Is this Bg Remover tool free?</h4>
+<p data-faq-answer="" style="color: #94a3b8; margin: 0;">Yes. All ConvertRocket tools are 100% free and unlimited. We operate on a tip-based laboratory model to support our infrastructure.</p>
+</div>
+<div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; margin-bottom: 15px; border-left: 3px solid #794bc4;">
+<h4 data-faq-question="" style="color: #fff; margin-bottom: 10px;">What is the file size limit?</h4>
+<p data-faq-answer="" style="color: #94a3b8; margin: 0;">Our laboratory standard supports files up to 100MB for conversion protocols. For larger technical uploads, please contact our support unit.</p>
+</div>
+<div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border-left: 3px solid #794bc4;">
+<h4 data-faq-question="" style="color: #fff; margin-bottom: 10px;">Is my data private during conversion?</h4>
+<p data-faq-answer="" style="color: #94a3b8; margin: 0;">Safety is absolute. Files are processed in volatile memory and vaporized immediately after your session terminates. We never store personal data.</p>
+</div>
+</div>
+</div>
+</section>
 </body>
 </html>
-
-
-

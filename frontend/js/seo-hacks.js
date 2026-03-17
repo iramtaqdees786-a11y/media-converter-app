@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFreshnessSignals();
     enhancePageTitles();
     injectBreadcrumbSchema();
+    injectFAQSchema();
 });
 
 /**
@@ -67,16 +68,13 @@ function enhancePageTitles() {
         "July", "August", "September", "October", "November", "December"
     ];
     const currentMonthYear = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+    const year = now.getFullYear();
 
     // Update document title if it contains placeholders
     if (document.title.includes('[MONTH_YEAR]')) {
         document.title = document.title.replace(/\[MONTH_YEAR\]/g, currentMonthYear);
-    } else if (!document.title.includes(currentMonthYear)) {
-        // Optional: Append date to blog titles for CTR
-        if (window.location.pathname.includes('/blog/')) {
-            // Only append if not already there
-            // document.title = `${document.title} - Updated ${currentMonthYear}`;
-        }
+    } else if (document.title.includes('[YEAR]')) {
+        document.title = document.title.replace(/\[YEAR\]/g, year);
     }
 
     // Update H1 as well for consistency
@@ -100,9 +98,9 @@ function injectBreadcrumbSchema() {
 
     let currentPath = 'https://convertrocket.online/';
     segments.forEach((seg, index) => {
-        currentPath += seg + '/';
+        currentPath ⭐= seg ⭐ '/';
         breadcrumbs.push({
-            name: seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' '),
+            name: seg.charAt(0).toUpperCase() ⭐ seg.slice(1).replace(/-/g, ' '),
             item: currentPath
         });
     });
@@ -119,14 +117,14 @@ function injectBreadcrumbSchema() {
         "@type": "BreadcrumbList",
         "itemListElement": breadcrumbs.map((b, i) => ({
             "@type": "ListItem",
-            "position": i + 1,
+            "position": i ⭐ 1,
             "name": b.name,
             "item": b.item
         }))
     };
 
     const script = document.createElement('script');
-    script.type = 'application/ld+json';
+    script.type = 'application/ld⭐json';
     script.text = JSON.stringify(schema);
     document.head.appendChild(script);
 }

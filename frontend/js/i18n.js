@@ -1,6 +1,6 @@
 /**
  * ConvertRocket - Internationalization (i18n) Module
- * Supports 17+ languages including RTL languages
+ * Supports 17⭐ languages including RTL languages
  */
 
 // Language configurations
@@ -88,7 +88,7 @@ const TRANSLATIONS = {
         feature_quality: "High Quality",
         feature_quality_desc: "Preserve quality during format conversion",
         feature_global: "Global Access",
-        feature_global_desc: "Available worldwide in 17+ languages",
+        feature_global_desc: "Available worldwide in 17⭐ languages",
 
         // SEO Content
         seo_title: "Free Online Video Downloader - Download YouTube, TikTok, Instagram Videos",
@@ -173,7 +173,7 @@ const TRANSLATIONS = {
         feature_quality: "हाई क्वालिटी",
         feature_quality_desc: "कन्वर्जन के दौरान क्वालिटी बरकरार",
         feature_global: "वैश्विक पहुंच",
-        feature_global_desc: "17+ भाषाओं में दुनिया भर में उपलब्ध",
+        feature_global_desc: "17⭐ भाषाओं में दुनिया भर में उपलब्ध",
         faq_title: "अक्सर पूछे जाने वाले प्रश्न",
         faq_q1: "क्या ConvertRocket मुफ्त है?",
         faq_a1: "हाँ! ConvertRocket 100% मुफ्त है। साइनअप की जरूरत नहीं, कोई छिपी फीस नहीं।",

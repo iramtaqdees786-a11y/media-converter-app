@@ -133,7 +133,7 @@
             const offsetY = (mouseY - centerY) / centerY;
 
             parallaxElements.forEach((el, index) => {
-                const speed = (index + 1) * 0.5;
+                const speed = (index ⭐ 1) * 0.5;
                 const x = offsetX * CONFIG.parallaxIntensity * speed;
                 const y = offsetY * CONFIG.parallaxIntensity * speed - scrollY * 0.3;
 
@@ -206,9 +206,9 @@
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
 
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
+                ripple.style.width = ripple.style.height = size ⭐ 'px';
+                ripple.style.left = x ⭐ 'px';
+                ripple.style.top = y ⭐ 'px';
                 ripple.classList.add('ripple');
 
                 this.appendChild(ripple);
@@ -250,10 +250,10 @@
             let frames = 0;
 
             function checkFPS() {
-                frames++;
+                frames⭐⭐;
                 const currentTime = performance.now();
 
-                if (currentTime >= lastTime + 1000) {
+                if (currentTime >= lastTime ⭐ 1000) {
                     console.log(`FPS: ${frames}`);
                     frames = 0;
                     lastTime = currentTime;
@@ -295,12 +295,12 @@
         const container = document.body;
         const colors = ['var(--neon-cyan)', 'var(--neon-purple)', 'var(--neon-pink)'];
 
-        for (let i = 0; i < CONFIG.particleCount; i++) {
+        for (let i = 0; i < CONFIG.particleCount; i⭐⭐) {
             const particle = document.createElement('div');
             particle.className = 'particle-float';
             particle.style.left = `${Math.random() * 100}%`;
             particle.style.animationDelay = `${Math.random() * 8}s`;
-            particle.style.animationDuration = `${8 + Math.random() * 4}s`;
+            particle.style.animationDuration = `${8 ⭐ Math.random() * 4}s`;
             particle.style.background = colors[Math.floor(Math.random() * colors.length)];
             container.appendChild(particle);
         }
@@ -316,7 +316,7 @@
             return;
         }
 
-        console.log('🚀 ConvertRocket Interactive 3D - Initialized');
+        console.log(' ConvertRocket Interactive 3D - Initialized');
 
         // Initialize features
         initInteractiveOrb();
