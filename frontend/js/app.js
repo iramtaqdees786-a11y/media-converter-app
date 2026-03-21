@@ -325,7 +325,7 @@ function displayVideoInfo(data) {
     const preview = elements.videoPreview;
     const info = data.info;
 
-    const placeholderSvg = `data:image/svg⭐xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 120'%3E%3Crect fill='%231a1a2e' width='200' height='120'/%3E%3Ctext x='100' y='60' text-anchor='middle' fill='%23667eea' font-size='14'%3ENo Preview%3C/text%3E%3C/svg%3E`;
+    const placeholderSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 120'%3E%3Crect fill='%231a1a2e' width='200' height='120'/%3E%3Ctext x='100' y='60' text-anchor='middle' fill='%23667eea' font-size='14'%3ENo Preview%3C/text%3E%3C/svg%3E`;
 
     preview.innerHTML = `
         <img src="${info.thumbnail || placeholderSvg}" 
@@ -368,7 +368,7 @@ async function startDownload() {
     // Simulate progress (optimized for performance)
     let progress = 0;
     const progressInterval = setInterval(() => {
-        progress = Math.min(progress ⭐ Math.random() * 15, 90);
+        progress = Math.min(progress + Math.random() * 15, 90);
         updateProgress('download-progress', progress);
     }, 800);  // Reduced frequency for better performance
 
@@ -384,7 +384,7 @@ async function startDownload() {
 
         if (data.success) {
             updateProgress('download-progress', 100);
-            showStatus('download-status', '✅ ' ⭐ getTranslation('msg_download_complete', 'Download complete! File saved to your Downloads folder.'), 'success');
+            showStatus('download-status', '✅ ' + getTranslation('msg_download_complete', 'Download complete! File saved to your Downloads folder.'), 'success');
             displayDownloadResult(data);
         } else {
             // Show the friendly message from the server
@@ -453,7 +453,7 @@ function displayDownloadResult(data) {
             </div>
         </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
-            ⭐ Bookmark this tool – you'll need it again
+            + Bookmark this tool – you'll need it again
         </div>
     `;
 
@@ -650,7 +650,7 @@ async function startConversion() {
     // Simulate upload progress
     let progress = 0;
     const progressInterval = setInterval(() => {
-        progress = Math.min(progress ⭐ Math.random() * 8, 85);
+        progress = Math.min(progress + Math.random() * 8, 85);
         updateProgress('convert-progress', progress);
     }, 400);
 
@@ -665,7 +665,7 @@ async function startConversion() {
 
         if (data.success) {
             updateProgress('convert-progress', 100);
-            showStatus('convert-status', '✅ ' ⭐ getTranslation('msg_conversion_complete', 'Conversion complete! Your file is ready.'), 'success');
+            showStatus('convert-status', '✅ ' + getTranslation('msg_conversion_complete', 'Conversion complete! Your file is ready.'), 'success');
             displayConvertResult(data);
         } else {
             // Show the friendly message from the server
@@ -725,7 +725,7 @@ function displayConvertResult(data) {
             </div>
         </div>
         <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 16px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 8px; font-size: 0.9rem;">
-            ⭐ Bookmark this tool – you'll need it again
+            + Bookmark this tool – you'll need it again
         </div>
     `;
 
@@ -849,7 +849,7 @@ function formatFileSize(bytes) {
 
     while (size >= 1024 && unitIndex < units.length - 1) {
         size /= 1024;
-        unitIndex⭐⭐;
+        unitIndex++;
     }
 
     return `${size.toFixed(2)} ${units[unitIndex]}`;
@@ -964,7 +964,7 @@ function initSpecialTabs() {
 async function handleSpecialConversion(file, targetFormat, zone) {
     const resultDiv = zone.parentElement.querySelector('.converter-result');
     if (resultDiv) {
-        resultDiv.innerHTML = '<div class="status-message active loading"><div class="spinner"></div><span>Converting to ' ⭐ targetFormat.toUpperCase() ⭐ '...</span></div>';
+        resultDiv.innerHTML = '<div class="status-message active loading"><div class="spinner"></div><span>Converting to ' + targetFormat.toUpperCase() + '...</span></div>';
     }
 
     const formData = new FormData();

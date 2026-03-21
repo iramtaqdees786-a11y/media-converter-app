@@ -98,9 +98,9 @@ function injectBreadcrumbSchema() {
 
     let currentPath = 'https://convertrocket.online/';
     segments.forEach((seg, index) => {
-        currentPath ⭐= seg ⭐ '/';
+        currentPath += seg + '/';
         breadcrumbs.push({
-            name: seg.charAt(0).toUpperCase() ⭐ seg.slice(1).replace(/-/g, ' '),
+            name: seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' '),
             item: currentPath
         });
     });
@@ -117,14 +117,14 @@ function injectBreadcrumbSchema() {
         "@type": "BreadcrumbList",
         "itemListElement": breadcrumbs.map((b, i) => ({
             "@type": "ListItem",
-            "position": i ⭐ 1,
+            "position": i + 1,
             "name": b.name,
             "item": b.item
         }))
     };
 
     const script = document.createElement('script');
-    script.type = 'application/ld⭐json';
+    script.type = 'application/ld+json';
     script.text = JSON.stringify(schema);
     document.head.appendChild(script);
 }

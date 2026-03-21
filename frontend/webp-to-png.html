@@ -14,20 +14,32 @@
 <script defer="" src="/static/js/minimalist-search.js?v=6.0"></script>
 <script defer="" src="/static/js/premium-features.js?v=6.0"></script>
 <link href="https://www.convertrocket.online/webp-to-png" rel="canonical"/>
-<style>
-        a { transition: all 0.3s ease; }
-        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
-        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
-        footer a { opacity: 0.7; text-decoration: none !important; }
-        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+<style>
+
+        a { transition: all 0.3s ease; }
+
+        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
+
+        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
+
+        footer a { opacity: 0.7; text-decoration: none !important; }
+
+        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+
     </style>
 <!-- Microsoft Clarity -->
-<script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"⭐i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vqfspxq9e7");
+<script type="text/javascript">
+
+        (function(c,l,a,r,i,t,y){
+
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+
+        })(window, document, "clarity", "script", "vqfspxq9e7");
+
     </script>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
@@ -190,102 +202,198 @@
 </section>
 </footer>
 </div>
-<script>
-        const API_BASE = '';
-        const TARGET_FORMAT = 'png';
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            const zone = document.getElementById('upload-zone');
-            const input = document.getElementById('file-input');
-            const progress = document.getElementById('progress-container');
-            const fill = document.getElementById('progress-fill');
-            const perc = document.getElementById('progress-percent');
-            const msg = document.getElementById('progress-message');
-            const result = document.getElementById('result-container');
-            const down = document.getElementById('download-link');
-            const info = document.getElementById('file-info');
-            
-            input.addEventListener('change', (e) => {
-                if (e.target.files.length === 0) return;
-                const file = e.target.files[0];
-                document.getElementById('file-details').innerHTML = `<strong>File Identified:</strong> ` ⭐ file.name ⭐ ` (` ⭐ (file.size/1024/1024).toFixed(2) ⭐ ` MB)`;
-                info.style.display = 'block';
-                zone.style.display = 'none';
-            });
-
-            document.getElementById('proceed-btn').addEventListener('click', async () => {
-                const file = input.files[0];
-                if(!file) return;
-
-                info.style.display = 'none';
-                progress.classList.add('active');
-                
-                const formData = new FormData();
-                formData.append('file', file);
-                formData.append('target_format', TARGET_FORMAT);
-                
-                let p = 0;
-                const interval = setInterval(() => {
-                    p = Math.min(p ⭐ Math.random() * 10, 96);
-                    fill.style.width = p ⭐ '%';
-                    perc.textContent = Math.round(p) ⭐ '%';
-                    if(p > 40) msg.textContent = 'Laboratory Conversion...';
-                    if(p > 80) msg.textContent = 'Finalizing Result...';
-                }, 400);
-
-                try {
-                    const r = await fetch(API_BASE ⭐ '/api/convert/upload', { method: 'POST', body: formData });
-                    const d = await r.json();
-                    clearInterval(interval);
-                    if (d.success) {
-                        fill.style.width = '100%';
-                        perc.textContent = '100%';
-                        msg.textContent = 'Ready for Save!';
-                        setTimeout(() => {
-                            progress.classList.remove('active');
-                            result.style.display = 'block';
-                            down.href = d.download_url;
-                            down.click(); // Auto save
-                        }, 600);
-                    } else {
-                        alert('Laboratory error: ' ⭐ (d.message || 'Unknown error'));
-                        location.reload();
-                    }
-                } catch (err) { 
-                    alert('Error in Lab: ' ⭐ err.message); 
-                    clearInterval(interval);
-                    progress.classList.remove('active');
-                    location.reload();
-                }
-            });
-        
-            // Sync Star
-            const star = document.querySelector('.card-star');
-            const url = '/webp-to-png';
-            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
-            if (starred.includes(url)) { star.textContent = 'â­'; star.classList.add('active'); }
-            else { star.textContent = 'â˜†'; star.classList.remove('active'); }
-        });
-
-        function toggleThisStar(el, url) {
-            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
-            if (el.classList.contains('active')) {
-                el.classList.remove('active'); el.textContent = 'â˜†';
-                starred = starred.filter(u => u !== url);
-            } else {
-                el.classList.add('active'); el.textContent = 'â­';
-                if(!starred.includes(url)) starred.push(url);
-            }
-            localStorage.setItem('starredTools', JSON.stringify(starred));
-        }
-
-        function copyResultLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to laboratory clipboard!'));
-        }
-
-        function bookmarkTool() {
-            alert('Press Ctrl⭐D to bookmark this tool!');
-        }
+<script>
+
+        const API_BASE = '';
+
+        const TARGET_FORMAT = 'png';
+
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const zone = document.getElementById('upload-zone');
+
+            const input = document.getElementById('file-input');
+
+            const progress = document.getElementById('progress-container');
+
+            const fill = document.getElementById('progress-fill');
+
+            const perc = document.getElementById('progress-percent');
+
+            const msg = document.getElementById('progress-message');
+
+            const result = document.getElementById('result-container');
+
+            const down = document.getElementById('download-link');
+
+            const info = document.getElementById('file-info');
+
+            
+
+            input.addEventListener('change', (e) => {
+
+                if (e.target.files.length === 0) return;
+
+                const file = e.target.files[0];
+
+                document.getElementById('file-details').innerHTML = `<strong>File Identified:</strong> ` + file.name + ` (` + (file.size/1024/1024).toFixed(2) + ` MB)`;
+
+                info.style.display = 'block';
+
+                zone.style.display = 'none';
+
+            });
+
+
+
+            document.getElementById('proceed-btn').addEventListener('click', async () => {
+
+                const file = input.files[0];
+
+                if(!file) return;
+
+
+
+                info.style.display = 'none';
+
+                progress.classList.add('active');
+
+                
+
+                const formData = new FormData();
+
+                formData.append('file', file);
+
+                formData.append('target_format', TARGET_FORMAT);
+
+                
+
+                let p = 0;
+
+                const interval = setInterval(() => {
+
+                    p = Math.min(p + Math.random() * 10, 96);
+
+                    fill.style.width = p + '%';
+
+                    perc.textContent = Math.round(p) + '%';
+
+                    if(p > 40) msg.textContent = 'Laboratory Conversion...';
+
+                    if(p > 80) msg.textContent = 'Finalizing Result...';
+
+                }, 400);
+
+
+
+                try {
+
+                    const r = await fetch(API_BASE + '/api/convert/upload', { method: 'POST', body: formData });
+
+                    const d = await r.json();
+
+                    clearInterval(interval);
+
+                    if (d.success) {
+
+                        fill.style.width = '100%';
+
+                        perc.textContent = '100%';
+
+                        msg.textContent = 'Ready for Save!';
+
+                        setTimeout(() => {
+
+                            progress.classList.remove('active');
+
+                            result.style.display = 'block';
+
+                            down.href = d.download_url;
+
+                            down.click(); // Auto save
+
+                        }, 600);
+
+                    } else {
+
+                        alert('Laboratory error: ' + (d.message || 'Unknown error'));
+
+                        location.reload();
+
+                    }
+
+                } catch (err) { 
+
+                    alert('Error in Lab: ' + err.message); 
+
+                    clearInterval(interval);
+
+                    progress.classList.remove('active');
+
+                    location.reload();
+
+                }
+
+            });
+
+        
+
+            // Sync Star
+
+            const star = document.querySelector('.card-star');
+
+            const url = '/webp-to-png';
+
+            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+
+            if (starred.includes(url)) { star.textContent = 'â­'; star.classList.add('active'); }
+
+            else { star.textContent = 'â˜†'; star.classList.remove('active'); }
+
+        });
+
+
+
+        function toggleThisStar(el, url) {
+
+            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+
+            if (el.classList.contains('active')) {
+
+                el.classList.remove('active'); el.textContent = 'â˜†';
+
+                starred = starred.filter(u => u !== url);
+
+            } else {
+
+                el.classList.add('active'); el.textContent = 'â­';
+
+                if(!starred.includes(url)) starred.push(url);
+
+            }
+
+            localStorage.setItem('starredTools', JSON.stringify(starred));
+
+        }
+
+
+
+        function copyResultLink() {
+
+            navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to laboratory clipboard!'));
+
+        }
+
+
+
+        function bookmarkTool() {
+
+            alert('Press Ctrl+D to bookmark this tool!');
+
+        }
+
     </script>
 
 <section class="seo-depth-block" style="margin-top: 80px; padding: 60px 40px; background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05);">

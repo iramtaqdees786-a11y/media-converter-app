@@ -11,101 +11,196 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="/css/modern-ui.css?v=5.0" rel="stylesheet"/>
 <link href="/css/seo-optimized.css?v=4.0" rel="stylesheet"/>
-<style>
-        .compress-panel {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            backdrop-filter: var(--glass-blur);
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .drop-zone {
-            border: 2px dashed var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 50px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-        }
-
-        .drop-zone:hover, .drop-zone.dragover {
-            border-color: var(--accent-primary);
-            background: rgba(0, 234, 255, 0.05);
-        }
-
-        .settings-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-bottom: 30px;
-        }
-
-        .slider-control {
-            background: rgba(0,0,0,0.2);
-            padding: 20px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-subtle);
-        }
-
-        .slider-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-weight: 700;
-            color: var(--text-secondary);
-        }
-
-        input[type="range"] {
-            width: 100%;
-            height: 6px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
-            appearance: none;
-            outline: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
-        }
-
-        .results-area {
-            margin-top: 40px;
-            display: grid;
-            gap: 16px;
-        }
-
-        .result-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            animation: fadeUp 0.4s ease forwards;
-        }
-
-        .stats-badge {
-            background: rgba(0, 255, 128, 0.1);
-            color: #00ff80;
-            padding: 4px 12px;
-            border-radius: var(--radius-full);
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
+<style>
+
+        .compress-panel {
+
+            background: var(--bg-surface);
+
+            border: 1px solid var(--border-subtle);
+
+            border-radius: var(--radius-lg);
+
+            padding: 40px;
+
+            backdrop-filter: var(--glass-blur);
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            z-index: 10;
+
+        }
+
+
+
+        .drop-zone {
+
+            border: 2px dashed var(--border-subtle);
+
+            border-radius: var(--radius-md);
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: all 0.3s;
+
+            background: rgba(0,0,0,0.2);
+
+            margin-bottom: 30px;
+
+        }
+
+
+
+        .drop-zone:hover, .drop-zone.dragover {
+
+            border-color: var(--accent-primary);
+
+            background: rgba(0, 234, 255, 0.05);
+
+        }
+
+
+
+        .settings-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr;
+
+            gap: 24px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+
+        .slider-control {
+
+            background: rgba(0,0,0,0.2);
+
+            padding: 20px;
+
+            border-radius: var(--radius-md);
+
+            border: 1px solid var(--border-subtle);
+
+        }
+
+
+
+        .slider-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+            font-weight: 700;
+
+            color: var(--text-secondary);
+
+        }
+
+
+
+        input[type="range"] {
+
+            width: 100%;
+
+            height: 6px;
+
+            background: rgba(255,255,255,0.1);
+
+            border-radius: 5px;
+
+            appearance: none;
+
+            outline: none;
+
+        }
+
+
+
+        input[type="range"]::-webkit-slider-thumb {
+
+            appearance: none;
+
+            width: 18px;
+
+            height: 18px;
+
+            background: var(--accent-primary);
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            box-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+
+        }
+
+
+
+        .results-area {
+
+            margin-top: 40px;
+
+            display: grid;
+
+            gap: 16px;
+
+        }
+
+
+
+        .result-item {
+
+            background: rgba(255,255,255,0.03);
+
+            border: 1px solid var(--border-subtle);
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            animation: fadeUp 0.4s ease forwards;
+
+        }
+
+
+
+        .stats-badge {
+
+            background: rgba(0, 255, 128, 0.1);
+
+            color: #00ff80;
+
+            padding: 4px 12px;
+
+            border-radius: var(--radius-full);
+
+            font-size: 0.8rem;
+
+            font-weight: 700;
+
+        }
+
     </style>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
@@ -263,107 +358,208 @@
 </div>
 </section>
 </footer>
-<script>
-        const zone = document.getElementById('drop-zone');
-        const input = document.getElementById('file-input');
-        const btn = document.getElementById('execute-btn');
-        const slider = document.getElementById('quality-slider');
-        const qVal = document.getElementById('quality-val');
-        const results = document.getElementById('results');
-        const dropText = document.getElementById('drop-text');
-
-        let filesToProcess = [];
-
-        zone.onclick = () => input.click();
-        
-        zone.ontragover = (e) => { e.preventDefault(); zone.classList.add('dragover'); };
-        zone.ondragleave = () => zone.classList.remove('dragover');
-        zone.ondrop = (e) => {
-            e.preventDefault();
-            zone.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        };
-
-        input.onchange = (e) => handleFiles(e.target.files);
-
-        slider.oninput = (e) => qVal.innerText = e.target.value ⭐ '%';
-
-        function handleFiles(files) {
-            filesToProcess = Array.from(files).filter(f => f.type.startsWith('image/'));
-            if (filesToProcess.length > 0) {
-                btn.disabled = false;
-                dropText.innerText = `${filesToProcess.length} Asset(s) Queued`;
-            }
-        }
-
-        btn.onclick = async () => {
-            btn.disabled = true;
-            btn.innerText = 'âš™ï¸ PROCESSING...';
-            results.innerHTML = '';
-            
-            const quality = parseInt(slider.value) / 100;
-
-            for (const file of filesToProcess) {
-                try {
-                    const compressed = await compress(file, quality);
-                    displayResult(file, compressed);
-                } catch (e) {
-                    console.error('Logic failure:', e);
-                }
-            }
-
-            btn.disabled = false;
-            btn.innerText = '⚡ EXECUTE OPTIMIZATION';
-        };
-
-        async function compress(file, quality) {
-            return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0);
-                        canvas.toBlob((blob) => resolve(blob), file.type, quality);
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-
-        function displayResult(orig, comp) {
-            const row = document.createElement('div');
-            row.className = 'result-item';
-            const saved = ((1 - comp.size / orig.size) * 100).toFixed(1);
-            
-            row.innerHTML = `
-                <div>
-                    <div style="font-weight: 700; margin-bottom: 4px;">${orig.name}</div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary);">
-                        ${(orig.size/1024).toFixed(1)}KB â†’ ${(comp.size/1024).toFixed(1)}KB 
-                        <span class="stats-badge">${saved}% SAVED</span>
-                    </div>
-                </div>
-                <button class="btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;" onclick="downloadBlob(this)">DOWNLOAD</button>
-            `;
-            
-            row.querySelector('button').blob = comp;
-            row.querySelector('button').filename = `optimized_${orig.name}`;
-            results.appendChild(row);
-        }
-
-        window.downloadBlob = (el) => {
-            const url = URL.createObjectURL(el.blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = el.filename;
-            a.click();
-            URL.revokeObjectURL(url);
-        };
+<script>
+
+        const zone = document.getElementById('drop-zone');
+
+        const input = document.getElementById('file-input');
+
+        const btn = document.getElementById('execute-btn');
+
+        const slider = document.getElementById('quality-slider');
+
+        const qVal = document.getElementById('quality-val');
+
+        const results = document.getElementById('results');
+
+        const dropText = document.getElementById('drop-text');
+
+
+
+        let filesToProcess = [];
+
+
+
+        zone.onclick = () => input.click();
+
+        
+
+        zone.ontragover = (e) => { e.preventDefault(); zone.classList.add('dragover'); };
+
+        zone.ondragleave = () => zone.classList.remove('dragover');
+
+        zone.ondrop = (e) => {
+
+            e.preventDefault();
+
+            zone.classList.remove('dragover');
+
+            handleFiles(e.dataTransfer.files);
+
+        };
+
+
+
+        input.onchange = (e) => handleFiles(e.target.files);
+
+
+
+        slider.oninput = (e) => qVal.innerText = e.target.value + '%';
+
+
+
+        function handleFiles(files) {
+
+            filesToProcess = Array.from(files).filter(f => f.type.startsWith('image/'));
+
+            if (filesToProcess.length > 0) {
+
+                btn.disabled = false;
+
+                dropText.innerText = `${filesToProcess.length} Asset(s) Queued`;
+
+            }
+
+        }
+
+
+
+        btn.onclick = async () => {
+
+            btn.disabled = true;
+
+            btn.innerText = 'âš™ï¸ PROCESSING...';
+
+            results.innerHTML = '';
+
+            
+
+            const quality = parseInt(slider.value) / 100;
+
+
+
+            for (const file of filesToProcess) {
+
+                try {
+
+                    const compressed = await compress(file, quality);
+
+                    displayResult(file, compressed);
+
+                } catch (e) {
+
+                    console.error('Logic failure:', e);
+
+                }
+
+            }
+
+
+
+            btn.disabled = false;
+
+            btn.innerText = '⚡ EXECUTE OPTIMIZATION';
+
+        };
+
+
+
+        async function compress(file, quality) {
+
+            return new Promise((resolve) => {
+
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+
+                    const img = new Image();
+
+                    img.onload = () => {
+
+                        const canvas = document.createElement('canvas');
+
+                        canvas.width = img.width;
+
+                        canvas.height = img.height;
+
+                        const ctx = canvas.getContext('2d');
+
+                        ctx.drawImage(img, 0, 0);
+
+                        canvas.toBlob((blob) => resolve(blob), file.type, quality);
+
+                    };
+
+                    img.src = e.target.result;
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+        }
+
+
+
+        function displayResult(orig, comp) {
+
+            const row = document.createElement('div');
+
+            row.className = 'result-item';
+
+            const saved = ((1 - comp.size / orig.size) * 100).toFixed(1);
+
+            
+
+            row.innerHTML = `
+
+                <div>
+
+                    <div style="font-weight: 700; margin-bottom: 4px;">${orig.name}</div>
+
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);">
+
+                        ${(orig.size/1024).toFixed(1)}KB â†’ ${(comp.size/1024).toFixed(1)}KB 
+
+                        <span class="stats-badge">${saved}% SAVED</span>
+
+                    </div>
+
+                </div>
+
+                <button class="btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;" onclick="downloadBlob(this)">DOWNLOAD</button>
+
+            `;
+
+            
+
+            row.querySelector('button').blob = comp;
+
+            row.querySelector('button').filename = `optimized_${orig.name}`;
+
+            results.appendChild(row);
+
+        }
+
+
+
+        window.downloadBlob = (el) => {
+
+            const url = URL.createObjectURL(el.blob);
+
+            const a = document.createElement('a');
+
+            a.href = url;
+
+            a.download = el.filename;
+
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+        };
+
     </script>
 </body>
 </html>

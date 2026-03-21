@@ -16,15 +16,24 @@
 <link href="https://www.convertrocket.online/png-to-pdf" rel="canonical"/>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
-<style>
-        a { transition: all 0.3s ease; }
-        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
-        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
-        footer a { opacity: 0.7; text-decoration: none !important; }
-        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
-        .queue-item { background: rgba(255,255,255,0.03); border-radius: 12px; margin-bottom: 8px; padding: 12px 15px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .queue-item span { font-size: 0.9rem; font-weight: 500; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%; }
-        .queue-item small { color: var(--neon-cyan); font-weight: 700; opacity: 0.7; }
+<style>
+
+        a { transition: all 0.3s ease; }
+
+        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
+
+        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
+
+        footer a { opacity: 0.7; text-decoration: none !important; }
+
+        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+
+        .queue-item { background: rgba(255,255,255,0.03); border-radius: 12px; margin-bottom: 8px; padding: 12px 15px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+
+        .queue-item span { font-size: 0.9rem; font-weight: 500; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%; }
+
+        .queue-item small { color: var(--neon-cyan); font-weight: 700; opacity: 0.7; }
+
     </style>
 </head>
 <body>
@@ -185,118 +194,230 @@
 </section>
 </footer>
 </div>
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const zone = document.getElementById('upload-zone');
-            const input = document.getElementById('file-input');
-            const progress = document.getElementById('progress-container');
-            const fill = document.getElementById('progress-fill');
-            const perc = document.getElementById('progress-percent');
-            const msg = document.getElementById('progress-message');
-            const result = document.getElementById('result-container');
-            const down = document.getElementById('download-link');
-            const info = document.getElementById('file-info');
-            
-            input.addEventListener('change', (e) => {
-                if (e.target.files.length === 0) return;
-                
-                const files = Array.from(e.target.files).slice(0, 20); // Safety limit 20
-                if (e.target.files.length > 20) {
-                    alert('Laboratory Overload: Only the first 20 images will be inducted into this session.');
-                }
-
-                const queue = document.getElementById('queue-dashboard');
-                queue.innerHTML = '';
-                let totalSize = 0;
-
-                files.forEach((file, idx) => {
-                    totalSize ⭐= file.size;
-                    const item = document.createElement('div');
-                    item.className = 'queue-item';
-                    item.innerHTML = `
-                        <span>${idx ⭐ 1}. ${file.name}</span>
-                        <small>${(file.size/1024).toFixed(1)} KB</small>
-                    `;
-                    queue.appendChild(item);
-                });
-
-                document.getElementById('file-details').innerHTML = `BATCH SIZE: ${files.length} ITEMS | TOTAL MASS: ${(totalSize/1024/1024).toFixed(2)} MB`;
-                info.style.display = 'block';
-                zone.style.display = 'none';
-            });
-
-            document.getElementById('proceed-btn').addEventListener('click', async () => {
-                const files = Array.from(input.files).slice(0, 20);
-                if(files.length === 0) return;
-
-                info.style.display = 'none';
-                progress.style.display = 'block';
-                
-                const formData = new FormData();
-                files.forEach(f => formData.append('files', f));
-                formData.append('target_format', 'pdf');
-                
-                let p = 0;
-                const interval = setInterval(() => {
-                    p = Math.min(p ⭐ (Math.random() * 3), 94);
-                    fill.style.width = p ⭐ '%';
-                    perc.textContent = Math.round(p) ⭐ '%';
-                    if(p > 20) msg.textContent = `Analyzing Batch Sequence...`;
-                    if(p > 50) msg.textContent = `Merging Clusters (${files.length} Units)...`;
-                    if(p > 80) msg.textContent = `Wrapping PDF Metadata...`;
-                }, 400);
-
-                try {
-                    const r = await fetch('/api/convert/bulk', { 
-                        method: 'POST', 
-                        body: formData 
-                    });
-                    const d = await r.json();
-                    
-                    clearInterval(interval);
-                    
-                    if (d.success) {
-                        fill.style.width = '100%';
-                        perc.textContent = '100%';
-                        msg.textContent = 'Protocol Success';
-                        setTimeout(() => {
-                            progress.style.display = 'none';
-                            result.style.display = 'block';
-                            down.href = d.download_url;
-                            down.click();
-                        }, 600);
-                    } else {
-                        alert('Laboratory Fault: ' ⭐ (d.message || 'Unknown Error'));
-                        location.reload();
-                    }
-                } catch (err) { 
-                    alert('Transmission Error: ' ⭐ err.message); 
-                    clearInterval(interval);
-                    location.reload();
-                }
-            });
-        
-            const star = document.querySelector('.card-star');
-            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
-            if (starred.includes('/png-to-pdf')) { 
-                star.textContent = '⭐'; 
-                star.classList.add('active'); 
-            }
-        });
-
-        function toggleThisStar(el, url) {
-            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
-            if (el.classList.contains('active')) {
-                el.classList.remove('active'); 
-                el.textContent = '☆';
-                starred = starred.filter(u => u !== url);
-            } else {
-                el.classList.add('active'); 
-                el.textContent = '⭐';
-                if(!starred.includes(url)) starred.push(url);
-            }
-            localStorage.setItem('starredTools', JSON.stringify(starred));
-        }
+<script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const zone = document.getElementById('upload-zone');
+
+            const input = document.getElementById('file-input');
+
+            const progress = document.getElementById('progress-container');
+
+            const fill = document.getElementById('progress-fill');
+
+            const perc = document.getElementById('progress-percent');
+
+            const msg = document.getElementById('progress-message');
+
+            const result = document.getElementById('result-container');
+
+            const down = document.getElementById('download-link');
+
+            const info = document.getElementById('file-info');
+
+            
+
+            input.addEventListener('change', (e) => {
+
+                if (e.target.files.length === 0) return;
+
+                
+
+                const files = Array.from(e.target.files).slice(0, 20); // Safety limit 20
+
+                if (e.target.files.length > 20) {
+
+                    alert('Laboratory Overload: Only the first 20 images will be inducted into this session.');
+
+                }
+
+
+
+                const queue = document.getElementById('queue-dashboard');
+
+                queue.innerHTML = '';
+
+                let totalSize = 0;
+
+
+
+                files.forEach((file, idx) => {
+
+                    totalSize += file.size;
+
+                    const item = document.createElement('div');
+
+                    item.className = 'queue-item';
+
+                    item.innerHTML = `
+
+                        <span>${idx + 1}. ${file.name}</span>
+
+                        <small>${(file.size/1024).toFixed(1)} KB</small>
+
+                    `;
+
+                    queue.appendChild(item);
+
+                });
+
+
+
+                document.getElementById('file-details').innerHTML = `BATCH SIZE: ${files.length} ITEMS | TOTAL MASS: ${(totalSize/1024/1024).toFixed(2)} MB`;
+
+                info.style.display = 'block';
+
+                zone.style.display = 'none';
+
+            });
+
+
+
+            document.getElementById('proceed-btn').addEventListener('click', async () => {
+
+                const files = Array.from(input.files).slice(0, 20);
+
+                if(files.length === 0) return;
+
+
+
+                info.style.display = 'none';
+
+                progress.style.display = 'block';
+
+                
+
+                const formData = new FormData();
+
+                files.forEach(f => formData.append('files', f));
+
+                formData.append('target_format', 'pdf');
+
+                
+
+                let p = 0;
+
+                const interval = setInterval(() => {
+
+                    p = Math.min(p + (Math.random() * 3), 94);
+
+                    fill.style.width = p + '%';
+
+                    perc.textContent = Math.round(p) + '%';
+
+                    if(p > 20) msg.textContent = `Analyzing Batch Sequence...`;
+
+                    if(p > 50) msg.textContent = `Merging Clusters (${files.length} Units)...`;
+
+                    if(p > 80) msg.textContent = `Wrapping PDF Metadata...`;
+
+                }, 400);
+
+
+
+                try {
+
+                    const r = await fetch('/api/convert/bulk', { 
+
+                        method: 'POST', 
+
+                        body: formData 
+
+                    });
+
+                    const d = await r.json();
+
+                    
+
+                    clearInterval(interval);
+
+                    
+
+                    if (d.success) {
+
+                        fill.style.width = '100%';
+
+                        perc.textContent = '100%';
+
+                        msg.textContent = 'Protocol Success';
+
+                        setTimeout(() => {
+
+                            progress.style.display = 'none';
+
+                            result.style.display = 'block';
+
+                            down.href = d.download_url;
+
+                            down.click();
+
+                        }, 600);
+
+                    } else {
+
+                        alert('Laboratory Fault: ' + (d.message || 'Unknown Error'));
+
+                        location.reload();
+
+                    }
+
+                } catch (err) { 
+
+                    alert('Transmission Error: ' + err.message); 
+
+                    clearInterval(interval);
+
+                    location.reload();
+
+                }
+
+            });
+
+        
+
+            const star = document.querySelector('.card-star');
+
+            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+
+            if (starred.includes('/png-to-pdf')) { 
+
+                star.textContent = '+'; 
+
+                star.classList.add('active'); 
+
+            }
+
+        });
+
+
+
+        function toggleThisStar(el, url) {
+
+            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+
+            if (el.classList.contains('active')) {
+
+                el.classList.remove('active'); 
+
+                el.textContent = '☆';
+
+                starred = starred.filter(u => u !== url);
+
+            } else {
+
+                el.classList.add('active'); 
+
+                el.textContent = '+';
+
+                if(!starred.includes(url)) starred.push(url);
+
+            }
+
+            localStorage.setItem('starredTools', JSON.stringify(starred));
+
+        }
+
     </script>
 </body>
 </html>

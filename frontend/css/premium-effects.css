@@ -376,7 +376,7 @@ input[type="file"] {
     }
 
     100% {
-        background-position: calc(200px ⭐ 100%) 0;
+        background-position: calc(200px + 100%) 0;
     }
 }
 

@@ -28,16 +28,16 @@ function initParticles() {
         container.appendChild(pDiv);
     }
 
-    for (let i = 0; i < 20; i⭐⭐) {
+    for (let i = 0; i < 20; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        const size = Math.random() * 4 ⭐ 2;
+        const size = Math.random() * 4 + 2;
         p.style.width = `${size}px`;
         p.style.height = `${size}px`;
         p.style.left = `${Math.random() * 100}%`;
         p.style.top = `${Math.random() * 100}%`;
         p.style.animationDelay = `${Math.random() * 10}s`;
-        p.style.animationDuration = `${Math.random() * 15 ⭐ 10}s`;
+        p.style.animationDuration = `${Math.random() * 15 + 10}s`;
         pDiv.appendChild(p);
     }
 }
@@ -56,7 +56,7 @@ function initStarring() {
         const toolUrl = star.closest('.tool-card').getAttribute('href');
         if (starredTools.includes(toolUrl)) {
             star.classList.add('active');
-            star.textContent = '⭐';
+            star.textContent = '+';
         }
 
         star.addEventListener('click', (e) => {
@@ -73,7 +73,7 @@ function initStarring() {
                 showToast('Removed from favorites', 'info');
             } else {
                 star.classList.add('active');
-                star.textContent = '⭐';
+                star.textContent = '+';
                 addStarred(url);
                 showToast('Added to favorites!', 'success');
             }
@@ -197,7 +197,7 @@ function showToast(message, type = 'info') {
 function updateToolStats() {
     const stats = document.querySelectorAll('.stat-badge');
     stats.forEach(stat => {
-        const rand = Math.floor(Math.random() * 500) ⭐ 100;
+        const rand = Math.floor(Math.random() * 500) + 100;
         stat.textContent = `${rand} converted today`;
     });
 }
@@ -251,7 +251,7 @@ function copyResultLink() {
 }
 
 function bookmarkTool() {
-    if (window.showToast) window.showToast('Press Ctrl⭐D to bookmark this laboratory module!', 'info');
+    if (window.showToast) window.showToast('Press Ctrl+D to bookmark this laboratory module!', 'info');
 }
 
 // Global exposure

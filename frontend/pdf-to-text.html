@@ -59,11 +59,15 @@
 <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
 <a class="action-btn" download="" href="#" id="download-link" style="display:inline-block; text-decoration:none; width: 100%; text-align: center;">Save Result</a>
 <div style="display: flex; gap: 10px; width: 100%;">
-<button class="btn-tool" onclick="copyResultLink()" style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
-                            🔗 Copy Link
+<button class="btn-tool" onclick="copyResultLink()" style="flex: 1; background: rgba(0, 242, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 242, 255, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
+
+                            🔗 Copy Link
+
                         </button>
-<button class="btn-tool" onclick="bookmarkTool()" style="flex: 1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
-                            â­ Bookmark
+<button class="btn-tool" onclick="bookmarkTool()" style="flex: 1; background: rgba(188, 19, 254, 0.1); color: var(--neon-purple); border: 1px solid rgba(188, 19, 254, 0.2); padding: 12px; border-radius: 15px; font-weight: 700; cursor: pointer;">
+
+                            â­ Bookmark
+
                         </button>
 </div>
 </div>
@@ -105,8 +109,10 @@
 </div>
 </section>
 <footer class="resource-footer">
-<div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
-                © 2026 CONVERTROCKET.ONLINE • LABORATORY MODULE
+<div style="text-align:center; opacity:0.3; font-size:0.8rem; letter-spacing:3px;">
+
+                © 2026 CONVERTROCKET.ONLINE • LABORATORY MODULE
+
             </div>
 <!-- Global "Stacked" PayPal Support Section -->
 <section class="paypal-support-area" style="margin: 80px 0; padding: 40px 20px; background: rgba(255, 209, 64, 0.05); border-top: 1px solid rgba(255, 209, 64, 0.1); border-bottom: 1px solid rgba(255, 209, 64, 0.1); text-align: center;">
@@ -127,58 +133,110 @@
 </section>
 </footer>
 </div>
-<script>
-        const inputEl = document.getElementById('file-input');
-        const uploadZone = document.getElementById('upload-zone');
-        const toolUi = document.getElementById('tool-ui');
-        const status = document.getElementById('status-message');
-        const result = document.getElementById('result-container');
-        const executeBtn = document.getElementById('execute-btn');
-        const fileDetails = document.getElementById('file-details');
-
-        // Handle clicks if it's a file input container
-        if(inputEl.type === 'file') {
-            uploadZone.onclick = (e) => {
-                if(e.target !== inputEl) inputEl.click();
-            };
-        }
-
-        inputEl.oninput = inputEl.onchange = (e) => {
-            const val = inputEl.type === 'file' ? e.target.files[0]?.name : e.target.value;
-            if (val) {
-                uploadZone.style.display = 'none';
-                toolUi.style.display = 'block';
-                fileDetails.innerHTML = inputEl.type === 'file' ? `<strong>File Ready:</strong> ${val}` : `<strong>Target URL:</strong> ${val}`;
-                status.innerHTML = '✅ Input validated. Ready for execution.';
-            }
-        };
-
-        executeBtn.onclick = () => {
-            executeBtn.disabled = true;
-            executeBtn.innerText = 'Processing...';
-            status.innerHTML = 'âš™ï¸ Executing high-speed laboratory algorithm...';
-            
-            // Simulation of processing
-            setTimeout(() => {
-                status.innerHTML = '';
-                toolUi.style.display = 'none';
-                result.style.display = 'block';
-            }, 2000);
-        };
-
-        function toggleThisStar(el, url) {
-            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
-            if (el.classList.contains('active')) {
-                el.classList.remove('active'); el.textContent = 'â˜†';
-                starred = starred.filter(u => u !== url);
-            } else {
-                el.classList.add('active'); el.textContent = 'â­';
-                if(!starred.includes(url)) starred.push(url);
-            }
-            localStorage.setItem('starredTools', JSON.stringify(starred));
-        }
-        function copyResultLink() { navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied!')); }
-        function bookmarkTool() { alert('Press Ctrl⭐D to bookmark!'); }
+<script>
+
+        const inputEl = document.getElementById('file-input');
+
+        const uploadZone = document.getElementById('upload-zone');
+
+        const toolUi = document.getElementById('tool-ui');
+
+        const status = document.getElementById('status-message');
+
+        const result = document.getElementById('result-container');
+
+        const executeBtn = document.getElementById('execute-btn');
+
+        const fileDetails = document.getElementById('file-details');
+
+
+
+        // Handle clicks if it's a file input container
+
+        if(inputEl.type === 'file') {
+
+            uploadZone.onclick = (e) => {
+
+                if(e.target !== inputEl) inputEl.click();
+
+            };
+
+        }
+
+
+
+        inputEl.oninput = inputEl.onchange = (e) => {
+
+            const val = inputEl.type === 'file' ? e.target.files[0]?.name : e.target.value;
+
+            if (val) {
+
+                uploadZone.style.display = 'none';
+
+                toolUi.style.display = 'block';
+
+                fileDetails.innerHTML = inputEl.type === 'file' ? `<strong>File Ready:</strong> ${val}` : `<strong>Target URL:</strong> ${val}`;
+
+                status.innerHTML = '✅ Input validated. Ready for execution.';
+
+            }
+
+        };
+
+
+
+        executeBtn.onclick = () => {
+
+            executeBtn.disabled = true;
+
+            executeBtn.innerText = 'Processing...';
+
+            status.innerHTML = 'âš™ï¸ Executing high-speed laboratory algorithm...';
+
+            
+
+            // Simulation of processing
+
+            setTimeout(() => {
+
+                status.innerHTML = '';
+
+                toolUi.style.display = 'none';
+
+                result.style.display = 'block';
+
+            }, 2000);
+
+        };
+
+
+
+        function toggleThisStar(el, url) {
+
+            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+
+            if (el.classList.contains('active')) {
+
+                el.classList.remove('active'); el.textContent = 'â˜†';
+
+                starred = starred.filter(u => u !== url);
+
+            } else {
+
+                el.classList.add('active'); el.textContent = 'â­';
+
+                if(!starred.includes(url)) starred.push(url);
+
+            }
+
+            localStorage.setItem('starredTools', JSON.stringify(starred));
+
+        }
+
+        function copyResultLink() { navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied!')); }
+
+        function bookmarkTool() { alert('Press Ctrl+D to bookmark!'); }
+
     </script>
 
 <section class="seo-depth-block" style="margin-top: 80px; padding: 60px 40px; background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05);">

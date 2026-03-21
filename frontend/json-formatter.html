@@ -11,101 +11,196 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="/css/modern-ui.css?v=5.0" rel="stylesheet"/>
 <link href="/css/seo-optimized.css?v=4.0" rel="stylesheet"/>
-<style>
-        .json-panel {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            backdrop-filter: var(--glass-blur);
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .cmd-tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
-            background: rgba(0,0,0,0.2);
-            padding: 8px;
-            border-radius: var(--radius-full);
-            width: fit-content;
-        }
-
-        .cmd-tab {
-            padding: 10px 24px;
-            border-radius: var(--radius-full);
-            border: 1px solid transparent;
-            background: transparent;
-            color: var(--text-secondary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cmd-tab.active {
-            background: var(--accent-primary);
-            color: #000;
-            border-color: var(--accent-primary);
-        }
-
-        .editor-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .editor-box {
-            position: relative;
-        }
-
-        .editor-label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 700;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .premium-textarea {
-            width: 100%;
-            height: 300px;
-            padding: 20px;
-            border-radius: var(--radius-md);
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border-subtle);
-            color: #fff;
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            transition: 0.3s;
-            resize: vertical;
-        }
-
-        .premium-textarea:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
-        }
-
-        .status-badge {
-            margin-top: 15px;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .status-success { background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.2); }
-        .status-error { background: rgba(255, 0, 122, 0.1); color: #ff007a; border: 1px solid rgba(255, 0, 122, 0.2); }
+<style>
+
+        .json-panel {
+
+            background: var(--bg-surface);
+
+            border: 1px solid var(--border-subtle);
+
+            border-radius: var(--radius-lg);
+
+            padding: 40px;
+
+            backdrop-filter: var(--glass-blur);
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            z-index: 10;
+
+        }
+
+
+
+        .cmd-tabs {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 30px;
+
+            background: rgba(0,0,0,0.2);
+
+            padding: 8px;
+
+            border-radius: var(--radius-full);
+
+            width: fit-content;
+
+        }
+
+
+
+        .cmd-tab {
+
+            padding: 10px 24px;
+
+            border-radius: var(--radius-full);
+
+            border: 1px solid transparent;
+
+            background: transparent;
+
+            color: var(--text-secondary);
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+
+
+        .cmd-tab.active {
+
+            background: var(--accent-primary);
+
+            color: #000;
+
+            border-color: var(--accent-primary);
+
+        }
+
+
+
+        .editor-container {
+
+            display: grid;
+
+            grid-template-columns: 1fr;
+
+            gap: 24px;
+
+        }
+
+
+
+        .editor-box {
+
+            position: relative;
+
+        }
+
+
+
+        .editor-label {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            font-weight: 700;
+
+            color: var(--text-secondary);
+
+            font-size: 0.9rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+
+        .premium-textarea {
+
+            width: 100%;
+
+            height: 300px;
+
+            padding: 20px;
+
+            border-radius: var(--radius-md);
+
+            background: rgba(0,0,0,0.4);
+
+            border: 1px solid var(--border-subtle);
+
+            color: #fff;
+
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+
+            font-size: 0.95rem;
+
+            line-height: 1.6;
+
+            transition: 0.3s;
+
+            resize: vertical;
+
+        }
+
+
+
+        .premium-textarea:focus {
+
+            outline: none;
+
+            border-color: var(--accent-primary);
+
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
+
+        }
+
+
+
+        .status-badge {
+
+            margin-top: 15px;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            font-weight: 700;
+
+            font-size: 0.9rem;
+
+            display: none;
+
+        }
+
+
+
+        .status-success { background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.2); }
+
+        .status-error { background: rgba(255, 0, 122, 0.1); color: #ff007a; border: 1px solid rgba(255, 0, 122, 0.2); }
+
     </style>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
@@ -269,68 +364,130 @@
 </div>
 </section>
 </footer>
-<script>
-        let mode = 'format';
-
-        function switchMode(newMode, el) {
-            mode = newMode;
-            document.querySelectorAll('.cmd-tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-            
-            const p = {
-                'format': '{"status": "ready", "module": "JSON_PROTOCOL"}',
-                'minify': '{\n  "status": "ready",\n  "module": "JSON_PROTOCOL"\n}',
-                'validate': '{"valid": true}'
-            };
-            document.getElementById('json-input').placeholder = p[mode];
-        }
-
-        function processJSON() {
-            const input = document.getElementById('json-input').value.trim();
-            const output = document.getElementById('json-output');
-            const status = document.getElementById('json-status');
-
-            if (!input) return alert('Enter JSON data.');
-
-            try {
-                const parsed = JSON.parse(input);
-                status.style.display = 'block';
-                status.className = 'status-badge status-success';
-                status.innerHTML = '✅ Protocol Validated & Processed';
-
-                if (mode === 'format') {
-                    output.value = JSON.stringify(parsed, null, 2);
-                } else if (mode === 'minify') {
-                    output.value = JSON.stringify(parsed);
-                } else {
-                    output.value = JSON.stringify({
-                        valid: true,
-                        size: input.length,
-                        keys: Object.keys(parsed).length,
-                        type: Array.isArray(parsed) ? 'Array' : 'Object'
-                    }, null, 2);
-                }
-            } catch (e) {
-                status.style.display = 'block';
-                status.className = 'status-badge status-error';
-                status.innerHTML = 'âŒ Syntax Error: ' ⭐ e.message;
-                output.value = '';
-            }
-        }
-
-        function copyToClipboard() {
-            const out = document.getElementById('json-output');
-            if (!out.value) return;
-            out.select();
-            document.execCommand('copy');
-            alert('Protocol copied to clipboard.');
-        }
-
-        function clearAll() {
-            document.getElementById('json-input').value = '';
-            document.getElementById('json-output').value = '';
-            document.getElementById('json-status').style.display = 'none';
-        }
+<script>
+
+        let mode = 'format';
+
+
+
+        function switchMode(newMode, el) {
+
+            mode = newMode;
+
+            document.querySelectorAll('.cmd-tab').forEach(t => t.classList.remove('active'));
+
+            el.classList.add('active');
+
+            
+
+            const p = {
+
+                'format': '{"status": "ready", "module": "JSON_PROTOCOL"}',
+
+                'minify': '{\n  "status": "ready",\n  "module": "JSON_PROTOCOL"\n}',
+
+                'validate': '{"valid": true}'
+
+            };
+
+            document.getElementById('json-input').placeholder = p[mode];
+
+        }
+
+
+
+        function processJSON() {
+
+            const input = document.getElementById('json-input').value.trim();
+
+            const output = document.getElementById('json-output');
+
+            const status = document.getElementById('json-status');
+
+
+
+            if (!input) return alert('Enter JSON data.');
+
+
+
+            try {
+
+                const parsed = JSON.parse(input);
+
+                status.style.display = 'block';
+
+                status.className = 'status-badge status-success';
+
+                status.innerHTML = '✅ Protocol Validated & Processed';
+
+
+
+                if (mode === 'format') {
+
+                    output.value = JSON.stringify(parsed, null, 2);
+
+                } else if (mode === 'minify') {
+
+                    output.value = JSON.stringify(parsed);
+
+                } else {
+
+                    output.value = JSON.stringify({
+
+                        valid: true,
+
+                        size: input.length,
+
+                        keys: Object.keys(parsed).length,
+
+                        type: Array.isArray(parsed) ? 'Array' : 'Object'
+
+                    }, null, 2);
+
+                }
+
+            } catch (e) {
+
+                status.style.display = 'block';
+
+                status.className = 'status-badge status-error';
+
+                status.innerHTML = 'âŒ Syntax Error: ' + e.message;
+
+                output.value = '';
+
+            }
+
+        }
+
+
+
+        function copyToClipboard() {
+
+            const out = document.getElementById('json-output');
+
+            if (!out.value) return;
+
+            out.select();
+
+            document.execCommand('copy');
+
+            alert('Protocol copied to clipboard.');
+
+        }
+
+
+
+        function clearAll() {
+
+            document.getElementById('json-input').value = '';
+
+            document.getElementById('json-output').value = '';
+
+            document.getElementById('json-status').style.display = 'none';
+
+        }
+
     </script>
 </body>
 </html>

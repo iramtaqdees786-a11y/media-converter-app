@@ -8,109 +8,212 @@
 <meta content="View your recent conversion history and quickly access your processed files." name="description"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="/css/modern-ui.css?v=5.0" rel="stylesheet"/>
-<style>
-        .workspace-container {
-            margin-top: 40px;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .history-list {
-            display: grid;
-            gap: 16px;
-            margin-top: 30px;
-        }
-
-        .history-item {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: 0.3s;
-            backdrop-filter: var(--glass-blur);
-        }
-
-        .history-item:hover {
-            background: var(--bg-elevated);
-            border-color: rgba(255,255,255,0.15);
-            transform: scale(1.01);
-        }
-
-        .history-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .file-icon {
-            font-size: 1.8rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-        }
-
-        .file-details h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .file-details p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .history-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-mini {
-            padding: 8px 16px;
-            font-size: 0.85rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .btn-mini-primary {
-            background: var(--accent-primary);
-            color: #000;
-        }
-
-        .btn-mini-danger {
-            background: rgba(255, 0, 122, 0.1);
-            color: #ff007a;
-            border: 1px solid rgba(255, 0, 122, 0.2);
-        }
-
-        .btn-mini-danger:hover {
-            background: rgba(255, 0, 122, 0.2);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 80px 20px;
-            opacity: 0.6;
-        }
-
-        .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<style>
+
+        .workspace-container {
+
+            margin-top: 40px;
+
+            animation: fadeIn 0.8s ease-out;
+
+        }
+
+
+
+        .history-list {
+
+            display: grid;
+
+            gap: 16px;
+
+            margin-top: 30px;
+
+        }
+
+
+
+        .history-item {
+
+            background: var(--bg-surface);
+
+            border: 1px solid var(--border-subtle);
+
+            border-radius: var(--radius-md);
+
+            padding: 20px 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            transition: 0.3s;
+
+            backdrop-filter: var(--glass-blur);
+
+        }
+
+
+
+        .history-item:hover {
+
+            background: var(--bg-elevated);
+
+            border-color: rgba(255,255,255,0.15);
+
+            transform: scale(1.01);
+
+        }
+
+
+
+        .history-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+
+
+
+        .file-icon {
+
+            font-size: 1.8rem;
+
+            width: 50px;
+
+            height: 50px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: rgba(255,255,255,0.03);
+
+            border-radius: 12px;
+
+        }
+
+
+
+        .file-details h3 {
+
+            font-size: 1rem;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+
+        }
+
+
+
+        .file-details p {
+
+            font-size: 0.85rem;
+
+            color: var(--text-secondary);
+
+        }
+
+
+
+        .history-actions {
+
+            display: flex;
+
+            gap: 12px;
+
+        }
+
+
+
+        .btn-mini {
+
+            padding: 8px 16px;
+
+            font-size: 0.85rem;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+
+            cursor: pointer;
+
+        }
+
+
+
+        .btn-mini-primary {
+
+            background: var(--accent-primary);
+
+            color: #000;
+
+        }
+
+
+
+        .btn-mini-danger {
+
+            background: rgba(255, 0, 122, 0.1);
+
+            color: #ff007a;
+
+            border: 1px solid rgba(255, 0, 122, 0.2);
+
+        }
+
+
+
+        .btn-mini-danger:hover {
+
+            background: rgba(255, 0, 122, 0.2);
+
+        }
+
+
+
+        .empty-state {
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            opacity: 0.6;
+
+        }
+
+
+
+        .empty-state-icon {
+
+            font-size: 3rem;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(10px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
     </style>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
@@ -180,76 +283,146 @@
 </div>
 </section>
 </footer>
-<script>
-        function loadHistory() {
-            const history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
-            const container = document.getElementById('history-content');
-
-            if (history.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">ðŸ§Š</div>
-                        <h3>Your workspace is empty</h3>
-                        <p>Start converting files to see them here.</p>
-                        <a href="/all-tools" class="btn-primary" style="margin-top: 20px;">Browse Tools</a>
-                    </div>
-                `;
-                return;
-            }
-
-            let html = '<div class="history-list">';
-            history.reverse().forEach((item, index) => {
-                const date = new Date(item.timestamp).toLocaleString();
-                html ⭐= `
-                    <div class="history-item" id="item-${index}">
-                        <div class="history-info">
-                            <div class="file-icon">${getFileIcon(item.type)}</div>
-                            <div class="file-details">
-                                <h3>${item.fileName}</h3>
-                                <p>${item.type.toUpperCase()} • ${date}</p>
-                            </div>
-                        </div>
-                        <div class="history-actions">
-                            <a href="${item.toolLink}" class="btn-mini btn-mini-primary">Convert Again</a>
-                            <button onclick="deleteItem(${index})" class="btn-mini btn-mini-danger">Delete</button>
-                        </div>
-                    </div>
-                `;
-            });
-            html ⭐= '</div>';
-            html ⭐= '<div style="text-align:center; margin-top: 40px;"><button onclick="clearAll()" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 20px;">Clear All History</button></div>';
-            container.innerHTML = html;
-        }
-
-        function getFileIcon(type) {
-            const icons = {
-                'pdf': 'ðŸ“„',
-                'video': 'ðŸŽ¬',
-                'audio': '🎵',
-                'image': 'ðŸ–¼ï¸',
-                'json': '{}',
-                'qr': 'ðŸ“±'
-            };
-            return icons[type] || 'ðŸ“';
-        }
-
-        function deleteItem(originalIndex) {
-            let history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
-            // Since we reversed for display, the index is different
-            const actualIndex = history.length - 1 - originalIndex;
-            history.splice(actualIndex, 1);
-            localStorage.setItem('conversionHistory', JSON.stringify(history));
-            loadHistory();
-        }
-
-        function clearAll() {
-            if (confirm('Are you sure you want to clear all history?')) {
-                localStorage.removeItem('conversionHistory');
-                loadHistory();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', loadHistory);
+<script>
+
+        function loadHistory() {
+
+            const history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
+
+            const container = document.getElementById('history-content');
+
+
+
+            if (history.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="empty-state">
+
+                        <div class="empty-state-icon">ðŸ§Š</div>
+
+                        <h3>Your workspace is empty</h3>
+
+                        <p>Start converting files to see them here.</p>
+
+                        <a href="/all-tools" class="btn-primary" style="margin-top: 20px;">Browse Tools</a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            let html = '<div class="history-list">';
+
+            history.reverse().forEach((item, index) => {
+
+                const date = new Date(item.timestamp).toLocaleString();
+
+                html += `
+
+                    <div class="history-item" id="item-${index}">
+
+                        <div class="history-info">
+
+                            <div class="file-icon">${getFileIcon(item.type)}</div>
+
+                            <div class="file-details">
+
+                                <h3>${item.fileName}</h3>
+
+                                <p>${item.type.toUpperCase()} • ${date}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="history-actions">
+
+                            <a href="${item.toolLink}" class="btn-mini btn-mini-primary">Convert Again</a>
+
+                            <button onclick="deleteItem(${index})" class="btn-mini btn-mini-danger">Delete</button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+            html += '</div>';
+
+            html += '<div style="text-align:center; margin-top: 40px;"><button onclick="clearAll()" class="btn-secondary" style="font-size: 0.8rem; padding: 10px 20px;">Clear All History</button></div>';
+
+            container.innerHTML = html;
+
+        }
+
+
+
+        function getFileIcon(type) {
+
+            const icons = {
+
+                'pdf': 'ðŸ“„',
+
+                'video': 'ðŸŽ¬',
+
+                'audio': '🎵',
+
+                'image': 'ðŸ–¼ï¸',
+
+                'json': '{}',
+
+                'qr': 'ðŸ“±'
+
+            };
+
+            return icons[type] || 'ðŸ“';
+
+        }
+
+
+
+        function deleteItem(originalIndex) {
+
+            let history = JSON.parse(localStorage.getItem('conversionHistory') || '[]');
+
+            // Since we reversed for display, the index is different
+
+            const actualIndex = history.length - 1 - originalIndex;
+
+            history.splice(actualIndex, 1);
+
+            localStorage.setItem('conversionHistory', JSON.stringify(history));
+
+            loadHistory();
+
+        }
+
+
+
+        function clearAll() {
+
+            if (confirm('Are you sure you want to clear all history?')) {
+
+                localStorage.removeItem('conversionHistory');
+
+                loadHistory();
+
+            }
+
+        }
+
+
+
+        document.addEventListener('DOMContentLoaded', loadHistory);
+
     </script>
 </body>
 </html>

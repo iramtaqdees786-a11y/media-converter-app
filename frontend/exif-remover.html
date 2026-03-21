@@ -13,20 +13,32 @@
 <script defer="" src="/static/js/minimalist-search.js?v=6.0"></script>
 <script defer="" src="/static/js/premium-features.js?v=6.0"></script>
 <link href="https://www.convertrocket.online/exif-remover" rel="canonical"/>
-<style>
-        a { transition: all 0.3s ease; }
-        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
-        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
-        footer a { opacity: 0.7; text-decoration: none !important; }
-        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+<style>
+
+        a { transition: all 0.3s ease; }
+
+        .seo-content a { color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid transparent; }
+
+        .seo-content a:hover { border-bottom: 1px solid var(--accent-primary); opacity: 0.8; }
+
+        footer a { opacity: 0.7; text-decoration: none !important; }
+
+        footer a:hover { opacity: 1; color: var(--accent-primary) !important; }
+
     </style>
 <!-- Microsoft Clarity -->
-<script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"⭐i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vqfspxq9e7");
+<script type="text/javascript">
+
+        (function(c,l,a,r,i,t,y){
+
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+
+        })(window, document, "clarity", "script", "vqfspxq9e7");
+
     </script>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA4wQnj-MTNZdHh8spzXGa2jpRDoO-oS4f591PD349a-bukjdyNxyrVYe1txqZUQOROA0K0PiqmsWbhmI&amp;components=hosted-buttons&amp;disable-funding=venmo¤cy=USD"></script>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380223202941211"></script>
@@ -53,7 +65,8 @@
 <div style="margin-top: 20px; display: flex; justify-content: center; opacity: 0.9;">
 </div>
 <div style="margin-top: 25px; display: flex; justify-content: center; gap: 12px;">
-<a class="btn-premium" href="/all-tools" style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+<a class="btn-premium" href="/all-tools" style="text-decoration: none; width: auto; padding-inline: 40px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--border-subtle);">View
+
                         All Tools</a>
 </div>
 </div>
@@ -88,7 +101,8 @@
 <p id="file-name" style="font-weight: 800; color: var(--accent-primary);"></p>
 </div>
 <button class="btn-premium" onclick="executeExif()">Neutralize Metadata</button>
-<button onclick="location.reload()" style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700; display: block; margin-inline: auto;">CHANGE
+<button onclick="location.reload()" style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; margin-top:10px; font-weight:700; display: block; margin-inline: auto;">CHANGE
+
                             FILE</button>
 </div>
 <!-- Results -->
@@ -116,17 +130,24 @@
 </main>
 <section class="seo-content">
 <h2>Why Remove EXIF Data from Your Photos?</h2>
-<p>Every digital photograph contains hidden <strong>metadata (EXIF)</strong> that can reveal sensitive
-                information about you. This includes the <strong>exact GPS coordinates</strong> where the photo was
-                taken, the date and time, and the specific camera or phone model used. Sharing these images on social
+<p>Every digital photograph contains hidden <strong>metadata (EXIF)</strong> that can reveal sensitive
+
+                information about you. This includes the <strong>exact GPS coordinates</strong> where the photo was
+
+                taken, the date and time, and the specific camera or phone model used. Sharing these images on social
+
                 media or forums without cleaning them first can compromise your privacy and security.</p>
 <h3>How our Metadata Removal Laboratory works?</h3>
-<p>Our <strong>Privacy Stripper</strong> tool uses a forensic-grade scrubbing algorithm to clone your image
-                without copying any of the metadata tags. The resulting image is identical in visual quality but
+<p>Our <strong>Privacy Stripper</strong> tool uses a forensic-grade scrubbing algorithm to clone your image
+
+                without copying any of the metadata tags. The resulting image is identical in visual quality but
+
                 completely blank in terms of hidden data. We support JPG, JPEG, PNG, and TIFF formats.</p>
 <h3>Is the cleaning process secure?</h3>
-<p>Security is built into our core. All processing happens in volatile memory and is never written to
-                permanent disk storage. Your original file is purged the instant the clean version is generated. We
+<p>Security is built into our core. All processing happens in volatile memory and is never written to
+
+                permanent disk storage. Your original file is purged the instant the clean version is generated. We
+
                 don't track your location, your device, or your identity.</p>
 </section>
 <!-- Industrial-Grade Protocol Specification -->
@@ -208,38 +229,70 @@
 </footer>
 </div>
 <script src="/static/js/media-tools.js?v=6.0"></script>
-<script>
-        const exifInput = document.getElementById('exif-input');
-        const uploadZone = document.getElementById('upload-zone');
-        const fileInfo = document.getElementById('file-info');
-        const fileNameDisp = document.getElementById('file-name');
-
-        exifInput.addEventListener('change', () => {
-            if (exifInput.files[0]) {
-                fileNameDisp.textContent = `Target Identified: ${exifInput.files[0].name}`;
-                fileInfo.style.display = 'block';
-                uploadZone.style.display = 'none';
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const url = '/exif-remover';
-            const star = document.querySelector('.card-star');
-            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
-            if (starred.includes(url)) { star.textContent = 'â­'; star.classList.add('active'); }
-        });
-
-        function toggleThisStar(el, url) {
-            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
-            if (el.classList.contains('active')) {
-                el.classList.remove('active'); el.textContent = 'â˜†';
-                starred = starred.filter(u => u !== url);
-            } else {
-                el.classList.add('active'); el.textContent = 'â­';
-                if (!starred.includes(url)) starred.push(url);
-            }
-            localStorage.setItem('starredTools', JSON.stringify(starred));
-        }
+<script>
+
+        const exifInput = document.getElementById('exif-input');
+
+        const uploadZone = document.getElementById('upload-zone');
+
+        const fileInfo = document.getElementById('file-info');
+
+        const fileNameDisp = document.getElementById('file-name');
+
+
+
+        exifInput.addEventListener('change', () => {
+
+            if (exifInput.files[0]) {
+
+                fileNameDisp.textContent = `Target Identified: ${exifInput.files[0].name}`;
+
+                fileInfo.style.display = 'block';
+
+                uploadZone.style.display = 'none';
+
+            }
+
+        });
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const url = '/exif-remover';
+
+            const star = document.querySelector('.card-star');
+
+            const starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+
+            if (starred.includes(url)) { star.textContent = 'â­'; star.classList.add('active'); }
+
+        });
+
+
+
+        function toggleThisStar(el, url) {
+
+            let starred = JSON.parse(localStorage.getItem('starredTools') || '[]');
+
+            if (el.classList.contains('active')) {
+
+                el.classList.remove('active'); el.textContent = 'â˜†';
+
+                starred = starred.filter(u => u !== url);
+
+            } else {
+
+                el.classList.add('active'); el.textContent = 'â­';
+
+                if (!starred.includes(url)) starred.push(url);
+
+            }
+
+            localStorage.setItem('starredTools', JSON.stringify(starred));
+
+        }
+
     </script>
 </body>
 </html>
