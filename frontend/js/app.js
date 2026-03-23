@@ -131,7 +131,7 @@ function initSystemActivity() {
     setInterval(() => {
         if (Math.random() > 0.7) {
             const msg = messages[Math.floor(Math.random() * messages.length)];
-            window.showToast(`📡 ${msg}`, 'info');
+            window.showToast(`📡 [Community Live] ${msg}`, 'info');
         }
     }, 15000);
 }
@@ -805,8 +805,8 @@ function updateProgress(elementId, value) {
     // Industrial Activation
     container.classList.add('active');
 
-    const fill = container.querySelector('.progress-fill');
-    const text = container.querySelector('.progress-percent');
+    const fill = container.querySelector('.progress-bar-fill') || container.querySelector('#progress-fill') || container.querySelector('[id*="-bar"]');
+    const text = container.querySelector('.progress-percent') || container.querySelector('#progress-percent') || container.querySelector('[id*="-percent"]');
 
     if (fill) fill.style.width = `${value}%`;
     if (text) {
