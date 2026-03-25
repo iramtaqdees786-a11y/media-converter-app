@@ -483,9 +483,9 @@ function initConvertSection() {
 
     if (!uploadZone || !fileInput) return;
 
-    // Click to upload (Refined to prevent double-trigger)
-    uploadZone.addEventListener('click', (e) => {
-        if (e.target !== fileInput) fileInput.click();
+    // Click to upload (Trigger hidden file input)
+    uploadZone.addEventListener('click', () => {
+        fileInput.click();
     });
 
     // Keyboard accessibility
